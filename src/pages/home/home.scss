@@ -1,0 +1,27 @@
+.home_index {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.home_scrollview {
+    width: 100%;
+    height: 100%;
+    background-color: #4400ff;
+
+    .test_1 {
+        width: 100%;
+        height: 200px;
+        background-color: #ff0044;
+    }
+    .test_2 {
+        width: 100%;
+        height: 200px;
+        background-color: #44ff00;
+    }
+    .test_3 {
+        width: 100%;
+        height: 200px;
+        background-color: #4400ff;
+    }
+}
