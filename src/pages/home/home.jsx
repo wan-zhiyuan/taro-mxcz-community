@@ -34,10 +34,10 @@ export default function Home() {
                 <View className='test_3'></View>
                 <View className='test_1'></View>
                 <View className='test_2'></View>
-                <View className='test_3'></View>
+                {/* <View className='test_3'></View>
                 <View className='test_1'></View>
                 <View className='test_2'></View>
-                <View className='test_3'></View>
+                <View className='test_3'></View> */}
 
             </ScrollView>
         </View>
