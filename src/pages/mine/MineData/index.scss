@@ -1,0 +1,36 @@
+.mine_data {
+    width: 680px;
+    height: 130px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    top: 180px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.data_item {
+    // width: 110px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+
+    .item_value {
+        font-size: 28px;
+        line-height: 28px;
+        color: #ff0044;
+    }
+
+    .item_key {
+        font-size: 28px;
+        line-height: 28px;
+        color: #333;
+        margin-top: 16px;
+    }
+}

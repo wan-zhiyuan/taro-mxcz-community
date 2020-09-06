@@ -12,7 +12,6 @@ export default function Index() {
 
     return (
         <View className='mine_top'>
-            <View className='place'></View>
             <View className='mine_top_box'>
                 <View className='mine_avatar_logout'></View>
                 <Text className='mine_nickname'>楽</Text>

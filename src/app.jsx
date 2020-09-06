@@ -24,6 +24,7 @@ class App extends Component {
       'pages/publish/publish',
       'pages/mine/mine',
       'pages/index/index',
+      'pages/publishInformation/publishInformation',
     ],
     tabBar: {
       list: [{

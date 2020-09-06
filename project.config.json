@@ -14,12 +14,13 @@
 		"minified": false,
 		"autoAudits": false,
 		"newFeature": false,
+		"checkSiteMap": false,
 		"uglifyFileName": false,
 		"uploadWithSourceMap": true,
 		"useIsolateContext": true,
 		"nodeModules": false,
 		"enhance": false,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"showShadowRootInWxmlPanel": true
 	},
@@ -52,8 +53,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
+					"name": "pages/publish/publish",
+					"pathName": "pages/publish/publish",
 					"query": "",
 					"scene": null
 				}

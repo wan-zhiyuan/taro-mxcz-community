@@ -2,7 +2,10 @@ import Taro, { useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../utils/style'
 import MineHeader from './MineHeader'
+import MineData from './MineData'
 import MineService from './MineService'
+import PlatformService from './PlatformService'
+import MerchantService from './MerchantService'
 
 import './mine.scss'
 
@@ -21,8 +24,11 @@ export default function Mine() {
                 style={{ height: getWindowHeight() }}
             >
                 <MineHeader />
+                <MineData />
                 <MineService title={'我的服务'} />
-                <MineService title={'平台服务'} />
+                <PlatformService title={'平台服务'} />
+                <MerchantService title={'商家服务'} />
+
             </ScrollView>
 
         </View>
@@ -30,6 +36,6 @@ export default function Mine() {
 }
 
 Mine.config = {
-    navigationBarTitleText: '个人中心',
-    navigationStyle: 'custom',
+    navigationBarTitleText: '',
+    // navigationStyle: 'custom',
 }

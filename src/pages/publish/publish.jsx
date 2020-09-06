@@ -15,6 +15,12 @@ export default function Publish() {
         { id: '7', name: '最美睡姿', pic: '' },
     ])
 
+    function handlePublishItem(item) {
+        Taro.navigateTo({
+            url: `/pages/publishInformation/publishInformation?category=${item.name}`
+        })
+    }
+
     return (
         <View className='publish_index'>
             <Image
@@ -24,7 +30,11 @@ export default function Publish() {
                 {
                     category.map((item, idx) => {
                         return (
-                            <View key={'index_' + idx} className='publish_item'>
+                            <View
+                                key={'index_' + idx}
+                                className='publish_item'
+                                onClick={() => { handlePublishItem(item) }}
+                            >
                                 <Image className='publish_item_pic'></Image>
                                 <Text className='publish_item_name'>{item.name}</Text>
                             </View>
