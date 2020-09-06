@@ -1,0 +1,45 @@
+.mine_service {
+    width: 680px;
+    // height: 500px;
+    margin-top: 36px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.title {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #f2f2f2;
+
+    .title_txt {
+        font-size: 30px;
+        line-height: 80px;
+        font-weight: 600;
+        margin-left: 20px;
+    }
+}
+
+.middle_item {
+    width: 100%;
+    height: 112px;
+    border-bottom: 1px solid #f2f2f2;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .item_left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 20px;
+    }
+}
+
