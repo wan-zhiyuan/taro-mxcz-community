@@ -1,18 +1,26 @@
 import Taro, { useState, } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
+import Icon1 from './../../assets/images/icon1.png'
+import Icon2 from './../../assets/images/icon2.png'
+import Icon3 from './../../assets/images/icon3.png'
+import Icon4 from './../../assets/images/icon4.png'
+import Icon5 from './../../assets/images/icon5.png'
+import Icon6 from './../../assets/images/icon6.png'
+import Icon7 from './../../assets/images/icon7.png'
+import { isEmpty } from '../../utils/is'
 
 import './publish.scss'
 
 export default function Publish() {
 
     const [category, setCategory] = useState([
-        { id: '1', name: '二手闲置', pic: '' },
-        { id: '2', name: '健康食集', pic: '' },
-        { id: '3', name: '邻里分享', pic: '' },
-        { id: '4', name: '手机教学', pic: '' },
-        { id: '5', name: '社区活动', pic: '' },
-        { id: '6', name: '志愿者之家', pic: '' },
-        { id: '7', name: '最美睡姿', pic: '' },
+        { id: '1', name: '二手闲置', pic: Icon1 },
+        { id: '2', name: '健康食集', pic: Icon2 },
+        { id: '3', name: '邻里分享', pic: Icon3 },
+        { id: '4', name: '手机教学', pic: Icon4 },
+        { id: '5', name: '社区活动', pic: Icon5 },
+        { id: '6', name: '志愿者之家', pic: Icon6 },
+        { id: '7', name: '最美睡姿', pic: Icon7 },
     ])
 
     function handlePublishItem(item) {
@@ -35,7 +43,12 @@ export default function Publish() {
                                 className='publish_item'
                                 onClick={() => { handlePublishItem(item) }}
                             >
-                                <Image className='publish_item_pic'></Image>
+                                {
+                                    isEmpty(item.pic)
+                                    ? <Image className='publish_item_pic_default' ></Image>
+                                    : <Image className='publish_item_pic' src={item.pic} mode='scaleToFill'></Image>
+                                }
+                                
                                 <Text className='publish_item_name'>{item.name}</Text>
                             </View>
                         )

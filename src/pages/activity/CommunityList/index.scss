@@ -1,0 +1,46 @@
+.community_list {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 20px;
+    padding-bottom: 32px;
+    display: flex;
+    // flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    .community_item {
+        width: 20%;
+        height: 150px;
+        // flex: auto; // 如果一行只有2个的时候页面撑满
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .item_pic {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+        }
+        .item_pic_default {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: hotpink;
+        }
+
+        .item_name {
+            width: 130px;
+            font-size: 26px;
+            line-height: 26px;
+            text-align: center;
+            color: #333;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-top: 10px;
+            
+        }
+
+    }
+}

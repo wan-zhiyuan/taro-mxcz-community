@@ -7,17 +7,18 @@ import Infor1 from '../../assets/images/community_information_1.png'
 import Infor2 from '../../assets/images/community_information_2.png'
 import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
+import HomeBBS from './HomeBBS'
 
 import './home.scss'
 
 export default function Home() {
 
     const [gridData, setGridData] = useState([
-        { id: '1', name: '社区助餐', pic: '' },
-        { id: '2', name: '社区通', pic: '' },
-        { id: '3', name: '每日签到', pic: '' },
-        { id: '4', name: '活动报名', pic: '' },
-        { id: '5', name: '积分商城', pic: '' },
+        { id: '1', name: '社区助餐', pic: '', url: '' },
+        { id: '2', name: '社区通', pic: '', url:'/pages/community/community' },
+        { id: '3', name: '每日签到', pic: '', url:'' },
+        { id: '4', name: '活动报名', pic: '', url: '/pages/activity/activity' },
+        { id: '5', name: '积分商城', pic: '', url:'' },
     ])
     const [homeBanner, sethomeBanner] = useState([
         'https://yanxuan.nosdn.127.net/bbd03799ba1e0cf7f37966966a0eb0bd.jpg',
@@ -38,6 +39,13 @@ export default function Home() {
         setTimeout(() => {
             setTriggered(false)
         }, 3000)
+    }
+
+    function goTo(url) {
+        if (isEmpty(url)) return
+        Taro.navigateTo({
+            url: url,
+        })
     }
 
     return (
@@ -62,7 +70,11 @@ export default function Home() {
                         {
                             gridData.map((item, idx) => {
                                 return (
-                                    <View key={'index_' + idx} className='grid_item'>
+                                    <View
+                                        key={'index_' + idx}
+                                        className='grid_item'
+                                        onClick={() => { goTo(item.url) }}
+                                    >
                                         {
                                             isEmpty(item.pic)
                                                 ? <View className='grid_item_pic_default'></View>
@@ -126,6 +138,7 @@ export default function Home() {
                         天气：晴
                     </View>
                 </View>
+                
                 {/* 社区资讯模块 */}
                 <View className='home_community_information'>
                     <View className='title'>
@@ -136,6 +149,8 @@ export default function Home() {
                         <Image className='content_item' src={Infor2} mode='scaleToFill'></Image>
                     </View>
                 </View>
+                {/* 社区论坛模块 */}
+                <HomeBBS />
 
                 <View className='home_last_publish'>
                     <View className='title'>

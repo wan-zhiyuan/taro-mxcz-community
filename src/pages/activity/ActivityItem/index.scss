@@ -1,0 +1,90 @@
+.activity_item {
+    width: 100%;
+    // height: 200px;
+    background-color: #fff;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .activity_pic {
+        width: 690px;
+        height: 320px;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
+    .activity_pic_default {
+        width: 690px;
+        height: 280px;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
+
+    .activity_title {
+        width: 690px;
+        height: 60px;
+        font-size: 34px;
+        line-height: 60px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .activity_bottom {
+        width: 690px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        .bottom_left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .activity_community {
+                width: 150px;
+                font-size: 28px;
+                line-height: 32px;
+                color: #999;
+            }
+
+            .activity_tag {
+                font-size: 20px;
+                line-height: 28px;
+                color: #fff;
+                background-color: #ff0044;
+                border-radius: 5px;
+                padding: 0 6px;
+            }
+            .activity_state_0 {
+                font-size: 24px;
+                line-height: 32px;
+                color: #333;
+                border: 1px solid #333;
+                border-radius: 5px;
+                padding: 0 6px;
+                margin-left: 12px;
+                opacity: 0.6;
+            }
+
+            .activity_state_1 {
+                font-size: 24px;
+                line-height: 32px;
+                color: #00D8A0;
+                border: 1px solid #00D8A0;
+                border-radius: 5px;
+                padding: 0 6px;
+                margin-left: 12px;
+            }
+            
+        }
+
+        .bottom_right {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+        }
+    }
+}
