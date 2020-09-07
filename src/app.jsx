@@ -29,6 +29,7 @@ class App extends Component {
       'pages/community/community',
       'pages/activity/activity',
       'pages/activitySub/activitySub',
+      'pages/order/order',
     ],
     tabBar: {
       list: [{

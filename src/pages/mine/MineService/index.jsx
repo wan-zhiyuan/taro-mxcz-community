@@ -6,7 +6,14 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const {  title } = props
+    const { title } = props
+
+    function handleGoToOrder() {
+        console.log('handleGoToOrder()')
+        Taro.navigateTo({
+            url:'/pages/order/order'
+        })
+    }
 
     return (
         <View className='mine_service'>
@@ -25,7 +32,7 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={() => { handleGoToOrder() }}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的订单</Text>
