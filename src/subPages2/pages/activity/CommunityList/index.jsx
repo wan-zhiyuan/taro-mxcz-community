@@ -2,7 +2,7 @@ import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 
 import './index.scss'
-import { isEmpty } from '../../../utils/is'
+import { isEmpty } from '../../../../utils/is'
 
 export default function Index() {
 
@@ -23,7 +23,7 @@ export default function Index() {
 
     function handleCommunity(item) {
         Taro.navigateTo({
-            url: `/pages/activitySub/activitySub?cid=${item.cid}&name=${item.name}`
+            url: `/subPages2/pages/activitySub/activitySub?cid=${item.cid}&name=${item.name}`
         })
     }
 

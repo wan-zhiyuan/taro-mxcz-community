@@ -1,9 +1,9 @@
 import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import ActivityItem from '../ActivityItem'
-import ActivityPic1 from '../../../assets/images/activity_pic_1.png'
-import ActivityPic2 from '../../../assets/images/activity_pic_2.png'
-import ActivityPic3 from '../../../assets/images/activity_pic_3.png'
+import ActivityPic1 from '../../../images/activity_pic_1.png'
+import ActivityPic2 from '../../../images/activity_pic_2.png'
+import ActivityPic3 from '../../../images/activity_pic_3.png'
 
 import './index.scss'
 

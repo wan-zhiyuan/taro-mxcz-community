@@ -1,6 +1,6 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import BBSItem from '../HomeBBSItem'
+import PublishItem from '../HomePublishItem'
 
 import './index.scss'
 
@@ -60,7 +60,7 @@ export default function Index(props) {
                 {
                     bbsData.map((item, idx) => {
                         return (
-                            <BBSItem key={'index_' + idx} bbsItem={item} />
+                            <PublishItem key={'index_' + idx} publishItem={item} />
                         )
                     })
                 }

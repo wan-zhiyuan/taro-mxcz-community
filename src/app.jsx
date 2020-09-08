@@ -23,15 +23,42 @@ class App extends Component {
       'pages/home/home',
       'pages/publish/publish',
       'pages/mine/mine',
-      'pages/index/index',
       'pages/publishInformation/publishInformation',
       'pages/publishDetail/publishDetail',
-      'pages/community/community',
-      'pages/communityDetail/communityDetail',
-      'pages/activity/activity',
-      'pages/activitySub/activitySub',
-      'pages/activityDetail/activityDetail',
-      'pages/order/order',
+    ],
+    subpackages: [
+      // 关于登陆和个人的相关页面
+      {
+        "root": "subPages1",
+        "pages": [
+          'pages/myAddress/myAddress',
+        ]
+      },
+      // 社区及活动相关页面
+      {
+        "root": "subPages2",
+        "pages": [
+          'pages/community/community',
+          'pages/communityDetail/communityDetail',
+          'pages/activity/activity',
+          'pages/activitySub/activitySub',
+          'pages/activityDetail/activityDetail',
+        ]
+      },
+      // 商城相关的页面
+      {
+        "root": "subPages3",
+        "pages": [
+          'pages/order/order',
+        ]
+      },
+      // 社区帖子相关页面（发帖、搜索、帖子详情）
+      // {
+      //   "root": "subPages4",
+      //   "pages": [
+          
+      //   ]
+      // },
     ],
     tabBar: {
       list: [{
@@ -64,17 +91,17 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />

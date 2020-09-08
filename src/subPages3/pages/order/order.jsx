@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
-import { getWindowHeight } from '../../utils/style'
+import { getWindowHeight } from '../../../utils/style'
 
 import './order.scss'
 

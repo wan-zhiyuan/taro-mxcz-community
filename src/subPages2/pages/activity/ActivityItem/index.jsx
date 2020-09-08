@@ -1,16 +1,22 @@
 import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import ActivityPicBig from '../../../assets/images/activity_pic_big.png'
+import ActivityPicBig from '../../../images/activity_pic_big.png'
 
 import './index.scss'
-import { isEmpty } from '../../../utils/is'
+import { isEmpty } from '../../../../utils/is'
 
 export default function Index(props) {
 
     const { activity } = props
 
+    function handleActivity() {
+        Taro.navigateTo({
+            url: `/subPages2/pages/activityDetail/activityDetail?aid=${activity.aid}`
+        })
+    }
+
     return (
-        <View className='activity_item'>
+        <View className='activity_item' onClick={handleActivity}>
             {
                 !isEmpty(activity.pic)
                     ? <Image className='activity_pic' src={activity.pic} mode='scaleToFill'></Image>

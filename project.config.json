@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro-mxcz-community",
 	"description": "盟享诚珍社区小程序",
-	"appid": "touristappid",
+	"appid": "wxf5f75fccd6618e15",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
@@ -59,8 +59,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/home/home",
-					"pathName": "pages/home/home",
+					"name": "pages/mine/mine",
+					"pathName": "pages/mine/mine",
 					"query": "",
 					"scene": null
 				}

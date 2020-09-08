@@ -9,17 +9,19 @@ export default function Index(props) {
     const { community } = props
 
     /* 跳转社区详情 */
-    function handleCommunityItem() {
+    function handleCommunityItem(e) {
         Taro.navigateTo({
-            url: `/pages/communityDetail/communityDetail?cid=${community.cid}`
+            url: `/subPages2/pages/communityDetail/communityDetail?cid=${community.cid}`
         })
+        e.stopPropagation() // 阻止点击事件继续冒泡
     }
 
     /* 打电话 */
-    function handleCommunityPhone() {
+    function handleCommunityPhone(e) {
         Taro.makePhoneCall({
-            phoneNumber: community.phone
+            phoneNumber: String(community.phone)
         })
+        e.stopPropagation() // 阻止点击事件继续冒泡
     }
 
     return (
@@ -31,11 +33,14 @@ export default function Index(props) {
             }
             <View className='community_right'>
                 <View className='community_msg'>
-                    <Text className='community_name'>{community.name}</Text>
-                    <Text className='community_address'>{community.address}</Text>
+                    <View className='msg_name'>
+                        <Text className='community_name'>{community.name}</Text>
+                        <Text className='community_address'>{community.address}</Text>
+                    </View>
+
                     <View className='msg_other'>
                         <AtRate value={community.rate} size={10} />
-                        <Text style={{ fontSize: '10px', lineHeight: '10px', color: '#666' }}>人气 ${community.popul}</Text>
+                        <Text style={{ fontSize: '10px', lineHeight: '10px', color: '#666' }}>人气 {community.popul}</Text>
                     </View>
                 </View>
                 {

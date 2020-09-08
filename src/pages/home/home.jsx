@@ -7,24 +7,15 @@ import Infor1 from '../../assets/images/community_information_1.png'
 import Infor2 from '../../assets/images/community_information_2.png'
 import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
-import HomeBBS from './HomeBBS'
-import Icon01 from '../../assets/images/icon_01.png'
-import Icon02 from '../../assets/images/icon_02.png'
-import Icon03 from '../../assets/images/icon_03.png'
-import Icon04 from '../../assets/images/icon_04.png'
-import Icon05 from '../../assets/images/icon_05.png'
+import HomePublish from './HomePublish'
+import HomeGrid from './HomeGrid'
+
 
 import './home.scss'
 
 export default function Home() {
 
-    const [gridData, setGridData] = useState([
-        { id: '1', name: '社区助餐', pic: Icon01, url: '' },
-        { id: '2', name: '社区通', pic: Icon02, url:'/pages/community/community' },
-        { id: '3', name: '每日签到', pic: Icon03, url:'' },
-        { id: '4', name: '活动报名', pic: Icon04, url: '/pages/activity/activity' },
-        { id: '5', name: '积分商城', pic: Icon05, url:'' },
-    ])
+    
     const [homeBanner, sethomeBanner] = useState([
         'https://yanxuan.nosdn.127.net/bbd03799ba1e0cf7f37966966a0eb0bd.jpg',
         'https://yanxuan.nosdn.127.net/c4d2e4ad4fb2ce5ebe8e11f927198be1.jpg',
@@ -46,22 +37,17 @@ export default function Home() {
         }, 3000)
     }
 
-    function goTo(url) {
-        if (isEmpty(url)) return
-        Taro.navigateTo({
-            url: url,
-        })
-    }
-
     return (
         <View className='home_index'>
             <HomeNavbar />
             <ScrollView
                 className='home_scrollview'
-                style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
                 scrollWithAnimation
                 scrollY={true}
-                enableFlex={true}
+                // 优化点
+                // 设置后ios会存在布局异常，未解决，暂时使用margin: 0 auto处理
+                // enableFlex={true} // 设置flex之后，里面的元素宽度不允许设置100%
+                style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
             // refresherEnabled={true} // 开启
             // refresherThreshold={100} // 阀值
             // refresherDefaultStyle='white' // 三个点颜色
@@ -69,29 +55,8 @@ export default function Home() {
             // refresherTriggered={triggered} // 控制下拉刷新状态
             // onRefresherRefresh={onRefresh} // 开始下拉刷新时触发
             >
-                <View className='home_grid'>
-                    <View className='home_grid_bg'></View>
-                    <View className='grid'>
-                        {
-                            gridData.map((item, idx) => {
-                                return (
-                                    <View
-                                        key={'index_' + idx}
-                                        className='grid_item'
-                                        onClick={() => { goTo(item.url) }}
-                                    >
-                                        {
-                                            isEmpty(item.pic)
-                                                ? <View className='grid_item_pic_default'></View>
-                                                : <Image className='grid_item_pic' src={item.pic} mode='scaleToFill'></Image>
-                                        }
-                                        <Text className='grid_item_name'>{item.name}</Text>
-                                    </View>
-                                )
-                            })
-                        }
-                    </View>
-                </View>
+                {/* 导航模块 */}
+                <HomeGrid />
                 {/* banner模块 */}
                 <View className='home_banner'>
                     {
@@ -155,7 +120,7 @@ export default function Home() {
                     </View>
                 </View>
                 {/* 社区论坛模块 */}
-                <HomeBBS />
+                <HomePublish />
 
                 <View className='home_last_publish'>
                     <View className='title'>

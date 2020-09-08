@@ -11,7 +11,14 @@ export default function Index(props) {
     function handleGoToOrder() {
         console.log('handleGoToOrder()')
         Taro.navigateTo({
-            url:'/pages/order/order'
+            url:'/subPages3/pages/order/order'
+        })
+    }
+
+    function handleGoToAddress() {
+        console.log('handleGoToAddress()')
+        Taro.navigateTo({
+            url:'/subPages1/pages/myAddress/myAddress'
         })
     }
 
@@ -72,7 +79,7 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={() => { handleGoToAddress() }}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的地址</Text>
