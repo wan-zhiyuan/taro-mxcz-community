@@ -27,8 +27,10 @@ class App extends Component {
       'pages/publishInformation/publishInformation',
       'pages/publishDetail/publishDetail',
       'pages/community/community',
+      'pages/communityDetail/communityDetail',
       'pages/activity/activity',
       'pages/activitySub/activitySub',
+      'pages/activityDetail/activityDetail',
       'pages/order/order',
     ],
     tabBar: {

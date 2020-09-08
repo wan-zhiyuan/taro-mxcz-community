@@ -4,6 +4,7 @@ import ActivityList from './../activity/ActivityList'
 
 import './activitySub.scss'
 
+// 按照社区分类的活动页面
 export default function ActivitySub() {
 
     const router = useRouter()

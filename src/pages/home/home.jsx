@@ -8,17 +8,22 @@ import Infor2 from '../../assets/images/community_information_2.png'
 import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
 import HomeBBS from './HomeBBS'
+import Icon01 from '../../assets/images/icon_01.png'
+import Icon02 from '../../assets/images/icon_02.png'
+import Icon03 from '../../assets/images/icon_03.png'
+import Icon04 from '../../assets/images/icon_04.png'
+import Icon05 from '../../assets/images/icon_05.png'
 
 import './home.scss'
 
 export default function Home() {
 
     const [gridData, setGridData] = useState([
-        { id: '1', name: '社区助餐', pic: '', url: '' },
-        { id: '2', name: '社区通', pic: '', url:'/pages/community/community' },
-        { id: '3', name: '每日签到', pic: '', url:'' },
-        { id: '4', name: '活动报名', pic: '', url: '/pages/activity/activity' },
-        { id: '5', name: '积分商城', pic: '', url:'' },
+        { id: '1', name: '社区助餐', pic: Icon01, url: '' },
+        { id: '2', name: '社区通', pic: Icon02, url:'/pages/community/community' },
+        { id: '3', name: '每日签到', pic: Icon03, url:'' },
+        { id: '4', name: '活动报名', pic: Icon04, url: '/pages/activity/activity' },
+        { id: '5', name: '积分商城', pic: Icon05, url:'' },
     ])
     const [homeBanner, sethomeBanner] = useState([
         'https://yanxuan.nosdn.127.net/bbd03799ba1e0cf7f37966966a0eb0bd.jpg',
