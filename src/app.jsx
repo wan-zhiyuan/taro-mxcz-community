@@ -31,7 +31,8 @@ class App extends Component {
       {
         "root": "subPages1",
         "pages": [
-          'pages/myAddress/myAddress',
+          'pages/checkin/checkin',
+          'pages/myMap/myMap',
         ]
       },
       // 社区及活动相关页面
@@ -56,7 +57,7 @@ class App extends Component {
       // {
       //   "root": "subPages4",
       //   "pages": [
-          
+
       //   ]
       // },
     ],
@@ -88,7 +89,13 @@ class App extends Component {
       navigationBarBackgroundColor: '#00D8A0',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    permission: {
+      'scope.userLocation': {
+        desc: '你的位置信息将用于小程序位置接口的效果展示'
+      }
     }
+
   }
 
   componentDidMount() { }
