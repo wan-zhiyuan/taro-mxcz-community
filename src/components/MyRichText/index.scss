@@ -1,0 +1,15 @@
+.richtext {
+    width: 100%;
+
+    // 富文本中的图片样式    
+    .rich-img{
+        width: 100%;
+        // margin: 20rpx 0;
+    }
+    // 富文本中的文字样式
+    .rich-p{
+        color: #333333;
+        font-size: 32rpx;
+        line-height: 45rpx;
+    }
+}

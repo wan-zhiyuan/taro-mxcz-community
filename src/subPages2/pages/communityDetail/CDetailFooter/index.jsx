@@ -4,24 +4,38 @@ import { AtIcon } from 'taro-ui'
 
 import './index.scss'
 
-export default function Index() {
+export default function Index(props) {
 
+
+    const { community } = props
 
     function handleCollect() {
 
-        
+
     }
 
     function handleNavi() {
-        Taro.navigateTo({
-            url: '/subPages1/pages/myMap/myMap'
+        
+
+        // 1、先使用腾讯位置服务逆解析出经纬度
+        // 2、在使用openLocation打开微信自带位置导航页面
+        
+        Taro.openLocation({
+            latitude: 31, // 纬度，范围为-90~90，负数表示南纬
+            longitude: 121, // 经度，范围为-180~180，负数表示西经
+            scale: 8, // 缩放比例
+            name: "测试",
+            address: "测试详细地址",
+            success: function (r) {
+                console.log(r)
+            }
         })
     }
 
     return (
         <View className='c_detail_footer'>
             <View className='footer_left'>
-                <View className='footer_item' onClick={()=>{Taro.switchTab({url:'/pages/home/home'})}}>
+                <View className='footer_item' onClick={() => { Taro.switchTab({ url: '/pages/home/home' }) }}>
                     <AtIcon prefixClass='icon' value='shouye' size='26' color='#333'></AtIcon>
                     <Text className='item_txt'>首页</Text>
                 </View>
@@ -42,5 +56,5 @@ export default function Index() {
 }
 
 Index.defaultProps = {
-
+    community: {}
 }

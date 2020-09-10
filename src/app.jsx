@@ -32,7 +32,6 @@ class App extends Component {
         "root": "subPages1",
         "pages": [
           'pages/checkin/checkin',
-          'pages/myMap/myMap',
         ]
       },
       // 社区及活动相关页面

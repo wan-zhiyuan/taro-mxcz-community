@@ -1,0 +1,40 @@
+.movable_area {
+
+
+    .movable_view {
+        width: 200px;
+        height: 500px;
+        background-color: gray;
+        z-index: 800;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1; // 等同于flex-grow: 1; flex-shrink: 1; flex-basis: 0%;
+
+        @mixin view_item {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 28px;
+            line-height: 100px;
+            color: #fff;
+        }
+
+        .view_item_1 {
+            background-color: blue;
+            @include view_item
+        }
+        .view_item_2 {
+            background-color: palevioletred;
+            @include view_item
+        }
+        .view_item_3 {
+            background-color: greenyellow;
+            @include view_item
+        }
+        .view_item_1::after {
+            border: none;
+        }
+    }
+}

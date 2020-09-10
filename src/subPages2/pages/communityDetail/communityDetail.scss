@@ -79,3 +79,29 @@
         }
     }
 }
+
+.community_detail {
+    width: 750px;   // 这里设置100%行不行？
+    min-height: 800px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: greenyellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .community_detail_box {
+        width: 716px;
+        display: flex;
+        flex-direction: column;
+
+        .detail_title {
+            font-size: 30px;
+            line-height: 40px;
+            color: #333;
+            margin-bottom: 18px;
+        }
+    }
+
+    
+}

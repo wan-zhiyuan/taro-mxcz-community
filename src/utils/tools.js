@@ -2,15 +2,6 @@ import { isEmpty } from './is'
 import { get as getGlobalData } from '../global_data'
 import { Toast } from './toast'
 
-/* 获取mid */
-export function getMid() {
-    return getGlobalData('mid') || 0
-}
-/* 获取tn_id */
-export function getTnid() {
-    return getGlobalData('tn_id') || 0
-}
-
 /* 用于商品名称的分割 （规则：中文#英文) */
 export function nameSplit(name) {
     // if (name.split('#')[1]) {
