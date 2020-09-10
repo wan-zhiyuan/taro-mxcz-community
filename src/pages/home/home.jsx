@@ -1,12 +1,13 @@
-import Taro, { useState } from '@tarojs/taro'
-import { View, Button, Text, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import { View, Text, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import HomeNavbar from './HomeNavbar'
-import { isEmpty } from '../../utils/is'
 import Infor1 from '../../assets/images/community_information_1.png'
 import Infor2 from '../../assets/images/community_information_2.png'
 import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
+import { judgeTarget } from '../../utils/navTool'
+import HomeBanner from './HomeBanner'
 import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 
@@ -15,27 +16,27 @@ import './home.scss'
 
 export default function Home() {
 
-    
-    const [homeBanner, sethomeBanner] = useState([
-        'https://yanxuan.nosdn.127.net/bbd03799ba1e0cf7f37966966a0eb0bd.jpg',
-        'https://yanxuan.nosdn.127.net/c4d2e4ad4fb2ce5ebe8e11f927198be1.jpg',
-        'https://yanxuan.nosdn.127.net/0ecde204ff8fa5ae1a699d63e95b048a.jpg',
-        'https://yanxuan.nosdn.127.net/f52b77ae677017256aed881c93f6f0a7.jpg',
-    ])
+    const router = useRouter()
+
     // 最新发布数据
     const [lastPublish, setLastPublish] = useState([
         1, 2, 3, 4, 5,
     ])
-    const [triggered, setTriggered] = useState(true)
+    
 
-    function onRefresh() {
-        setTriggered(true)
+    useEffect(()=>{
+        judgeTarget(router.params)
+    },[])
 
-        // 下拉刷新 3秒后关闭
-        setTimeout(() => {
-            setTriggered(false)
-        }, 3000)
-    }
+    // 下拉刷新相关代码
+    // const [triggered, setTriggered] = useState(true)
+    // function onRefresh() {
+    //     setTriggered(true)
+    //     // 下拉刷新 3秒后关闭
+    //     setTimeout(() => {
+    //         setTriggered(false)
+    //     }, 3000)
+    // }
 
     return (
         <View className='home_index'>
@@ -48,6 +49,7 @@ export default function Home() {
                 // 设置后ios会存在布局异常，未解决，暂时使用margin: 0 auto处理
                 // enableFlex={true} // 设置flex之后，里面的元素宽度不允许设置100%
                 style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
+            // 下拉刷新相关代码
             // refresherEnabled={true} // 开启
             // refresherThreshold={100} // 阀值
             // refresherDefaultStyle='white' // 三个点颜色
@@ -58,39 +60,7 @@ export default function Home() {
                 {/* 导航模块 */}
                 <HomeGrid />
                 {/* banner模块 */}
-                <View className='home_banner'>
-                    {
-                        isEmpty(homeBanner) || homeBanner.length === 0
-                            ? (
-                                <View className='bannerDefault'></View>
-                            ) : (
-                                <Swiper
-                                    className='home_banner_swiper'
-                                    indicatorColor='#999'
-                                    indicatorActiveColor='#333'
-                                    current={0}
-                                    duration={500}
-                                    interval={5000}
-                                    circular={true}  // 是否衔接滑动
-                                    autoplay={true}  // 循环播放
-                                    indicatorDots={false}
-                                >
-                                    {
-                                        homeBanner.map((item, idx) => (
-                                            <SwiperItem key={'index_' + idx} >
-                                                <Image
-                                                    src={item}
-                                                    className='slide_image'
-                                                    mode='scaleToFill'      // 缩放，不保持比例，填满Image大小
-                                                    lazyLoad={true}
-                                                />
-                                            </SwiperItem>
-                                        ))
-                                    }
-                                </Swiper>
-                            )
-                    }
-                </View>
+                <HomeBanner />
                 {/* 信息模块（天气、浏览、入驻、分享等） analytics */}
                 <View className='home_msg'>
                     <View className='msg_data'>

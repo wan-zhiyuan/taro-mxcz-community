@@ -1,16 +1,16 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 
-import './checkin.scss'
+import './search.scss'
 
-export default function Checkin() {
+export default function Search() {
 
     return (
-        <View className='checkin_index'>
+        <View className='search_index'>
 
         </View>
     )
 }
-Checkin.config = {
-    navigationBarTitleText: '签到',
+Search.config = {
+    navigationBarTitleText: '搜索',
 }

@@ -32,6 +32,7 @@ class App extends Component {
         "root": "subPages1",
         "pages": [
           'pages/checkin/checkin',
+          'pages/search/search',
         ]
       },
       // 社区及活动相关页面
@@ -40,6 +41,7 @@ class App extends Component {
         "pages": [
           'pages/community/community',
           'pages/communityDetail/communityDetail',
+          'pages/communityComment/communityComment',
           'pages/activity/activity',
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',

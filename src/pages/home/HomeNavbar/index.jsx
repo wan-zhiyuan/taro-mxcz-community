@@ -40,6 +40,12 @@ export default class Navbar extends Component {
         })
     }
 
+    handleSearch() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/search/search`
+        })
+    }
+
     render() {
         const { status, navHeight } = this.state
         return (
@@ -53,7 +59,7 @@ export default class Navbar extends Component {
                             <AtIcon value='chevron-down' size='14px' color='#fff'></AtIcon>
                         </View>
                         {/* 搜索 */}
-                        <View className='home_top_search'>
+                        <View className='home_top_search' onClick={()=>{this.handleSearch()}}>
                             {/* <View style={{width:'6px',height:'100%'}}></View> */}
                             <AtIcon value='search' size='14px' color='#333'></AtIcon>
                             <Text style={{marginLeft:'4px'}}>请输入您想要搜索的内容</Text>

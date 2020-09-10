@@ -1,15 +1,26 @@
 .movable_area {
-
+    width: 100%;
+    height: 100vh;
+    position: absolute;
 
     .movable_view {
         width: 200px;
-        height: 500px;
-        background-color: gray;
+        height: 400px;
+        // background-color: gray;
         z-index: 800;
         display: flex;
         flex-direction: column;
         align-items: center;
-        flex: 1; // 等同于flex-grow: 1; flex-shrink: 1; flex-basis: 0%;
+
+        .view_box {
+            width: 100%;
+            flex: 1; // 等同于flex-grow: 1; flex-shrink: 1; flex-basis: 0%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
 
         @mixin view_item {
             width: 100px;
@@ -22,7 +33,8 @@
         }
 
         .view_item_1 {
-            background-color: blue;
+            background-color: rgb(255, 196, 0);
+            padding: 0;
             @include view_item
         }
         .view_item_2 {
@@ -30,7 +42,7 @@
             @include view_item
         }
         .view_item_3 {
-            background-color: greenyellow;
+            background-color: rgb(85, 47, 255);
             @include view_item
         }
         .view_item_1::after {

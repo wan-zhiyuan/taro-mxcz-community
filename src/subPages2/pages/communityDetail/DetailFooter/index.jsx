@@ -32,6 +32,12 @@ export default function Index(props) {
         })
     }
 
+    function handlePhone() {
+        Taro.makePhoneCall({
+            phoneNumber: String(community.phone)
+        })
+    }
+
     return (
         <View className='c_detail_footer'>
             <View className='footer_left'>
@@ -48,7 +54,7 @@ export default function Index(props) {
                     <Text className='item_txt'>导航</Text>
                 </View>
             </View>
-            <View className='footer_right'>
+            <View className='footer_right' onClick={handlePhone}>
                 <Text>联系我们</Text>
             </View>
         </View>

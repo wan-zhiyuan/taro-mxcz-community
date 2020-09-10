@@ -1,10 +1,8 @@
 .community_detail_index {
     width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: #f2f2f2;
+    position: relative;
 }
 
 .community_pic {
@@ -14,12 +12,14 @@
 }
 
 .community_top {
-    width: 716px;
+    width: 100%;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     .community_box1 {
-        width: 100%;
+        width: 716px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -64,10 +64,10 @@
     }
 
     .community_box2 {
-        width: 100%;
+        width: 716px;
         height: 60px;
         line-height: 60px;
-        margin-top: 30px;
+        margin-top: 50px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -78,30 +78,4 @@
             color: #666;
         }
     }
-}
-
-.community_detail {
-    width: 750px;   // 这里设置100%行不行？
-    min-height: 800px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background-color: greenyellow;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .community_detail_box {
-        width: 716px;
-        display: flex;
-        flex-direction: column;
-
-        .detail_title {
-            font-size: 30px;
-            line-height: 40px;
-            color: #333;
-            margin-bottom: 18px;
-        }
-    }
-
-    
 }

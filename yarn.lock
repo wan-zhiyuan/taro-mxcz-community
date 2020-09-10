@@ -9802,6 +9802,11 @@ tar@^6.0.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
+taro-code@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/taro-code/-/taro-code-2.2.0.tgz#308b4c786fc6377edb13b37c778f2edc519aba8d"
+  integrity sha512-dlT/2xvdFjR7uSuNY9F/1UHreYeZE571itModcSVcKQaJF9kMzRJY50eEMmULRqrBBA2+B6oYeguZcfdcE1cIQ==
+
 taro-ui@^2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/taro-ui/-/taro-ui-2.3.4.tgz#a7a2cdd67b2b4a49d10c351d89def4d28b9bb192"

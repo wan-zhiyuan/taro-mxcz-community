@@ -17,7 +17,7 @@ export default function ActivityDetail() {
 
     return (
         <View className='community_detail_index'>
-
+            
         </View>
     )
 }

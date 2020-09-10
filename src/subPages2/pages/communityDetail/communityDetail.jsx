@@ -2,10 +2,12 @@ import Taro, { useState, useEffect, useRouter, useShareAppMessage } from '@taroj
 import { View, ScrollView } from '@tarojs/components'
 import { AtIcon, AtRate } from 'taro-ui'
 import { getWindowHeightNoPX } from '../../../utils/style'
-import CDetailFooter from './CDetailFooter'
-import CDetailRight from './CDetailRight'
-import MyRichText from '../../../components/MyRichText'
-
+import PopupQRcode from './../../../components/Popup/PopupQRcode'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { hidePopQr } from '../../../actions/community'
+import DetailMain from './DetailMain'
+import DetailFooter from './DetailFooter'
+import DetailRight from './DetailRight'
 
 import './communityDetail.scss'
 
@@ -14,10 +16,16 @@ export default function CommunityDetail() {
     const router = useRouter()
     const { cid = 0 } = router.params
 
+    const isOpenedPopQr = useSelector(state => state.community.isOpenedPopQr)
+    const dispatch = useDispatch()
+
     const [community, setCommunity] = useState({
         cid: '1', name: '上海市浦东新区人民政府潍坊新村街道办事处', address: '上海市浦东新区福山路317号', rate: 5, popul: 120, phone: 68757800, range: '15.4km',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3607787663,2825710095&fm=26&gp=0.jpg'
+        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3607787663,2825710095&fm=26&gp=0.jpg',
+        detail: `<p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202009/01/2020090108584587449.jpg" alt="" /></p><p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202008/24/2020082412422073796.jpg" alt="" /></p>`,
     })
+    const [qrTitle, setQrTitle] = useState('')
+    const [qrTxt, setQrTxt] = useState('二维码内容')
 
     useEffect(() => {
         // 获取社区详情信息
@@ -25,6 +33,7 @@ export default function CommunityDetail() {
 
     }, [])
 
+    // 分享配置
     useShareAppMessage(res => {
         if (res.from === 'button') {
             console.log('来自页面内转发按钮')
@@ -32,22 +41,29 @@ export default function CommunityDetail() {
             console.log(res.target)
             console.log(eData)
             return {
-                title: `期待与你在ibarrel爱杯吧相遇`,
+                title: `盟享诚珍-${community.name}`,
                 path: `/pages/home/home?target=communityDetail&cid=${cid}`,
                 imageUrl: ''
             }
         }
         return {
-            title: '分享标题', // 分享卡片展示的标题
+            title: '盟享诚珍', // 分享卡片展示的标题
             path: '/pages/home/home', // 分享卡片的路径
             imageUrl: '',
         }
     })
 
+    function handlePhone() {
+        Taro.makePhoneCall({
+            phoneNumber: String(community.phone)
+        })
+    }
+
     return (
         <View className='community_detail_index'>
+            <PopupQRcode isOpened={isOpenedPopQr} qrTitle={qrTitle} qrTxt={qrTxt} onClose={() => { dispatch(hidePopQr()) }}></PopupQRcode>
             {/* 右侧悬浮模块 */}
-            <CDetailRight />
+            <DetailRight />
             <ScrollView
                 style={{ height: `${(getWindowHeightNoPX() - 60)}px` }}
                 scrollY
@@ -60,7 +76,7 @@ export default function CommunityDetail() {
                             <Text className='community_name'>{community.name}</Text>
                             <Text className='community_address'>{community.address}</Text>
                         </View>
-                        <View className='box1_right'>
+                        <View className='box1_right' onClick={handlePhone}>
                             <AtIcon prefixClass='icon' value='dianhua' size='28' color='#00D8A0'></AtIcon>
                         </View>
                     </View>
@@ -71,15 +87,11 @@ export default function CommunityDetail() {
                     </View>
                 </View>
 
-                <View className='community_detail'>
-                    <View className='community_detail_box'>
-                        <Text className='detail_title'>商家详情</Text>
-                        <MyRichText richText={community.detail} />
-                    </View>
-                </View>
+                {/* 社区详情主内容 */}
+                <DetailMain community={community} />
             </ScrollView>
             {/* 底部模块 */}
-            <CDetailFooter community={community} />
+            <DetailFooter community={community} />
         </View>
     )
 }
