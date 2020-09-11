@@ -1,0 +1,1 @@
+export const HOME_INFO = 'HOME_INFO' // 首页信息

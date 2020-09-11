@@ -34,6 +34,7 @@ const config = {
     '@tarojs/plugin-terser'
   ],
   defineConstants: {
+    LOCATION_APIKEY: JSON.stringify('OPXBZ-F3OK6-U7DSX-E2NW3-ZAUF3-I6FK2')
   },
   mini: {
     postcss: {

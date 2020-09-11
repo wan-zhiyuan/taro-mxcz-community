@@ -23,7 +23,7 @@ export default function Publish() {
         { id: '7', name: '最美睡姿', pic: Icon7 },
     ])
 
-    function handlePublishItem(item) {
+    function handlePublishSubItem(item) {
         Taro.navigateTo({
             url: `/pages/publishInformation/publishInformation?category=${item.name}`
         })
@@ -40,8 +40,8 @@ export default function Publish() {
                         return (
                             <View
                                 key={'index_' + idx}
-                                className='publish_item'
-                                onClick={() => { handlePublishItem(item) }}
+                                className='publish_sub_item'
+                                onClick={() => { handlePublishSubItem(item) }}
                             >
                                 {
                                     isEmpty(item.pic)

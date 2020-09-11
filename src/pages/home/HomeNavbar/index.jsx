@@ -61,7 +61,7 @@ export default class Navbar extends Component {
                         {/* 搜索 */}
                         <View className='home_top_search' onClick={()=>{this.handleSearch()}}>
                             {/* <View style={{width:'6px',height:'100%'}}></View> */}
-                            <AtIcon value='search' size='14px' color='#333'></AtIcon>
+                            <AtIcon value='search' size='14px' color='#666'></AtIcon>
                             <Text style={{marginLeft:'4px'}}>请输入您想要搜索的内容</Text>
                         </View>
                     </View>

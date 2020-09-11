@@ -1,0 +1,16 @@
+.locate_part_2 {
+    width: 690px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden; // 解决子元素margin塌陷
+
+    .icon_address {
+        width: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

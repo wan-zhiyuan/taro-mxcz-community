@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, Text, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
+import { View, Text, ScrollView, Image, Swiper, SwiperItem,} from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import HomeNavbar from './HomeNavbar'
 import Infor1 from '../../assets/images/community_information_1.png'

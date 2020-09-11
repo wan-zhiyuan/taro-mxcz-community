@@ -41,6 +41,7 @@ class App extends Component {
         "pages": [
           'pages/community/community',
           'pages/communityDetail/communityDetail',
+          'pages/communityLocate/communityLocate',
           'pages/communityComment/communityComment',
           'pages/activity/activity',
           'pages/activitySub/activitySub',
@@ -97,6 +98,35 @@ class App extends Component {
       }
     }
 
+  }
+
+  componentWillMount() {
+    Taro.getSetting({
+      success: function (res) {
+        console.log(res.authSetting)
+        let statu = res.authSetting
+        if (statu['scope.userLocation']) {
+          // 用户设置中开启了位置信息
+        } else {
+          // 用户设置中未开启位置信息
+        }
+      }
+    })
+
+    // 用户第一次启动小程序，调用位置信息相关的api会弹出系统弹层
+    // 如果拒绝，或者在设置中关闭，再调用api时直接走fail方法
+    // Taro.getLocation({
+    //   type: 'gcj02',
+    //   // type: 'wgs84',
+    //   success: function (res) {
+    //     console.log(res)
+    //     const latitude = res.latitude
+    //     const longitude = res.longitude
+    //     const speed = res.speed
+    //     const accuracy = res.accuracy
+    //     // 可以存在redux中，后续使用经纬度的时候如果存在，则不需要调用getLocation
+    //   }
+    // })
   }
 
   componentDidMount() { }
