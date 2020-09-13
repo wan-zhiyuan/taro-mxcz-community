@@ -1,0 +1,41 @@
+.activity_detail_middle {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 20px;
+
+    .middle_item {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #f2f2f2;
+        font-size: 30px;
+        line-height: 30px;
+        color: #333;
+
+        .item_left {
+            display: flex;
+            flex-direction: row;
+            margin-left: 20px;
+            
+            .item_label {
+                width: 150px;
+                margin-left: 10px;
+            }
+
+            .item_value {
+                width: 450px;
+                // 单行文本省略号
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis; 
+                font-size: 26px;
+            }
+        }
+        .item_right {
+            margin-right: 20px;
+        }
+    }
+}

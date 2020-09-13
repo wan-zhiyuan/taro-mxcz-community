@@ -59,8 +59,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "subPages2/pages/communityLocate/communityLocate",
-					"pathName": "subPages2/pages/communityLocate/communityLocate",
+					"name": "pages/publishDetail/publishDetail",
+					"pathName": "pages/publishDetail/publishDetail",
 					"query": "",
 					"scene": null
 				}

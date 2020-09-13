@@ -1,0 +1,61 @@
+.locate_part_6 {
+    width: 690px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden; // 解决子元素margin塌陷
+}
+
+.phone {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #333;
+    // margin-left: 32px;
+    margin-bottom: 1px;
+    position: relative;
+    background-color: #fff;
+    padding: 24px 0;
+
+    .phone_label{
+        width: 172px;
+        margin-right: 16px;
+        margin-left: 32px;
+        font-size: 32px;
+        line-height: 1.5;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .phone_value{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        .phone_btn {
+            width: 180px;
+            height: 60px;
+            font-size: 24px;
+            line-height: 60px;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #00D8A0;
+            margin-right: 4px;
+        }
+
+        .phone_get {
+            width: 180px;
+            height: 60px;
+            font-size: 24px;
+            line-height: 60px;
+            color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #999;
+            margin-right: 4px;
+        }
+    }
+}

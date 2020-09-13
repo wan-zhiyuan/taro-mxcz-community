@@ -4,7 +4,9 @@ import { AtInput, AtIcon } from 'taro-ui'
 
 import './index.scss'
 
-export default function Index() {
+export default function Index(props) {
+
+    // const { name, selectorChecked, selector2Checked } = props
 
     const [name, setName] = useState('')
     const [selector, setSelector] = useState(['美国', '中国', '巴西', '日本'])

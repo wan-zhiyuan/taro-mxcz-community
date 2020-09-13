@@ -1,0 +1,19 @@
+.want_locate {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .locate_btn {
+        width: 280px;
+        height: 80px;
+        border: 1px solid #333;
+        border-radius: 10px;
+        font-size: 28px;
+        line-height: 80px;
+        color: #333;
+        text-align: center;
+    }
+}

@@ -133,7 +133,7 @@ export default function Index() {
                 onChange={handleChangeAddress}
             >
                 <View className='icon_address' onClick={chooseAddress}>
-                    <AtIcon prefixClass='icon' value='dingwei' size='16' color='#1CCEAB'></AtIcon>
+                    <AtIcon prefixClass='icon' value='dingwei' size='16' color='#00D8A0'></AtIcon>
                 </View>
             </AtInput>
             <AtInput

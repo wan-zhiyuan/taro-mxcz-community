@@ -1,9 +1,7 @@
 import Taro, { useState, useEffect, } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
-import { useDispatch } from '@tarojs/redux'
-import CommunityComment from '../CommunityComment'
-import MyRichText from '../../../../components/MyRichText'
+import TabMain from '../TabMain'
+import TabComment from '../TabComment'
 
 import './index.scss'
 
@@ -32,13 +30,12 @@ export default function Index(props) {
                 </View>
                 {
                     currentTab === 0 &&
-                    <MyRichText richText={community.detail} />
+                    <TabMain community={community}/>
                 }
                 {
                     currentTab === 1 &&
-                    <CommunityComment />
+                    <TabComment />
                 }
-
             </View>
         </View>
     )

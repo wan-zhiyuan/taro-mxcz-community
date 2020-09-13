@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtSearchBar } from 'taro-ui'
-import ActivityItem from '../../../components/ActivityItem'
+import PublishItem from '../../../components/PublishItem'
 
 import './search.scss'
 
@@ -89,7 +89,7 @@ export default function Search() {
                 {
                     searchList.map((item, idx) => {
                         return (
-                            <ActivityItem key={'index_' + idx} activityItem={item}/>
+                            <PublishItem key={'index_' + idx} activityItem={item}/>
                         )
                     })
                 }

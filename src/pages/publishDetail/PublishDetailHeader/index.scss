@@ -1,0 +1,49 @@
+.publish_detail_header {
+    width: 690px;
+    height: 200px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.user_avatar {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.user_avatar_default {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.header_box {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .user_realname {
+        font-size: 28px;
+        line-height: 28px;
+        color: #333;
+    }
+    
+    .cate_name {
+        width: 150px;
+        height: 45px;
+        margin-top: 20px;
+        font-size: 28px;
+        line-height: 45px;
+        color: #fff;
+        background-color: #00D8A0;
+        border-radius: 10px;
+        text-align: center;
+    }
+}
+

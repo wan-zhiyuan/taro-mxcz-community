@@ -5,7 +5,7 @@ import { getWindowHeightNoPX } from '../../../utils/style'
 import PopupQRcode from './../../../components/Popup/PopupQRcode'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { hidePopQr } from '../../../actions/community'
-import DetailMain from './DetailMain'
+import DetailTab from './DetailTab'
 import DetailFooter from './DetailFooter'
 import DetailRight from './DetailRight'
 
@@ -88,7 +88,7 @@ export default function CommunityDetail() {
                 </View>
 
                 {/* 社区详情主内容 */}
-                <DetailMain community={community} />
+                <DetailTab community={community} />
             </ScrollView>
             {/* 底部模块 */}
             <DetailFooter community={community} />

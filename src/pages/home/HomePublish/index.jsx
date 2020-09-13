@@ -1,6 +1,6 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import ActivityItem from '../../../components/ActivityItem'
+import PublishItem from '../../../components/PublishItem'
 
 import './index.scss'
 
@@ -60,7 +60,7 @@ export default function Index(props) {
                 {
                     activityList.map((item, idx) => {
                         return (
-                            <ActivityItem key={'index_' + idx} activityItem={item} />
+                            <PublishItem key={'index_' + idx} activityItem={item} />
                         )
                     })
                 }

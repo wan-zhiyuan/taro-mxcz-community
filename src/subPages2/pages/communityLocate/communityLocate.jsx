@@ -1,39 +1,53 @@
 import Taro, { useState, useRouter } from '@tarojs/taro'
-import { View, ScrollView, Picker } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import { AtInput, AtIcon } from 'taro-ui'
 import LocatePart1 from './LocatePart1'
 import LocatePart2 from './LocatePart2'
+import LocatePart3 from './LocatePart3'
+import LocatePart4 from './LocatePart4'
+import LocatePart5 from './LocatePart5'
+import LocatePart6 from './LocatePart6'
+import BusinessNotice from './BusinessNotice'
+import { getWindowHeightNoPX } from '../../../utils/style'
 
 import './communityLocate.scss'
 
 export default function CommunityLocate() {
 
-    const [name, setName] = useState('')
-    const [value, setValue] = useState('')
-    const [selector, setSelector] = useState(['美国', '中国', '巴西', '日本'])
-    const [selectorChecked, setSelectorChecked] = useState('所有社区')
-    const [selector2, setSelector2] = useState(['浦东新区', '松江区',])
-    const [selector2Checked, setSelector2Checked] = useState('浦东新区')
+    const [allowNotice, setAllowNotice] = useState(true)
 
-    function handleChangeName(value) {
-        setName(value)
+    function handleActivate() {
+        console.log('申请开通')
     }
 
-    function handleChange(value) {
-        setValue(value)
+    // 切换选中须知状态
+    function handleAllowNotice() {
+        setAllowNotice(!allowNotice)
     }
 
-    function onChange(e) {
-        setSelectorChecked(selector[e.detail.value])
-    }
-    function onChange2(e) {
-        setSelector2Checked(selector2[e.detail.value])
+    function goToNotice(e) {
+        console.log('跳转入驻须知页面')
+        e.stopPropagation() // 阻止点击事件继续冒泡
     }
 
     return (
         <View className='community_locate_index'>
-            <LocatePart1 />
-            <LocatePart2 />
+            <ScrollView
+                className='locate_scroll'
+                scrollY
+                scrollWithAnimation
+                enableFlex={true}
+                style={{ height: `${getWindowHeightNoPX() - 50}px` }}
+            >
+                <LocatePart1 />
+                <LocatePart2 />
+                <LocatePart3 />
+                <LocatePart4 />
+                <LocatePart5 />
+                <LocatePart6 />
+                <BusinessNotice />
+            </ScrollView>
+            <View className='footer' onClick={handleActivate}>申请开通</View>
         </View>
     )
 }

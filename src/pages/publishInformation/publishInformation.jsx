@@ -6,6 +6,7 @@ import { Toast } from '../../utils/toast'
 
 import './publishInformation.scss'
 
+/* 用户社区发布交流信息的页面 */
 export default function PublishInformation() {
 
     const router = useRouter()

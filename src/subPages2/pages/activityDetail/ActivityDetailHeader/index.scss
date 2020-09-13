@@ -1,0 +1,39 @@
+.activity_detail_header {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        width: 100%;
+        font-size: 30px;
+        line-height: 30px;
+        color: #333;
+        font-weight: 500;
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+
+    .header_box_1 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: 40px;
+        margin-bottom: 20px;
+
+        .enroll_number {
+            font-size: 26px;
+            line-height: 26px;
+            color: #666;
+            margin-left: 20px;
+        }
+        
+        .price {
+            font-size: 32px;
+            line-height: 32px;
+            margin-right: 30px;
+        }
+    }
+}

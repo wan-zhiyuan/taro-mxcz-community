@@ -10,7 +10,7 @@ export default function Index(props) {
     const[comment, setComment] = useState([1,2,3,4,5])
 
     return (
-        <View className='community_comment'>
+        <View className='comment_list'>
 
         </View>
     )
