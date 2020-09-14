@@ -6,8 +6,11 @@ import './index.scss'
 
 export default function Index() {
 
-    function handleSign() {
+    function handleSignIn() {
         console.log('跳转签到页面')
+        Taro.navigateTo({
+            url: `/subPages1/pages/signIn/signIn`
+        })
     }
 
     return (
@@ -23,7 +26,7 @@ export default function Index() {
                             <View className='mine_avatar_logout'>未</View>
                         )
                 } */}
-                <View className='mine_sign' onClick={handleSign}>
+                <View className='mine_sign' onClick={handleSignIn}>
                     <AtIcon prefixClass='icon' value='qiandao' size='20' color='#fff'></AtIcon>
                     <Text style={{fontSize:'14px',lineHeight:'14px',fontWeight:'500',color:'#fff', marginLeft:'4px'}}>签到</Text>
                 </View>

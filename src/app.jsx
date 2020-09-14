@@ -31,7 +31,7 @@ class App extends Component {
       {
         "root": "subPages1",
         "pages": [
-          'pages/checkin/checkin',
+          'pages/signIn/signIn',
           'pages/search/search',
         ]
       },

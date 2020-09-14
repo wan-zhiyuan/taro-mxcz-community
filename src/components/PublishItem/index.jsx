@@ -57,14 +57,14 @@ export default function Index(props) {
                 <View className='item_msg'>
                     <Text className='item_time'>{activityItem.publishTime || ''}发布</Text>
                     <View className='msg_right'>
-                        <View className='item_readnum'>
+                        <View className='item_read'>
                             <AtIcon prefixClass='icon' value='liulan' size='12px' color='#333'></AtIcon>
-                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{activityItem.readed || 0}</Text>
+                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{activityItem.read || 0}</Text>
                             <Text>浏览</Text>
                         </View>
-                        <View className='item_praise'>
+                        <View className='item_like'>
                             <AtIcon prefixClass='icon' value='dianzan' size='12px' color='#333'></AtIcon>
-                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{activityItem.praise || 0}</Text>
+                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{activityItem.like || 0}</Text>
                             <Text>赞</Text>
                         </View>
                     </View>

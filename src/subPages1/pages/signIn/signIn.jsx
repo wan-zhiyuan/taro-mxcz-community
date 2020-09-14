@@ -1,16 +1,16 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 
-import './checkin.scss'
+import './signIn.scss'
 
-export default function Checkin() {
+export default function SignIn() {
 
     return (
-        <View className='checkin_index'>
+        <View className='signin_index'>
 
         </View>
     )
 }
-Checkin.config = {
+SignIn.config = {
     navigationBarTitleText: '签到',
 }
