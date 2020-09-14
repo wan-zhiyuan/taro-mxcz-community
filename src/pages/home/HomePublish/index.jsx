@@ -6,7 +6,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const [activityList, setActivityList] = useState([
+    const [publishList, setPublishList] = useState([
         {
             avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599502290284&di=385a6ac02b837f35299026bbfc2b2e9f&imgtype=0&src=http%3A%2F%2Fdp.gtimg.cn%2Fdiscuzpic%2F0%2Fdiscuz_x5_gamebbs_qq_com_forum_201306_19_1256219xc797y90heepdbh.jpg%2F0',
             realname: '老王', desc: '众所周知，酷热炎炎夏季是白酒的销售淡季，在这个时候，是选择默默等待淡季来临?还是未雨绸缪将促销进行到底，打一场漂亮的淡季冲锋战?相信贵厂一定会明智的选择后者! ',
@@ -58,9 +58,9 @@ export default function Index(props) {
             </View>
             <View className='content'>
                 {
-                    activityList.map((item, idx) => {
+                    publishList.map((item, idx) => {
                         return (
-                            <PublishItem key={'index_' + idx} activityItem={item} />
+                            <PublishItem key={'index_' + idx} publishItem={item} />
                         )
                     })
                 }

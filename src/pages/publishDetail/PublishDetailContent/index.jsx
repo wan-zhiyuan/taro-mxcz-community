@@ -16,7 +16,7 @@ export default function Index(props) {
 
     return (
         <View className='publish_detail_content'>
-            <Text>{publishDetail.content}</Text>
+            <Text className='content_txt'>{publishDetail.content}</Text>
             {
                 publishDetail.images.map((item, idx) => {
                     return (

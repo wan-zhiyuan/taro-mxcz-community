@@ -32,6 +32,7 @@ class App extends Component {
         "root": "subPages1",
         "pages": [
           'pages/signIn/signIn',
+          'pages/signInRank/signInRank',
           'pages/search/search',
         ]
       },

@@ -34,7 +34,7 @@ export default function PublishDetail() {
         create_time: 1599901136, // 创建日期，单位：秒
 
     })
-    const [commentList, setCommentList] = useState([])
+    const [commentList, setCommentList] = useState([1,2,3,4])
 
     useEffect(() => {
         // 使用id查询社区发布内容
@@ -61,6 +61,7 @@ export default function PublishDetail() {
                 <View style={{width:'100%',height:'20px',backgroundColor:'#f2f2f2', color:'#f2f2f2'}}>1</View>
                 {/* 评论 */}
                 <PublishDetailComment commentList={commentList} comment_number={publishDetail.comment_number}/>
+                <View style={{width:'100%',height:'20px',backgroundColor:'#f2f2f2', color:'#f2f2f2'}}>1</View>
             </ScrollView>
             <PublishDetailFooter />
 

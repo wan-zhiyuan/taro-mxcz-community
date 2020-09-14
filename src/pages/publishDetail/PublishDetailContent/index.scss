@@ -3,6 +3,13 @@
     display: flex;
     flex-direction: column;
 
+    .content_txt {
+        font-size: 30px;
+        // line-height: 30px;
+        color: #333;
+        margin-bottom: 16px;
+    }
+
     .content_image {
         width: 100%;
     }
