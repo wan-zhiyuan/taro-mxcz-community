@@ -10,6 +10,7 @@ import { judgeTarget } from '../../utils/navTool'
 import HomeBanner from './HomeBanner'
 import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
+import { createHttp } from '../../service/servers'
 
 
 import './home.scss'
@@ -26,6 +27,11 @@ export default function Home() {
 
     useEffect(()=>{
         judgeTarget(router.params)
+
+        createHttp({
+            url: `api/home?page=1&pagesize=10`,
+            method: 'GET',
+        })
     },[])
 
     // 下拉刷新相关代码
@@ -37,6 +43,12 @@ export default function Home() {
     //         setTriggered(false)
     //     }, 3000)
     // }
+
+    function naviToInformation() {
+        Taro.navigateTo({
+            url: '/subPages2/pages/information/information'
+        })
+    }
 
     return (
         <View className='home_index'>
@@ -85,8 +97,8 @@ export default function Home() {
                         <Text style={{ marginLeft: '15px' }}>社区资讯</Text>
                     </View>
                     <View className='content'>
-                        <Image className='content_item' src={Infor1} mode='scaleToFill'></Image>
-                        <Image className='content_item' src={Infor2} mode='scaleToFill'></Image>
+                        <Image className='content_item' src={Infor1} mode='scaleToFill' onClick={()=>{}}></Image>
+                        <Image className='content_item' src={Infor2} mode='scaleToFill' onClick={naviToInformation}></Image>
                     </View>
                 </View>
                 {/* 社区论坛模块 */}

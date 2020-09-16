@@ -1,5 +1,6 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
+import RankItem from '../signInRank/RankItem'
 
 import './signIn.scss'
 
@@ -35,9 +36,7 @@ export default function SignIn() {
                     {
                         top3.map((item, idx) => {
                             return (
-                                <View className='top3_item' key={'index_' + idx}>
-
-                                </View>
+                                <RankItem key={'index_'+idx}  item={item} index={idx}/>
                             )
                         })
                     }

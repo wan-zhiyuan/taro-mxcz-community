@@ -31,9 +31,12 @@ class App extends Component {
       {
         "root": "subPages1",
         "pages": [
+          'pages/login/login',
           'pages/signIn/signIn',
           'pages/signInRank/signInRank',
           'pages/search/search',
+          'pages/pointDetail/pointDetail',
+          'pages/myCollection/myCollection',
         ]
       },
       // 社区及活动相关页面
@@ -47,6 +50,7 @@ class App extends Component {
           'pages/activity/activity',
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',
+          'pages/information/information',
         ]
       },
       // 商城相关的页面
