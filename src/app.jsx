@@ -51,6 +51,8 @@ class App extends Component {
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',
           'pages/information/information',
+          'pages/infoPublish/infoPublish',
+          'pages/infoDetail/infoDetail',
         ]
       },
       // 商城相关的页面

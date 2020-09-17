@@ -12,6 +12,7 @@ export default function Index() {
             url: `/subPages1/pages/signIn/signIn`
         })
     }
+    
 
     return (
         <View className='mine_top'>

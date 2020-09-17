@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { ScrollView, View } from '@tarojs/components'
 import InfoListItem from '../InfoListItem'
+import { getWindowHeightNoPX } from '../../../../utils/style'
 
 import './index.scss'
 
@@ -10,13 +11,21 @@ export default function Index(props) {
 
     return (
         <View className='info_list'>
-            {
-                infoList.map((item,idx)=>{
-                    return (
-                        <InfoListItem key={'index_idx'} item={item} />
-                    )
-                })
-            }
+            <ScrollView
+                className='information_scroll'
+                scrollY
+                scrollWithAnimation
+                style={{ height: `${getWindowHeightNoPX()-60}px` }}
+            >
+                {
+                    infoList.map((item, idx) => {
+                        return (
+                            <InfoListItem key={'index_' + idx} item={item} />
+                        )
+                    })
+                }
+            </ScrollView>
+
         </View>
     )
 }

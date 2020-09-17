@@ -1,0 +1,50 @@
+.point_list_item {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+
+    .left {
+        margin-left: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .title {
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 500;
+            color: #333;
+        }
+        .time {
+            font-size: 24px;
+            line-height: 24px;
+            color: #999;
+            margin-top: 20px;
+        }
+    }
+
+    .right {
+        margin-right: 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+
+
+        .point_num {
+            font-size: 34px;
+            line-height: 34px;
+            font-weight: 600;
+            color: hotpink;
+        }
+        .point_fen {
+            font-size: 26px;
+            line-height: 26px;
+            font-weight: 500;
+            color: hotpink;
+        }
+    }
+}
