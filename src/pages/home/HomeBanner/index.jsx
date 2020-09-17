@@ -6,7 +6,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const homeBanner = useSelector(state => state.home.homeInfo.banner)
+    const homeBanner = useSelector(state => state.home.homeIndex.banner)
 
     return (
         <View className='home_banner'>

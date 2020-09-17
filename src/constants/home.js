@@ -1,1 +1,1 @@
-export const HOME_INFO = 'HOME_INFO' // 首页信息
+export const HOME_INDEX = 'HOME_INDEX' // 首页信息

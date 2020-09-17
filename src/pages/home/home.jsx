@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, Text, ScrollView, Image, Swiper, SwiperItem,} from '@tarojs/components'
+import { View, Text, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import HomeNavbar from './HomeNavbar'
 import Infor1 from '../../assets/images/community_information_1.png'
@@ -11,6 +11,10 @@ import HomeBanner from './HomeBanner'
 import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 import { createHttp } from '../../service/servers'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { dispatchHomeIndex } from '../../actions/home'
+import { signMain, signRankingTime, signRankingTotal, pointList, collectList } from '../../actions/user'
+import ListView, { LazyBlock } from "taro-listview";
 
 
 import './home.scss'
@@ -19,20 +23,30 @@ export default function Home() {
 
     const router = useRouter()
 
+    const dispatch = useDispatch()
+
     // 最新发布数据
     const [lastPublish, setLastPublish] = useState([
         1, 2, 3, 4, 5,
     ])
-    
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [hasMore, setHasMore] = useState(false)
+    const [error, setError] = useState(false)
+    const [isEmpty, setIsEmpty] = useState(false)
 
-    useEffect(()=>{
+
+    useEffect(() => {
         judgeTarget(router.params)
 
-        createHttp({
-            url: `api/home?page=1&pagesize=10`,
-            method: 'GET',
-        })
-    },[])
+        // let page = 1
+        // let pagesize = 10
+        // dispatch(dispatchHomeIndex(page,pagesize))
+        signMain()
+        signRankingTotal(1,10)
+        signRankingTime(1,10)
+        pointList()
+        collectList()
+    }, [])
 
     // 下拉刷新相关代码
     // const [triggered, setTriggered] = useState(true)
@@ -50,9 +64,29 @@ export default function Home() {
         })
     }
 
+    async function onScrollToLower() {
+
+    }
+    async function pullDownRefresh() {
+        
+    }
+
     return (
         <View className='home_index'>
             <HomeNavbar />
+            {/* <ListView
+                // autoHeight
+                style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
+                lazy
+                isLoaded={isLoaded}
+                isError={error}
+                hasMore={hasMore}
+                isEmpty={isEmpty}
+                onPullDownRefresh={pullDownRefresh}
+                onScrollToLower={onScrollToLower}
+            > */}
+
+            
             <ScrollView
                 className='home_scrollview'
                 scrollWithAnimation
@@ -61,13 +95,6 @@ export default function Home() {
                 // 设置后ios会存在布局异常，未解决，暂时使用margin: 0 auto处理
                 // enableFlex={true} // 设置flex之后，里面的元素宽度不允许设置100%
                 style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
-            // 下拉刷新相关代码
-            // refresherEnabled={true} // 开启
-            // refresherThreshold={100} // 阀值
-            // refresherDefaultStyle='white' // 三个点颜色
-            // refresherBackground='lightgreen' // 下拉区域背景色
-            // refresherTriggered={triggered} // 控制下拉刷新状态
-            // onRefresherRefresh={onRefresh} // 开始下拉刷新时触发
             >
                 {/* 导航模块 */}
                 <HomeGrid />
@@ -90,14 +117,14 @@ export default function Home() {
                         天气：晴
                     </View>
                 </View>
-                
+
                 {/* 社区资讯模块 */}
                 <View className='home_community_information'>
                     <View className='title'>
                         <Text style={{ marginLeft: '15px' }}>社区资讯</Text>
                     </View>
                     <View className='content'>
-                        <Image className='content_item' src={Infor1} mode='scaleToFill' onClick={()=>{}}></Image>
+                        <Image className='content_item' src={Infor1} mode='scaleToFill' onClick={() => { }}></Image>
                         <Image className='content_item' src={Infor2} mode='scaleToFill' onClick={naviToInformation}></Image>
                     </View>
                 </View>
@@ -138,6 +165,7 @@ export default function Home() {
                 </View>
 
             </ScrollView>
+            {/* </ListView> */}
         </View>
     )
 }

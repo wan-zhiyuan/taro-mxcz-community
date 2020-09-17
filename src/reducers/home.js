@@ -1,8 +1,8 @@
-import { HOME_INFO } from '../constants/home'
+import { HOME_INDEX } from '../constants/home'
 
 const INITIAL_STATE = {
   // 首页数据
-  homeInfo: {
+  homeIndex: {
     banner: [
       'https://yanxuan.nosdn.127.net/bbd03799ba1e0cf7f37966966a0eb0bd.jpg',
       'https://yanxuan.nosdn.127.net/c4d2e4ad4fb2ce5ebe8e11f927198be1.jpg',
@@ -14,8 +14,8 @@ const INITIAL_STATE = {
 
 export default function home(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case HOME_INFO:
-      return { ...state, homeInfo: action.payload }
+    case HOME_INDEX:
+      return { ...state, homeIndex: action.payload }
     default:
       return state
   }

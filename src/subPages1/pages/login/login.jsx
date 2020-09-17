@@ -1,5 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View, ScrollView, OpenData } from '@tarojs/components'
+import { getLogin } from '../../../actions/login'
+import { getUserPhone } from '../../../actions/user'
 
 import './login.scss'
 
@@ -16,6 +18,7 @@ export default function Login() {
                 title: '加载中',
             })
             const res = await Taro.login()
+            console.log(res)
             if (res.errMsg == 'login:ok') {
                 if (res.code) {
                     setJsCode(res.code)
@@ -53,25 +56,36 @@ export default function Login() {
             } catch (err) {
                 console.log('setStorage ERR: ', err)
             }
-            // dispatch(updateUserInfoAction(avatarUrl, nickName))
-
 
             let encryptedData = encodeURIComponent(e.detail.encryptedData)
             let iv = encodeURIComponent(e.detail.iv)
-            goToLoginInit(encryptedData, iv)
+            goToLogin(encryptedData, iv)
         }
 
         // 用户登录初始化
-        async function goToLoginInit(encryptedData, iv) {
-            let postData = { js_code: jsCode, encryptedData, iv, }
+        async function goToLogin(encryptedData, iv) {
+            let postData = { js_code: jsCode, encrypted: encryptedData, iv, op: 'authorize' }
             // 以下是登录的请求
-
+            const res = await getLogin(postData)
+            console.log(res)
             // 成功
-
-
-            // 失败
+            if (res.code === 200) {
+                Taro.setStorageSync('jwt', res.data.jwt)
+                userLogined()
+            }
         }
+    }
 
+    async function userLogined() {
+        // 请求user数据 判断是否登录成功
+
+        Taro.showLoading({
+            title: '请稍等'
+        })
+        setTimeout(() => {
+            Taro.hideLoading()
+            goBack()
+        }, 1000)
     }
 
     const handleCancel = () => {
@@ -87,16 +101,55 @@ export default function Login() {
         })
     }
 
+    // 获取用户手机信息回调
+    function onGetPhoneNumber(e) {
+        console.log('###################')
+        console.log('登录页-获取phoneNumber')
+        console.log(e)
+        setIsLogin(true)
+        if (e.detail.errMsg === 'getPhoneNumber:fail user deny') {
+            console.log('用户拒绝微信手机号授权，请重新授权(true)')
+            setIsLogin(false)
+        } else if (e.detail.errMsg === 'getPhoneNumber:ok') {
+            setIsLogin(false)
+            console.log(`是否成功调用${e.detail}`);
+            console.log(`是否成功调用${e.detail.errMsg}`);
+            console.log(`加密算法的初始向量:${e.detail.iv}`);
+            console.log(`包括敏感数据在内的完整用户信息的加密数据:${e.detail.encryptedData}`);
+            let encryptedData = encodeURIComponent(e.detail.encryptedData)
+            let iv = encodeURIComponent(e.detail.iv)
+            getPhoneNumber(encryptedData, iv)
+        }
+    }
+
+    async function getPhoneNumber(encryptedData, iv) {
+        let postData = { js_code: jsCode, encrypted: encryptedData, iv, op: 'user_mobile' }
+            // 以下是登录的请求
+            const res = await getUserPhone(postData)
+            console.log(res)
+            // 成功
+            if (res.code === 200) {
+                
+            }
+    }
+
     return (
         <View className='login_index'>
-            <View>
-                <Button
-                    className="userbutton-login"
-                    openType={"getUserInfo"}
-                    onGetUserInfo={onGetUserInfo}
-                    loading={isLogin}
-                >用户登录</Button>
+            <View className='avatar'>
+                <OpenData type='userAvatarUrl' />
             </View>
+            <Button
+                className="userbutton-login"
+                openType={"getUserInfo"}
+                onGetUserInfo={onGetUserInfo}
+                loading={isLogin}
+            >用户登录</Button>
+            {/* <Button
+                className="userbutton-login"
+                openType={"getPhoneNumber"}
+                onGetPhoneNumber={onGetPhoneNumber}
+                loading={isLogin}
+            >手机号一键登录</Button> */}
             <View className='login_cancel' onClick={handleCancel}>取消</View>
         </View>
     )

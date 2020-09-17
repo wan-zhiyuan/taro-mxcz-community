@@ -59,8 +59,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "subPages1/pages/signIn/signIn",
-					"pathName": "subPages1/pages/signIn/signIn",
+					"name": "subPages1/pages/login/login",
+					"pathName": "subPages1/pages/login/login",
 					"query": "",
 					"scene": null
 				},
