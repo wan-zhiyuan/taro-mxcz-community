@@ -1,0 +1,26 @@
+.info_detail_content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+
+
+    .box_video {
+        width: 710px;
+        // margin: 0 20px;
+
+        .video{
+            width: 100%;
+        } 
+    }
+
+    .box_image {
+        width: 710px;
+        padding-bottom: 50px;
+
+        .image {
+            width: 100%;
+        }
+    }
+}

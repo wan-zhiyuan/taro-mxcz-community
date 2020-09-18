@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 
+/* toast封装 */
 export function Toast(text) {
     Taro.showToast({
         title: text,

@@ -25,10 +25,10 @@ class App extends Component {
       'pages/mine/mine',
       'pages/publishInformation/publishInformation',
       'pages/publishDetail/publishDetail',
-      'pages/index/index',
+      'pages/index/index', // 测试页面
     ],
     subpackages: [
-      // 关于登陆和个人的相关页面
+      // 登陆 && 签到 && 积分 && 我的收藏
       {
         "root": "subPages1",
         "pages": [
@@ -40,7 +40,7 @@ class App extends Component {
           'pages/myCollection/myCollection',
         ]
       },
-      // 社区及活动相关页面
+      // 社区 && 社区活动 && 社区咨询 && 发布分类
       {
         "root": "subPages2",
         "pages": [
@@ -65,13 +65,15 @@ class App extends Component {
           'pages/order/order',
         ]
       },
-      // 社区帖子相关页面（发帖、搜索、帖子详情）
-      // {
-      //   "root": "subPages4",
-      //   "pages": [
-
-      //   ]
-      // },
+      // 社区服务站
+      {
+        "root": "subPages4",
+        "pages": [
+          'pages/serviceSite/serviceSite',
+          'pages/serviceSiteSub/serviceSiteSub',
+          'pages/serviceSiteDetail/serviceSiteDetail',
+        ]
+      },
     ],
     tabBar: {
       list: [{
