@@ -20,6 +20,11 @@ export default function Index() {
         } else {
             setShowUploadBtn(true)
         }
+        if (doType === 'remove') {
+            
+        } else {
+            
+        }
     }
     // 选择图片失败时触发
     function onFail(mes) {

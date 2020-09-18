@@ -1,10 +1,13 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
+import { AtDivider } from 'taro-ui'
 import PublishItem from '../../../components/PublishItem'
 
 import './index.scss'
 
 export default function Index(props) {
+
+    const { hasMore } = props
 
     const [publishList, setPublishList] = useState([
         {
@@ -52,9 +55,9 @@ export default function Index(props) {
     ])
 
     return (
-        <View className='bbs_index'>
+        <View className='home_publish_index'>
             <View className='title'>
-                <Text style={{ marginLeft: '15px' }}>社区论坛</Text>
+                <Text style={{ marginLeft: '15px' }}>社区发布</Text>
             </View>
             <View className='content'>
                 {
@@ -65,10 +68,22 @@ export default function Index(props) {
                     })
                 }
             </View>
+            {
+                !hasMore &&
+                <View className='divider'>
+                    <AtDivider
+                    height={50}
+                    content='没有更多了'
+                    fontSize={20}
+                    fontColor='#ccc'
+                    lineColor='#ccc' />
+                </View>
+                
+            }
         </View>
     )
 }
 
 Index.defaultProps = {
-
+    hasMore: false,
 }

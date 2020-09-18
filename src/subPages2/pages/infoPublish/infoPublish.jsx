@@ -9,6 +9,11 @@ import './infoPublish.scss'
 
 export default function InfoPublish() {
 
+    function handlePublish() {
+        console.log('发布')
+        
+    }
+
     return (
         <View className='info_publish_index'>
             <InfoPublishHeader />
@@ -16,7 +21,7 @@ export default function InfoPublish() {
             {/* 发布信息主要内容：标题、内容、图片、视频链接 */}
             <InfoPublishMain />
 
-            <View className='publish_button'>发  布</View>
+            <View className='publish_button' onClick={handlePublish}>发  布</View>
         </View>
     )
 

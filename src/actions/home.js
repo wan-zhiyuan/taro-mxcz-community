@@ -1,6 +1,6 @@
 import { HOME_INDEX } from '../constants/home'
 import { API_HOME } from '../constants/api'
-import { createAction } from '../service/servers'
+import { createAction, createHttp } from '../service/servers'
 
 /**
  * 首页数据

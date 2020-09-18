@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../../utils/style'
 
@@ -14,5 +14,5 @@ export default function InfoDetail() {
 
 }
 InfoDetail.config = {
-    navigationBarTitleText: '资讯详情',
+    navigationBarTitleText: '资讯',
 }

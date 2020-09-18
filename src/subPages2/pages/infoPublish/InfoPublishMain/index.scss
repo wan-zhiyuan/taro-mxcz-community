@@ -2,4 +2,22 @@
     width: 100%;
     background-color: #fff;
     margin-top: 20px;
+    overflow: hidden;
+
+    .title {
+        margin: 0 32px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .content {
+        margin: 20px 32px 0;
+    }
+
+    .images {
+        margin: 0 10px;
+    }
+    .video_url {
+        border-top: 1px solid #ccc;
+        margin: 20px 32px 0;
+    }
 }

@@ -1,0 +1,31 @@
+.home_community_info {
+    width: 750px;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+
+    .title {
+        width: 100%;
+        font-size: 26px;
+        line-height: 26px;
+        font-weight: 600;
+    }
+
+    .content {
+        width: 690px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .content_item{
+            width: 330px;
+            height: 180px;
+            border-radius: 20p;
+        }
+    }
+}

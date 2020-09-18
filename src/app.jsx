@@ -25,6 +25,7 @@ class App extends Component {
       'pages/mine/mine',
       'pages/publishInformation/publishInformation',
       'pages/publishDetail/publishDetail',
+      'pages/index/index',
     ],
     subpackages: [
       // 关于登陆和个人的相关页面
@@ -53,6 +54,8 @@ class App extends Component {
           'pages/information/information',
           'pages/infoPublish/infoPublish',
           'pages/infoDetail/infoDetail',
+          'pages/category/category',
+          'pages/categorySub/categorySub',
         ]
       },
       // 商城相关的页面

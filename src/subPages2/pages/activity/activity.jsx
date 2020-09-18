@@ -5,6 +5,7 @@ import ActivityList from './ActivityList'
 
 import './activity.scss'
 
+/* 社区活动 针对社区发布的活动 */
 export default function Activity() {
 
     return (

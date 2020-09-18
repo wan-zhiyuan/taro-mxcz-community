@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -59,15 +59,15 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "subPages1/pages/login/login",
-					"pathName": "subPages1/pages/login/login",
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "subPages2/pages/infoPublish/infoPublish",
-					"pathName": "subPages2/pages/infoPublish/infoPublish",
+					"name": "subPages2/pages/infoDetail/infoDetail",
+					"pathName": "subPages2/pages/infoDetail/infoDetail",
 					"query": "",
 					"scene": null
 				}

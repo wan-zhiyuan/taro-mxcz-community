@@ -1,16 +1,14 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, Text, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import { View, Text, ScrollView, Image, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
-import Infor1 from '../../assets/images/community_information_1.png'
-import Infor2 from '../../assets/images/community_information_2.png'
 import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
 import { judgeTarget } from '../../utils/navTool'
 import HomeBanner from './HomeBanner'
+import HomeMsg from './HomeMsg'
+import HomeCommunityInfo from './HomeCommunityInfo'
 import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
-import { createHttp } from '../../service/servers'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { dispatchHomeIndex } from '../../actions/home'
 import { signMain, signRankingTime, signRankingTotal, pointList, collectList } from '../../actions/user'
@@ -41,28 +39,12 @@ export default function Home() {
         // let page = 1
         // let pagesize = 10
         // dispatch(dispatchHomeIndex(page,pagesize))
-        signMain()
-        signRankingTotal(1,10)
-        signRankingTime(1,10)
-        pointList()
-        collectList()
+        // signMain()
+        // signRankingTotal(1,10)
+        // signRankingTime(1,10)
+        // pointList()
+        // collectList()
     }, [])
-
-    // 下拉刷新相关代码
-    // const [triggered, setTriggered] = useState(true)
-    // function onRefresh() {
-    //     setTriggered(true)
-    //     // 下拉刷新 3秒后关闭
-    //     setTimeout(() => {
-    //         setTriggered(false)
-    //     }, 3000)
-    // }
-
-    function naviToInformation() {
-        Taro.navigateTo({
-            url: '/subPages2/pages/information/information'
-        })
-    }
 
     async function onScrollToLower() {
 
@@ -101,37 +83,13 @@ export default function Home() {
                 {/* banner模块 */}
                 <HomeBanner />
                 {/* 信息模块（天气、浏览、入驻、分享等） analytics */}
-                <View className='home_msg'>
-                    <View className='msg_data'>
-                        <AtIcon value='analytics' size='12px' color='#333'></AtIcon>
-                        <View style={{ marginLeft: '12px' }}>
-                            <Text>浏览：</Text>
-                            <Text style={{ color: '#ff0044' }}>2.19万</Text>
-                        </View>
-                        <View style={{ marginLeft: '20px' }}>
-                            <Text>分享：</Text>
-                            <Text style={{ color: '#ff0044' }}>93</Text>
-                        </View>
-                    </View>
-                    <View className='msg_weather'>
-                        天气：晴
-                    </View>
-                </View>
-
+                <HomeMsg />
                 {/* 社区资讯模块 */}
-                <View className='home_community_information'>
-                    <View className='title'>
-                        <Text style={{ marginLeft: '15px' }}>社区资讯</Text>
-                    </View>
-                    <View className='content'>
-                        <Image className='content_item' src={Infor1} mode='scaleToFill' onClick={() => { }}></Image>
-                        <Image className='content_item' src={Infor2} mode='scaleToFill' onClick={naviToInformation}></Image>
-                    </View>
-                </View>
-                {/* 社区论坛模块 */}
+                <HomeCommunityInfo />
+                {/* 社区发布模块 */}
                 <HomePublish />
 
-                <View className='home_last_publish'>
+                {/* <View className='home_last_publish'>
                     <View className='title'>
                         <Text style={{ marginLeft: '15px' }}>最新发布</Text>
                     </View>
@@ -162,7 +120,7 @@ export default function Home() {
                             })
                         }
                     </View>
-                </View>
+                </View> */}
 
             </ScrollView>
             {/* </ListView> */}
