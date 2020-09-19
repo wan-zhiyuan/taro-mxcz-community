@@ -4,6 +4,7 @@ import { AtTextarea, AtImagePicker, AtForm, AtInput, AtButton } from 'taro-ui'
 import { getWindowHeightNoPX } from '../../utils/style'
 import { Toast, ToastSuccess } from '../../utils/toast'
 import { isEmpty } from '../../utils/is'
+import { increasePublish } from '../../actions/publish'
 
 import './publishInformation.scss'
 
@@ -11,7 +12,7 @@ import './publishInformation.scss'
 export default function PublishInformation() {
 
     const router = useRouter()
-    const { category = '' } = router.params
+    const { cate_id = -1, cate_name = '' } = router.params
 
     const [txtValue, setTxtValue] = useState() // 发布信息内容
     const [picFiles, setPicFiles] = useState([]) // 发布信息图片
@@ -20,7 +21,7 @@ export default function PublishInformation() {
     const [name, setName] = useState('') // 发布人姓名
     const [mobile, setMobile] = useState('') // 发布人电话
 
-    const [ upLoadImg, setUpLoadImg] = useState([]) // 已上传图片的数组
+    const [upLoadImg, setUpLoadImg] = useState([]) // 已上传图片的数组
 
     // 描述文本变化
     function handleChange(value) {
@@ -112,16 +113,16 @@ export default function PublishInformation() {
         // 发起上传
         Taro.uploadFile({
             url: data.url,
-            header:{
+            header: {
                 'content-type': 'multipart/form-data',
             },
             name: 'file',
             filePath: data.picFiles[i],
-            success: (res) =>{
+            success: (res) => {
                 console.log('success:' + res)
                 // 图片上传成功，图片上传成功的变量+1
-                let resultData= JSON.parse(resp.data)
-                if ( resultData.code === 200 ) {
+                let resultData = JSON.parse(resp.data)
+                if (resultData.code === 200) {
                     success++
                     // 上传成功的数据放入upLoadImg后面提交发布的时候使用
                     upLoadImg.push(resultData.data)
@@ -137,8 +138,10 @@ export default function PublishInformation() {
                 i++ // 此图片执行完上传后，开始上传下一张
                 if (i === data.picFiles.length) {
                     ToastSuccess('上传成功')
-                    console.log('成功：'+success+" 失败："+fail)
+                    console.log('成功：' + success + " 失败：" + fail)
                     // 这里可以放入提交发布的函数代码
+
+                    confirmPublish()
                 } else {
                     data.i = i
                     data.success = success
@@ -147,6 +150,30 @@ export default function PublishInformation() {
                 }
             }
         })
+    }
+
+    async function confirmPublish() {
+        let location = ''
+        try {
+            const res = await Taro.getLocation({
+                type: 'gcj02',
+            })
+            location = latitude + ',' + longitude
+        } catch (err) {
+            location = ''
+        }
+
+        let postData = {
+            op: 'publish',
+            cate_id: 1,
+            cate_name: '二手闲置',
+            content: '今天天气真好，我要出去郊游～',
+            images: '',
+            location: location,
+            contact_name: '华晨宇',
+            contact_mobile: '13589890606',
+        }
+        increasePublish(postData)
     }
 
     return (
@@ -159,7 +186,7 @@ export default function PublishInformation() {
                 style={{ height: `${getWindowHeightNoPX() - 75}px` }}
             >
                 <View className='info_top'>
-                    <Text>#{category}#</Text>
+                    <Text>#{cate_name}#</Text>
                 </View>
                 <View className='info_input'>
                     <AtTextarea

@@ -1,6 +1,6 @@
 .rank_item {
     width: 100%;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #ccc;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,6 +13,8 @@
     align-items: center;
     justify-content: flex-start;
     margin-left: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     .icon {
         width: 65px;

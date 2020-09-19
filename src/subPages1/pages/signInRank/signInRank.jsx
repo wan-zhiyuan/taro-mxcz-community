@@ -1,14 +1,25 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import TabGeneral from './TabGeneral'
+import TabTotal from './TabTotal'
 import TabSpeed from './TabSpeed'
 import { getWindowHeightNoPX } from '../../../utils/style'
+import { sign } from '../../../actions/signIn'
 
 import './signInRank.scss'
 
 export default function SignInRank() {
 
     const [currentTab, setCurrentTab] = useState(0)
+    const [signData, setSignData] = useState({})
+
+    useEffect(()=>{
+        sign().then((res)=>{
+            if (res.code === 200) {
+                setSignData(res.data.basic)
+            }
+        })
+    },[])
+    
 
     function changeCurrentTab(value) {
         setCurrentTab(value)
@@ -32,7 +43,7 @@ export default function SignInRank() {
             }
             {
                 currentTab === 1 &&
-                <TabGeneral height={`${getWindowHeightNoPX() - 40}px`} />
+                <TabTotal height={`${getWindowHeightNoPX() - 40}px`} />
             }
         </View>
     )

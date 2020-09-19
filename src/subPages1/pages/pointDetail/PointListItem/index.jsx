@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { getDateTypeSeconds } from '../../../../utils/timer'
 
 import './index.scss'
 
@@ -10,11 +11,11 @@ export default function Index(props) {
     return (
         <View className='point_list_item'>
             <View className='left'>
-                <Text className='title'>每日签到</Text>
-                <Text className='time'>2020-09-11 01:44:15</Text>
+                <Text className='title'>{item.type_name || 'type_name'}</Text>
+                <Text className='time'>{getDateTypeSeconds(item.create_time || 0)}</Text>
             </View>
             <View className='right'>
-                <Text className='point_num'>{`+${value}`}</Text>
+                <Text className='point_num'>{`+${item.number || 0}`}</Text>
                 <Text className='point_fen'>分</Text>
             </View>
         </View>

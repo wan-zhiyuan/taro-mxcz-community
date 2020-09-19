@@ -11,8 +11,21 @@ import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { dispatchHomeIndex } from '../../actions/home'
-import { signMain, signRankingTime, signRankingTotal, pointList, collectList } from '../../actions/user'
+import {
+    getPointList, getCollectList, dispatchUser,
+} from '../../actions/user'
+import {
+    increasePublish, increaseInfo, publishExtend, informationExtend, getPublish, getInformation,
+    getPublishDetail, getInformationDetail,
+} from '../../actions/publish'
+import { sign, signRankingTime, signRankingTotal, } from '../../actions/signIn'
+import {
+    getCommunityBusiness, getCommunityServiceSite, getCommunityActivity,
+    createCommunityServiceSite, createCommunityBusiness, communityBusinessExtend,
+    getServiceSiteDetail, getBusinessDetail, getActivityDetail,
+} from '../../actions/community'
 import ListView, { LazyBlock } from "taro-listview";
+import PopupLogin from '../../components/PopupLogin'
 
 
 import './home.scss'
@@ -21,6 +34,7 @@ export default function Home() {
 
     const router = useRouter()
 
+    const userInfo = useSelector(state => state.user.userInfo)
     const dispatch = useDispatch()
 
     // 最新发布数据
@@ -36,25 +50,226 @@ export default function Home() {
     useEffect(() => {
         judgeTarget(router.params)
 
+        initData()
+
         // let page = 1
         // let pagesize = 10
         // dispatch(dispatchHomeIndex(page,pagesize))
-        // signMain()
         // signRankingTotal(1,10)
         // signRankingTime(1,10)
-        // pointList()
-        // collectList()
+        // getPointList(1,20)
+        // getCollectList()
+
+        // testIncreasePublish() // 新增发布信息
+        // testincreaseInfo() // 新增资讯信息
+        // testPublishExtend(1) // 发布信息阅读、点赞、评论
+        // testInformationExtend(1) // 资讯信息阅读、点赞、评论
+
+        // testGetPublish(0) // 获取发布信息列表 0-全部 其他-表示对应的分类ID
+        // testGetInformation(0) // 获取资讯信息列表 0-全部 其他-表示对应的cate_id
+
+        // testGetPublishDetail(1)
+        // testGetInformationDetail(1)
+
+        // testSign()
+
+        // 社区服务站 社区（商家） 社区活动相关
+        // testGetCommunityBusiness()
+        // testGetCommunityServiceSite()
+        // testGetCommunityActivity(0,1,10)
+
+        // testCreateCommunityServiceSite()
+        // testCreateCommunityBusiness()
+        // testCommunityBusinessExtend(1,2,'123') // 社区（商家）的点赞、评论、分享、收藏等操作
+
+        // testGetServiceSiteDetail(1)
+        // testGetBusinessDetail(1)
+        // testGetActivityDetail(1)
     }, [])
+
+    async function initData() {
+        const res = await dispatch(dispatchUser())
+        if (!!res.data.nickname) {
+            console.log('用户已登陆')
+        } else {
+            console.log('用户未登陆')
+        }
+    }
+
+    function testGetActivityDetail(target_id) {
+        getActivityDetail(target_id)
+    }
+
+    function testGetBusinessDetail(target_id) {
+        getBusinessDetail(target_id)
+    }
+
+    function testGetServiceSiteDetail(target_id) {
+        getServiceSiteDetail(target_id)
+    }
+
+    function testCommunityBusinessExtend(target_id, type, content) {
+        let postData = {
+            op:'business_extend',
+            target_id,
+            type,
+            content,
+        }
+        communityBusinessExtend(postData)
+    }
+
+    async function testCreateCommunityBusiness() {
+        const location = await getLocation()
+        let postData = {
+            op: 'business',
+            location,
+            business_name: '杨浦区中心街道社区',
+            apply_mobile: '13698984545', // 申请手机号
+            address: '上海市杨浦区可口可乐路111号',
+            keyword: '零售', // 行业关键此
+            industry: '杨浦区', // 行业分类
+            memo: '我们要做大做强', // 商家简介
+            contact_phone: '', // 联系电话
+            notice: '可乐管够', // 商家公告
+            logo: '',
+            wechat_pic: '',
+            banner: '', // 商家轮播图 以 | 做分割符号
+            details: '',  // 商家详情图 以 | 做分割符号
+        }
+        createCommunityBusiness(postData)
+    }
+
+    async function testCreateCommunityServiceSite() {
+        const location = await getLocation()
+        let postData = {
+            op: 'service_site',
+            location,
+            logo: '',
+            apply_mobile: '13485856969',
+            address: '上海市浦东新区浦三路3058号',
+            company_name: '上海一一有限公司',
+            company_phone: '13878912345',
+            industry: '社区助餐',
+            memo: '好好好',
+        }
+        createCommunityServiceSite(postData)
+    }
+
+    async function testGetCommunityBusiness() {
+        const location = await getLocation()
+        getCommunityBusiness(location, '', 0)
+    }
+
+    async function testGetCommunityServiceSite() {
+        const location = await getLocation()
+        getCommunityServiceSite(location, '', 0,)
+    }
+
+    function testGetCommunityActivity(cate_id, page, pagesize) {
+        getCommunityActivity(cate_id, page, pagesize)
+    }
+
+    function testSign() {
+        sign()
+    }
+
+    function testGetPublishDetail(target_id) {
+        getPublishDetail(target_id)
+    }
+
+    function testGetInformationDetail(target_id) {
+        getInformationDetail(target_id)
+    }
+
+    function testGetInformation(cate_id, page, pagesize) {
+        getInformation(cate_id, page, pagesize)
+    }
+
+    async function testGetPublish(cate_id) {
+        const location = await getLocation()
+        getPublish(cate_id, location)
+    }
+
+    function testPublishExtend(type) {
+        let postData = {
+            op: 'publish_extend',
+            target_id: 1,
+            type: type, // 0-阅读 1-点赞 2-评论
+            content: ''
+        }
+        publishExtend(postData)
+    }
+
+    function testInformationExtend(type) {
+        let postData = {
+            op: 'information_extend',
+            target_id: 1,
+            type: type,
+            content: ''
+        }
+        informationExtend(postData)
+    }
+
+    function testincreaseInfo() {
+        let postData = {
+            op: 'information',
+            cate_id: 1,
+            cate_name: '演唱会',
+            title: '华晨宇演唱会',
+            content: '今天天气真好，我要出去郊游～',
+            video_url: '',
+            images: '',
+        }
+        increaseInfo(postData)
+    }
+
+    async function testIncreasePublish() {
+        const location = await getLocation()
+
+        let postData = {
+            op: 'publish',
+            cate_id: 1,
+            cate_name: '二手闲置',
+            content: '今天天气真好，我要出去郊游～',
+            images: '',
+            location: location,
+            contact_name: '华晨宇',
+            contact_mobile: '13589890606',
+        }
+        increasePublish(postData)
+    }
+
+    async function getLocation() {
+        let location = ''
+        try {
+            const res = await Taro.getLocation({
+                type: 'gcj02',
+            })
+            console.log(res)
+            location = res.latitude + ',' + res.longitude
+            console.log(location)
+        } catch (err) {
+            location = ''
+        }
+        return location
+    }
+
+
 
     async function onScrollToLower() {
 
     }
     async function pullDownRefresh() {
-        
+
     }
 
     return (
         <View className='home_index'>
+            {
+                !userInfo.nickname &&
+                <PopupLogin />
+            }
+
             <HomeNavbar />
             {/* <ListView
                 // autoHeight
@@ -68,7 +283,7 @@ export default function Home() {
                 onScrollToLower={onScrollToLower}
             > */}
 
-            
+
             <ScrollView
                 className='home_scrollview'
                 scrollWithAnimation

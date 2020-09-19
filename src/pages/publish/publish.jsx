@@ -14,18 +14,18 @@ import './publish.scss'
 export default function Publish() {
 
     const [category, setCategory] = useState([
-        { id: '1', name: '二手闲置', pic: Icon1 },
-        { id: '2', name: '健康食集', pic: Icon2 },
-        { id: '3', name: '邻里分享', pic: Icon3 },
-        { id: '4', name: '手机教学', pic: Icon4 },
-        { id: '5', name: '社区活动', pic: Icon5 },
-        { id: '6', name: '志愿者之家', pic: Icon6 },
-        { id: '7', name: '最美睡姿', pic: Icon7 },
+        { cate_id: '1', cate_name: '二手闲置', pic: Icon1 },
+        { cate_d: '2', cate_name: '健康食集', pic: Icon2 },
+        { cate_id: '3', cate_name: '邻里分享', pic: Icon3 },
+        { cate_id: '4', cate_name: '手机教学', pic: Icon4 },
+        { cate_id: '5', cate_name: '社区活动', pic: Icon5 },
+        { cate_id: '6', cate_name: '志愿者之家', pic: Icon6 },
+        { cate_id: '7', cate_name: '最美睡姿', pic: Icon7 },
     ])
 
     function handlePublishSubItem(item) {
         Taro.navigateTo({
-            url: `/pages/publishInformation/publishInformation?category=${item.name}`
+            url: `/pages/publishInformation/publishInformation?cate_id=${item.cate_id}&cate_name=${item.cate_name}`
         })
     }
 
@@ -49,7 +49,7 @@ export default function Publish() {
                                     : <Image className='publish_item_pic' src={item.pic} mode='scaleToFill'></Image>
                                 }
                                 
-                                <Text className='publish_item_name'>{item.name}</Text>
+                                <Text className='publish_item_name'>{item.cate_name}</Text>
                             </View>
                         )
 

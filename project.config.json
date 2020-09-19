@@ -66,8 +66,22 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages2/pages/infoDetail/infoDetail",
-					"pathName": "subPages2/pages/infoDetail/infoDetail",
+					"name": "subPages2/pages/category/category",
+					"pathName": "subPages2/pages/category/category",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publishDetail/publishDetail",
+					"pathName": "pages/publishDetail/publishDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "subPages2/pages/category/category",
+					"pathName": "subPages2/pages/category/category",
 					"query": "",
 					"scene": null
 				}

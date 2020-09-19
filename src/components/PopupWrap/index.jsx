@@ -26,5 +26,6 @@ export default function Index(props) {
 }
 
 Index.defaultProps = {
-
+    isOpened: false,
+    onClose: ()=>{},
 }

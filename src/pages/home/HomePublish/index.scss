@@ -2,7 +2,7 @@
     width: 750px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
     margin-top: 32px;
     // background-color: #fff;
 }
@@ -17,9 +17,4 @@
 .content {
     width: 100%;
     background-color: #f2f2f2; // 控制首页发布的活动列表内容的背景颜色
-}
-
-.divider {
-    width: 100%;
-    background-color: #fff;
 }

@@ -1,12 +1,13 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { getDateTypeSeconds } from '../../../../utils/timer'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const { item, index } = props
+    const { item, index, type, } = props
 
     function isIcon() {
         if (index <= 2) {
@@ -42,11 +43,15 @@ export default function Index(props) {
                             : <Text>{index + 1}</Text>
                     }
                 </View>
-                <Image className='avatar'></Image>
-                <Text className='realname'>徐大凯</Text>
+                <Image className='avatar' src={item.avatar} mode='scaleToFill'></Image>
+                <Text className='realname'>{item.nickname || ''}</Text>
             </View>
             <View className='right'>
-                今天 05：59：01
+                {
+                    type==='total'
+                    ? <Text>累计签到{item.signed_number || 0}次</Text>
+                    : <Text>今天 {getDateTypeSeconds(item.create_time).substring(11)}</Text>
+                }
             </View>
         </View>
     )
@@ -55,4 +60,5 @@ export default function Index(props) {
 Index.defaultProps = {
     item: {},
     index: -1,
+    type: 'time',// 默认显示手速榜样式 'time':手速榜 'total':总榜
 }

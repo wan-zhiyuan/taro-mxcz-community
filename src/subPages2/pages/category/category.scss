@@ -1,5 +1,66 @@
 .category_index {
     width: 100%;
     height: 100vh;
-    background-color: brown;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+
+    .category_listview {
+        width: 100%;
+        height: 100vh;
+        background-color: #f2f2f2;
+
+        .sub_grid {
+            width: 100%;
+            margin-top: 12px;
+            background-color: #fff;
+        }
+    
+        .tabs_cate {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+
+    
+
+
+    // drawer样式
+    .drawer_item {
+        height: 80px;
+        line-height: 80px;
+        margin: 0 25px;
+        color: #666;
+        font-size: 30px;
+        border-bottom: 1px solid #eee;
+        position: relative;
+    }
+
+    .category_header {
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .button {
+            margin-left: 20px;
+            background-color: #00D8A0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 20px;
+
+            .cate_name {
+                font-size: 28px;
+                line-height: 28px;
+                color: #333;
+                margin-left: 8px;
+            }
+        }
+    }
 }

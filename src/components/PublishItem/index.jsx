@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { getDateTypeMinutes } from '../../utils/timer'
 
 import './index.scss'
 
@@ -33,19 +34,19 @@ export default function Index(props) {
                                 : <Image className='user_avatar_default'></Image>
                         }
                         <View className='item_user_right'>
-                            <Text className='user_name'>{publishItem.realname || ''}</Text>
-                            <Text className='item_cate'>二手闲置</Text>
+                            <Text className='user_name'>{publishItem.nickname || ''}</Text>
+                            <Text className='item_cate'>{publishItem.cate_name}</Text>
                         </View>
                     </View>
                     <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
                 </View>
-                <View className='item_desc'>{publishItem.desc || ''}</View>
+                <View className='item_desc'>{publishItem.content || ''}</View>
                 {/* 最多只显示四张 */}
                 {
-                    publishItem.picArr.length !== 0 &&
+                    publishItem.images.split('|').length !== 0 &&
                     <View className='item_pic'>
                         {
-                            publishItem.picArr.map((item, idx) => {
+                            publishItem.images.split('|').map((item, idx) => {
                                 return (
                                     <Image
                                         key={'index_' + idx}
@@ -61,16 +62,16 @@ export default function Index(props) {
                     </View>
                 }
                 <View className='item_msg'>
-                    <Text className='item_time'>{publishItem.publishTime || ''}发布</Text>
+                    <Text className='item_time'>{getDateTypeMinutes(publishItem.create_time || 0)}发布</Text>
                     <View className='msg_right'>
                         <View className='item_read'>
                             <AtIcon prefixClass='icon' value='liulan' size='12px' color='#333'></AtIcon>
-                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{publishItem.read || 0}</Text>
+                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{publishItem.read_number || 0}</Text>
                             <Text>浏览</Text>
                         </View>
                         <View className='item_like'>
                             <AtIcon prefixClass='icon' value='dianzan' size='12px' color='#333'></AtIcon>
-                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{publishItem.like || 0}</Text>
+                            <Text style={{ marginLeft: Taro.pxTransform(8) }}>{publishItem.likes_number || 0}</Text>
                             <Text>赞</Text>
                         </View>
                     </View>
@@ -82,6 +83,6 @@ export default function Index(props) {
 
 Index.defaultProps = {
     publishItem: {
-        picArr: []
+        images:''
     }
 }

@@ -1,0 +1,58 @@
+.popup_signed_box {
+    width: 600px;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .signed_msg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+
+        .signed_days {
+            font-size: 30px;
+            line-height: 30px;
+            color: #333;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+    
+        .signed_success {
+            font-size: 34px;
+            line-height: 34px;
+            color: #333;
+            font-weight: 500;
+            margin-top: 30px;
+        }
+    
+        .signed_point {
+            font-size: 30px;
+            line-height: 30px;
+            color: #333;
+            margin-top: 30px;
+        }
+    }
+
+    
+
+    .signed_ok {
+        width: 200px;
+        height: 70px;
+        border-radius: 20px;
+        background-color: #ff0044;
+        font-size: 30px;
+        line-height: 30px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}

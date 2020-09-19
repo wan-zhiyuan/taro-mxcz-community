@@ -1,11 +1,15 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, ScrollView, OpenData } from '@tarojs/components'
+import { View, OpenData } from '@tarojs/components'
 import { getLogin } from '../../../actions/login'
-import { getUserPhone } from '../../../actions/user'
+import { getUserPhone, dispatchUser } from '../../../actions/user'
+import { useDispatch } from '@tarojs/redux'
 
 import './login.scss'
+import { Toast } from '../../../utils/toast'
 
 export default function Login() {
+
+    const dispatch = useDispatch()
 
     const [isLogin, setIsLogin] = useState(false)
     const [jsCode, setJsCode] = useState('')
@@ -78,10 +82,16 @@ export default function Login() {
 
     async function userLogined() {
         // 请求user数据 判断是否登录成功
-
         Taro.showLoading({
             title: '请稍等'
         })
+        const res = await dispatch(dispatchUser())
+        if (!res.data.nickname) {
+            console.log('未找到用户信息，请重新登陆')
+            Toast('未找到用户信息，请重新登陆')
+            Taro.hideLoading()
+            return
+        }
         setTimeout(() => {
             Taro.hideLoading()
             goBack()

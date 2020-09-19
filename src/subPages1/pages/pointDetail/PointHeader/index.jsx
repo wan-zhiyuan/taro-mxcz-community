@@ -7,7 +7,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { } = props
+    const { pointNumber } = props
 
     return (
         <View className='point_header'>
@@ -15,11 +15,11 @@ export default function Index(props) {
             <View className='header_box1'>
                 <Image className='icon' src={IconGift} mode='scaleToFill'></Image>
                 {/* <AtIcon prefixClass='icon' value='liwu' size='36'></AtIcon> */}
-                <Text className='point'>66</Text>
+                <Text className='point'>{pointNumber}</Text>
             </View>
         </View>
     )
 }
 Index.defaultProps = {
-
+    pointNumber: 0,
 }

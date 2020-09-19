@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import RankItem from '../RankItem'
-import { signRankingTime } from '../../../../actions/signIn'
+import { signRankingTotal } from '../../../../actions/signIn'
 import ListView, { LazyBlock } from "taro-listview";
 
 import './index.scss'
@@ -14,7 +14,6 @@ export default function Index(props) {
     const [pageIndex, setPageIndex] = useState(1)
     const [isLoaded, setIsLoaded] = useState(false) // 骨架屏是否显示 仅加载第一页的时候开启
     const [hasMore, setHasMore] = useState(true)
-
 
     useEffect(() => {
         async function getInit() {
@@ -30,11 +29,12 @@ export default function Index(props) {
         if (pIndex === 1) {
             setIsLoaded(false)
         }
-        const res = await signRankingTime(pIndex, 20)
+        const res = await signRankingTotal(pIndex, 20)
         // 根据返回的数据判断，是否没有数据。如果还有hasMore:true 没有了hasMore:false 并且底部显示没有了Divider
         let hasMore = true
         let listNum = rankList.length + res.data.list.length
         if (listNum >= Number(res.data.total)) {
+            console.log('没有更多数据')
             hasMore = false
         }
         return { list: res.data.list, hasMore: hasMore, isLoaded: pIndex === 1 }
@@ -52,10 +52,9 @@ export default function Index(props) {
     }
 
     return (
-        <View className='tab_speed'>
+        <View className='tab_total'>
             <ListView
-                className='tab_speed_listview'
-                // autoHeight
+                className='tab_total_listview'
                 style={{ height: height }}
                 lazy
                 isLoaded={isLoaded}
@@ -65,18 +64,17 @@ export default function Index(props) {
                 {
                     rankList.map((item, idx) => {
                         return (
-                            <RankItem key={'index_' + idx} item={item} index={idx} />
+                            <RankItem key={'index_' + idx} item={item} index={idx} type='total' />
                         )
                     })
                 }
             </ListView>
         </View>
 
-
     )
 
 }
 Index.defaultProps = {
     height: 500,
-    speedList: [1, 2, 3, 4, 5],
+    generalList: [1, 2, 3]
 }

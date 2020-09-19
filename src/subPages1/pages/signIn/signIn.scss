@@ -4,44 +4,69 @@
     background-color: #f2f2f2;
 }
 
+.banner {
+    width: 100%;
+}
+
 .header {
     width: 100%;
     height: 300px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     background-color: #fff;
 
-    .avatar {
-        width: 150px;
-        height: 150px;
-        border-radius: 20px;
-        margin-left: 20px;
-        background-color: hotpink;
-    }
-
     .header_box1 {
-        flex-grow: 1;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 20px;
+        flex-direction: row;
+        align-items: center;
 
-        .box1_up {
-            font-size: 32px;
-            line-height: 32px;
-            color: #000;
-            display: flex;
-            flex-direction: row;
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin-left: 20px;
+            background-color: #ccc;
         }
-
-        .box1_down {
-            font-size: 26px;
-            line-height: 26px;
-            color: #666;
-            margin-top: 20px;
+        .avatar_default {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin-left: 20px;
+            background-color: #ccc;
+        }
+    
+        .header_msg{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 20px;
+    
+            .msg_up {
+                font-size: 32px;
+                line-height: 32px;
+                color: #000;
+                display: flex;
+                flex-direction: row;
+            }
+    
+            .msg_down {
+                font-size: 26px;
+                line-height: 26px;
+                color: #666;
+                margin-top: 20px;
+            }
         }
     }
+
+    .header_box2 {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    
 }
 
 .top3 {
