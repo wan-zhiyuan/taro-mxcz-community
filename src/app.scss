@@ -1,0 +1,8 @@
+
+
+// 全局隐藏scrollview的滚动条
+::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    color: transparent;
+}

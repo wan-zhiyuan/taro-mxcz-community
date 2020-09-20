@@ -55,19 +55,24 @@ export default function Home() {
         // let page = 1
         // let pagesize = 10
         // dispatch(dispatchHomeIndex(page,pagesize))
+        // 完成
         // signRankingTotal(1,10)
+        // 完成
         // signRankingTime(1,10)
+        // 完成
         // getPointList(1,20)
         // getCollectList()
 
         // testIncreasePublish() // 新增发布信息
         // testincreaseInfo() // 新增资讯信息
-        // testPublishExtend(1) // 发布信息阅读、点赞、评论
-        // testInformationExtend(1) // 资讯信息阅读、点赞、评论
+        // testPublishExtend(2) // 发布信息阅读、点赞、评论
+        // testInformationExtend(2) // 资讯信息阅读、点赞、评论 0-阅读 2-评论
 
+        // 完成
         // testGetPublish(0) // 获取发布信息列表 0-全部 其他-表示对应的分类ID
         // testGetInformation(0) // 获取资讯信息列表 0-全部 其他-表示对应的cate_id
 
+        // 完成
         // testGetPublishDetail(1)
         // testGetInformationDetail(1)
 
@@ -110,7 +115,7 @@ export default function Home() {
 
     function testCommunityBusinessExtend(target_id, type, content) {
         let postData = {
-            op:'business_extend',
+            op: 'business_extend',
             target_id,
             type,
             content,
@@ -193,9 +198,9 @@ export default function Home() {
     function testPublishExtend(type) {
         let postData = {
             op: 'publish_extend',
-            target_id: 1,
+            target_id: 23,
             type: type, // 0-阅读 1-点赞 2-评论
-            content: ''
+            content: '评论测试评论测试123123苹果香蕉'
         }
         publishExtend(postData)
     }
@@ -203,9 +208,9 @@ export default function Home() {
     function testInformationExtend(type) {
         let postData = {
             op: 'information_extend',
-            target_id: 1,
+            target_id: 13,
             type: type,
-            content: ''
+            content: '这是评论，'
         }
         informationExtend(postData)
     }
@@ -215,10 +220,12 @@ export default function Home() {
             op: 'information',
             cate_id: 1,
             cate_name: '演唱会',
-            title: '华晨宇演唱会',
-            content: '今天天气真好，我要出去郊游～',
+            title: '华晨宇演唱会3',
+            content: '今天天气真好，我要出去郊游～3',
             video_url: '',
-            images: '',
+            images: 'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLml-AK0u8AAOlv9Gxors475.jpg|' +
+                'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLmlyALvzuAAMlwfOz4ms167.jpg|' +
+                'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLml2AY1iGAAM3svfTX_E935.jpg',
         }
         increaseInfo(postData)
     }
@@ -266,6 +273,7 @@ export default function Home() {
     return (
         <View className='home_index'>
             {
+                // 优化点：因为页面初始化时候userInfo一定先为空，所以会出现PopupLogin一瞬间，需要优化
                 !userInfo.nickname &&
                 <PopupLogin />
             }

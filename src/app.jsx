@@ -38,6 +38,7 @@ class App extends Component {
           'pages/search/search',
           'pages/pointDetail/pointDetail',
           'pages/myCollection/myCollection',
+          'pages/commentPage/commentPage',
         ]
       },
       // 社区 && 社区活动 && 社区咨询 && 发布分类

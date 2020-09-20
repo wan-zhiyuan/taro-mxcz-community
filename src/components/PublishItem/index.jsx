@@ -19,8 +19,19 @@ export default function Index(props) {
 
     function naviToPublishDetail() {
         Taro.navigateTo({
-            url: `/pages/publishDetail/publishDetail?id=${publishItem.id}`
+            url: `/pages/publishDetail/publishDetail?target_id=${publishItem.id}`
         })
+    }
+
+    /* 计算距离字符串 */
+    function caleDistance() {
+        if (publishItem.distance <= 100) {
+            return `<100m`
+        } else if (publishItem.distance <= 1000) {
+            return `距离${publishItem.distance}m`
+        } else {
+            return `距离${publishItem.distance / 1000}km`
+        }
     }
 
     return (
@@ -38,12 +49,16 @@ export default function Index(props) {
                             <Text className='item_cate'>{publishItem.cate_name}</Text>
                         </View>
                     </View>
-                    <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
+                    <View className='detail_distance'>
+                        <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
+                        <Text className='item_distance'>{caleDistance()}</Text>
+                    </View>
+
                 </View>
                 <View className='item_desc'>{publishItem.content || ''}</View>
                 {/* 最多只显示四张 */}
                 {
-                    publishItem.images.split('|').length !== 0 &&
+                    publishItem.images !== '' &&
                     <View className='item_pic'>
                         {
                             publishItem.images.split('|').map((item, idx) => {
@@ -83,6 +98,6 @@ export default function Index(props) {
 
 Index.defaultProps = {
     publishItem: {
-        images:''
+        images: ''
     }
 }

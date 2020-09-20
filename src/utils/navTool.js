@@ -26,10 +26,20 @@ export function judgeTarget(params) {
             case 'communityDetail':
                 Taro.navigateTo({
                     url: `/subPages2/pages/communityDetail/communityDetail?cid=${params.cid}`
-                  })
-                break;
+                })
+                break
+            case 'publishDetail':
+                Taro.navigateTo({
+                    url: `/pages/publishDetail/publishDetail?target_id=${params.target_id}`
+                })
+                break
+            case 'informationDetail':
+                Taro.navigateTo({
+                    url: `/subPages2/pages/informationDetail/informationDetail?target_id=${params.target_id}`
+                })
+                break
             default:
-                break;
+                break
         }
     }
 }

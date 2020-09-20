@@ -1,14 +1,17 @@
 .information_index {
     width: 100%;
     height: 100vh;
+
+    .information_listview {
+        width: 100%;
+        height: 100vh;
+        background-color: #f2f2f2;
+    }
+
+    .publish_button {
+        position: fixed;
+        right: 60px;
+        bottom: 120px;
+    }
 }
 
-.information_scroll {
-    background-color: #f2f2f2;
-}
-
-.publish_button {
-    position: fixed;
-    right: 60px;
-    bottom: 120px;
-}

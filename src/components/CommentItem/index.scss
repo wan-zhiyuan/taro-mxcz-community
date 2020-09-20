@@ -6,11 +6,18 @@
     border-top: 1px solid #ccc;
     
     .item_left {
-        width: 100px;
+        width: 80px;
         margin-left: 20px;
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
+            margin-top: 18px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        .avatar_default {
+            width: 80px;
+            height: 80px;
             margin-top: 18px;
             border-radius: 50%;
             background-color: gray;

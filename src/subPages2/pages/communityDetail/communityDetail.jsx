@@ -47,7 +47,7 @@ export default function CommunityDetail() {
             }
         }
         return {
-            title: '盟享诚珍', // 分享卡片展示的标题
+            title: '盟享诚珍社区', // 分享卡片展示的标题
             path: '/pages/home/home', // 分享卡片的路径
             imageUrl: '',
         }

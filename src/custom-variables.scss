@@ -1,10 +1,5 @@
 /* 自定义的样式 */
-// $at-tabs-color: #7f7f7f;
-// $at-tabs-font-size: 24px;
-// $at-tabs-color-active: #333;
-// $at-tabs-underline-color: #fff;
-
-// $at-input-number-btn-color: #FEBB40;
+$at-grid-font-size: 24px;
 
 /* 引入 Taro UI 默认样式  全部引入*/
 // @import "~taro-ui/dist/style/index.scss";
@@ -40,3 +35,5 @@
 @import "~taro-ui/dist/style/components/drawer.scss";
 
 @import "~taro-ui/dist/style/components/grid.scss";
+
+@import "~taro-ui/dist/style/components/float-layout.scss";

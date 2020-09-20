@@ -1,32 +1,17 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import CommentItem from '../../../../components/CommentItem'
-import Divider from '../../../../components/DividerComponent'
+import CommentList from '../../../../components/CommentList'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const { } = props
-    const [comment, setComment] = useState([1, 2, 3, 4, 5])
+    const comment = useSelector(state => state.publish.informationDetail.comment)
 
     return (
         <View className='info_detail_comment'>
-            <View className='comment_title'>
-                <View className='placeholder'></View>
-                <Text style={{ marginLeft: Taro.pxTransform(12) }}>全部评论</Text>
-            </View>
-            <View className='comment_content'>
-                {
-                    comment.map((item, idx) => {
-                        return (
-                            <CommentItem key={'indx_' + idx} item={item} />
-                        )
-                    })
-                }
-            </View>
-            {/* 分割线 */}
-            <Divider />
+            <CommentList commentList={comment}/>
         </View>
     )
 }

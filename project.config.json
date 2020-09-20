@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages2/pages/category/category",
-					"pathName": "subPages2/pages/category/category",
+					"name": "subPages1/pages/commentPage/commentPage",
+					"pathName": "subPages1/pages/commentPage/commentPage",
 					"query": "",
 					"scene": null
 				},
