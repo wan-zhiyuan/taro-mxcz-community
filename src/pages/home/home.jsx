@@ -277,7 +277,6 @@ export default function Home() {
                 !userInfo.nickname &&
                 <PopupLogin />
             }
-
             <HomeNavbar />
             {/* <ListView
                 // autoHeight
