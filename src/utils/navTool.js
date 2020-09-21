@@ -30,7 +30,7 @@ export function judgeTarget(params) {
                 break
             case 'publishDetail':
                 Taro.navigateTo({
-                    url: `/pages/publishDetail/publishDetail?target_id=${params.target_id}`
+                    url: `/subPages3/pages/publishDetail/publishDetail?target_id=${params.target_id}`
                 })
                 break
             case 'informationDetail':

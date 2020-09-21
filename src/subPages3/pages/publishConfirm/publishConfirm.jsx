@@ -1,15 +1,15 @@
 import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtTextarea, AtImagePicker, AtForm, AtInput, AtButton } from 'taro-ui'
-import { getWindowHeightNoPX } from '../../utils/style'
-import { Toast, ToastSuccess } from '../../utils/toast'
-import { isEmpty } from '../../utils/is'
-import { increasePublish } from '../../actions/publish'
+import { getWindowHeightNoPX } from '../../../utils/style'
+import { Toast, ToastSuccess } from '../../../utils/toast'
+import { isEmpty } from '../../../utils/is'
+import { increasePublish } from '../../../actions/publish'
 
-import './publishInformation.scss'
+import './publishConfirm.scss'
 
 /* 用户社区发布交流信息的页面-对于个人用户的功能板块 */
-export default function PublishInformation() {
+export default function PublishConfirm() {
 
     const router = useRouter()
     const { cate_id = -1, cate_name = '' } = router.params
@@ -177,7 +177,7 @@ export default function PublishInformation() {
     }
 
     return (
-        <View className='publish_information_index'>
+        <View className='publish_confirm_index'>
             <ScrollView
                 className='info_scrollview'
                 scrollY
@@ -247,6 +247,6 @@ export default function PublishInformation() {
     )
 }
 
-PublishInformation.config = {
+PublishConfirm.config = {
     navigationBarTitleText: '发布信息',
 }

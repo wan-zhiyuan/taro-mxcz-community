@@ -23,8 +23,6 @@ class App extends Component {
       'pages/home/home',
       'pages/publish/publish',
       'pages/mine/mine',
-      'pages/publishInformation/publishInformation',
-      'pages/publishDetail/publishDetail',
       'pages/index/index', // 测试页面
     ],
     subpackages: [
@@ -59,11 +57,12 @@ class App extends Component {
           'pages/categorySub/categorySub',
         ]
       },
-      // 商城相关的页面
+      // 发布相关 publish && information
       {
         "root": "subPages3",
         "pages": [
-          'pages/order/order',
+          'pages/publishConfirm/publishConfirm',
+          'pages/publishDetail/publishDetail',
         ]
       },
       // 社区服务站
@@ -75,6 +74,13 @@ class App extends Component {
           'pages/serviceSiteDetail/serviceSiteDetail',
         ]
       },
+      // 商城相关的页面
+      {
+        "root": "subPages5",
+        "pages": [
+          'pages/order/order',
+        ]
+      }
     ],
     tabBar: {
       list: [{

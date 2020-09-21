@@ -18,7 +18,7 @@ import {
     increasePublish, increaseInfo, publishExtend, informationExtend, getPublish, getInformation,
     getPublishDetail, getInformationDetail,
 } from '../../actions/publish'
-import { sign, signRankingTime, signRankingTotal, } from '../../actions/signIn'
+
 import {
     getCommunityBusiness, getCommunityServiceSite, getCommunityActivity,
     createCommunityServiceSite, createCommunityBusiness, communityBusinessExtend,
@@ -48,17 +48,11 @@ export default function Home() {
 
 
     useEffect(() => {
+        // 判断路由参数
         judgeTarget(router.params)
-
+        // 初始化数据
         initData()
 
-        // let page = 1
-        // let pagesize = 10
-        // dispatch(dispatchHomeIndex(page,pagesize))
-        // 完成
-        // signRankingTotal(1,10)
-        // 完成
-        // signRankingTime(1,10)
         // 完成
         // getPointList(1,20)
         // getCollectList()
@@ -67,16 +61,6 @@ export default function Home() {
         // testincreaseInfo() // 新增资讯信息
         // testPublishExtend(2) // 发布信息阅读、点赞、评论
         // testInformationExtend(2) // 资讯信息阅读、点赞、评论 0-阅读 2-评论
-
-        // 完成
-        // testGetPublish(0) // 获取发布信息列表 0-全部 其他-表示对应的分类ID
-        // testGetInformation(0) // 获取资讯信息列表 0-全部 其他-表示对应的cate_id
-
-        // 完成
-        // testGetPublishDetail(1)
-        // testGetInformationDetail(1)
-
-        // testSign()
 
         // 社区服务站 社区（商家） 社区活动相关
         // testGetCommunityBusiness()
@@ -99,6 +83,10 @@ export default function Home() {
         } else {
             console.log('用户未登陆')
         }
+
+        let page = 1
+        let pagesize = 10
+        dispatch(dispatchHomeIndex(page,pagesize))
     }
 
     function testGetActivityDetail(target_id) {
@@ -174,27 +162,6 @@ export default function Home() {
         getCommunityActivity(cate_id, page, pagesize)
     }
 
-    function testSign() {
-        sign()
-    }
-
-    function testGetPublishDetail(target_id) {
-        getPublishDetail(target_id)
-    }
-
-    function testGetInformationDetail(target_id) {
-        getInformationDetail(target_id)
-    }
-
-    function testGetInformation(cate_id, page, pagesize) {
-        getInformation(cate_id, page, pagesize)
-    }
-
-    async function testGetPublish(cate_id) {
-        const location = await getLocation()
-        getPublish(cate_id, location)
-    }
-
     function testPublishExtend(type) {
         let postData = {
             op: 'publish_extend',
@@ -261,8 +228,6 @@ export default function Home() {
         return location
     }
 
-
-
     async function onScrollToLower() {
 
     }
@@ -271,7 +236,7 @@ export default function Home() {
     }
 
     return (
-        <View className='home_index'>
+        <View className='home_index lazy-view'>
             {
                 // 优化点：因为页面初始化时候userInfo一定先为空，所以会出现PopupLogin一瞬间，需要优化
                 !userInfo.nickname &&

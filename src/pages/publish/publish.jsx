@@ -25,7 +25,7 @@ export default function Publish() {
 
     function handlePublishSubItem(item) {
         Taro.navigateTo({
-            url: `/pages/publishInformation/publishInformation?cate_id=${item.cate_id}&cate_name=${item.cate_name}`
+            url: `/subPages3/pages/publishConfirm/publishConfirm?cate_id=${item.cate_id}&cate_name=${item.cate_name}`
         })
     }
 

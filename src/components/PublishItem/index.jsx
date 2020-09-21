@@ -19,7 +19,7 @@ export default function Index(props) {
 
     function naviToPublishDetail() {
         Taro.navigateTo({
-            url: `/pages/publishDetail/publishDetail?target_id=${publishItem.id}`
+            url: `/subPages3/pages/publishDetail/publishDetail?target_id=${publishItem.id}`
         })
     }
 

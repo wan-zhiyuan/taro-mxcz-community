@@ -1,3 +1,39 @@
 .share_components {
     width: 100%;
+
+    .share {
+        width: 100%;
+        height: 350px;
+        display: flex;
+        flex-direction: row;
+
+        @mixin share_item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            line-height: 30px;
+            color: #333;
+            font-weight: 600;
+            background-color: #fff;
+        }
+
+        .wechat {
+            @include share_item()
+        }
+        .bill {
+            @include share_item()
+        }
+
+        // 去除button组件的摩恩黑边框
+        .wechat::after {
+            border: none;
+        }
+        .bill::after {
+            border: none;
+        }
+    }
+
 }

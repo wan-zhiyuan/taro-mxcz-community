@@ -2,9 +2,9 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { useSelector } from '@tarojs/redux'
-import { publishExtend } from '../../../actions/publish'
-import { Toast, ToastSuccess } from '../../../utils/toast'
-import { getDateTypeMinutes } from '../../../utils/timer'
+import { publishExtend } from '../../../../actions/publish'
+import { Toast, ToastSuccess } from '../../../../utils/toast'
+import { getDateTypeMinutes } from '../../../../utils/timer'
 
 import './index.scss'
 

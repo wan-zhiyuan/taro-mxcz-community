@@ -76,6 +76,7 @@
     "eslint-plugin-taro": "2.2.11",
     "stylelint": "9.3.0",
     "stylelint-config-taro-rn": "2.2.11",
-    "stylelint-taro-rn": "2.2.11"
+    "stylelint-taro-rn": "2.2.11",
+    "taro-iconfont-cli": "2.1.0"
   }
 }

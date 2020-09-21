@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
-import CommentList from '../../../components/CommentList'
+import CommentList from '../../../../components/CommentList'
 
 import './index.scss'
 
