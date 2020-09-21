@@ -9,7 +9,7 @@ export default function Index(props) {
 
     function naviToPublishCate() {
         Taro.navigateTo({
-            url: '/subPages2/pages/category/category'
+            url: '/subPages3/pages/category/category'
         })
     }
 

@@ -154,12 +154,13 @@ export default function Category() {
         console.log(item)
         console.log('index:' + index)
         Taro.navigateTo({
-            url: `/subPages2/pages/categorySub/categorySub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
+            url: `/subPages3/pages/categorySub/categorySub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
         })
     }
 
     return (
         <View className='category_index lazy-view'>
+            
             <ListView
                 className='category_listview'
                 lazy

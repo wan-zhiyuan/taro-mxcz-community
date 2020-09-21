@@ -989,6 +989,14 @@
   dependencies:
     mkdirp "^1.0.4"
 
+"@tarojs/async-await@2.2.13":
+  version "2.2.13"
+  resolved "https://registry.yarnpkg.com/@tarojs/async-await/-/async-await-2.2.13.tgz#002940951ad6f27eb215a0f497fb249ee6922540"
+  integrity sha512-6NzP/W81tspD+ryP1NvazXLsf/gdWRGh5e9RAjD6YIqOGByGhKur+th5uOCQDnbyTHNTpGX0xdDxEzkNCqvRSw==
+  dependencies:
+    promise-polyfill "^7.1.2"
+    regenerator-runtime "^0.11.1"
+
 "@tarojs/components-qa@2.2.11":
   version "2.2.11"
   resolved "https://registry.yarnpkg.com/@tarojs/components-qa/-/components-qa-2.2.11.tgz#c9f5cdbd2ca7dc5f412dd5636b4df3b4d188516f"
@@ -1812,6 +1820,11 @@ are-we-there-yet@~1.1.2:
   dependencies:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
+
+area-data@^5.0.6:
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/area-data/-/area-data-5.0.6.tgz#c381c3f88ff9e1050accd07549d206fce2a28d13"
+  integrity sha512-QxLoA+823xXKyhw5S3750I9TToki0OS42HU9ol3rCOsCXfkjtl8RtQ/eoj0cK0Levn4//oEM05FmMumfw/HIlg==
 
 argparse@^1.0.7:
   version "1.0.10"
@@ -3958,6 +3971,11 @@ dayjs@^1.7.7:
   version "1.8.35"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.35.tgz#67118378f15d31623f3ee2992f5244b887606888"
   integrity sha512-isAbIEenO4ilm6f8cpqvgjZCsuerDAz2Kb7ri201AiNn58aqXuaLJEnCtfIMdCvERZHNGRY5lDMTr/jdAnKSWQ==
+
+dayjs@^1.8.17:
+  version "1.8.36"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.36.tgz#be36e248467afabf8f5a86bae0de0cdceecced50"
+  integrity sha512-3VmRXEtw7RZKAf+4Tv1Ym9AGeo8r8+CjDi26x+7SYQil1UqtqdaokhzoEJohqlzt0m5kacJSDhJQkG/LWhpRBw==
 
 debug@2.6.9, debug@^2.1.1, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -7161,6 +7179,15 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
+mp-colorui@^0.6.19:
+  version "0.6.19"
+  resolved "https://registry.yarnpkg.com/mp-colorui/-/mp-colorui-0.6.19.tgz#c602d7ddec6b7d5d2b644eafbc5f03ea065bb57b"
+  integrity sha512-nS4nng6pAh12ML+R/qC3z0TSG+QNqwKRw5uxicM6WViXhI6mnd+CPu+JCGcnEuCvCBXJMf0NTR+BRcrPZsKNtw==
+  dependencies:
+    "@tarojs/async-await" "2.2.13"
+    area-data "^5.0.6"
+    dayjs "^1.8.17"
+
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -8328,6 +8355,11 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
+promise-polyfill@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-7.1.2.tgz#ab05301d8c28536301622d69227632269a70ca3b"
+  integrity sha512-FuEc12/eKqqoRYIGBrUptCBRhobL19PS2U31vMNTfyck1FxPyMfgsXyW4Mav85y/ZN1hop3hOwRlUDok23oYfQ==
+
 prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -8683,7 +8715,7 @@ regenerate@^1.2.1, regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.1.tgz#cad92ad8e6b591773485fbe05a485caf4f457e6f"
   integrity sha512-j2+C8+NtXQgEKWk49MMP5P/u2GhnahTtVkRIHr5R5lVRlbKvmQ+oS+A5aLKWp2ma5VkT8sh6v+v4hbH0YHR66A==
 
-regenerator-runtime@0.11.1, regenerator-runtime@^0.11.0:
+regenerator-runtime@0.11.1, regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==

@@ -38,6 +38,8 @@ export default function Home() {
     const dispatch = useDispatch()
 
     // 最新发布数据
+    const [isLogin, setIsLogin] = useState(true)
+
     const [lastPublish, setLastPublish] = useState([
         1, 2, 3, 4, 5,
     ])
@@ -67,8 +69,8 @@ export default function Home() {
         // testGetCommunityServiceSite()
         // testGetCommunityActivity(0,1,10)
 
-        // testCreateCommunityServiceSite()
-        // testCreateCommunityBusiness()
+        // testCreateCommunityBusiness() // 申请创建社区
+        // testCreateCommunityServiceSite() // 申请创建社区服务站
         // testCommunityBusinessExtend(1,2,'123') // 社区（商家）的点赞、评论、分享、收藏等操作
 
         // testGetServiceSiteDetail(1)
@@ -82,6 +84,7 @@ export default function Home() {
             console.log('用户已登陆')
         } else {
             console.log('用户未登陆')
+            setIsLogin(false)
         }
 
         let page = 1
@@ -199,7 +202,6 @@ export default function Home() {
 
     async function testIncreasePublish() {
         const location = await getLocation()
-
         let postData = {
             op: 'publish',
             cate_id: 1,
@@ -237,9 +239,9 @@ export default function Home() {
 
     return (
         <View className='home_index lazy-view'>
+            {/* 登录弹窗模块 */}
             {
-                // 优化点：因为页面初始化时候userInfo一定先为空，所以会出现PopupLogin一瞬间，需要优化
-                !userInfo.nickname &&
+                !isLogin &&
                 <PopupLogin />
             }
             <HomeNavbar />

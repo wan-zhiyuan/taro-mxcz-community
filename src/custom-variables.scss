@@ -6,6 +6,7 @@ $float-layout-height-min: 300px;
 /* 引入 Taro UI 默认样式  全部引入*/
 // @import "~taro-ui/dist/style/index.scss";
 
+/* taro-ui样式 */
 /* 按需引入 */
 @import "~taro-ui/dist/style/components/icon.scss";
 
@@ -39,3 +40,9 @@ $float-layout-height-min: 300px;
 @import "~taro-ui/dist/style/components/grid.scss";
 
 @import "~taro-ui/dist/style/components/float-layout.scss";
+
+
+/* MP-ColorUI按需引入 */
+@import "~mp-colorui/dist/style/index.scss";
+// @import "~mp-colorui/dist/style/baseCSS.scss";
+// @import "~mp-colorui/dist/style/components/tabs.scss";

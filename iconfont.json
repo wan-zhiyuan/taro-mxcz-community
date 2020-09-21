@@ -1,6 +1,6 @@
 {
-    "symbol_url": "http://at.alicdn.com/t/font_2045537_dzz49nmscdm.js",
-    "save_dir": "./src/components/iconfont",
+    "symbol_url": "http://at.alicdn.com/t/font_2045537_0l24yq1onu8d.js",
+    "save_dir": "./src/assets/iconfont",
     "use_typescript": false,
     "platforms": ["weapp", "alipay", "h5"],
     "use_rpx": true,

@@ -53,8 +53,6 @@ class App extends Component {
           'pages/information/information',
           'pages/infoPublish/infoPublish',
           'pages/infoDetail/infoDetail',
-          'pages/category/category',
-          'pages/categorySub/categorySub',
         ]
       },
       // 发布相关 publish && information
@@ -63,6 +61,8 @@ class App extends Component {
         "pages": [
           'pages/publishConfirm/publishConfirm',
           'pages/publishDetail/publishDetail',
+          'pages/category/category',
+          'pages/categorySub/categorySub',
         ]
       },
       // 社区服务站

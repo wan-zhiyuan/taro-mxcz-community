@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { AtFloatLayout } from "taro-ui"
-import IconFont from '../iconfont';
+import IconFont from '../../assets/iconfont';
 
 import './index.scss'
 

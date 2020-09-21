@@ -1,9 +1,9 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../../utils/style'
-import ListView, { LazyBlock } from "taro-listview";
 import PublishList from '../../../components/PublishList'
 import { getPublish } from '../../../actions/publish'
+import ListView, { LazyBlock } from "taro-listview";
 
 import './categorySub.scss'
 

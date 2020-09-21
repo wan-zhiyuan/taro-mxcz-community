@@ -1,0 +1,12 @@
+.service_site_list {
+    width: 100%;
+
+    .empty {
+        width: 100%;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,36 @@
+.service_site_index {
+    width: 100%;
+    height: 100vh;
+    background-color: #f2f2f2;
+
+    .service_site__listview {
+        width: 100%;
+        height: 100vh;
+        background-color: #f2f2f2;
+
+        .sub_grid {
+            width: 100%;
+            margin-top: 12px;
+            background-color: #fff;
+
+            .title {
+                width: 100%;
+                height: 90px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background-color: #fff;
+                font-size: 30px;
+                line-height: 30px;
+                color: #333;
+            }
+        }
+    
+        .tabs_cate {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+    }
+
+    

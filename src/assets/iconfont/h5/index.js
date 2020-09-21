@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+import IconMeiyoushuju from './IconMeiyoushuju';
 import IconHaibao from './IconHaibao';
 import IconWeixin from './IconWeixin';
 import IconSecond from './IconSecond';
@@ -58,6 +59,8 @@ import IconTianjiaCopy from './IconTianjiaCopy';
 
 const IconFont = ({ name, ...rest }) => {
   switch (name) {
+    case 'meiyoushuju':
+      return <IconMeiyoushuju {...rest} />;
     case 'haibao':
       return <IconHaibao {...rest} />;
     case 'weixin':

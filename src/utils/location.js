@@ -18,3 +18,10 @@ export async function getLocationString() {
     }
     return location
 }
+
+/**
+ * 异步 获取定位字符串（存在弹窗）
+ */
+export async function getLocationStringPopup() {
+
+}

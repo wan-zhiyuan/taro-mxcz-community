@@ -20,10 +20,10 @@ export const hidePopQr = () => {
 /**
  * 获取社区服务站列表
  * @param {*} location 
- * @param {*} industry 服务站类别，传空获取所有服务站，例：'社区助餐‘ ’社区养老‘
+ * @param {*} industry 服务站类别，传空获取所有服务站，例：'社区助餐' '社区养老'
  * @param {*} is_near 
  */
-export const getCommunityServiceSite = (location, industry='', is_near) => createHttp({
+export const getCommunityServiceSite = (location, industry='', is_near=0) => createHttp({
     url: API_COMMUNITY + `?op=service_site&location=${location}&industry=${industry}&is_near=${is_near}`,
     method: 'GET',
 })
