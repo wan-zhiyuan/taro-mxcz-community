@@ -24,7 +24,7 @@ const IconXihuan = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconXihuan.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconXihuan;

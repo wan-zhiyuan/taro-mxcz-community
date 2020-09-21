@@ -1,17 +1,23 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { AtGrid, AtTabs, AtTabsPane } from 'taro-ui'
+import { AtGrid, AtTabs, AtTabsPane, AtIcon } from 'taro-ui'
 import { ClTabs } from "mp-colorui";
 import ListView, { LazyBlock } from "taro-listview";
 import { getCommunityServiceSite } from '../../../actions/community'
-import { getLocationString } from '../../../utils/location'
+import { getLocationString, getLocationStringPopup } from '../../../utils/location'
 import ServiceSiteList from './ServiceSiteList'
+import ServiceSiteFooter from './ServiceSiteFooter'
+import { getWindowHeightNoPX } from '../../../utils/style'
+
 
 import './serviceSite.scss'
+import { Toast } from '../../../utils/toast';
 
 export default function ServiceSite() {
 
+    const [location, setLocation] = useState('')
     const [hasMore, setHasMore] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false) // list是否已经请求完毕
     const [serviceSiteCate, setServiceSiteCate] = useState([
         {
             image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
@@ -33,42 +39,77 @@ export default function ServiceSite() {
         },
     ])
     const [serviceSiteList, setServiceSiteList] = useState([])
-    const [tabs, setTabs] = useState([{ text: "标签 1", id: "verb-1" }, { text: "标签 2", id: "verb-2" }, { text: "标签 3", id: "verb-3" }])
+    const [tabs, setTabs] = useState([{ text: "附近发现", id: "verb-1" }, { text: "最新收录", id: "verb-2" }, { text: "热门推荐", id: "verb-3" }])
 
     useEffect(() => {
         // 请求社区服务站分类数据
 
-        // 请求社区列表数据
-        async function getServiceSite() {
-            const location = await getLocationString()
-            const res = await getCommunityServiceSite(location, '社区助餐', 0,)
-            console.log(res)
-            setServiceSiteList(res.data)
-        }
-        getServiceSite()
+        // 因为ClTabs初始化时会默认执行一次handleClickTabs方法，list数据放在那里请求
     }, [])
 
+
+    // 仅页面初始化的时候获取用户定位
+    async function getServiceSite(is_near = 0) {
+        const location = await getLocationStringPopup()
+        setLocation(location)
+        if (location === '') {
+            console.log('未获取到用户定位权限，不请求数据')
+        } else {
+            const res = await getCommunityServiceSite(location, '', is_near)
+            if (res.code === 200) {
+                setIsLoaded(true)
+                setServiceSiteList(res.data)
+            }
+        }
+    }
+    async function getServiceSiteTabs(is_near = 0) {
+        const res = await getCommunityServiceSite(location, '', is_near)
+        if (res.code === 200) {
+            setServiceSiteList(res.data)
+        }
+    }
+
     /* 点击服务站子分类 */
-    function handleClickCate() {
+    function handleClickCate(item) {
+        if (location === '') {
+            Toast('用户定位未授权')
+        } else {
+            Taro.navigateTo({
+                url: `/subPages4/pages/serviceSiteSub/serviceSiteSub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
+            })
+        }
 
     }
 
-
     function handleClickTabs(index) {
         console.log('index:' + index)
+        if (isLoaded) {
+            if (index === 0) {
+                getServiceSiteTabs(1)
+            } else {
+                getServiceSiteTabs(0) // 最新收录、热门推荐暂时都使用is_near=0的全部列表
+            }
+        } else {
+            // 初始化时 使用获取定位的函数
+            if (index === 0) {
+                getServiceSite(1)
+            } else {
+                getServiceSite(0)
+            }
+        }
     }
 
     return (
         <View className='service_site_index lazy-view'>
             <ListView
                 className='service_site__listview'
+                style={{ height: `${getWindowHeightNoPX() - 50}px` }}
                 lazy
                 hasMore={hasMore}
-            // onScrollToLower={onScrollToLower}
             >
                 <View className='sub_grid'>
                     <View className='title'>
-                        <Text>服务站分类</Text>
+                        <Text style={{ marginLeft: '12px' }}>服务站分类</Text>
                     </View>
                     <AtGrid
                         columnNum={5}
@@ -76,23 +117,26 @@ export default function ServiceSite() {
                         onClick={handleClickCate}
                     />
                 </View>
+
                 <View className='tabs_cate'>
                     <ClTabs
                         tabs={tabs}
                         type="verb"
-                        activeColor="cyan"
-                        bgColor="gradualPink"
+                        activeColor="blue"
+                        // bgColor="gradualPink"
+                        bgColor="white"
                         onClick={handleClickTabs}
                     >
                         {tabs.map(item => (
                             // 文档：ClTabs 内部元素必须由一层 View 包裹，且 id 必须和 tabs 一一对应，且 id 不能为纯数字
                             <View key={item.id} id={item.id}>
-                                <ServiceSiteList list={serviceSiteList} />
+                                <ServiceSiteList list={serviceSiteList} isLoaded={isLoaded} />
                             </View>
                         ))}
                     </ClTabs>
                 </View>
             </ListView>
+            <ServiceSiteFooter location={location} />
         </View>
     )
 

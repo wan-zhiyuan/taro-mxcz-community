@@ -24,7 +24,7 @@ const IconTianjia = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconTianjia.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconTianjia;

@@ -20,7 +20,7 @@ const IconIconTest1 = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconIconTest1.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconIconTest1;

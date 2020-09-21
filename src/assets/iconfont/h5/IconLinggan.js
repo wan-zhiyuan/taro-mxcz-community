@@ -28,7 +28,7 @@ const IconLinggan = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconLinggan.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconLinggan;

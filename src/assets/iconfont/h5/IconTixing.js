@@ -32,7 +32,7 @@ const IconTixing = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconTixing.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconTixing;

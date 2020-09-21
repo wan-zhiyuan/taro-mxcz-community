@@ -20,7 +20,7 @@ const IconZhuanfa1 = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconZhuanfa1.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconZhuanfa1;

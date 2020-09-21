@@ -24,7 +24,7 @@ const IconQiandao = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconQiandao.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconQiandao;

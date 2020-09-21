@@ -28,7 +28,7 @@ const IconShuru = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconShuru.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconShuru;

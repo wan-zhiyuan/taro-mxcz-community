@@ -24,7 +24,7 @@ const IconHuangguan = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconHuangguan.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconHuangguan;

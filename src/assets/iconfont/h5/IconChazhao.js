@@ -28,7 +28,7 @@ const IconChazhao = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconChazhao.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconChazhao;

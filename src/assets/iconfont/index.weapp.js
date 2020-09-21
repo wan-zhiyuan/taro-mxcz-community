@@ -9,7 +9,7 @@ const IconFont = (props) => {
 };
 
 IconFont.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 IconFont.config = {

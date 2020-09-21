@@ -20,7 +20,7 @@ const IconThird = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconThird.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconThird;

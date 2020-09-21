@@ -24,7 +24,7 @@ const IconFatie = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconFatie.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconFatie;

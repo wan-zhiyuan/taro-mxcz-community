@@ -1,0 +1,30 @@
+.service_site_footer {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #00D8A0;
+    display: flex;
+    flex-direction: row;
+
+    @mixin footer_item {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        line-height: 30px;
+        color: #fff;
+        font-weight: 500px;
+    }
+
+    .left {
+        border-right: 1px solid #fff;
+        @include footer_item()
+    }
+    .right {
+        @include footer_item()
+    }
+}

@@ -56,3 +56,14 @@ export function judgeMidTable() {
 }
 
 
+/* 计算距离字符串 */
+export function caleDistance(distance) {
+    if (distance <= 100) {
+        return `<100m`
+    } else if (distance <= 1000) {
+        return `距离 ${distance}m`
+    } else {
+        return `距离 ${distance / 1000}km`
+    }
+}
+

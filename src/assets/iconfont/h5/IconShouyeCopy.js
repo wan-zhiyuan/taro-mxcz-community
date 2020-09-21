@@ -24,7 +24,7 @@ const IconShouyeCopy = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconShouyeCopy.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconShouyeCopy;

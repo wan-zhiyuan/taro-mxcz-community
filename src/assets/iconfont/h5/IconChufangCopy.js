@@ -28,7 +28,7 @@ const IconChufangCopy = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconChufangCopy.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconChufangCopy;

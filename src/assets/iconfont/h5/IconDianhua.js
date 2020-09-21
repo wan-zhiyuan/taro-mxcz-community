@@ -24,7 +24,7 @@ const IconDianhua = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconDianhua.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconDianhua;

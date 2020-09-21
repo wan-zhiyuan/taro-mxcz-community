@@ -24,7 +24,7 @@ const IconTongzhi = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconTongzhi.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconTongzhi;

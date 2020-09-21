@@ -24,7 +24,7 @@ const IconWodeCopy = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconWodeCopy.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconWodeCopy;

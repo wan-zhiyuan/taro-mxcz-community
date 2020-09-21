@@ -24,7 +24,7 @@ const IconDianzan = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconDianzan.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconDianzan;

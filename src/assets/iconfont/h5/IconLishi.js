@@ -24,7 +24,7 @@ const IconLishi = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconLishi.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconLishi;

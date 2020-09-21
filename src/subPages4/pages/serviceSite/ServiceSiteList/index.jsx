@@ -7,18 +7,32 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { list } = props
+    const { list, isLoaded } = props
 
     return (
         <View className='service_site_list'>
             {
-                list.length === 0
-                    ? <View className='empty'><IconFont name='meiyoushuju' size={200} /></View>
-                    : <View></View>
+                isLoaded &&
+                <View>
+                    {
+                        list.length === 0
+                            ? <View className='empty'><IconFont name='meiyoushuju' size={200} /></View>
+                            : <View>
+                                {
+                                    list.map((item, idx) => {
+                                        return (
+                                            <ServiceSiteItem key={'index_' + idx} item={item} />
+                                        )
+                                    })
+                                }
+                            </View>
+                    }
+                </View>
             }
         </View>
     )
 }
 Index.defaultProps = {
-    list: []
+    list: [],
+    isLoaded: false,
 }

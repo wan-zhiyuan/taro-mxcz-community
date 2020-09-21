@@ -1,0 +1,57 @@
+.locate_header {
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .left {
+        width: 120px;
+        height: 120px;
+        margin-left: 24px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        .logo_default {
+            width: 120px;
+            height: 120px;
+            background-color: gray;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .right {
+        height: 120px;
+        flex-grow: 1;
+        margin-left: 20px;
+        margin-right: 24px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        
+        .phone {
+            height: 60px;
+            flex-grow: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        .button {
+            width: 200px;
+            height: 60px;
+            border-radius: 10px;
+            background-color: #333;
+            font-size: 26px;
+            line-height: 60px;
+            color: #fff;
+            text-align: center;
+        }
+    }
+}

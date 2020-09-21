@@ -28,7 +28,7 @@ const IconShuoming = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconShuoming.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconShuoming;

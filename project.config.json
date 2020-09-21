@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -73,8 +73,8 @@
 				},
 				{
 					"id": 2,
-					"name": "subPages4/pages/serviceSite/serviceSite",
-					"pathName": "subPages4/pages/serviceSite/serviceSite",
+					"name": "subPages4/pages/serviceSiteLocate/serviceSiteLocate",
+					"pathName": "subPages4/pages/serviceSiteLocate/serviceSiteLocate",
 					"query": "",
 					"scene": null
 				},

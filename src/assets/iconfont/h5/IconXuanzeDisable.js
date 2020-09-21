@@ -20,7 +20,7 @@ const IconXuanzeDisable = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconXuanzeDisable.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconXuanzeDisable;

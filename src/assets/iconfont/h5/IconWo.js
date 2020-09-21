@@ -20,7 +20,7 @@ const IconWo = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconWo.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconWo;

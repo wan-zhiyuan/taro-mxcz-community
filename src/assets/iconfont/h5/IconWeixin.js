@@ -24,7 +24,7 @@ const IconWeixin = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconWeixin.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconWeixin;

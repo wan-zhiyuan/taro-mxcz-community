@@ -11,9 +11,7 @@ import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { dispatchHomeIndex } from '../../actions/home'
-import {
-    getPointList, getCollectList, dispatchUser,
-} from '../../actions/user'
+import { getCollectList, dispatchUser } from '../../actions/user'
 import {
     increasePublish, increaseInfo, publishExtend, informationExtend, getPublish, getInformation,
     getPublishDetail, getInformationDetail,
@@ -55,8 +53,7 @@ export default function Home() {
         // 初始化数据
         initData()
 
-        // 完成
-        // getPointList(1,20)
+
         // getCollectList()
 
         // testIncreasePublish() // 新增发布信息
@@ -89,7 +86,7 @@ export default function Home() {
 
         let page = 1
         let pagesize = 10
-        dispatch(dispatchHomeIndex(page,pagesize))
+        dispatch(dispatchHomeIndex(page, pagesize))
     }
 
     function testGetActivityDetail(target_id) {
@@ -142,10 +139,10 @@ export default function Home() {
             location,
             logo: '',
             apply_mobile: '13485856969',
-            address: '上海市浦东新区浦三路3058号',
-            company_name: '上海一一有限公司',
+            address: '上海市浦东新区浦三路3060号',
+            company_name: '上海三三有限公司',
             company_phone: '13878912345',
-            industry: '社区助餐',
+            industry: '社区养老',
             memo: '好好好',
         }
         createCommunityServiceSite(postData)

@@ -72,6 +72,7 @@ class App extends Component {
           'pages/serviceSite/serviceSite',
           'pages/serviceSiteSub/serviceSiteSub',
           'pages/serviceSiteDetail/serviceSiteDetail',
+          'pages/serviceSiteLocate/serviceSiteLocate',
         ]
       },
       // 商城相关的页面

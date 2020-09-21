@@ -24,7 +24,7 @@ const IconLiulan = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconLiulan.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconLiulan;

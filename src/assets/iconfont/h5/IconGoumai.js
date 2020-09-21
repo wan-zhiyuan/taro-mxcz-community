@@ -28,7 +28,7 @@ const IconGoumai = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconGoumai.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconGoumai;

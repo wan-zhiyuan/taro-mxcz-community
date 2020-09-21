@@ -274,3 +274,38 @@ export function getDateTimeStr(str) {
     if (year >= 9999) { return '永久有效'; }
     return `${year}.${month}.${date} ${hours}:${minutes}`;
 }
+
+
+
+/**
+ * 通过时间戳得到正确格式的时间(到分 年-月-日)
+ */
+export function getDateTypeDays(time) {
+    const times = new Date(Number(time) * 1000);
+    const year = times.getFullYear();
+    let month;
+    let date;
+    let hours;
+    let minutes;
+    if (times.getMonth() + 1 < 10) {
+        month = `0${times.getMonth() + 1}`;
+    } else {
+        month = times.getMonth() + 1;
+    }
+    if (times.getDate() < 10) {
+        date = `0${times.getDate()}`;
+    } else {
+        date = times.getDate();
+    }
+    if (times.getHours() < 10) {
+        hours = `0${times.getHours()}`;
+    } else {
+        hours = times.getHours();
+    }
+    if (times.getMinutes() < 10) {
+        minutes = `0${times.getMinutes()}`;
+    } else {
+        minutes = times.getMinutes();
+    }
+    return `${year}-${month}-${date}`;
+}

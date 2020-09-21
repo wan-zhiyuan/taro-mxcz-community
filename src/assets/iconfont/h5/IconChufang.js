@@ -28,7 +28,7 @@ const IconChufang = ({ size, color, style: _style, ...rest }) => {
 };
 
 IconChufang.defaultProps = {
-  size: 18,
+  size: 30,
 };
 
 export default IconChufang;

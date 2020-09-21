@@ -48,6 +48,8 @@ export default function Index() {
         // 完成
         // testGetPublishDetail(1) // 获取发布信息详情
         // testGetInformationDetail(1) // 获取资讯信息详情
+        // 完成
+        // getPointList(1,20)
     }
 
     async function testGetPublish(cate_id) {
