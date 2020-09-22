@@ -4,14 +4,14 @@ import RankItem from '../signInRank/RankItem'
 import { sign } from '../../../actions/signIn'
 import PopupSigned from './PopupSigned'
 import SignInBanner from '../../images/signin_reward.jpeg'
+import { isEmpty } from '../../../utils/is'
+import { Toast } from '../../../utils/toast'
 
 import './signIn.scss'
-import { isEmpty } from '../../../utils/is'
 
 export default function SignIn() {
 
     // 获取手速列表  截取前三的数据用于页面数据展示
-
     const [top3, setTop3] = useState([])
     const [signData, setSignData] = useState({})
     const [isSign, setIsSign] = useState(0) // 默认没有签到过
@@ -21,12 +21,12 @@ export default function SignIn() {
         async function doSign() {
             const res = await sign()
             console.log(res)
-            if (res.code === 0) {
+            if (res.code === 200) {
                 setIsSign(res.data.is_sign)
                 setSignData(res.data.basic)
                 setTop3(res.data.ranking_time)
             } else {
-                alert('签到失败')
+                Toast('签到失败')
             }
         }
         doSign()
