@@ -1,7 +1,6 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, Text, ScrollView, Image, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
-import LastPubishDefault from '../../assets/images/last_publish_pic_default.jpg'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
 import { judgeTarget } from '../../utils/navTool'
 import HomeBanner from './HomeBanner'
@@ -18,10 +17,13 @@ import {
 } from '../../actions/publish'
 
 import {
-    getCommunityBusiness, getCommunityServiceSite, getCommunityActivity,
+    getCommunityBusiness, getCommunityServiceSite, 
     createCommunityServiceSite, createCommunityBusiness, communityBusinessExtend,
-    getServiceSiteDetail, getBusinessDetail, getActivityDetail,
+    getServiceSiteDetail, getBusinessDetail, 
 } from '../../actions/community'
+import {
+    getCommunityActivity, getActivityDetail,
+} from '../../actions/activity'
 import ListView, { LazyBlock } from "taro-listview";
 import PopupLogin from '../../components/PopupLogin'
 
@@ -58,8 +60,7 @@ export default function Home() {
 
         // testIncreasePublish() // 新增发布信息
         // testincreaseInfo() // 新增资讯信息
-        // testPublishExtend(2) // 发布信息阅读、点赞、评论
-        // testInformationExtend(2) // 资讯信息阅读、点赞、评论 0-阅读 2-评论
+        
 
         // 社区服务站 社区（商家） 社区活动相关
         // testGetCommunityBusiness()
@@ -68,7 +69,7 @@ export default function Home() {
 
         // testCreateCommunityBusiness() // 申请创建社区
         // testCreateCommunityServiceSite() // 申请创建社区服务站
-        // testCommunityBusinessExtend(1,2,'123') // 社区（商家）的点赞、评论、分享、收藏等操作
+        
 
         // testGetServiceSiteDetail(1)
         // testGetBusinessDetail(1)
@@ -101,28 +102,18 @@ export default function Home() {
         getServiceSiteDetail(target_id)
     }
 
-    function testCommunityBusinessExtend(target_id, type, content) {
-        let postData = {
-            op: 'business_extend',
-            target_id,
-            type,
-            content,
-        }
-        communityBusinessExtend(postData)
-    }
-
     async function testCreateCommunityBusiness() {
         const location = await getLocation()
         let postData = {
             op: 'business',
             location,
-            business_name: '杨浦区中心街道社区',
+            business_name: '浦东新区中心街道社区',
             apply_mobile: '13698984545', // 申请手机号
-            address: '上海市杨浦区可口可乐路111号',
+            address: '上海市浦东新区可口可乐路111号',
             keyword: '零售', // 行业关键此
-            industry: '杨浦区', // 行业分类
+            industry: '浦东新区', // 行业分类
             memo: '我们要做大做强', // 商家简介
-            contact_phone: '', // 联系电话
+            contact_phone: '13585643944', // 联系电话
             notice: '可乐管够', // 商家公告
             logo: '',
             wechat_pic: '',
@@ -162,25 +153,7 @@ export default function Home() {
         getCommunityActivity(cate_id, page, pagesize)
     }
 
-    function testPublishExtend(type) {
-        let postData = {
-            op: 'publish_extend',
-            target_id: 23,
-            type: type, // 0-阅读 1-点赞 2-评论
-            content: '评论测试评论测试123123苹果香蕉'
-        }
-        publishExtend(postData)
-    }
 
-    function testInformationExtend(type) {
-        let postData = {
-            op: 'information_extend',
-            target_id: 13,
-            type: type,
-            content: '这是评论，'
-        }
-        informationExtend(postData)
-    }
 
     function testincreaseInfo() {
         let postData = {

@@ -1,40 +1,50 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { communityBusinessExtend } from '../../../../actions/community'
+import { ToastSuccess } from '../../../../utils/toast'
 
 import './index.scss'
 
 export default function Index(props) {
 
+    const { detail } = props
 
-    const { community } = props
-
+    /* 收藏 */
     function handleCollect() {
-
-
+        let postData = {
+            op: 'business_extend',
+            target_id: detail.id,
+            type: 4,
+            content: '',
+        }
+        communityBusinessExtend(postData).then(res => {
+            if (res.code === 200) {
+                ToastSuccess('收藏成功')
+            }
+        })
     }
 
+    /* 导航 */
     function handleNavi() {
-        
-
-        // 1、先使用腾讯位置服务逆解析出经纬度
-        // 2、在使用openLocation打开微信自带位置导航页面
-        
+        let lat = Number(detail.lat || 0)
+        let lng = Number(detail.lng || 0)
         Taro.openLocation({
-            latitude: 31, // 纬度，范围为-90~90，负数表示南纬
-            longitude: 121, // 经度，范围为-180~180，负数表示西经
+            latitude: lat, // 纬度，范围为-90~90，负数表示南纬
+            longitude: lng, // 经度，范围为-180~180，负数表示西经
             scale: 8, // 缩放比例
-            name: "测试",
-            address: "测试详细地址",
+            name: detail.business_name || '社区商户名称',
+            address: detail.address || '社区商户地址',
             success: function (r) {
                 console.log(r)
             }
         })
     }
 
+    /* 联系我们 */
     function handlePhone() {
         Taro.makePhoneCall({
-            phoneNumber: String(community.phone)
+            phoneNumber: String(detail.phone)
         })
     }
 
@@ -62,5 +72,5 @@ export default function Index(props) {
 }
 
 Index.defaultProps = {
-    community: {}
+    detail: {}
 }

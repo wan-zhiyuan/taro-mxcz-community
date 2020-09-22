@@ -1,0 +1,15 @@
+.comment_list {
+    width: 100%;
+
+    .comment_empty {
+        width: 100%;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        line-height: 30px;
+        color: #333;
+    }
+}

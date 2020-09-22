@@ -3,6 +3,7 @@ import { View, ScrollView } from '@tarojs/components'
 import RankItem from '../signInRank/RankItem'
 import { sign } from '../../../actions/signIn'
 import PopupSigned from './PopupSigned'
+import PopupCalendar from './PopupCalendar'
 import SignInBanner from '../../images/signin_reward.jpeg'
 import { isEmpty } from '../../../utils/is'
 import { Toast } from '../../../utils/toast'
@@ -16,6 +17,7 @@ export default function SignIn() {
     const [signData, setSignData] = useState({})
     const [isSign, setIsSign] = useState(0) // 默认没有签到过
     const [isOpenedPop, setIsOpenedPop] = useState(true)
+    const [isOpenedCalendar, setIsOpenedCalendar] = useState(false)
 
     useEffect(() => {
         async function doSign() {
@@ -32,14 +34,24 @@ export default function SignIn() {
         doSign()
     }, [])
 
+    /* 查看签到排行榜 */
     function naviToRank() {
         Taro.navigateTo({
             url: `/subPages1/pages/signInRank/signInRank`
         })
     }
 
+    /* 关闭签到弹窗 */
     function handleClose() {
         setIsOpenedPop(false)
+    }
+    /* 关闭日历弹窗 */
+    function handleCloseCalendar() {
+        setIsOpenedCalendar(false)
+    }
+    /* 打开日历弹窗 */
+    function handleOpenCalendar() {
+        setIsOpenedCalendar(true)
     }
 
     return (
@@ -48,21 +60,29 @@ export default function SignIn() {
                 (!isEmpty(signData) && isSign === 0) &&
                 <PopupSigned signData={signData} isOpened={isOpenedPop} onClose={handleClose} />
             }
+            {
+                isOpenedCalendar &&
+                <PopupCalendar isOpened={isOpenedCalendar} onClose={handleCloseCalendar} />
+            }
             <Image className='banner' src={SignInBanner} mode='widthFix'></Image>
             <View className='header'>
                 <View className='header_box1'>
-                    {
-                        !!signData.avatar
-                            ? <Image className='avatar' src={signData.avatar} mode='scaleToFill'></Image>
-                            : <Image className='avatar_default'></Image>
-                    }
-
-                    <View className='header_msg'>
-                        <View className='msg_up'>
-                            <Text>已签到</Text>
-                            <Text>积分+{signData.number}</Text>
+                    <View className='box1_left'>
+                        {
+                            !!signData.avatar
+                                ? <Image className='avatar' src={signData.avatar} mode='scaleToFill'></Image>
+                                : <Image className='avatar_default'></Image>
+                        }
+                        <View className='header_msg'>
+                            <View className='msg_up'>
+                                <Text>已签到</Text>
+                                <Text>积分+{signData.number}</Text>
+                            </View>
+                            <Text className='msg_down'>已连续签到{signData.cumulative_days}天</Text>
                         </View>
-                        <Text className='msg_down'>已连续签到{signData.cumulative_days}天</Text>
+                    </View>
+                    <View className='box1_right' onClick={handleOpenCalendar}>
+                        签到日历
                     </View>
                 </View>
                 <View className='header_box2'>

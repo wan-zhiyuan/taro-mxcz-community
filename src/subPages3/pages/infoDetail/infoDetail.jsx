@@ -18,8 +18,6 @@ export default function InfoDetail() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
-
         // 阅读数+1
         let postData = {
             op: 'information_extend',

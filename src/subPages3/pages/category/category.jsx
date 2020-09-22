@@ -5,6 +5,7 @@ import { getPublish } from '../../../actions/publish'
 import PublishList from '../../../components/PublishList'
 import { getLocationString } from '../../../utils/location'
 import ListView, { LazyBlock } from "taro-listview";
+import { get as getGlobalData } from '../../../global_data'
 
 import './category.scss'
 
@@ -75,30 +76,23 @@ export default function Category() {
         setCateTitleList(newList)
 
         // 获取发布信息列表数据
-        getPublishData()
+        let location = getGlobalData('location')
+        setLocation(location)
+        getPublishData(0,location,0,0)
     }, [])
 
-    useDidShow(()=>{
-        // 优化点：页面显示在前台时请求数据，从详情页面返回时请求数据，注意cate_id等参数的传值
-        
+    useDidShow(() => {
+        // 优化点：页面显示在前台时请求数据，从详情页面返回时请求数据，注意cate_id等参数的传值 (可以不优化)
+
     })
 
     /* 请求发布信息数据
         1、页面初始化
         2、点击tabs时
     */
-    async function getPublishData(cate_id = 0, location = '', is_near = 0, index=pIndex) {
-        // 优化点：小程序启动时获取定位存入storage,需要时取出使用
-        let lo = ''
-        // 当状态location没传或者传了但是为空时，获取location
-        if (!location) {
-            const newlocation = await getLocationString()
-            setLocation(newlocation)
-            lo = newlocation
-        } else {
-            lo = location
-        }
-        const res = await getPublish(cate_id, lo, is_near)
+    async function getPublishData(cate_id = 0, location='', is_near = 0, index = pIndex) {
+        // 优化点：小程序启动时获取定位存入GlobalData,需要时取出使用 (已完成)
+        const res = await getPublish(cate_id, location, is_near)
         if (res.code === 200) {
             let listData = res.data
             setPublishAll(listData)
@@ -113,7 +107,6 @@ export default function Category() {
         }
     }
 
-
     // 切换tabs时候需要执行的操作
     function handleClickTabs(v) {
         setCurrentCate(v)
@@ -121,12 +114,11 @@ export default function Category() {
         setPIndex(0)
         setHasMore(true)
         // 此处使用的cate_id还不正确 !!!!!!!!!!
-        if (v==1) { // 附近
-            getPublishData(v,location,1,0)
+        if (v == 1) { // 附近
+            getPublishData(v, location, 1, 0)
         } else { // 非附近
-            getPublishData(v,location,0,0)
+            getPublishData(v, location, 0, 0)
         }
-
     }
 
     // 注意⚠️：没有设置固定高度 或者 hasMore为false此函数都不会触发
@@ -160,7 +152,7 @@ export default function Category() {
 
     return (
         <View className='category_index lazy-view'>
-            
+
             <ListView
                 className='category_listview'
                 lazy
@@ -172,13 +164,13 @@ export default function Category() {
                         columnNum={5}
                         data={gridData}
                         onClick={handleClickGrid}
-                        />
+                    />
                 </View>
                 <View className='tabs_cate'>
                     <AtTabs
                         current={currentCate}
                         scroll
-                        animated={false}
+                        animated={true}
                         swipeable={false}
                         tabList={cateTitleLsit}
                         onClick={handleClickTabs}>
@@ -186,7 +178,7 @@ export default function Category() {
                             cateTitleLsit.map((item, idx) => {
                                 return (
                                     <AtTabsPane key={'indx_' + idx} current={currentCate} index={idx} >
-                                        <PublishList list={publishList} hasMore={hasMore}/>
+                                        <PublishList list={publishList} hasMore={hasMore} />
                                     </AtTabsPane>
                                 )
                             })

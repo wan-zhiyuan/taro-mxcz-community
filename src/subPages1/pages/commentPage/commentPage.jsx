@@ -2,6 +2,7 @@ import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTextarea } from 'taro-ui'
 import { publishExtend, informationExtend } from '../../../actions/publish'
+import { communityBusinessExtend } from '../../../actions/community'
 import { isEmpty } from '../../../utils/is'
 
 import './commentPage.scss'
@@ -44,7 +45,22 @@ export default function CommentPage() {
                 type: 2,
                 content: value
             }
-            publishExtend(postData).then(res => {
+            informationExtend(postData).then(res => {
+                if (res.code === 200) {
+                    ToastSuccess('评论成功')
+                } else {
+                    Toast('评论失败')
+                }
+                Taro.navigateBack()
+            })
+        } else if (type === 'business') {
+            let postData = {
+                op: 'business_extend',
+                target_id,
+                type: 2,
+                content: value,
+            }
+            communityBusinessExtend(postData).then(res => {
                 if (res.code === 200) {
                     ToastSuccess('评论成功')
                 } else {

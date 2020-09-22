@@ -66,22 +66,29 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages1/pages/commentPage/commentPage",
-					"pathName": "subPages1/pages/commentPage/commentPage",
+					"name": "subPages4/pages/activity/activity",
+					"pathName": "subPages4/pages/activity/activity",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 2,
-					"name": "subPages4/pages/serviceSiteLocate/serviceSiteLocate",
-					"pathName": "subPages4/pages/serviceSiteLocate/serviceSiteLocate",
+					"name": "subPages2/pages/serviceSiteLocate/serviceSiteLocate",
+					"pathName": "subPages2/pages/serviceSiteLocate/serviceSiteLocate",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 3,
-					"name": "subPages2/pages/category/category",
-					"pathName": "subPages2/pages/category/category",
+					"name": "subPages3/pages/category/category",
+					"pathName": "subPages3/pages/category/category",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages1/pages/signIn/signIn",
+					"pathName": "subPages1/pages/signIn/signIn",
 					"query": "",
 					"scene": null
 				}

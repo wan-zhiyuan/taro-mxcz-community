@@ -1,4 +1,7 @@
-import { COMMUNITY_IS_OPENED_QRCODE, SERVICE_SITE_APPLU_UPDATE, BUSINESS_APPLY_UPDATE, } from '../constants/community'
+import {
+    COMMUNITY_IS_OPENED_QRCODE, SERVICE_SITE_APPLY_UPDATE, BUSINESS_APPLY_UPDATE,
+    COMMUNITY_BUSINESS_DETAIL, SERVICE_SITE_DETAIL,
+} from '../constants/community'
 import { API_COMMUNITY } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
@@ -40,17 +43,6 @@ export const getCommunityBusiness = (location, industry = '', is_near) => create
 })
 
 /**
- * 获取社区活动列表
- * @param {*} cate_id 传0获取所有社区活动
- * @param {*} page 
- * @param {*} pagesize 
- */
-export const getCommunityActivity = (cate_id, page, pagesize) => createHttp({
-    url: API_COMMUNITY + `?op=activity&cate_id=${cate_id}&page=${page}&pagesize=${pagesize}`,
-    method: 'GET',
-})
-
-/**
  * 创建社区服务站
  * @param {*} postData 
  */
@@ -80,13 +72,21 @@ export const communityBusinessExtend = postData => createHttp({
     postData
 })
 
-
 /**
  * 获取社区服务站详情
  * @param {*} target_id 
  */
 export const getServiceSiteDetail = (target_id) => createHttp({
     url: API_COMMUNITY + `/${target_id}?op=service_site`,
+    method: 'GET',
+})
+/**
+ * 获取社区服务站详情
+ * @param {*} target_id 
+ */
+export const dispatchServiceSiteDetail = (target_id) => createAction({
+    url: API_COMMUNITY + `/${target_id}?op=service_site`,
+    type: SERVICE_SITE_DETAIL,
     method: 'GET',
 })
 /**
@@ -98,13 +98,41 @@ export const getBusinessDetail = (target_id) => createHttp({
     method: 'GET',
 })
 /**
- * 获取社区活动详情
+ * 获取社区（商家）详情
  * @param {*} target_id 
  */
-export const getActivityDetail = (target_id) => createHttp({
-    url: API_COMMUNITY + `/${target_id}?op=activity`,
+export const dispatchBusinessDetail = (target_id) => createAction({
+    url: API_COMMUNITY + `/${target_id}?op=business`,
+    type: COMMUNITY_BUSINESS_DETAIL,
     method: 'GET',
+    cb: res => {
+        let read = []
+        let like = []
+        let comment = []
+        let share = []
+        let collect = []
+        for (let i = 0; i < res.extend.length; i++) {
+            if (res.extend[i].type === 0) {
+                read.push(res.extend[i])
+            } else if (res.extend[i].type === 1) {
+                like.push(res.extend[i])
+            } else if (res.extend[i].type === 2) {
+                comment.push(res.extend[i])
+            } else if (res.extend[i].type === 3) {
+                share.push(res.extend[i])
+            } else if (res.extend[i].type === 4) {
+                collect.push(res.extend[i])
+            }
+        }
+        res.read = read
+        res.like = like
+        res.comment = comment
+        res.share = share
+        res.collect = collect
+        return res
+    }
 })
+
 
 
 /**
@@ -123,7 +151,7 @@ export const updateBusinessApply = (businessApply) => {
  */
 export const updateServiceSiteApply = (serviceSiteApply) => {
     return {
-        type: SERVICE_SITE_APPLU_UPDATE,
+        type: SERVICE_SITE_APPLY_UPDATE,
         payload: { serviceSiteApply }
     }
 }

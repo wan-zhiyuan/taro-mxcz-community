@@ -22,28 +22,35 @@ export default function Index(props) {
         onClose()
     }
 
+    function handleCancel() {
+        onClose()
+    }
+
     return (
         <View className='share_components'>
             <AtFloatLayout
                 isOpened={isOpened}
                 title=""
                 onClose={handleClose}>
-                <View className='share'>
-                    <Button
-                        className='wechat'
-                        onClick={handleShare}
-                        openType='share'
-                    >
-                        <IconFont name='weixin' size={120} />
-                        <Text style={{ marginTop: '15px' }}>微信</Text>
-                    </Button>
-                    <Button
-                        className='bill'
-                        onClick={handleBill}
-                    >
-                        <IconFont name='haibao' size={120} />
-                        <Text style={{ marginTop: '15px' }}>海报</Text>
-                    </Button>
+                <View className='box'>
+                    <View className='share'>
+                        <Button
+                            className='wechat'
+                            onClick={handleShare}
+                            openType='share'
+                        >
+                            <IconFont name='weixin' size={120} />
+                            <Text style={{ marginTop: '15px' }}>微信</Text>
+                        </Button>
+                        <Button
+                            className='bill'
+                            onClick={handleBill}
+                        >
+                            <IconFont name='haibao' size={120} />
+                            <Text style={{ marginTop: '15px' }}>海报</Text>
+                        </Button>
+                    </View>
+                    <View className='cancel' onClick={handleCancel}>取消</View>
                 </View>
             </AtFloatLayout>
         </View>

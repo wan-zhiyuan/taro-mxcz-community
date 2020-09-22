@@ -1,13 +1,29 @@
 import {
     COMMUNITY_IS_OPENED_QRCODE,
-    BUSINESS_APPLY_UPDATE, SERVICE_SITE_APPLU_UPDATE
+    BUSINESS_APPLY_UPDATE, SERVICE_SITE_APPLY_UPDATE,
+    COMMUNITY_BUSINESS_DETAIL, SERVICE_SITE_DETAIL,
 } from '../constants/community'
 
 const INITIAL_STATE = {
 
-    communityDetail: {}, // 社区详情
-
     isOpenedPopQr: false,
+
+    businessDetail: {
+        basic: {
+            banner:'',
+        },
+        extend: [],
+        read: [],
+        like: [],
+        comment: [],
+        share: [],
+        collect: [],
+    }, // 社区商户详情
+    serviceSiteDetail: {
+        basic: {},
+        extend: [],
+    }, // 社区服务站详情
+
 
     // 申请社区服务站
     serviceSiteApply: {
@@ -43,9 +59,13 @@ export default function community(state = INITIAL_STATE, action) {
         case COMMUNITY_IS_OPENED_QRCODE:
             const { isOpenedPopQr } = action.payload
             return { ...state, isOpenedPopQr }
+        case COMMUNITY_BUSINESS_DETAIL:
+            return { ...state, businessDetail: action.payload }
+        case SERVICE_SITE_DETAIL:
+            return { ...state, serviceSiteDetail: action.payload }
         case BUSINESS_APPLY_UPDATE:
             return { ...state, businessApply: action.payload.businessApply }
-        case SERVICE_SITE_APPLU_UPDATE:
+        case SERVICE_SITE_APPLY_UPDATE:
             return { ...state, serviceSiteApply: action.payload.serviceSiteApply }
         default:
             return state

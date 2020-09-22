@@ -9,6 +9,7 @@ import './index.scss'
 
 export default function Index(props) {
 
+    const { target_id } = props
     const dispatch = useDispatch()
 
     const [movX, setMovX] = useState(getCartX())
@@ -26,12 +27,13 @@ export default function Index(props) {
         return screenWidth
     }
 
+    /* 评论 */
     function handleComment() {
         Taro.navigateTo({
-            url: `/subPages2/pages/communityComment/communityComment`
+            url: `/subPages1/pages/commentPage/commentPage?type=business&target_id=${target_id}`
         })
     }
-
+    /* 微信 */
     function handleWeChat() {
         console.log('弹出社区二维码')
         dispatch(showPopQr())
@@ -62,4 +64,7 @@ export default function Index(props) {
             </MovableView>
         </MovableArea>
     )
+}
+Index.defaultProps = {
+    target_id: 0,
 }

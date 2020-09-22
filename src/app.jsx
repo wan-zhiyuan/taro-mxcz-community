@@ -75,6 +75,8 @@ class App extends Component {
           'pages/activity/activity',
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',
+          'pages/volunteer/volunteer',
+          'pages/volunteerDetail/volunteerDetail'
         ]
       },
       // 商城相关的页面
@@ -149,6 +151,7 @@ class App extends Component {
     //     // 可以存在redux中，后续使用经纬度的时候如果存在，则不需要调用getLocation
     //   }
     // })
+
     this.getLocation()
   }
 

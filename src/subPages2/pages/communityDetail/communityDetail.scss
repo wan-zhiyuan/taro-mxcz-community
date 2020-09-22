@@ -5,77 +5,20 @@
     position: relative;
 }
 
-.community_pic {
+.banner_default {
     width: 100%;
     height: 350px;
     background-color: gray;
 }
 
-.community_top {
+.home_banner_swiper {
     width: 100%;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .community_box1 {
-        width: 716px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        .box1_left {
-            display: flex;
-            flex-direction: column;
-            margin-top: 12px;
-            color: #333;
-
-            .community_name {
-                width: 560px;
-                font-size: 30px;
-                line-height: 30px;
-                font-weight: 500;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-            .community_address {
-                width: 560px;
-                font-size: 28px;
-                line-height: 28px;
-                font-weight: 400;
-                margin-top: 10px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-        }
-
-        .box1_right {
-            width: 100px;
-            height: 100xp;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 12px;
-            border-left: 1px solid #666;
-        }
-    }
-
-    .community_box2 {
-        width: 716px;
-        height: 60px;
-        line-height: 60px;
-        margin-top: 50px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-
-        .box2_right {
-            font-size: 26px;
-            color: #666;
-        }
-    }
+    height: 350px;
 }
+
+.slide_image {
+    width: 100%;
+    height: 100%;
+    // border-radius: 10px;
+}
+

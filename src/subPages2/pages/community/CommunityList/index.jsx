@@ -13,7 +13,7 @@ export default function Index(props) {
             {
                 list.map((item, idx) => {
                     return (
-                        <CommunityItem key={'index_' + idx} community={item} />
+                        <CommunityItem key={'index_' + idx} item={item} />
                     )
                 })
             }

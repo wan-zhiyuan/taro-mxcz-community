@@ -20,45 +20,66 @@
         width: 100%;
         display: flex;
         flex-direction: row;
-        align-items: center;
+        // align-items: center;
+        justify-content: space-between;
 
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            margin-left: 20px;
-            background-color: #ccc;
-        }
-        .avatar_default {
-            width: 150px;
-            height: 150px;
-            border-radius: 20px;
-            margin-left: 20px;
-            background-color: #ccc;
-        }
-    
-        .header_msg{
-            flex-grow: 1;
+        .box1_left {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 20px;
-    
-            .msg_up {
-                font-size: 32px;
-                line-height: 32px;
-                color: #000;
-                display: flex;
-                flex-direction: row;
+            flex-direction: row;
+            align-items: center;
+
+            .avatar {
+                width: 150px;
+                height: 150px;
+                border-radius: 20px;
+                margin-left: 20px;
+                background-color: #ccc;
             }
-    
-            .msg_down {
-                font-size: 26px;
-                line-height: 26px;
-                color: #666;
-                margin-top: 20px;
+            .avatar_default {
+                width: 150px;
+                height: 150px;
+                border-radius: 20px;
+                margin-left: 20px;
+                background-color: #ccc;
+            }
+        
+            .header_msg{
+                // flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 20px;
+        
+                .msg_up {
+                    font-size: 32px;
+                    line-height: 32px;
+                    color: #000;
+                    display: flex;
+                    flex-direction: row;
+                }
+        
+                .msg_down {
+                    font-size: 26px;
+                    line-height: 26px;
+                    color: #666;
+                    margin-top: 20px;
+                }
             }
         }
+
+        .box1_right {
+            width: 150px;
+            height: 60px;
+            background-color: #00D8A0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 26px;
+            line-height: 60px;
+            color: #fff;
+            margin-right: 20px;
+        }
+
+        
     }
 
     .header_box2 {

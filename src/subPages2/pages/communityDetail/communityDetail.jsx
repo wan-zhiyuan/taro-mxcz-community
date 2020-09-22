@@ -1,22 +1,23 @@
 import Taro, { useState, useEffect, useRouter, useShareAppMessage } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
-import { AtIcon, AtRate } from 'taro-ui'
+import { View, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { getWindowHeightNoPX } from '../../../utils/style'
 import PopupQRcode from './../../../components/Popup/PopupQRcode'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { hidePopQr } from '../../../actions/community'
 import DetailTab from './DetailTab'
+import DetailHeader from './DetailHeader'
 import DetailFooter from './DetailFooter'
 import DetailRight from './DetailRight'
+import { hidePopQr, getBusinessDetail, dispatchBusinessDetail, communityBusinessExtend } from '../../../actions/community'
 
 import './communityDetail.scss'
 
 export default function CommunityDetail() {
 
     const router = useRouter()
-    const { cid = 0 } = router.params
+    const { target_id = 0 } = router.params
 
     const isOpenedPopQr = useSelector(state => state.community.isOpenedPopQr)
+    const detail = useSelector(state => state.community.businessDetail.basic)
     const dispatch = useDispatch()
 
     const [community, setCommunity] = useState({
@@ -24,13 +25,13 @@ export default function CommunityDetail() {
         pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3607787663,2825710095&fm=26&gp=0.jpg',
         detail: `<p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202009/01/2020090108584587449.jpg" alt="" /></p><p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202008/24/2020082412422073796.jpg" alt="" /></p>`,
     })
-    const [qrTitle, setQrTitle] = useState('')
-    const [qrTxt, setQrTxt] = useState('二维码内容')
+
 
     useEffect(() => {
-        // 获取社区详情信息
-
-
+        // 阅读数+1
+        businessExtend(0, '')
+        // 获取社区商户详情
+        dispatch(dispatchBusinessDetail(target_id))
     }, [])
 
     // 分享配置
@@ -40,9 +41,11 @@ export default function CommunityDetail() {
             let eData = res.target.dataset.share
             console.log(res.target)
             console.log(eData)
+            // 分享数+1 (type=3分享)
+            businessExtend(3, '')
             return {
-                title: `盟享诚珍-${community.name}`,
-                path: `/pages/home/home?target=communityDetail&cid=${cid}`,
+                title: `盟享诚珍-${detail.business_name || ''}`,
+                path: `/pages/home/home?target=communityDetail&target_id=${target_id}`,
                 imageUrl: ''
             }
         }
@@ -53,45 +56,69 @@ export default function CommunityDetail() {
         }
     })
 
-    function handlePhone() {
-        Taro.makePhoneCall({
-            phoneNumber: String(community.phone)
-        })
+    /* 阅读、点赞、评论、分享、收藏 */
+    function businessExtend(type = 0, content = '') {
+        let postData = {
+            op: 'business_extend',
+            target_id,
+            type,
+            content,
+        }
+        communityBusinessExtend(postData)
     }
+    
 
     return (
         <View className='community_detail_index'>
-            <PopupQRcode isOpened={isOpenedPopQr} qrTitle={qrTitle} qrTxt={qrTxt} onClose={() => { dispatch(hidePopQr()) }}></PopupQRcode>
+            <PopupQRcode
+                isOpened={isOpenedPopQr}
+                title={detail.business_name}
+                // qrTxt={detail.wechat_pic} 
+                pic={detail.wechat_pic}
+                onClose={() => { dispatch(hidePopQr()) }}></PopupQRcode>
             {/* 右侧悬浮模块 */}
-            <DetailRight />
+            <DetailRight target_id={target_id} />
             <ScrollView
                 style={{ height: `${(getWindowHeightNoPX() - 60)}px` }}
                 scrollY
                 scrollWithAnimation
             >
-                <Image className='community_pic' src={community.pic} mode='scaleToFill'></Image>
-                <View className='community_top'>
-                    <View className='community_box1'>
-                        <View className='box1_left'>
-                            <Text className='community_name'>{community.name}</Text>
-                            <Text className='community_address'>{community.address}</Text>
-                        </View>
-                        <View className='box1_right' onClick={handlePhone}>
-                            <AtIcon prefixClass='icon' value='dianhua' size='28' color='#00D8A0'></AtIcon>
-                        </View>
-                    </View>
-
-                    <View className='community_box2'>
-                        <AtRate value={community.rate} size={14} />
-                        <Text className='box2_right'>分享：10 浏览量：3699</Text>
-                    </View>
-                </View>
-
+                {/* 头部banner */}
+                {
+                    detail.banner === ''
+                        ? <View className='banner_default'></View>
+                        : <Swiper
+                            className='detail_banner_swiper'
+                            indicatorColor='#999'
+                            indicatorActiveColor='#333'
+                            current={0}
+                            duration={500}
+                            interval={5000}
+                            circular={true}  // 是否衔接滑动
+                            autoplay={true}  // 循环播放
+                            indicatorDots={false}
+                        >
+                            {
+                                detail.banner.split('|').map((item, idx) => (
+                                    <SwiperItem key={'index_' + idx} >
+                                        <Image
+                                            src={item}
+                                            className='slide_image'
+                                            mode='scaleToFill'      // 缩放，不保持比例，填满Image大小
+                                            lazyLoad={true}
+                                        />
+                                    </SwiperItem>
+                                ))
+                            }
+                        </Swiper>
+                }
+                {/* 头部模块 */}
+                <DetailHeader detail={detail}/>
                 {/* 社区详情主内容 */}
-                <DetailTab community={community} />
+                <DetailTab />
             </ScrollView>
             {/* 底部模块 */}
-            <DetailFooter community={community} />
+            <DetailFooter detail={detail} />
         </View>
     )
 }

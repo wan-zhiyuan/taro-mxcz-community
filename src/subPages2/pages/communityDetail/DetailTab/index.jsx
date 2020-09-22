@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, } from '@tarojs/taro'
+import Taro, { useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import TabMain from '../TabMain'
 import TabComment from '../TabComment'
@@ -6,8 +6,6 @@ import TabComment from '../TabComment'
 import './index.scss'
 
 export default function Index(props) {
-
-    const { community } = props
 
     const [currentTab, setCurrentTab] = useState(0)
 
@@ -30,7 +28,7 @@ export default function Index(props) {
                 </View>
                 {
                     currentTab === 0 &&
-                    <TabMain community={community}/>
+                    <TabMain />
                 }
                 {
                     currentTab === 1 &&
@@ -42,5 +40,5 @@ export default function Index(props) {
 }
 
 Index.defaultProps = {
-    community: {},
+    
 }

@@ -6,9 +6,15 @@ import { getLocationString } from '../../utils/location'
 import { getPointList, getCollectList } from '../../actions/user'
 import { sign, signRankingTime, signRankingTotal, } from '../../actions/signIn'
 import {
-    increasePublish, increaseInfo, publishExtend, informationExtend, getPublish, getInformation,
+    increasePublish, increaseInfo, publishExtend, 
+    informationExtend, getPublish, getInformation,
     getPublishDetail, getInformationDetail,
 } from '../../actions/publish'
+import {
+    getCommunityBusiness, getCommunityServiceSite,
+    createCommunityServiceSite, createCommunityBusiness, communityBusinessExtend,
+    getServiceSiteDetail, getBusinessDetail,
+} from '../../actions/community'
 import Share from '../../components/ShareComponent'
 
 import './index.scss'
@@ -50,6 +56,11 @@ export default function Index() {
         // testGetInformationDetail(1) // 获取资讯信息详情
         // 完成
         // getPointList(1,20)
+
+        // 完成
+        // testCommunityBusinessExtend(1,2,'123') // 社区（商家）的阅读、点赞、评论、分享、收藏等操作
+        // testPublishExtend(2) // 发布信息阅读、点赞、评论
+        // testInformationExtend(2) // 资讯信息阅读、点赞、评论 0-阅读 2-评论    
     }
 
     async function testGetPublish(cate_id) {
@@ -66,6 +77,34 @@ export default function Index() {
     }
     function testGetInformationDetail(target_id) {
         getInformationDetail(target_id)
+    }
+
+    function testCommunityBusinessExtend(target_id, type, content) {
+        let postData = {
+            op: 'business_extend',
+            target_id,
+            type,
+            content,
+        }
+        communityBusinessExtend(postData)
+    }
+    function testPublishExtend(type) {
+        let postData = {
+            op: 'publish_extend',
+            target_id: 23,
+            type: type, // 0-阅读 1-点赞 2-评论
+            content: '评论测试评论测试123123苹果香蕉'
+        }
+        publishExtend(postData)
+    }
+    function testInformationExtend(type) {
+        let postData = {
+            op: 'information_extend',
+            target_id: 13,
+            type: type,
+            content: '这是评论，'
+        }
+        informationExtend(postData)
     }
 
 
