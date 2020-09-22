@@ -23,7 +23,7 @@ export default function Index() {
 
     function handleCommunity(item) {
         Taro.navigateTo({
-            url: `/subPages2/pages/activitySub/activitySub?cid=${item.cid}&name=${item.name}`
+            url: `/subPages4/pages/activitySub/activitySub?cid=${item.cid}&name=${item.name}`
         })
     }
 

@@ -1,14 +1,20 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import IconFont from '../../../../assets/iconfont'
+import { isEmpty } from '../../../../utils/is'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { updateServiceSiteApply } from '../../../../actions/community'
 
 import './index.scss'
-import { isEmpty } from '../../../../utils/is'
 
 export default function Index(props) {
 
     const { } = props
-    const [logo, setLogo] = useState('')
+
+    const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
+    const dispatch = useDispatch()
+
+    // const [logo, setLogo] = useState('')
     const [mobile, setMobile] = useState('')
     const [jsCode, setJsCode] = useState('')
 
@@ -32,7 +38,11 @@ export default function Index(props) {
             sourceType: ['album', 'cemera'],
             success: function (res) {
                 console.log(res.tempFilePaths)
-                setLogo(res.tempFilePaths)
+                // 更新serviceSiteApply
+                let data = JSON.parse(JSON.stringify(serviceSiteApply))
+                data.logo = res.tempFilePaths
+                // data['logo'] = res.tempFilePaths // 哪一种生效
+                dispatch(updateServiceSiteApply(data))
             }
         })
     }
@@ -58,14 +68,14 @@ export default function Index(props) {
         <View className='locate_header'>
             <View className='left'>
                 {
-                    isEmpty(logo)
+                    isEmpty(serviceSiteApply.logo)
                         ? (
                             <View className='logo_default' onClick={handleSelectLogo}>
                                 <IconFont name='xiangji' size={60} />
                                 <Text style={{ marginTop: Taro.pxTransform(12) }}>LOGO</Text>
                             </View>
                         ) : (
-                            <Image className='logo' src={logo} mode='scaleToFill' onClick={handleSelectLogo}></Image>
+                            <Image className='logo' src={serviceSiteApply.logo} mode='scaleToFill' onClick={handleSelectLogo}></Image>
                         )
                 }
             </View>

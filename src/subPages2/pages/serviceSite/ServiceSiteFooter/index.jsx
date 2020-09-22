@@ -15,7 +15,7 @@ export default function Index(props) {
             Toast('用户定位未授权')
         } else {
             Taro.navigateTo({
-                url: `/subPages4/pages/serviceSiteLocate/serviceSiteLocate`
+                url: `/subPages2/pages/serviceSiteLocate/serviceSiteLocate`
             })
         }
     }

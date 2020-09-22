@@ -79,7 +79,7 @@ export default function Information() {
     /* 跳转资讯发布页面 */
     function handlePublish(e) {
         Taro.navigateTo({
-            url: '/subPages2/pages/infoPublish/infoPublish'
+            url: '/subPages3/pages/infoPublish/infoPublish'
         })
         e.stopPropagation() // 阻止点击事件继续冒泡
     }

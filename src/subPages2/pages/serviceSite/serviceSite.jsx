@@ -75,7 +75,7 @@ export default function ServiceSite() {
             Toast('用户定位未授权')
         } else {
             Taro.navigateTo({
-                url: `/subPages4/pages/serviceSiteSub/serviceSiteSub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
+                url: `/subPages2/pages/serviceSiteSub/serviceSiteSub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
             })
         }
 

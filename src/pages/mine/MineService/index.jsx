@@ -11,7 +11,7 @@ export default function Index(props) {
     function handleGoToOrder() {
         console.log('handleGoToOrder()')
         Taro.navigateTo({
-            url:'/subPages3/pages/order/order'
+            url:'/subPages5/pages/order/order'
         })
     }
 

@@ -4,7 +4,8 @@ import { AtTextarea, AtImagePicker, AtForm, AtInput, AtButton } from 'taro-ui'
 import { getWindowHeightNoPX } from '../../../utils/style'
 import { Toast, ToastSuccess } from '../../../utils/toast'
 import { isEmpty } from '../../../utils/is'
-import { increasePublish } from '../../../actions/publish'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { updatePublishApply, increasePublish } from '../../../actions/publish'
 
 import './publishConfirm.scss'
 
@@ -13,6 +14,9 @@ export default function PublishConfirm() {
 
     const router = useRouter()
     const { cate_id = -1, cate_name = '' } = router.params
+
+    const publishApply = useSelector(state => state.publish.publishApply)
+    const dispatch = useDispatch()
 
     const [txtValue, setTxtValue] = useState() // 发布信息内容
     const [picFiles, setPicFiles] = useState([]) // 发布信息图片

@@ -1,0 +1,44 @@
+.locate_info {
+    width: 100%;
+    margin-top: 12px;
+    background-color: #fff;
+
+    .industry {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #333;
+        // margin-left: 32px;
+        margin-bottom: 1px;
+        position: relative;
+        background-color: #fff;
+        padding: 24px 0;
+
+        .industry_label{
+            width: 172px;
+            margin-right: 16px;
+            margin-left: 32px;
+            font-size: 32px;
+            line-height: 1.5;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .industry_value{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+
+            .industry_value_item {
+                flex: 1;
+
+                .picker {
+                    font-size: 32px;
+                    line-height: 32px;
+                    color: #333;
+                }
+            }
+        }
+    }
+}

@@ -1,6 +1,7 @@
-import { PUBLISH_DETAIL, INFORMATION_DETAIL, } from '../constants/publish'
+import { PUBLISH_DETAIL, INFORMATION_DETAIL, PUBLISH_APPLY_UPDATE, INFORMATION_APPLY_UPDATE, } from '../constants/publish'
 import { API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
+import { SERVICE_SITE_APPLU_UPDATE } from '../constants/community'
 
 // 发布信息 && 咨询信息 相关接口
 
@@ -129,3 +130,24 @@ export const dispatchInformationDetail = (target_id) => createAction({
         return res
     }
 })
+
+/**
+ * 更新发布信息申请
+ * @param {*} publishApply 
+ */
+export const updatePublishApply = (publishApply) => {
+    return {
+        type: PUBLISH_APPLY_UPDATE,
+        payload: publishApply,
+    }
+}
+/**
+ * 更新资讯信息申请
+ * @param {*} serviceSiteApply 
+ */
+export const updateInformationApply = (informationApply) => {
+    return {
+        type: SERVICE_SITE_APPLU_UPDATE,
+        payload: informationApply,
+    }
+}

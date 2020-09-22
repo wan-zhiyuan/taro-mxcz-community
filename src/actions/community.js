@@ -1,4 +1,4 @@
-import { COMMUNITY_IS_OPENED_QRCODE } from '../constants/community'
+import { COMMUNITY_IS_OPENED_QRCODE, SERVICE_SITE_APPLU_UPDATE, BUSINESS_APPLY_UPDATE, } from '../constants/community'
 import { API_COMMUNITY } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
@@ -23,7 +23,7 @@ export const hidePopQr = () => {
  * @param {*} industry 服务站类别，传空获取所有服务站，例：'社区助餐' '社区养老'
  * @param {*} is_near 
  */
-export const getCommunityServiceSite = (location, industry='', is_near=0) => createHttp({
+export const getCommunityServiceSite = (location, industry = '', is_near = 0) => createHttp({
     url: API_COMMUNITY + `?op=service_site&location=${location}&industry=${industry}&is_near=${is_near}`,
     method: 'GET',
 })
@@ -34,7 +34,7 @@ export const getCommunityServiceSite = (location, industry='', is_near=0) => cre
  * @param {*} industry 
  * @param {*} is_near 
  */
-export const getCommunityBusiness = (location, industry='', is_near) => createHttp({
+export const getCommunityBusiness = (location, industry = '', is_near) => createHttp({
     url: API_COMMUNITY + `?op=business&location=${location}&industry=${industry}&is_near=${is_near}`,
     method: 'GET',
 })
@@ -86,7 +86,7 @@ export const communityBusinessExtend = postData => createHttp({
  * @param {*} target_id 
  */
 export const getServiceSiteDetail = (target_id) => createHttp({
-    url: API_COMMUNITY +`/${target_id}?op=service_site`,
+    url: API_COMMUNITY + `/${target_id}?op=service_site`,
     method: 'GET',
 })
 /**
@@ -94,7 +94,7 @@ export const getServiceSiteDetail = (target_id) => createHttp({
  * @param {*} target_id 
  */
 export const getBusinessDetail = (target_id) => createHttp({
-    url: API_COMMUNITY +`/${target_id}?op=business`,
+    url: API_COMMUNITY + `/${target_id}?op=business`,
     method: 'GET',
 })
 /**
@@ -102,7 +102,28 @@ export const getBusinessDetail = (target_id) => createHttp({
  * @param {*} target_id 
  */
 export const getActivityDetail = (target_id) => createHttp({
-    url: API_COMMUNITY +`/${target_id}?op=activity`,
+    url: API_COMMUNITY + `/${target_id}?op=activity`,
     method: 'GET',
 })
 
+
+/**
+ * 更新社区商户申请入驻信息
+ * @param {*} businessApply 
+ */
+export const updateBusinessApply = (businessApply) => {
+    return {
+        type: BUSINESS_APPLY_UPDATE,
+        payload: { businessApply }
+    }
+}
+/**
+ * 更新社区服务站申请入驻信息
+ * @param {*} serviceSiteApply 
+ */
+export const updateServiceSiteApply = (serviceSiteApply) => {
+    return {
+        type: SERVICE_SITE_APPLU_UPDATE,
+        payload: { serviceSiteApply }
+    }
+}

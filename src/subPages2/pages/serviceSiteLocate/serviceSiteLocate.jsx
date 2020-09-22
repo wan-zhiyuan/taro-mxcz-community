@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import LocateHeader from './LocateHeader'
 import LocateAddress from './LocateAddress'
 import LocateInfo from './LocateInfo'
+import LocateIntroduction from './LocateIntroduction'
 import LocateFooter from './LocateFooter'
 
 
@@ -15,6 +16,7 @@ export default function ServiceSiteLocate() {
             <LocateHeader />
             <LocateAddress />
             <LocateInfo />
+            <LocateIntroduction />
             <LocateFooter />
         </View>
     )

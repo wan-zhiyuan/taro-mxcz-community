@@ -15,7 +15,7 @@ export default function Index(props) {
 
     function naviToCommunityInfo() {
         Taro.navigateTo({
-            url: '/subPages2/pages/information/information'
+            url: '/subPages3/pages/information/information'
         })
     }
 

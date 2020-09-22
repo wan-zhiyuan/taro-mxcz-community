@@ -3,6 +3,8 @@ import { Provider } from '@tarojs/redux'
 import Index from './pages/index'
 import Home from './pages/home'
 import configStore from './store'
+import { set as setGlobaleData } from './global_data'
+import { getLocationString } from './utils/location'
 
 import './app.scss'
 import './custom-variables.scss'
@@ -39,7 +41,7 @@ class App extends Component {
           'pages/commentPage/commentPage',
         ]
       },
-      // 社区 && 社区活动 && 社区咨询 && 发布分类
+      // 社区相关： 社区商户 && 社区服务站
       {
         "root": "subPages2",
         "pages": [
@@ -47,15 +49,13 @@ class App extends Component {
           'pages/communityDetail/communityDetail',
           'pages/communityLocate/communityLocate',
           'pages/communityComment/communityComment',
-          'pages/activity/activity',
-          'pages/activitySub/activitySub',
-          'pages/activityDetail/activityDetail',
-          'pages/information/information',
-          'pages/infoPublish/infoPublish',
-          'pages/infoDetail/infoDetail',
+          'pages/serviceSite/serviceSite',
+          'pages/serviceSiteSub/serviceSiteSub',
+          'pages/serviceSiteDetail/serviceSiteDetail',
+          'pages/serviceSiteLocate/serviceSiteLocate',
         ]
       },
-      // 发布相关 publish && information
+      // 发布相关： publish && information
       {
         "root": "subPages3",
         "pages": [
@@ -63,16 +63,18 @@ class App extends Component {
           'pages/publishDetail/publishDetail',
           'pages/category/category',
           'pages/categorySub/categorySub',
+          'pages/information/information',
+          'pages/infoPublish/infoPublish',
+          'pages/infoDetail/infoDetail',
         ]
       },
-      // 社区服务站
+      // 活动相关： 社区活动 && 志愿者活动
       {
         "root": "subPages4",
         "pages": [
-          'pages/serviceSite/serviceSite',
-          'pages/serviceSiteSub/serviceSiteSub',
-          'pages/serviceSiteDetail/serviceSiteDetail',
-          'pages/serviceSiteLocate/serviceSiteLocate',
+          'pages/activity/activity',
+          'pages/activitySub/activitySub',
+          'pages/activityDetail/activityDetail',
         ]
       },
       // 商城相关的页面
@@ -81,7 +83,7 @@ class App extends Component {
         "pages": [
           'pages/order/order',
         ]
-      }
+      },
     ],
     tabBar: {
       list: [{
@@ -147,6 +149,13 @@ class App extends Component {
     //     // 可以存在redux中，后续使用经纬度的时候如果存在，则不需要调用getLocation
     //   }
     // })
+    this.getLocation()
+  }
+
+  /* 初始化获取定位 */
+  getLocation = async() => {
+    const location = await getLocationString()
+    setGlobaleData('location',location)
   }
 
   componentDidMount() { }

@@ -1,2 +1,4 @@
 export const PUBLISH_DETAIL = 'PUBLISH_DETAIL' // 发布信息详情
 export const INFORMATION_DETAIL = 'INFORMATION_DETAIL' // 资讯信息详情
+export const PUBLISH_APPLY_UPDATE = 'PUBLISH_APPLY_UPDATE' // 更新发布信息创建信息
+export const INFORMATION_APPLY_UPDATE = 'INFORMATION_APPLY_UPDATE' // 更新资讯信息创建信息

@@ -1,0 +1,26 @@
+.locate_introduction {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    padding: 24px 0;
+
+    .label{
+        width: 172px;
+        margin-right: 16px;
+        margin-left: 32px;
+        font-size: 32px;
+        line-height: 1.5;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    .value{
+        flex-grow: 1;
+        margin-right: 24px;
+
+        .textarea {
+        }
+    }
+}

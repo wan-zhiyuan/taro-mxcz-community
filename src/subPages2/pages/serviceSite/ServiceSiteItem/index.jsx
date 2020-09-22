@@ -11,7 +11,7 @@ export default function Index(props) {
 
     function handleItem() {
         Taro.navigateTo({
-            url: `/subPages4/pages/serviceSiteDetail/serviceSiteDetail?target_id=${item.id}`
+            url: `/subPages2/pages/serviceSiteDetail/serviceSiteDetail?target_id=${item.id}`
         })
     }
 

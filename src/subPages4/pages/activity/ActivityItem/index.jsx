@@ -11,7 +11,7 @@ export default function Index(props) {
 
     function handleActivity() {
         Taro.navigateTo({
-            url: `/subPages2/pages/activityDetail/activityDetail?id=${activity.id}`
+            url: `/subPages4/pages/activityDetail/activityDetail?id=${activity.id}`
         })
     }
 
