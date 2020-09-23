@@ -86,9 +86,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "subPages1/pages/signIn/signIn",
-					"pathName": "subPages1/pages/signIn/signIn",
+					"id": 4,
+					"name": "subPages1/pages/myCollection/myCollection",
+					"pathName": "subPages1/pages/myCollection/myCollection",
 					"query": "",
 					"scene": null
 				}

@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtGrid, AtTabs, AtTabsPane, AtIcon } from 'taro-ui'
-import { ClTabs } from "mp-colorui";
+import { ClTabs } from "mp-colorui"
 import ListView, { LazyBlock } from "taro-listview";
 import { getCommunityServiceSite } from '../../../actions/community'
 import { getLocationString, getLocationStringPopup } from '../../../utils/location'
@@ -78,7 +78,6 @@ export default function ServiceSite() {
                 url: `/subPages2/pages/serviceSiteSub/serviceSiteSub?cate_id=${item.cate_id}&cate_name=${item.cate_name}&location=${location}`
             })
         }
-
     }
 
     function handleClickTabs(index) {

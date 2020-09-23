@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-import { getDateTypeMinutes } from '../../../../utils/timer'
+import { getDateTypeMinutes } from '../../utils/timer'
 
 import './index.scss'
 

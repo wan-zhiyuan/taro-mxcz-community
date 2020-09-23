@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtFab } from 'taro-ui'
-import InfoList from './InfoList'
+import InformationList from '../../../components/InformationList'
 import { getInformation } from '../../../actions/publish'
 import ListView, { LazyBlock } from "taro-listview";
 
@@ -119,7 +119,7 @@ export default function Information() {
                         tabsList.map((item, idx) => {
                             return (
                                 <AtTabsPane current={current} index={idx} key={'index_' + idx}>
-                                    <InfoList infoList={list} />
+                                    <InformationList list={list} />
                                 </AtTabsPane>
                             )
                         })

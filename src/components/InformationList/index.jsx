@@ -1,19 +1,19 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import InfoListItem from '../InfoListItem'
+import InformationItem from '../InformationItem'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const { infoList } = props
+    const { list } = props
 
     return (
         <View className='info_list'>
             {
-                infoList.map((item, idx) => {
+                list.map((item, idx) => {
                     return (
-                        <InfoListItem key={'index_' + idx} item={item} />
+                        <InformationItem key={'index_' + idx} item={item} />
                     )
                 })
             }
@@ -21,5 +21,5 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-    infoList: []
+    list: []
 }
