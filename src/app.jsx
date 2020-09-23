@@ -75,6 +75,7 @@ class App extends Component {
           'pages/activity/activity',
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',
+          'pages/activityVerification/activityVerification',
           'pages/volunteer/volunteer',
           'pages/volunteerDetail/volunteerDetail'
         ]

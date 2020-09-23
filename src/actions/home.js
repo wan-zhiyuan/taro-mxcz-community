@@ -7,7 +7,8 @@ import { createAction, createHttp } from '../service/servers'
  * @param {*} postData 
  */
 export const dispatchHomeIndex = (page, pagesize) => createAction({
-    url: API_HOME + '?page='+ page + '&pagesize=' + pagesize,
+    url: API_HOME + '?page=1' + '&pagesize=10',
+    // url: API_HOME + '?page='+ page + '&pagesize=' + pagesize,
     type: HOME_INDEX,
     method: 'GET',
 })

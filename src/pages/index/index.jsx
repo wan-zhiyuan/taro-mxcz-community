@@ -61,6 +61,23 @@ export default function Index() {
         // testCommunityBusinessExtend(1,2,'123') // 社区（商家）的阅读、点赞、评论、分享、收藏等操作
         // testPublishExtend(2) // 发布信息阅读、点赞、评论
         // testInformationExtend(2) // 资讯信息阅读、点赞、评论 0-阅读 2-评论    
+
+        // getCollectList()
+
+        // testIncreasePublish() // 新增发布信息
+        // testincreaseInfo() // 新增资讯信息
+        
+        // 社区服务站 社区（商家） 社区活动相关
+        // testGetCommunityBusiness()
+        // testGetCommunityServiceSite()
+        // testGetCommunityActivity(0,1,10)
+
+        // testCreateCommunityBusiness() // 申请创建社区
+        // testCreateCommunityServiceSite() // 申请创建社区服务站
+        
+        // testGetServiceSiteDetail(1)
+        // testGetBusinessDetail(1)
+        // testGetCommunityActivityDetail(1)
     }
 
     async function testGetPublish(cate_id) {
@@ -70,7 +87,6 @@ export default function Index() {
     function testGetInformation(cate_id, page, pagesize) {
         getInformation(cate_id, page, pagesize)
     }
-
 
     function testGetPublishDetail(target_id) {
         getPublishDetail(target_id)
@@ -105,6 +121,114 @@ export default function Index() {
             content: '这是评论，'
         }
         informationExtend(postData)
+    }
+
+    function testGetCommunityActivityDetail(target_id) {
+        getCommunityActivityDetail(target_id)
+    }
+
+    function testGetBusinessDetail(target_id) {
+        getBusinessDetail(target_id)
+    }
+
+    function testGetServiceSiteDetail(target_id) {
+        getServiceSiteDetail(target_id)
+    }
+
+    async function testCreateCommunityBusiness() {
+        const location = await getLocation()
+        let postData = {
+            op: 'business',
+            location,
+            business_name: '浦东新区中心街道社区',
+            apply_mobile: '13698984545', // 申请手机号
+            address: '上海市浦东新区可口可乐路111号',
+            keyword: '零售', // 行业关键此
+            industry: '浦东新区', // 行业分类
+            memo: '我们要做大做强', // 商家简介
+            contact_phone: '13585643944', // 联系电话
+            notice: '可乐管够', // 商家公告
+            logo: '',
+            wechat_pic: '',
+            banner: '', // 商家轮播图 以 | 做分割符号
+            details: '',  // 商家详情图 以 | 做分割符号
+        }
+        createCommunityBusiness(postData)
+    }
+
+    async function testCreateCommunityServiceSite() {
+        const location = await getLocation()
+        let postData = {
+            op: 'service_site',
+            location,
+            logo: '',
+            apply_mobile: '13485856969',
+            address: '上海市浦东新区浦三路3060号',
+            company_name: '上海三三有限公司',
+            company_phone: '13878912345',
+            industry: '社区养老',
+            memo: '好好好',
+        }
+        createCommunityServiceSite(postData)
+    }
+
+    async function testGetCommunityBusiness() {
+        const location = await getLocation()
+        getCommunityBusiness(location, '', 0)
+    }
+
+    async function testGetCommunityServiceSite() {
+        const location = await getLocation()
+        getCommunityServiceSite(location, '', 0,)
+    }
+
+    function testGetCommunityActivity(cate_id, page, pagesize) {
+        getCommunityActivity(cate_id, page, pagesize)
+    }
+
+    function testincreaseInfo() {
+        let postData = {
+            op: 'information',
+            cate_id: 1,
+            cate_name: '演唱会',
+            title: '华晨宇演唱会3',
+            content: '今天天气真好，我要出去郊游～3',
+            video_url: '',
+            images: 'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLml-AK0u8AAOlv9Gxors475.jpg|' +
+                'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLmlyALvzuAAMlwfOz4ms167.jpg|' +
+                'http://0.rc.xiniu.com/g1/M00/A7/89/CgAGTFjLml2AY1iGAAM3svfTX_E935.jpg',
+        }
+        increaseInfo(postData)
+    }
+
+    async function testIncreasePublish() {
+        const location = await getLocation()
+        let postData = {
+            op: 'publish',
+            cate_id: 1,
+            cate_name: '二手闲置',
+            content: '今天天气真好，我要出去郊游～',
+            images: '',
+            location: location,
+            contact_name: '华晨宇',
+            contact_mobile: '13589890606',
+        }
+        increasePublish(postData)
+    }
+
+    async function getLocation() {
+        let location = ''
+        try {
+            const res = await Taro.getLocation({
+                type: 'gcj02',
+            })
+            console.log(res)
+            location = res.latitude + ',' + res.longitude
+            console.log(location)
+        } catch (err) {
+            location = ''
+        }
+        return location
     }
 
 

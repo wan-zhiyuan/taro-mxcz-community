@@ -30,7 +30,7 @@ export default function Index(props) {
                                 homeBanner.map((item, idx) => (
                                     <SwiperItem key={'index_' + idx} >
                                         <Image
-                                            src={item}
+                                            src={item.image || ''}
                                             className='slide_image'
                                             mode='scaleToFill'      // 缩放，不保持比例，填满Image大小
                                             lazyLoad={true}
