@@ -1,4 +1,4 @@
-.community_list {
+.cate_list {
     width: 100%;
     background-color: #fff;
     margin-top: 20px;
@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
 
-    .community_item {
+    .cate_item {
         width: 20%;
         height: 150px;
         // flex: auto; // 如果一行只有2个的时候页面撑满

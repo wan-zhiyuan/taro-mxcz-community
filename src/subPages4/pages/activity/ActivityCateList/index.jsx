@@ -28,12 +28,12 @@ export default function Index() {
     }
 
     return (
-        <View className='community_list'>
+        <View className='cate_list'>
             {
                 communityList.map((item,idx)=>{
                     return (
                         <View key={'index_'+idx} 
-                        className='community_item'
+                        className='cate_item'
                         onClick={()=>{handleCommunity(item)}}
                         >
                             {

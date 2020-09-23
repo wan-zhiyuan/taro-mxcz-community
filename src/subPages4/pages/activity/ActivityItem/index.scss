@@ -18,6 +18,7 @@
         height: 280px;
         border-radius: 20px;
         margin-top: 20px;
+        background-color: grey;
     }
 
     .activity_title {
@@ -37,26 +38,28 @@
         justify-content: space-between;
         margin-bottom: 12px;
 
-        .bottom_left {
+        .left {
             display: flex;
             flex-direction: row;
             align-items: center;
 
-            .activity_community {
-                width: 150px;
+            .activity_cate_name {
+                // width: 150px;
+                max-width: 300px;
                 font-size: 28px;
                 line-height: 32px;
                 color: #999;
             }
 
-            .activity_free {
-                font-size: 20px;
-                line-height: 28px;
-                color: #fff;
-                background-color: #ff0044;
-                border-radius: 5px;
-                padding: 0 6px;
+            .activity_tag1 {
+                margin-left: 20px;
             }
+
+            .activity_tag2 {
+                margin-left: 20px;
+            }
+
+
             .activity_state_0 {
                 font-size: 24px;
                 line-height: 32px;
@@ -80,10 +83,22 @@
             
         }
 
-        .bottom_right {
+        .right {
             display: flex;
             flex-direction: row;
             align-items: center;
+
+            .enroll_number {
+                font-size: 20px;
+                line-height: 20px;
+                color: #ff0044;
+                margin-right: 8px;
+            }
+            .enroll_txt {
+                font-size: 20px;
+                line-height: 20px;
+                color: #333;
+            }
             
         }
     }

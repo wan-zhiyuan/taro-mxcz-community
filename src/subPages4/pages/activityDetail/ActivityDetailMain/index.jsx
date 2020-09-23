@@ -2,12 +2,15 @@ import Taro, { useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import MyRichText from '../../../../components/MyRichText'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const { activityDetail } = props
+    const { } = props
+
+    const activityDetail = useSelector(state => state.activity.communityActivityDetail.basic)
 
     return (
         <View className='activity_detail_main'>
@@ -16,12 +19,12 @@ export default function Index(props) {
                 <Text className='title_txt'>详情内容</Text>
             </View>
             <View className='detail'>
-                <MyRichText richText={activityDetail.detail} />
+                <MyRichText richText={activityDetail.details} />
             </View>
         </View>
     )
 }
 
 Index.defaultProps = {
-    activityDetail: {}
+    
 }

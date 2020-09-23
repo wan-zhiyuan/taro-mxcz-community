@@ -1,3 +1,4 @@
+import { COMMUNITY_ACTIVITY_DETAIL, VOLUNTEER_ACTIVITY_DETAIL } from '../constants/activity'
 import { API_COMMUNITY } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
@@ -16,7 +17,16 @@ export const getCommunityActivity = (cate_id, page, pagesize) => createHttp({
  * 获取社区活动详情
  * @param {*} target_id 
  */
-export const getActivityDetail = (target_id) => createHttp({
+export const getCommunityActivityDetail = (target_id) => createHttp({
     url: API_COMMUNITY + `/${target_id}?op=activity`,
+    method: 'GET',
+})
+/**
+ * 获取社区活动详情
+ * @param {*} target_id 
+ */
+export const dispatchCommunityActivityDetail = (target_id) => createAction({
+    url: API_COMMUNITY + `/${target_id}?op=activity`,
+    type: COMMUNITY_ACTIVITY_DETAIL,
     method: 'GET',
 })

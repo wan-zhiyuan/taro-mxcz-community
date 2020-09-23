@@ -1,0 +1,21 @@
+.activity_detail_banner {
+    width: 100%;
+
+    .bannerDefault {
+        width: 100%;
+        height: 330px;
+        background-color: #ccc;
+        margin-bottom: 50px;
+    }
+    
+    .banner_swiper {
+        width: 100%;
+        height: 370px;
+    }
+    
+    .slide_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+}

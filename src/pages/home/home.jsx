@@ -22,7 +22,7 @@ import {
     getServiceSiteDetail, getBusinessDetail, 
 } from '../../actions/community'
 import {
-    getCommunityActivity, getActivityDetail,
+    getCommunityActivity, getCommunityActivityDetail,
 } from '../../actions/activity'
 import ListView, { LazyBlock } from "taro-listview";
 import PopupLogin from '../../components/PopupLogin'
@@ -73,7 +73,7 @@ export default function Home() {
 
         // testGetServiceSiteDetail(1)
         // testGetBusinessDetail(1)
-        // testGetActivityDetail(1)
+        // testGetCommunityActivityDetail(1)
     }, [])
 
     async function initData() {
@@ -90,8 +90,8 @@ export default function Home() {
         dispatch(dispatchHomeIndex(page, pagesize))
     }
 
-    function testGetActivityDetail(target_id) {
-        getActivityDetail(target_id)
+    function testGetCommunityActivityDetail(target_id) {
+        getCommunityActivityDetail(target_id)
     }
 
     function testGetBusinessDetail(target_id) {
@@ -247,39 +247,6 @@ export default function Home() {
                 <HomeCommunityInfo />
                 {/* 社区发布模块 */}
                 <HomePublish />
-
-                {/* <View className='home_last_publish'>
-                    <View className='title'>
-                        <Text style={{ marginLeft: '15px' }}>最新发布</Text>
-                    </View>
-                    <View className='content'>
-                        {
-                            lastPublish.map((item, idx) => {
-                                return (
-                                    <View key={'index_' + idx} className='last_publish_item'>
-                                        <Image className='item_img' src={LastPubishDefault} mode='scaleToFill'></Image>
-                                        <View className='item_msg'>
-                                            <View className='msg_box1'>
-                                                <Text className='title'>9月18日周五16点花艺小课堂</Text>
-                                                <Text className='desc'>浦东杨思站</Text>
-                                            </View>
-                                            <View className='msg_box2'>
-                                                <View>
-                                                    <Text className='tag'>免费</Text>
-                                                    <Text className='state'>已结束</Text>
-                                                </View>
-                                                <View style={{ marginRight: '20px' }}>
-                                                    <Text className='people'>22</Text>
-                                                    <Text style={{ fontSize: '11px', lineHeight: '11px', color: '#333' }}>已报名</Text>
-                                                </View>
-                                            </View>
-                                        </View>
-                                    </View>
-                                )
-                            })
-                        }
-                    </View>
-                </View> */}
 
             </ScrollView>
             {/* </ListView> */}
