@@ -1,0 +1,24 @@
+.volunteer_index {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f2f2;
+
+    .msg {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .apply {
+        width: 400px;
+        height: 80px;
+        background-color: #00D8A0;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 32px;
+        line-height: 80px;
+        color: #fff;
+        margin-top: 30px;
+    }
+}

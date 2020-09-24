@@ -55,7 +55,7 @@ export default function Index(props) {
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='home' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的社区</Text>
-                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY COMMUNITY</Text>
+                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY PUBLISH</Text>
                 </View>
                 <View style={{ marginRight: '10px' }}>
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>

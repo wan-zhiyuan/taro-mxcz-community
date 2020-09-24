@@ -1,4 +1,4 @@
-import Taro, { useState, useRouter } from '@tarojs/taro'
+import Taro, { useState, useRouter, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtTextarea, AtImagePicker, AtForm, AtInput, AtButton } from 'taro-ui'
 import { getWindowHeightNoPX } from '../../../utils/style'
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from '@tarojs/redux'
 import { updatePublishApply, increasePublish } from '../../../actions/publish'
 import { get as getGlobalData } from '../../../global_data'
 import { getLocationString } from '../../../utils/location'
+import { ClUtils } from "mp-colorui/dist/weapp/lib"
 
 import './publishConfirm.scss'
 
@@ -28,6 +29,11 @@ export default function PublishConfirm() {
     const [mobile, setMobile] = useState('') // 发布人电话
 
     const [upLoadImg, setUpLoadImg] = useState([]) // 已上传图片的数组
+
+    useEffect(() => {
+        console.log('cate_id=' + cate_id)
+        console.log('cate_name=' + cate_name)
+    }, [])
 
     // 描述文本变化
     function handleChange(value) {
@@ -65,24 +71,30 @@ export default function PublishConfirm() {
 
     /* 发布 */
     function handlePublish() {
-        if (isEmpty(txtValue)) {
+        if (!ClUtils.rule.required(txtValue)) {
             Toast('请输入描述内容')
             return
         }
-        if (picFiles.length <= 0) {
-            Toast('请点击+号选择图片')
-            return
-        }
-        if (isEmpty(name)) {
+        // if (picFiles.length <= 0) {
+        //     Toast('请点击+号选择图片')
+        //     return
+        // }
+        if (!ClUtils.rule.required(name)) {
             Toast('请输入您的姓名')
             return
         }
-        if (isEmpty(mobile)) {
+        if (!ClUtils.rule.phone(mobile)) {
             Toast('请输入您的联系方式')
             return
         }
-        // 先上传图片，图片上传成功后再调用发布接口
-        uploadLoader()
+        if (picFiles.length === 0) {
+            console.log('用户未选择图片，直接发布')
+            confirmPublish()
+        } else {
+            console.log('用户选择了图片，先上传图片再发布')
+            // 先上传图片，图片上传成功后再调用发布接口
+            uploadLoader()
+        }
     }
 
     // 上传图片代码
@@ -171,9 +183,22 @@ export default function PublishConfirm() {
             contact_name: name || '',
             contact_mobile: mobile || '',
         }
-        const res = increasePublish(postData)
-        if (res.data.code === 200) {
-            ToastSuccess('发布成功')
+        
+        const res = await increasePublish(postData)
+        if (res.code === 200) {
+            console.log('发布成功')
+            Taro.showLoading({
+                title: ''
+            })
+            setTimeout(() => {
+                Taro.hideLoading()
+                Taro.switchTab({
+                    url: `/pages/home/home`
+                })
+            }, 1500)
+        } else {
+            console.log('发布失败:' + res.msg)
+            Toast(res.msg)
         }
     }
 

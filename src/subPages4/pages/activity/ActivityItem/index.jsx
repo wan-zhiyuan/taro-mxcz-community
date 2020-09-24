@@ -35,8 +35,7 @@ export default function Index(props) {
             text: '已关闭',
             color: 'gray',
             plain: true,
-        }, 
-        
+        },   
     ]
 
     return (

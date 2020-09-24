@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide } from '@tarojs/taro'
 import { View, Text, ScrollView, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
@@ -14,7 +14,8 @@ import { dispatchUser } from '../../actions/user'
 import { getPublish } from '../../actions/publish'
 import ListView, { LazyBlock } from "taro-listview";
 import PopupLogin from '../../components/PopupLogin'
-import { get as getGlobalData } from '../../global_data'
+import { get as getGlobalData, set as setGlobalData } from '../../global_data'
+import { getLocationString } from '../../utils/location'
 
 import './home.scss'
 
@@ -25,8 +26,8 @@ export default function Home() {
 
     // 用户是否登陆
     const [isLogin, setIsLogin] = useState(true)
+    const [scrollTop, setScrollTop] = useState(-1)
 
-    const [location, setLocation] = useState('')
     const [publishList, setPublishList] = useState([])
     const [publishAll, setPublishAll] = useState([])
     const [pIndex, setPIndex] = useState(0)
@@ -39,13 +40,10 @@ export default function Home() {
         // 判断路由参数
         judgeTarget(router.params)
         // 初始化数据
-        let lo = getGlobalData('location')
-        setLocation(lo)
-        getData()
-
+        getInit()
     }, [])
 
-    async function getData() {
+    async function getInit() {
         // 获取用户信息
         const res = await dispatch(dispatchUser())
         if (!!res.data.nickname) {
@@ -57,6 +55,14 @@ export default function Home() {
         // 获取首页信息
         await dispatch(dispatchHomeIndex())
 
+        // 获取定位数据(待优化)
+        const location = await getLocationString()
+        setGlobalData('location', location)
+        // 获取发布信息数据
+        getData()
+    }
+
+    async function getData() {
         // 获取首页展示的发布信息
         getPublishData(0)
     }
@@ -64,6 +70,7 @@ export default function Home() {
     async function getPublishData(index = pIndex) {
         if (index = 0) setIsLoaded(false) // 初次加载 数据请求前 不显示页面
         // cate_id:0 全部 location:'' 使用用户当前定位 is_near:0 不按照附近排序 
+        let location = getGlobalData('location') || ''
         const { data: listData } = await getPublish(0, location, 0)
         // if (res.code === 200) {
         setPublishAll(listData)
@@ -124,6 +131,7 @@ export default function Home() {
                 // isEmpty={isEmpty}
                 onPullDownRefresh={pullDownRefresh}
                 onScrollToLower={onScrollToLower}
+                scrollTop={scrollTop}
             >
                 {/* 导航模块 */}
                 <HomeGrid />

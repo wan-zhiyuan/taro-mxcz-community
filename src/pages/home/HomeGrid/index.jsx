@@ -24,8 +24,8 @@ export default function Index(props) {
             url: '/subPages4/pages/activity/activity'
         },
         {
-            id: '5', name: '积分商城', pic: 'http://source.bingu.cn/icon_05.png',
-            url: ''
+            id: '5', name: '志愿者报名', pic: 'http://source.bingu.cn/icon_05.png',
+            url: '/subPages4/pages/volunteer/volunteer'
         },
     ])
 

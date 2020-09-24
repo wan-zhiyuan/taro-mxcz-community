@@ -2,6 +2,8 @@ import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { getDateTypeMinutes } from '../../utils/timer'
+import { ClUtils } from "mp-colorui/dist/weapp/lib"
+import { ClTag } from "mp-colorui"
 
 import './index.scss'
 
@@ -9,6 +11,8 @@ import './index.scss'
 export default function Index(props) {
 
     const { publishItem } = props
+
+    const tags = [{ text: `${publishItem.cate_name}`, color: 'red' }]
 
     function onImageClick(item) {
         Taro.previewImage({
@@ -47,6 +51,7 @@ export default function Index(props) {
                         <View className='item_user_right'>
                             <Text className='user_name'>{publishItem.nickname || ''}</Text>
                             <Text className='item_cate'>{publishItem.cate_name}</Text>
+                            {/* <ClTag tags={tags.slice(0, 1)} shape='radius' size='small'/> */}
                         </View>
                     </View>
                     <View className='detail_distance'>
@@ -63,14 +68,20 @@ export default function Index(props) {
                         {
                             publishItem.images.split('|').map((item, idx) => {
                                 return (
-                                    <Image
-                                        key={'index_' + idx}
-                                        className='bbs_pic'
-                                        src={item}
-                                        mode='scaleToFill'
-                                        lazyLoad={true}
-                                        onClick={() => { onImageClick(item) }}
-                                    ></Image>
+                                    <View key={'index_' + idx}>
+                                        {
+                                            !ClUtils.rule.url(item)
+                                                ? <Image className='publish_pic_default'></Image>
+                                                : <Image
+                                                    className='publish_pic'
+                                                    src={item}
+                                                    mode='scaleToFill'
+                                                    lazyLoad={true}
+                                                    onClick={() => { onImageClick(item) }}
+                                                ></Image>
+                                        }
+                                    </View>
+
                                 )
                             })
                         }

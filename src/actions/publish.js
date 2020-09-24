@@ -166,3 +166,12 @@ export const getInformationCate = () => createHttp({
     url: API_USER + '?op=classify&type=1',
     method: 'GET',
 })
+
+/**
+ * 获取我的发布信息
+ * 优化点：分页（未完成）
+ */
+export const getMyPublish = () => createHttp({
+    url : API_USER + '?op=publish_oneself&page=1&pagesize=200',
+    method: 'GET'
+})

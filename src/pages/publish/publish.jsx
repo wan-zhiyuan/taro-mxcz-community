@@ -15,22 +15,28 @@ import './publish.scss'
 export default function Publish() {
 
     const [category, setCategory] = useState([
-        { cate_id: '1', cate_name: '二手闲置', pic: Icon1 },
-        { cate_d: '2', cate_name: '健康食集', pic: Icon2 },
-        { cate_id: '3', cate_name: '邻里分享', pic: Icon3 },
-        { cate_id: '4', cate_name: '手机教学', pic: Icon4 },
-        { cate_id: '5', cate_name: '社区活动', pic: Icon5 },
-        { cate_id: '6', cate_name: '志愿者之家', pic: Icon6 },
-        { cate_id: '7', cate_name: '最美睡姿', pic: Icon7 },
+        // { cate_id: '1', cate_name: '二手闲置', pic: Icon1 },
+        // { cate_d: '2', cate_name: '健康食集', pic: Icon2 },
+        // { cate_id: '3', cate_name: '邻里分享', pic: Icon3 },
+        // { cate_id: '4', cate_name: '手机教学', pic: Icon4 },
+        // { cate_id: '5', cate_name: '社区活动', pic: Icon5 },
+        // { cate_id: '6', cate_name: '志愿者之家', pic: Icon6 },
+        // { cate_id: '7', cate_name: '最美睡姿', pic: Icon7 },
     ])
 
-    useEffect(()=>{
-        getPublishCate()
-    },[])
+    useEffect(() => {
+        async function getData() {
+            const res = await getPublishCate()
+            if (res.code === 200) {
+                setCategory(res.data)
+            }
+        }
+        getData()
+    }, [])
 
     function handlePublishSubItem(item) {
         Taro.navigateTo({
-            url: `/subPages3/pages/publishConfirm/publishConfirm?cate_id=${item.cate_id}&cate_name=${item.cate_name}`
+            url: `/subPages3/pages/publishConfirm/publishConfirm?cate_id=${item.id}&cate_name=${item.title}`
         })
     }
 
@@ -49,12 +55,12 @@ export default function Publish() {
                                 onClick={() => { handlePublishSubItem(item) }}
                             >
                                 {
-                                    isEmpty(item.pic)
-                                    ? <Image className='publish_item_pic_default' ></Image>
-                                    : <Image className='publish_item_pic' src={item.pic} mode='scaleToFill'></Image>
+                                    isEmpty(item.image)
+                                        ? <Image className='publish_item_pic_default' ></Image>
+                                        : <Image className='publish_item_pic' src={item.image} mode='scaleToFill'></Image>
                                 }
-                                
-                                <Text className='publish_item_name'>{item.cate_name}</Text>
+
+                                <Text className='publish_item_name'>{item.title || ''}</Text>
                             </View>
                         )
 

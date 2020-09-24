@@ -1,10 +1,13 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index() {
+
+    const userInfo = useSelector(state => state.user.userInfo)
 
     function handleSignIn() {
         console.log('跳转签到页面')
@@ -12,13 +15,21 @@ export default function Index() {
             url: `/subPages1/pages/signIn/signIn`
         })
     }
-    
+
 
     return (
         <View className='mine_top'>
             <View className='mine_top_box'>
-                <View className='mine_avatar_logout'></View>
-                <Text className='mine_nickname'>楽</Text>
+                {
+                    !!userInfo.nickname
+                        ? <Image className='mine_avatar' src={userInfo.avatar || ''} mode='scaleToFill'></Image>
+                        : <View className='mine_avatar_logout'></View>
+                }
+                {
+                    !!userInfo.nickname
+                        ? <Text className='mine_nickname'>{userInfo.nickname || ''}</Text>
+                        : <Text className='mine_nickname'>未登陆</Text>
+                }
                 {/* {
                     barUser.avatar ? (
                         <Image src={getImagePath(barUser.avatar)} className='mine_avatar' onClick={onImageClick} />
@@ -29,7 +40,7 @@ export default function Index() {
                 } */}
                 <View className='mine_sign' onClick={handleSignIn}>
                     <AtIcon prefixClass='icon' value='qiandao' size='20' color='#fff'></AtIcon>
-                    <Text style={{fontSize:'14px',lineHeight:'14px',fontWeight:'500',color:'#fff', marginLeft:'4px'}}>签到</Text>
+                    <Text style={{ fontSize: '14px', lineHeight: '14px', fontWeight: '500', color: '#fff', marginLeft: '4px' }}>签到</Text>
                 </View>
             </View>
 

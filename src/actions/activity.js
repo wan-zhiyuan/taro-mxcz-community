@@ -38,3 +38,22 @@ export const getActivityCate = () => createHttp({
     url: API_USER + '?op=classify&type=2',
     method: 'GET',
 })
+
+/**
+ * 志愿者申请
+ * @param {*} postData 
+ */
+export const applyVolunteer = postData => createHttp({
+    url: API_USER,
+    method: 'POST',
+    postData,
+})
+
+/**
+ * 获取我的报名
+ * 优化点：分页（未完成）
+ */
+export const getMyEnroll = () => createHttp({
+    url: API_COMMUNITY + '?op=enroll&page=1&pagesize=200',
+    method: 'GET',
+})
