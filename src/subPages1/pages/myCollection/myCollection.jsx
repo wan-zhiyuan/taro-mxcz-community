@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../../utils/style'
-import { ClTabs } from "mp-colorui"
+import { ClTabs } from 'mp-colorui'
 import { getCollectList } from '../../../actions/user'
 import PublishList from '../../../components/PublishList'
 import InformationList from '../../../components/InformationList'
@@ -31,7 +31,7 @@ export default function MyCollection() {
 
     function handleClickTabs(index) {
         console.log('index:' + index)
-
+        
     }
 
     return (

@@ -2,7 +2,7 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane, AtFab } from 'taro-ui'
 import InformationList from '../../../components/InformationList'
-import { getInformation } from '../../../actions/publish'
+import { getInformation, getInformationCate } from '../../../actions/publish'
 import ListView, { LazyBlock } from "taro-listview";
 
 import './Information.scss'
@@ -32,6 +32,8 @@ export default function Information() {
             setList(data.list)
             setHasMore(data.hasMore)
             setIsLoaded(data.isLoaded)
+
+            getInformationCate()
         }
         getInit()
     }, [])

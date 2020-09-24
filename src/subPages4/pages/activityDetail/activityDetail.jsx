@@ -64,6 +64,9 @@ export default function ActivityDetail() {
         console.log('社区活动报名')
         // 方案1:详情接口告知是否已报名
         // 方案2:报名接口返回告知结果给用户展示
+        Taro.navigateTo({
+            url: `/subPages4/pages/activityEnroll/activityEnroll`
+        })
     }
 
     return (

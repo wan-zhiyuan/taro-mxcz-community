@@ -6,6 +6,8 @@ import { Toast, ToastSuccess } from '../../../utils/toast'
 import { isEmpty } from '../../../utils/is'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { updatePublishApply, increasePublish } from '../../../actions/publish'
+import { get as getGlobalData } from '../../../global_data'
+import { getLocationString } from '../../../utils/location'
 
 import './publishConfirm.scss'
 
@@ -61,10 +63,8 @@ export default function PublishConfirm() {
         setMobile(value)
     }
 
+    /* 发布 */
     function handlePublish() {
-        console.log('确认发布')
-        Toast('确认发布')
-
         if (isEmpty(txtValue)) {
             Toast('请输入描述内容')
             return
@@ -81,51 +81,40 @@ export default function PublishConfirm() {
             Toast('请输入您的联系方式')
             return
         }
-
         // 先上传图片，图片上传成功后再调用发布接口
-        let url = '' // 服务器地址
-        uploadLoader(url, picFiles)
-
-
-        // const uploadTask = Taro.uploadFile({
-        //     url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-        //     filePath: picFiles[0],
-        //     name: 'file',
-        //     formData: {
-        //         'user': 'test'
-        //     },
-        //     success: function (res) {
-        //         var d = res.data
-        //         //do something
-        //     }
-        // })
-        // uploadTask.progress((res) => {
-        //     console.log('上传进度', res.progress)
-        //     console.log('已经上传的数据长度', res.totalBytesSent)
-        //     console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-        // })
+        uploadLoader()
     }
 
     // 上传图片代码
-    function uploadLoader(data) {
+    function uploadLoader(data = {}) {
         let i = data.i ? data.i : 0
         let success = data.success ? data.success : 0//上传成功的个数
         let fail = data.fail ? data.fail : 0;//上传失败的个数
         Taro.showLoading({
             title: `正在上传第${i + 1}张`
         })
+        console.log('i=' + i)
+        console.log(picFiles[i])
+        console.log(picFiles[i].url)
+        let orzAuth5 = Taro.getStorageSync('jwt') || ''
         // 发起上传
         Taro.uploadFile({
-            url: data.url,
+            url: 'https://mxcz.love/api/user', // 服务器地址
             header: {
                 'content-type': 'multipart/form-data',
+                'Orz-Auth-Xcx': 'true',
+                'Orz-Auth5': orzAuth5,
             },
             name: 'file',
-            filePath: data.picFiles[i],
+            filePath: picFiles[i].url,
+            formData: {
+                'op': 'upload',
+                'upload_type': 'qnoss',
+            },
             success: (res) => {
-                console.log('success:' + res)
+                console.log(res)
                 // 图片上传成功，图片上传成功的变量+1
-                let resultData = JSON.parse(resp.data)
+                let resultData = JSON.parse(res.data) // json字符串 转 json对象
                 if (resultData.code === 200) {
                     success++
                     // 上传成功的数据放入upLoadImg后面提交发布的时候使用
@@ -140,44 +129,52 @@ export default function PublishConfirm() {
             complete: () => {
                 Taro.hideLoading()
                 i++ // 此图片执行完上传后，开始上传下一张
-                if (i === data.picFiles.length) {
+                console.log('i=' + i)
+                console.log('picFiles.length:' + picFiles.length)
+                if (i === picFiles.length) {
                     ToastSuccess('上传成功')
                     console.log('成功：' + success + " 失败：" + fail)
-                    // 这里可以放入提交发布的函数代码
+                    // 提交发布的函数代码
 
                     confirmPublish()
                 } else {
-                    data.i = i
-                    data.success = success
-                    data.fail = fail
-                    uploadLoader(data)
+                    let newData = {}
+                    newData.i = i
+                    newData.success = success
+                    newData.fail = fail
+                    uploadLoader(newData)
                 }
             }
         })
     }
 
     async function confirmPublish() {
-        let location = ''
-        try {
-            const res = await Taro.getLocation({
-                type: 'gcj02',
-            })
-            location = latitude + ',' + longitude
-        } catch (err) {
-            location = ''
+        console.log('开始发布请求')
+        console.log(upLoadImg)
+        let images = ''
+        for (let i = 0; i < upLoadImg.length; i++) {
+            if (images === '') {
+                images = upLoadImg[i].url
+            } else {
+                images = images + '|' + upLoadImg[i].url
+            }
         }
-
+        console.log('images:' + images)
+        const location = await getLocationString()
         let postData = {
             op: 'publish',
-            cate_id: 1,
-            cate_name: '二手闲置',
-            content: '今天天气真好，我要出去郊游～',
-            images: '',
-            location: location,
-            contact_name: '华晨宇',
-            contact_mobile: '13589890606',
+            cate_id: cate_id,
+            cate_name: cate_name,
+            content: txtValue,
+            images: images,
+            location: location || '',
+            contact_name: name || '',
+            contact_mobile: mobile || '',
         }
-        increasePublish(postData)
+        const res = increasePublish(postData)
+        if (res.data.code === 200) {
+            ToastSuccess('发布成功')
+        }
     }
 
     return (
@@ -254,3 +251,34 @@ export default function PublishConfirm() {
 PublishConfirm.config = {
     navigationBarTitleText: '发布信息',
 }
+
+// 测试图片上传代码
+        // console.log(picFiles)
+        // console.log(picFiles[0])
+        // let orzAuth5 = Taro.getStorageSync('jwt') || ''
+        // const uploadTask = Taro.uploadFile({
+        //     url: 'https://mxcz.love/api/user', //仅为示例，非真实的接口地址
+        //     // header: {
+        //     //     'content-type': 'multipart/form-data',
+        //     //     'Orz-Auth-Xcx': 'true',
+        //     //     'Orz-Auth5': orzAuth5,
+        //     //     // 'method': 'POST',
+        //     // },
+        //     // method: 'POST',
+        //     filePath: picFiles[0].url,
+        //     name: 'file',
+        //     // formData: {
+        //     //     'op':'upload',
+        //     //     'upload_type': 'qnoss',
+        //     // },
+        //     success: function (res) {
+        //         var d = res.data
+        //         //do something
+        //         console.log(res)
+        //     }
+        // })
+        // uploadTask.progress((res) => {
+        //     console.log('上传进度', res.progress)
+        //     console.log('已经上传的数据长度', res.totalBytesSent)
+        //     console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+        // })

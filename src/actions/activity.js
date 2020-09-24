@@ -1,5 +1,5 @@
 import { COMMUNITY_ACTIVITY_DETAIL, VOLUNTEER_ACTIVITY_DETAIL } from '../constants/activity'
-import { API_COMMUNITY } from '../constants/api'
+import { API_COMMUNITY, API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
 /**
@@ -28,5 +28,13 @@ export const getCommunityActivityDetail = (target_id) => createHttp({
 export const dispatchCommunityActivityDetail = (target_id) => createAction({
     url: API_COMMUNITY + `/${target_id}?op=activity`,
     type: COMMUNITY_ACTIVITY_DETAIL,
+    method: 'GET',
+})
+
+/**
+ * 获取社区活动分类
+ */
+export const getActivityCate = () => createHttp({
+    url: API_USER + '?op=classify&type=2',
     method: 'GET',
 })

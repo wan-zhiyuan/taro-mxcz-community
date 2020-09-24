@@ -1,12 +1,13 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import RankItem from '../signInRank/RankItem'
-import { sign } from '../../../actions/signIn'
+import { sign, getSignList } from '../../../actions/signIn'
 import PopupSigned from './PopupSigned'
 import PopupCalendar from './PopupCalendar'
 import SignInBanner from '../../images/signin_reward.jpeg'
 import { isEmpty } from '../../../utils/is'
 import { Toast } from '../../../utils/toast'
+import dayjs from 'dayjs'
 
 import './signIn.scss'
 
@@ -16,11 +17,12 @@ export default function SignIn() {
     const [top3, setTop3] = useState([])
     const [signData, setSignData] = useState({})
     const [isSign, setIsSign] = useState(0) // 默认没有签到过
+    const [signList, setSignList] = useState([])
     const [isOpenedPop, setIsOpenedPop] = useState(true)
     const [isOpenedCalendar, setIsOpenedCalendar] = useState(false)
 
     useEffect(() => {
-        async function doSign() {
+        async function initData() {
             const res = await sign()
             console.log(res)
             if (res.code === 200) {
@@ -30,8 +32,26 @@ export default function SignIn() {
             } else {
                 Toast('签到失败')
             }
+
         }
-        doSign()
+        initData()
+        async function getSignL() {
+            const res = await getSignList()
+            if (res.code !== 200) return
+            let list = []
+            for (let i = 0; i < res.data.length; i++) {
+                list.push(
+                    {
+                        date: dayjs(Number(res.data[i].create_time) * 1000).format("YYYY-MM-DD"),
+                        tipTop: '已签到',
+                        tipTopColor: 'red',
+                    }
+                )
+            }
+            console.log(list)
+            setSignList(list)
+        }
+        getSignL()
     }, [])
 
     /* 查看签到排行榜 */
@@ -62,7 +82,7 @@ export default function SignIn() {
             }
             {
                 isOpenedCalendar &&
-                <PopupCalendar isOpened={isOpenedCalendar} onClose={handleCloseCalendar} />
+                <PopupCalendar isOpened={isOpenedCalendar} onClose={handleCloseCalendar} signList={signList} />
             }
             <Image className='banner' src={SignInBanner} mode='widthFix'></Image>
             <View className='header'>

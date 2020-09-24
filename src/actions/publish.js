@@ -151,3 +151,18 @@ export const updateInformationApply = (informationApply) => {
         payload: informationApply,
     }
 }
+
+/**
+ * 获取发布信息分类
+ */
+export const getPublishCate = () => createHttp({
+    url: API_USER + '?op=classify&type=0',
+    method: 'GET',
+})
+/**
+ * 获取资讯信息分类
+ */
+export const getInformationCate = () => createHttp({
+    url: API_USER + '?op=classify&type=1',
+    method: 'GET',
+})

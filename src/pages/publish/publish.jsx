@@ -1,4 +1,4 @@
-import Taro, { useState, } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 import Icon1 from './../../assets/images/icon1.png'
 import Icon2 from './../../assets/images/icon2.png'
@@ -8,6 +8,7 @@ import Icon5 from './../../assets/images/icon5.png'
 import Icon6 from './../../assets/images/icon6.png'
 import Icon7 from './../../assets/images/icon7.png'
 import { isEmpty } from '../../utils/is'
+import { getPublishCate } from '../../actions/publish'
 
 import './publish.scss'
 
@@ -22,6 +23,10 @@ export default function Publish() {
         { cate_id: '6', cate_name: '志愿者之家', pic: Icon6 },
         { cate_id: '7', cate_name: '最美睡姿', pic: Icon7 },
     ])
+
+    useEffect(()=>{
+        getPublishCate()
+    },[])
 
     function handlePublishSubItem(item) {
         Taro.navigateTo({

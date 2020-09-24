@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 
 import './index.scss'
@@ -15,7 +15,20 @@ export default function Index(props) {
         })
     }
 
-    function handleGoToAddress() {
+    /* 我的社区 */
+    function handleMyCommunity() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/myCommunity/myCommunity`
+        })
+    }
+    /* 我的报名 */
+    function handleMyEnroll() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/myEnroll/myEnroll`
+        })
+    }
+    /* 我的地址 */
+    function handleAddress() {
         console.log('handleGoToAddress()')
         Taro.chooseAddress({
             success: function (res) {
@@ -38,7 +51,7 @@ export default function Index(props) {
                 <AtIcon prefixClass='icon' value='xingji' size='20' color='#EBC00F'></AtIcon>
                 <Text className='title_txt'>{title}</Text>
             </View>
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={handleMyCommunity}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='home' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的社区</Text>
@@ -78,7 +91,7 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View> */}
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={handleMyEnroll}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的报名</Text>
@@ -88,7 +101,7 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            <View className='middle_item' onClick={() => { handleGoToAddress() }}>
+            <View className='middle_item' onClick={() => { handleAddress() }}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的地址</Text>

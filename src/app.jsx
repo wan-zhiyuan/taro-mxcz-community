@@ -38,7 +38,9 @@ class App extends Component {
           'pages/search/search',
           'pages/pointDetail/pointDetail',
           'pages/myCollection/myCollection',
-          'pages/commentPage/commentPage',
+          'pages/myEnroll/myEnroll',
+          'pages/myCommunity/myCommunity',
+          'pages/commentPage/commentPage', // 评论页面
         ]
       },
       // 社区相关： 社区商户 && 社区服务站
@@ -75,6 +77,7 @@ class App extends Component {
           'pages/activity/activity',
           'pages/activitySub/activitySub',
           'pages/activityDetail/activityDetail',
+          'pages/activityEnroll/activityEnroll',
           'pages/activityVerification/activityVerification',
           'pages/volunteer/volunteer',
           'pages/volunteerDetail/volunteerDetail'
@@ -157,9 +160,9 @@ class App extends Component {
   }
 
   /* 初始化获取定位 */
-  getLocation = async() => {
+  getLocation = async () => {
     const location = await getLocationString()
-    setGlobaleData('location',location)
+    setGlobaleData('location', location)
   }
 
   componentDidMount() { }

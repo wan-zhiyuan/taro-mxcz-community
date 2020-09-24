@@ -2,7 +2,7 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import ActivityCateList from './ActivityCateList'
 import ActivityList from './ActivityList'
-import { getCommunityActivity } from '../../../actions/activity'
+import { getCommunityActivity, getActivityCate } from '../../../actions/activity'
 
 import './activity.scss'
 
@@ -20,6 +20,8 @@ export default function Activity() {
             }
         }
         getActivity()
+
+        getActivityCate()
     },[])
 
     return (

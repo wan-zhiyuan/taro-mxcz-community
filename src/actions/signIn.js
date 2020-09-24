@@ -10,6 +10,15 @@ export const sign = () => createHttp({
     method: 'POST',
     postData: { op: 'signed' }
 })
+/**
+ * 已签到数据
+ * @param {*} postData 
+ */
+export const getSignList = () => createHttp({
+    url: API_USER,
+    method: 'GET',
+    postData: { op: 'sign_list' }
+})
 
 /**
  * 签到排名手速榜

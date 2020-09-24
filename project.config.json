@@ -20,12 +20,12 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"compileHotReLoad": false,
 		"useIsolateContext": true,
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages4/pages/activity/activity",
-					"pathName": "subPages4/pages/activity/activity",
+					"name": "subPages4/pages/activityVerification/activityVerification",
+					"pathName": "subPages4/pages/activityVerification/activityVerification",
 					"query": "",
 					"scene": null
 				},
@@ -80,15 +80,15 @@
 				},
 				{
 					"id": 3,
-					"name": "subPages3/pages/category/category",
-					"pathName": "subPages3/pages/category/category",
+					"name": "subPages3/pages/publishConfirm/publishConfirm",
+					"pathName": "subPages3/pages/publishConfirm/publishConfirm",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 4,
-					"name": "subPages1/pages/myCollection/myCollection",
-					"pathName": "subPages1/pages/myCollection/myCollection",
+					"name": "subPages1/pages/signIn/signIn",
+					"pathName": "subPages1/pages/signIn/signIn",
 					"query": "",
 					"scene": null
 				}

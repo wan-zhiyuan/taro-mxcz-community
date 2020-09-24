@@ -17,7 +17,8 @@ export default function Index(props) {
                 className='publish_list'
                 style={list.length === 0
                     ? { backgroundColor: '#fff' }
-                    : { backgroundColor: '#f2f2f2' }}>
+                    : { backgroundColor: '#f2f2f2' }}
+            >
                 {
                     list.length === 0
                         ? <View className='empty'>
