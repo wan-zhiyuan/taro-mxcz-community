@@ -39,7 +39,7 @@ class App extends Component {
           'pages/pointDetail/pointDetail',
           'pages/myCollection/myCollection',
           'pages/myEnroll/myEnroll',
-          'pages/myCommunity/myCommunity',
+          'pages/myPublish/myPublish',
           'pages/commentPage/commentPage', // 评论页面
         ]
       },

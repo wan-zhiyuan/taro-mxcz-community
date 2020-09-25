@@ -1,4 +1,4 @@
-import { USER_INFO } from '../constants/user'
+import { USER_INFO, CITY_INFO } from '../constants/user'
 import { API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
@@ -38,3 +38,14 @@ export const getCollectList = () => createHttp({
     url: API_USER + `?op=collect`,
     method: 'GET',
 })
+
+/**
+ * 更新城市
+ * @param {*} city 
+ */
+export const updateCity = (city) => {
+    return {
+        type: CITY_INFO,
+        payload: city,
+    }
+}

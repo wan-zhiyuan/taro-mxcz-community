@@ -57,3 +57,13 @@ export const getMyEnroll = () => createHttp({
     url: API_COMMUNITY + '?op=enroll&page=1&pagesize=200',
     method: 'GET',
 })
+
+/**
+ * 活动报名接口
+ * @param {*} postData 
+ */
+export const activityEnroll = postData => createHttp({
+    url: API_COMMUNITY,
+    method: 'POST',
+    postData,
+})

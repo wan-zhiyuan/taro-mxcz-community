@@ -10,7 +10,7 @@ import './index.scss'
 /* 活动列表展示时每一项item */
 export default function Index(props) {
 
-    const { publishItem } = props
+    const { publishItem, from } = props
 
     const tags = [{ text: `${publishItem.cate_name}`, color: 'red' }]
 
@@ -41,6 +41,10 @@ export default function Index(props) {
     return (
         <View className='activity_item'>
             <View className='activity_item_box'>
+                {
+                    from === 'myPublish' &&
+                    <View className='extra_module'></View>
+                }
                 <View className='item_top'>
                     <View className='item_user'>
                         {
@@ -56,7 +60,12 @@ export default function Index(props) {
                     </View>
                     <View className='detail_distance'>
                         <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
-                        <Text className='item_distance'>{caleDistance()}</Text>
+                        {
+                            from === 'myPublish'
+                            ? <Text className='item_distance'></Text>
+                            : <Text className='item_distance'>{caleDistance()}</Text>
+                        }
+                        
                     </View>
 
                 </View>
@@ -110,5 +119,6 @@ export default function Index(props) {
 Index.defaultProps = {
     publishItem: {
         images: ''
-    }
+    },
+    from : '',
 }

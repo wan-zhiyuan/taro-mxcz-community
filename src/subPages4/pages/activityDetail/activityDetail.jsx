@@ -65,7 +65,7 @@ export default function ActivityDetail() {
         // 方案1:详情接口告知是否已报名
         // 方案2:报名接口返回告知结果给用户展示
         Taro.navigateTo({
-            url: `/subPages4/pages/activityEnroll/activityEnroll`
+            url: `/subPages4/pages/activityEnroll/activityEnroll?target_id=${target_id}`
         })
     }
 

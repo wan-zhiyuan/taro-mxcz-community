@@ -18,7 +18,7 @@ export default function Index(props) {
     /* 我的社区 */
     function handleMyCommunity() {
         Taro.navigateTo({
-            url: `/subPages1/pages/myCommunity/myCommunity`
+            url: `/subPages1/pages/myPublish/myPublish`
         })
     }
     /* 我的报名 */

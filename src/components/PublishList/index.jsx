@@ -9,7 +9,7 @@ import './index.scss'
 /* 发布信息列表 */
 export default function Index(props) {
 
-    const { list, hasMore } = props
+    const { list, hasMore, from } = props
 
     return (
         <View>
@@ -28,7 +28,7 @@ export default function Index(props) {
                             {
                                 list.map((item, idx) => {
                                     return (
-                                        <PublishItem key={'index_' + idx} publishItem={item} />
+                                        <PublishItem key={'index_' + idx} publishItem={item} from={from}/>
                                     )
                                 })
                             }
@@ -48,4 +48,5 @@ export default function Index(props) {
 Index.defaultProps = {
     list: [],
     hasMore: true,
+    from: '',
 }

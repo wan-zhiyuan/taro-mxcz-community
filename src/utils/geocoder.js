@@ -46,3 +46,17 @@ export async function reverseGeocoder(lat, lng) {
             return res
         })
 }
+export async function reverseGeocoderString(locationString) {
+    const option = {
+        url: `https://apis.map.qq.com/ws/geocoder/v1/`,
+        data: {
+            key: key,
+            location: locationString,
+        },
+        method: 'GET',
+    }
+    return Taro.request(option)
+        .then((res) => {
+            return res
+        })
+}

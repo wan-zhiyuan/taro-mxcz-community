@@ -9,25 +9,29 @@ import './activity.scss'
 /* 社区活动 针对社区发布的活动 */
 export default function Activity() {
 
+    const [activityCate, setActivityCate] = useState([])
     const [activityList, setActivityList] = useState([])
 
     useEffect(()=>{
-        async function getActivity() {
+        async function getData() {
             const res = await getCommunityActivity(0,1,100)
             console.log(res)
             if (res.code === 200) {
                 setActivityList(res.data.list)
             }
-        }
-        getActivity()
 
-        getActivityCate()
+            const r = await getActivityCate()
+            if (r.code === 200) {
+                setActivityCate(r.data)
+            }
+        }
+        getData()
     },[])
 
     return (
         <View className='activity_index'>
             {/* 活动分类 */}
-            <ActivityCateList />
+            <ActivityCateList activityCate={activityCate}/>
             {/* 活动列表 */}
             <ActivityList activityList={activityList}/>
         </View>

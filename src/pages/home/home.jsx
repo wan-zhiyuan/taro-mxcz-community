@@ -10,12 +10,13 @@ import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { dispatchHomeIndex } from '../../actions/home'
-import { dispatchUser } from '../../actions/user'
+import { dispatchUser, updateCity } from '../../actions/user'
 import { getPublish } from '../../actions/publish'
 import ListView, { LazyBlock } from "taro-listview";
 import PopupLogin from '../../components/PopupLogin'
 import { get as getGlobalData, set as setGlobalData } from '../../global_data'
 import { getLocationString } from '../../utils/location'
+import { reverseGeocoderString } from '../../utils/geocoder'
 
 import './home.scss'
 
@@ -58,6 +59,17 @@ export default function Home() {
         // 获取定位数据(待优化)
         const location = await getLocationString()
         setGlobalData('location', location)
+        // 城市解析
+        if (location !== '') {
+           const result =  await reverseGeocoderString(location)
+           console.log('#################')
+           console.log(result)
+           console.log(result.data.result.address_component.province)
+           if (result.statusCode === 200) {
+               setGlobalData('city',result.data.result.address_component.province)
+           }
+        }
+        
         // 获取发布信息数据
         getData()
     }
