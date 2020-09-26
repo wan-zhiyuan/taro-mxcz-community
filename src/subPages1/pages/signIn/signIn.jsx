@@ -22,6 +22,7 @@ export default function SignIn() {
     const [isOpenedCalendar, setIsOpenedCalendar] = useState(false)
 
     useEffect(() => {
+        // 初始化数据
         async function initData() {
             const res = await sign()
             console.log(res)
@@ -33,25 +34,22 @@ export default function SignIn() {
                 Toast('签到失败')
             }
 
-        }
-        initData()
-        async function getSignL() {
-            const res = await getSignList()
-            if (res.code !== 200) return
+            const r = await getSignList()
+            if (r.code !== 200) return
             let list = []
-            for (let i = 0; i < res.data.length; i++) {
+            for (let i = 0; i < r.data.length; i++) {
                 list.push(
                     {
-                        date: dayjs(Number(res.data[i].create_time) * 1000).format("YYYY-MM-DD"),
+                        date: dayjs(Number(r.data[i].create_time) * 1000).format("YYYY-MM-DD"),
                         tipTop: '已签到',
                         tipTopColor: 'red',
                     }
                 )
             }
-            console.log(list)
             setSignList(list)
         }
-        getSignL()
+        initData()
+
     }, [])
 
     /* 查看签到排行榜 */
@@ -64,6 +62,7 @@ export default function SignIn() {
     /* 关闭签到弹窗 */
     function handleClose() {
         setIsOpenedPop(false)
+
     }
     /* 关闭日历弹窗 */
     function handleCloseCalendar() {

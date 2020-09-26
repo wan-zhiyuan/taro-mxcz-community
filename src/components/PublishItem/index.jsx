@@ -3,9 +3,11 @@ import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { getDateTypeMinutes } from '../../utils/timer'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
-import { ClTag } from "mp-colorui"
+import IconFont from '../../assets/iconfont'
+import { deleteMyPublish } from '../../actions/publish'
 
 import './index.scss'
+import { Toast, ToastSuccess } from '../../utils/toast'
 
 /* 活动列表展示时每一项item */
 export default function Index(props) {
@@ -14,9 +16,11 @@ export default function Index(props) {
 
     const tags = [{ text: `${publishItem.cate_name}`, color: 'red' }]
 
-    function onImageClick(item) {
+    function onImageClick(item, index) {
+        let picArr = publishItem.images.split('|') || []
         Taro.previewImage({
-            urls: [item]
+            urls: picArr,
+            current: index,
             // urls: [getImagePath(item)]
         })
     }
@@ -38,12 +42,32 @@ export default function Index(props) {
         }
     }
 
+    /* 删除 */
+    async function handleDelete() {
+        const res = await deleteMyPublish(publishItem.id)
+        if (res.code === 200) {
+            ToastSuccess('删除成功')
+            // 优化点：我的发布 删除我的发布 编辑我的发布 置顶我的发布 都返回相同的数据格式，然后统一使用redux管理
+            Taro.showLoading()
+            setTimeout(()=>{
+                Taro.hideLoading()
+                Taro.navigateBack() // 这里可以不用返回
+            },1500)
+        } else {
+            Toast(res.msg)
+        }
+    }
+
     return (
         <View className='activity_item'>
             <View className='activity_item_box'>
                 {
                     from === 'myPublish' &&
-                    <View className='extra_module'></View>
+                    <View className='extra_module'>
+                        <View className='extra_item' onClick={handleDelete}>
+                            <AtIcon value='trash' size='20' color='#ccc'></AtIcon>
+                        </View>
+                    </View>
                 }
                 <View className='item_top'>
                     <View className='item_user'>
@@ -62,10 +86,10 @@ export default function Index(props) {
                         <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
                         {
                             from === 'myPublish'
-                            ? <Text className='item_distance'></Text>
-                            : <Text className='item_distance'>{caleDistance()}</Text>
+                                ? <Text className='item_distance'></Text>
+                                : <Text className='item_distance'>{caleDistance()}</Text>
                         }
-                        
+
                     </View>
 
                 </View>
@@ -86,7 +110,7 @@ export default function Index(props) {
                                                     src={item}
                                                     mode='scaleToFill'
                                                     lazyLoad={true}
-                                                    onClick={() => { onImageClick(item) }}
+                                                    onClick={() => { onImageClick(item, idx) }}
                                                 ></Image>
                                         }
                                     </View>
@@ -120,5 +144,5 @@ Index.defaultProps = {
     publishItem: {
         images: ''
     },
-    from : '',
+    from: '',
 }

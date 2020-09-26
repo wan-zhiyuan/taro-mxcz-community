@@ -1,9 +1,18 @@
 .tab_main {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 
     .memo {
         width: 100%;
+    }
+    .main_details {
+        width: 100%;
         min-height: 300px;
+
+        .details_image {
+            width: 100%;
+        }
     }
 }
 

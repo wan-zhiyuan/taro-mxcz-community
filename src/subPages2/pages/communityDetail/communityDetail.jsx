@@ -85,7 +85,7 @@ export default function CommunityDetail() {
             >
                 {/* 头部banner */}
                 {
-                    detail.banner === ''
+                    detail.images === ''
                         ? <View className='banner_default'></View>
                         : <Swiper
                             className='detail_banner_swiper'
@@ -99,7 +99,7 @@ export default function CommunityDetail() {
                             indicatorDots={false}
                         >
                             {
-                                detail.banner.split('|').map((item, idx) => (
+                                detail.images.split('|').map((item, idx) => (
                                     <SwiperItem key={'index_' + idx} >
                                         <Image
                                             src={item}

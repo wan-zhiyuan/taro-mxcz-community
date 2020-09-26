@@ -1,21 +1,21 @@
 import Taro, { useState, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { getWindowHeight } from '../../utils/style'
+import { getWindowHeight } from '../../../utils/style'
 import ListView, { LazyBlock } from "taro-listview";
-import { getLocationString } from '../../utils/location'
-import { getPointList, getCollectList } from '../../actions/user'
-import { sign, signRankingTime, signRankingTotal, } from '../../actions/signIn'
+import { getLocationString } from '../../../utils/location'
+import { getPointList, getCollectList } from '../../../actions/user'
+import { sign, signRankingTime, signRankingTotal, } from '../../../actions/signIn'
 import {
     increasePublish, increaseInfo, publishExtend, 
     informationExtend, getPublish, getInformation,
     getPublishDetail, getInformationDetail,
-} from '../../actions/publish'
+} from '../../../actions/publish'
 import {
     getCommunityBusiness, getCommunityServiceSite,
     createCommunityServiceSite, createCommunityBusiness, communityBusinessExtend,
     getServiceSiteDetail, getBusinessDetail,
-} from '../../actions/community'
-import Share from '../../components/ShareComponent'
+} from '../../../actions/community'
+import Share from '../../../components/ShareComponent'
 
 import './index.scss'
 

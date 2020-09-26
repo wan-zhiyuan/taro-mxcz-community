@@ -2,7 +2,6 @@ import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import PopupWrap from '../../../../components/PopupWrap'
 import { ClCalendar } from "mp-colorui"
-import dayjs from 'dayjs'
 
 import './index.scss'
 
@@ -15,21 +14,6 @@ export default function Index(props) {
         // 需要设置显示的组件部分禁止冒泡，避免点击显示的弹窗造成弹窗关闭的现象
         e.stopPropagation()
     }
-    // [{
-    //     date: dayjs().format("YYYY-MM-DD"),
-    //     tipTop: '已签到',
-    //     tipTopColor: 'red',
-    // },
-    // {
-    //     date: dayjs().add(1, 'day').format("YYYY-MM-DD"),
-    //     tipTop: '已签到',
-    //     tipTopColor: 'red',
-    // },
-    // {
-    //     date: dayjs().add(2, 'day').format("YYYY-MM-DD"),
-    //     tipTop: '已签到',
-    //     tipTopColor: 'red',
-    // }]
 
     return (
         <PopupWrap isOpened={isOpened} onClose={onClose}>

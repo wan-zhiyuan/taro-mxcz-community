@@ -8,7 +8,7 @@ export default function Index(props) {
 
     const [gridData, setGridData] = useState([
         {
-            id: '1', name: '社区助餐', pic: 'http://source.bingu.cn/icon_01.png',
+            id: '1', name: '社区服务站', pic: 'http://source.bingu.cn/icon_01.png',
             url: '/subPages2/pages/serviceSite/serviceSite'
         },
         {

@@ -1,14 +1,17 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View, Text, Picker } from '@tarojs/components'
 import { AtInput, AtIcon } from 'taro-ui'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { updateServiceSiteApply } from '../../../../actions/community'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const {  } = props
+    const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
+    const dispatch = useDispatch()
 
-    const [selector, setSelector] = useState(['社区助餐', '社区养老', '社区帮困'])
+    const [selector, setSelector] = useState(['社区助餐', '社区养老',])
     const [selectorChecked, setSelectorChecked] = useState('社区助餐')
     const [name, setName] = useState('')
     const [mobile, setMobile] = useState('')
@@ -16,13 +19,27 @@ export default function Index(props) {
     function handleChangeName(value) {
         setName(value)
     }
+    function hanldeBlurName(v) {
+        let data = JSON.parse(JSON.stringify(serviceSiteApply))
+        data.company_name = v
+        dispatch(updateServiceSiteApply(data))
+    }
 
     function handleChangeMobile(value) {
         setMobile(value)
     }
+    function handleBlurMobile(v) {
+        let data = JSON.parse(JSON.stringify(serviceSiteApply))
+        data.company_phone = v
+        dispatch(updateServiceSiteApply(data))
+    }
 
     function onChange(e) {
         setSelectorChecked(selector[e.detail.value])
+
+        let data = JSON.parse(JSON.stringify(serviceSiteApply))
+        data.industry = selector[e.detail.value]
+        dispatch(updateServiceSiteApply(data))
     }
     return (
         <View className='locate_info'>
@@ -34,6 +51,7 @@ export default function Index(props) {
                 placeholder='请输入公司名称'
                 value={name}
                 onChange={handleChangeName}
+                onBlur={hanldeBlurName}
             />
             <AtInput
                 name='value2'
@@ -43,6 +61,7 @@ export default function Index(props) {
                 placeholder='请输入公司电话'
                 value={mobile}
                 onChange={handleChangeMobile}
+                onBlur={handleBlurMobile}
             />
             <View className='industry'>
                 <Text className='industry_label'>行业分类：</Text>

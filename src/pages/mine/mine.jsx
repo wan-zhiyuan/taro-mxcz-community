@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useDidShow } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../utils/style'
 import MineHeader from './MineHeader'
@@ -6,13 +6,19 @@ import MineData from './MineData'
 import MineService from './MineService'
 import PlatformService from './PlatformService'
 import MerchantService from './MerchantService'
+import { useDispatch } from '@tarojs/redux'
+import { dispatchUser } from '../../actions/user'
 
 import './mine.scss'
 
 export default function Mine() {
 
-    const [myService, setMyService] = useState([])
-    const [platformService, setPlatformService] = useState([])
+    const dispatch = useDispatch()
+
+    useDidShow(()=>{
+        // 更新用户信息
+        dispatch(dispatchUser())
+    })
 
     return (
         <View className='mine_index'>

@@ -155,3 +155,12 @@ export const updateServiceSiteApply = (serviceSiteApply) => {
         payload: { serviceSiteApply }
     }
 }
+
+/**
+ * 删除我的社区服务站
+ * @param {*} target_id 
+ */
+export const deleteMyServiceSite = (target_id) => createHttp({
+    url : API_COMMUNITY + '/' + target_id + '?op=service_site',
+    method: 'DELETE',
+})

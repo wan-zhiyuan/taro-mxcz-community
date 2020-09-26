@@ -4,6 +4,7 @@ import IconFont from '../../../../assets/iconfont'
 import { isEmpty } from '../../../../utils/is'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { updateServiceSiteApply } from '../../../../actions/community'
+import { getUserPhone } from '../../../../actions/user'
 
 import './index.scss'
 
@@ -14,7 +15,7 @@ export default function Index(props) {
     const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
     const dispatch = useDispatch()
 
-    // const [logo, setLogo] = useState('')
+    const [logo, setLogo] = useState('')
     const [mobile, setMobile] = useState('')
     const [jsCode, setJsCode] = useState('')
 
@@ -38,11 +39,46 @@ export default function Index(props) {
             sourceType: ['album', 'cemera'],
             success: function (res) {
                 console.log(res.tempFilePaths)
-                // 更新serviceSiteApply
-                let data = JSON.parse(JSON.stringify(serviceSiteApply))
-                data.logo = res.tempFilePaths
-                // data['logo'] = res.tempFilePaths // 哪一种生效
-                dispatch(updateServiceSiteApply(data))
+                const tempFilePaths = res.tempFilePaths
+                setLogo(tempFilePaths)
+                uploadImage(tempFilePaths)
+            }
+        })
+    }
+
+    /**
+     * 单图片上传
+     * @param {*} tempFilePaths 图片数组
+     */
+    function uploadImage(tempFilePaths) {
+        let orzAuth5 = Taro.getStorageSync('jwt') || ''
+        Taro.uploadFile({
+            url: 'https://mxcz.love/api/user',
+            header: {
+                'content-type': 'multipart/form-data',
+                'Orz-Auth-Xcx': 'true',
+                'Orz-Auth5': orzAuth5,
+            },
+            filePath: tempFilePaths[0],
+            name: 'file',
+            formData: {
+                'op': 'upload',
+                'upload_type': 'qnoss',
+            },
+            success(res) {
+                console.log('######')
+                console.log(res)
+                let resultData = JSON.parse(res.data) // json字符串 转 json对象
+                if (resultData.code === 200) {
+                    // 更新LOGO
+                    let data = JSON.parse(JSON.stringify(serviceSiteApply))
+                    data.logo = resultData.data.url
+                    dispatch(updateServiceSiteApply(data))
+                } else {
+                    Toast(resultData.msg)
+                    // 上传失败 应该清空logo的值
+                    setLogo('')
+                }
             }
         })
     }
@@ -60,7 +96,30 @@ export default function Index(props) {
             console.log(`包括敏感数据在内的完整用户信息的加密数据:${e.detail.encryptedData}`);
             let encryptedData = encodeURIComponent(e.detail.encryptedData)
             let iv = encodeURIComponent(e.detail.iv)
-            // resolvePhone
+            
+            resolvePhone(encryptedData, iv)
+        }
+    }
+
+    async function resolvePhone(encryptedData, iv) {
+        // 去后台交换解析手机号码 需要接口
+        let postData = {
+            op: 'user_mobile',
+            js_code: jsCode,
+            encrypted: encryptedData,
+            iv: iv,
+        }
+        const res = await getUserPhone(postData)
+        console.log(res)
+        // 获取成功设置手机号显示
+        if (res.code === 200) {
+            setMobile(res.data.mobile)
+            // 更新redux中的状态值
+            let data = JSON.parse(JSON.stringify(serviceSiteApply))
+            data.apply_mobile = res.data.mobile
+            dispatch(updateServiceSiteApply(data))
+        } else {
+            Toast(res.msg)
         }
     }
 

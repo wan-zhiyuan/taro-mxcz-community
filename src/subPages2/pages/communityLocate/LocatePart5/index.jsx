@@ -47,7 +47,7 @@ export default function Index() {
             /* --------------------- */
             let picUrlArr = []
             for (let i = 0; i < files.length; i++) {
-                picUrlArr.push(files[0].url)
+                picUrlArr.push(files[i].url)
             }
             console.log('picUrlArr')
             console.log(picUrlArr)

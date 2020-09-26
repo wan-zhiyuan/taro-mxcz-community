@@ -29,7 +29,7 @@ export default function Index(props) {
                         // setAddress(res.address)
                         let data = JSON.parse(JSON.stringify(serviceSiteApply))
                         data.address = res.address
-                        // data['address'] = res.address // 哪一种生效
+                        data.location = res.latitude + ',' + res.longitude
                         dispatch(updateServiceSiteApply(data))
                     }
                 })

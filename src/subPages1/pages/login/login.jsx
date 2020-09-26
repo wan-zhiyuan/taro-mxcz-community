@@ -2,6 +2,7 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, OpenData } from '@tarojs/components'
 import { getLogin } from '../../../actions/login'
 import { getUserPhone, dispatchUser } from '../../../actions/user'
+import { dispatchHomeIndex } from '../../../actions/home'
 import { useDispatch } from '@tarojs/redux'
 
 import './login.scss'
@@ -85,6 +86,7 @@ export default function Login() {
         Taro.showLoading({
             title: '请稍等'
         })
+        
         const res = await dispatch(dispatchUser())
         if (!res.data.nickname) {
             console.log('未找到用户信息，请重新登陆')
@@ -92,6 +94,8 @@ export default function Login() {
             Taro.hideLoading()
             return
         }
+        await dispatch(dispatchHomeIndex())
+
         setTimeout(() => {
             Taro.hideLoading()
             goBack()

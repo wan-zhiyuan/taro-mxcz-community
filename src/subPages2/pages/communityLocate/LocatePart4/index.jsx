@@ -43,7 +43,7 @@ export default function Index() {
             /* --------------------- */
             let picUrlArr = []
             for (let i = 0; i < files.length; i++) {
-                picUrlArr.push(files[0].url)
+                picUrlArr.push(files[i].url)
             }
             console.log('picUrlArr')
             console.log(picUrlArr)
@@ -110,8 +110,8 @@ export default function Index() {
             complete: () => {
                 Taro.hideLoading()
                 i++ // 此图片执行完上传后，开始上传下一张
-                console.log('i=' + i)
-                console.log('data.path.length:' + data.path.length)
+                // console.log('i=' + i)
+                // console.log('data.path.length:' + data.path.length)
                 if (i === data.path.length) {
                     ToastSuccess('上传成功')
                     console.log('成功：' + success + " 失败：" + fail)

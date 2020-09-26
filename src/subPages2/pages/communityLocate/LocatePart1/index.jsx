@@ -35,7 +35,7 @@ export default function Index(props) {
         console.log('商家名称输入框失去焦点:' + v)
         // 更新businessApply
         let data = JSON.parse(JSON.stringify(businessApply))
-        data.busines_name = v
+        data.business_name = v
         // data['busines_name'] = v // 两种方式都可以
         dispatch(updateBusinessApply(data))
     }

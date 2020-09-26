@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtGrid, AtTabs, AtTabsPane } from 'taro-ui'
-import { getPublish } from '../../../actions/publish'
+import { getPublish, getPublishCate } from '../../../actions/publish'
 import PublishList from '../../../components/PublishList'
 import { getLocationString } from '../../../utils/location'
 import ListView, { LazyBlock } from "taro-listview";
@@ -23,62 +23,78 @@ export default function Category() {
     const [publishAll, setPublishAll] = useState([])
 
     useEffect(() => {
-        // 模拟获取顶部grid数据
-        Taro.showLoading({
-            title: '加载中'
-        })
-        setTimeout(() => {
-            setGridData([
-                {
-                    image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-                    value: '二手闲置',
-                    cate_id: 1,
-                    cate_name: '二手闲置',
-                },
-                {
-                    image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-                    value: '健康食集',
-                    cate_id: 2,
-                    cate_name: '健康食集',
-                },
-                {
-                    image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-                    value: '邻里分享',
-                    cate_id: 3,
-                    cate_name: '邻里分享',
-                },
-                {
-                    image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-                    value: '邻里分享',
-                    cate_id: 4,
-                    cate_name: '邻里分享',
-                },
-                {
-                    image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
-                    value: '社区互动',
-                    cate_id: 5,
-                    cate_name: '社区互动',
-                },
-                {
-                    image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
-                    value: '志愿者之家',
-                    cate_id: 6,
-                    cate_name: '志愿者之家',
+
+        async function getGridData() {
+            const res = await getPublishCate()
+            if (res.code === 200) {
+                const d = res.data
+                let gridData = []
+                let cateList = []
+                for (let i = 0; i < d.length; i++) {
+                    gridData.push({ image: d[i].image, value: d[i].title, cate_id: d[i].id, cate_name: d[i].title })
+                    cateList.push({ title: d[i].title, cate_id: d[i].id })
                 }
-            ])
-            Taro.hideLoading()
-        }, 500)
-        let list = ['全部', '附近', '二手闲置', '健康食集', '邻里分享', '手机教学', '社区活动', '志愿者之家']
-        let newList = []
-        for (let i = 0; i < list.length; i++) {
-            newList.push({ title: list[i], cate_id: i })
+                setGridData(gridData)
+                setCateTitleList(cateList)
+            }
         }
-        setCateTitleList(newList)
+        getGridData()
+
+
+
+        // setTimeout(() => {
+        //     setGridData([
+        //         {
+        //             image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+        //             value: '二手闲置',
+        //             cate_id: 1,
+        //             cate_name: '二手闲置',
+        //         },
+        //         {
+        //             image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+        //             value: '健康食集',
+        //             cate_id: 2,
+        //             cate_name: '健康食集',
+        //         },
+        //         {
+        //             image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+        //             value: '邻里分享',
+        //             cate_id: 3,
+        //             cate_name: '邻里分享',
+        //         },
+        //         {
+        //             image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+        //             value: '邻里分享',
+        //             cate_id: 4,
+        //             cate_name: '邻里分享',
+        //         },
+        //         {
+        //             image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
+        //             value: '社区互动',
+        //             cate_id: 5,
+        //             cate_name: '社区互动',
+        //         },
+        //         {
+        //             image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+        //             value: '志愿者之家',
+        //             cate_id: 6,
+        //             cate_name: '志愿者之家',
+        //         }
+        //     ])
+        //     Taro.hideLoading()
+        // }, 500)
+        // let list = ['全部', '附近', '二手闲置', '健康食集', '邻里分享', '手机教学', '社区活动', '志愿者之家']
+        // let newList = []
+        // for (let i = 0; i < list.length; i++) {
+        //     newList.push({ title: list[i], cate_id: i })
+        // }
+        // setCateTitleList(newList)
+
 
         // 获取发布信息列表数据
         let location = getGlobalData('location')
         setLocation(location)
-        getPublishData(0,location,0,0)
+        getPublishData(0, location, 0, 0)
     }, [])
 
     useDidShow(() => {
@@ -90,7 +106,7 @@ export default function Category() {
         1、页面初始化
         2、点击tabs时
     */
-    async function getPublishData(cate_id = 0, location='', is_near = 0, index = pIndex) {
+    async function getPublishData(cate_id = 0, location = '', is_near = 0, index = pIndex) {
         // 优化点：小程序启动时获取定位存入GlobalData,需要时取出使用 (已完成)
         const res = await getPublish(cate_id, location, is_near)
         if (res.code === 200) {
@@ -169,7 +185,7 @@ export default function Category() {
                 <View className='tabs_cate'>
                     <AtTabs
                         current={currentCate}
-                        scroll
+                        scroll={cateTitleLsit.length > 3 ? true : false}
                         animated={true}
                         swipeable={false}
                         tabList={cateTitleLsit}

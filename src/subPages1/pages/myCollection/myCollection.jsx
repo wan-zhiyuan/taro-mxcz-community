@@ -31,7 +31,7 @@ export default function MyCollection() {
 
     function handleClickTabs(index) {
         console.log('index:' + index)
-        
+
     }
 
     return (
@@ -55,11 +55,11 @@ export default function MyCollection() {
                         <View key={item.id} id={item.id}>
                             {
                                 idx === 0 &&
-                                <PublishList list={publishList} />
+                                <InformationList list={informationList} />
                             }
                             {
                                 idx === 1 &&
-                                <InformationList list={informationList} />
+                                <PublishList list={publishList} />
                             }
                         </View>
                     ))}

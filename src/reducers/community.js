@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
     businessDetail: {
         basic: {
-            banner:'',
+            images:'',
         },
         extend: [],
         read: [],
@@ -23,7 +23,6 @@ const INITIAL_STATE = {
         basic: {},
         extend: [],
     }, // 社区服务站详情
-
 
     // 申请社区服务站
     serviceSiteApply: {
@@ -39,7 +38,7 @@ const INITIAL_STATE = {
     // 申请社区商户
     businessApply: {
         location: '',
-        busines_name: '',
+        business_name: '',
         apply_mobile: '', // 申请手机号
         address: '',
         keyword: '', // 行业关键字

@@ -13,6 +13,7 @@ import { createCommunityBusiness } from '../../../actions/community'
 import { useSelector } from '@tarojs/redux'
 import { geocoder } from '../../../utils/geocoder'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
+import { isEmpty } from '../../../utils/is'
 
 import './communityLocate.scss'
 import { Toast, ToastSuccess } from '../../../utils/toast'
@@ -35,46 +36,57 @@ export default function CommunityLocate() {
         console.log(businessApply)
         let data = JSON.parse(JSON.stringify(businessApply))
         // 判断数据是否合规
-        if (!ClUtils.rule.required(data.busines_name || '')) {
+        if (!ClUtils.rule.required(data.business_name || '')) {
+        // if (isEmpty(data.business_name || '')) {
             Toast('请输入商家名称')
             return
         }
         if (!ClUtils.rule.required(data.industry || '')) {
+        // if (isEmpty(data.industry || '')) {
             data.industry = '杨浦区'
         }
         if (!ClUtils.rule.required(data.keyword || '')) {
+        // if (isEmpty(data.keyword || '')) {
             Toast('请输入行业关键字')
             return
         }
         if (!ClUtils.rule.required(data.address || '')) {
+        // if (isEmpty(data.address || '')) {
             Toast('请输入地址')
             return
         }
         if (!ClUtils.rule.phone(data.contact_phone)) {
+        // if (isEmpty(data.contact_phone)) {
             Toast('联系电话不正确')
             return
         }
         if (!ClUtils.rule.required(data.notice || '')) {
+        // if (isEmpty(data.notice || '')) {
             Toast('请输入商家公告')
             return
         }
         if (!ClUtils.rule.required(data.logo || '')) {
+        // if (isEmpty(data.logo || '')) {
             Toast('请选择商家logo')
             return
         }
         if (!ClUtils.rule.required(data.wechat_pic || '')) {
+        // if (isEmpty(data.wechat_pic || '')) {
             Toast('请选择微信图片')
             return
         }
         if (!ClUtils.rule.required(data.images || '')) {
+        // if (isEmpty(data.images || '')) {
             Toast('商家轮播图至少添加一张')
             return
         }
         if (!ClUtils.rule.required(data.memo || '')) {
+        // if (isEmpty(data.memo || '')) {
             Toast('请输入商家介绍')
             return
         }
         if (!ClUtils.rule.required(data.apply_mobile || '')) {
+        // if (isEmpty(data.apply_mobile || '')) {
             Toast('请获取申请手机号')
             return
         }

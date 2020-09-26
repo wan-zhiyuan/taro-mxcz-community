@@ -175,3 +175,12 @@ export const getMyPublish = () => createHttp({
     url : API_USER + '?op=publish_oneself&page=1&pagesize=200',
     method: 'GET'
 })
+
+/**
+ * 删除我的发布信息
+ * @param {*} target_id 
+ */
+export const deleteMyPublish = (target_id) => createHttp({
+    url: API_USER + '/' + target_id +'?op=publish',
+    method: 'DELETE',
+})

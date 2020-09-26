@@ -1,10 +1,12 @@
 import Taro, { Component } from '@tarojs/taro'
-import { Provider } from '@tarojs/redux'
+import { Provider, connect } from '@tarojs/redux'
 import Index from './pages/index'
 import Home from './pages/home'
 import configStore from './store'
-import { set as setGlobaleData } from './global_data'
+import { set as setGlobalData } from './global_data'
 import { getLocationString } from './utils/location'
+import { reverseGeocoderString } from './utils/geocoder'
+import { dispatchUser } from './actions/user'
 
 import './app.scss'
 import './custom-variables.scss'
@@ -18,6 +20,7 @@ import './assets/css/iconfont.scss' // 引入iconfont文件
 
 const store = configStore()
 
+@connect(() => ({}), { dispatchUser })
 class App extends Component {
 
   config = {
@@ -25,7 +28,6 @@ class App extends Component {
       'pages/home/home',
       'pages/publish/publish',
       'pages/mine/mine',
-      'pages/index/index', // 测试页面
     ],
     subpackages: [
       // 登陆 && 签到 && 积分 && 我的收藏
@@ -41,6 +43,7 @@ class App extends Component {
           'pages/myEnroll/myEnroll',
           'pages/myPublish/myPublish',
           'pages/commentPage/commentPage', // 评论页面
+          'pages/index/index', // 测试页面
         ]
       },
       // 社区相关： 社区商户 && 社区服务站
@@ -144,13 +147,26 @@ class App extends Component {
     // 如果拒绝，或者在设置中关闭，再调用api时直接走fail方法
 
     // 优化点：还是在app.js中获取定位，只有获取结束后才执行home页面的publishList获取，并且设置全局location 获取城市名称设置全局城市名称
-    // this.getLocation() // 直接放入home中请求和设置
+    this.getLocation()
+
+    this.props.dispatchUser()
   }
 
   /* 初始化获取定位 */
   getLocation = async () => {
+    // 获取定位数据(待优化)
     const location = await getLocationString()
-    setGlobaleData('location', location)
+    setGlobalData('location', location)
+    // 城市解析
+    if (location !== '') {
+      const result = await reverseGeocoderString(location)
+      console.log('#################')
+      console.log(result)
+      console.log(result.data.result.address_component.province)
+      if (result.statusCode === 200) {
+        setGlobalData('city', result.data.result.address_component.province)
+      }
+    }
   }
 
   componentDidMount() { }

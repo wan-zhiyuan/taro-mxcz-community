@@ -121,7 +121,7 @@ export default function Information() {
             >
                 <AtTabs
                     current={current}
-                    scroll
+                    scroll={tabsList.length > 3 ? true : false}
                     swipeable={false}
                     tabList={tabsList}
                     onClick={handleClick}>

@@ -2,7 +2,7 @@
     "symbol_url": "http://at.alicdn.com/t/font_2045537_77wb9iwzs0h.js",
     "save_dir": "./src/assets/iconfont",
     "use_typescript": false,
-    "platforms": ["weapp", "alipay", "h5"],
+    "platforms": ["weapp"],
     "use_rpx": true,
     "trim_icon_prefix": "icon",
     "default_icon_size": 30

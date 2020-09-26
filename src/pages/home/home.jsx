@@ -23,6 +23,7 @@ import './home.scss'
 export default function Home() {
 
     const router = useRouter()
+    const userInfo = useSelector(state => state.user.userInfo)
     const dispatch = useDispatch()
 
     // 用户是否登陆
@@ -40,38 +41,21 @@ export default function Home() {
     useEffect(() => {
         // 判断路由参数
         judgeTarget(router.params)
+
         // 初始化数据
         getInit()
     }, [])
 
-    async function getInit() {
-        // 获取用户信息
-        const res = await dispatch(dispatchUser())
-        if (!!res.data.nickname) {
-            console.log('用户已登陆')
-        } else {
-            console.log('用户未登陆')
-            setIsLogin(false)
-        }
-        // 获取首页信息
-        await dispatch(dispatchHomeIndex())
-
-        // 获取定位数据(待优化)
-        const location = await getLocationString()
-        setGlobalData('location', location)
-        // 城市解析
-        if (location !== '') {
-           const result =  await reverseGeocoderString(location)
-           console.log('#################')
-           console.log(result)
-           console.log(result.data.result.address_component.province)
-           if (result.statusCode === 200) {
-               setGlobalData('city',result.data.result.address_component.province)
-           }
-        }
-        
+    useDidShow(() => {
         // 获取发布信息数据
         getData()
+    })
+
+    async function getInit() {
+        // 获取用户信息
+        // await dispatch(dispatchUser())
+        // 获取首页信息
+        await dispatch(dispatchHomeIndex())
     }
 
     async function getData() {
@@ -84,6 +68,7 @@ export default function Home() {
         // cate_id:0 全部 location:'' 使用用户当前定位 is_near:0 不按照附近排序 
         let location = getGlobalData('location') || ''
         const { data: listData } = await getPublish(0, location, 0)
+        // const { data: listData } = await getPublish(0, location, 0)
         // if (res.code === 200) {
         setPublishAll(listData)
         let newIndex = index + 10
@@ -130,7 +115,7 @@ export default function Home() {
         <View className='home_index lazy-view'>
             {/* 登录弹窗模块 */}
             {
-                !isLogin &&
+                !userInfo.nickname &&
                 <PopupLogin />
             }
             <HomeNavbar />

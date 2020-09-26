@@ -73,8 +73,8 @@
 				},
 				{
 					"id": 2,
-					"name": "subPages2/pages/communityLocate/communityLocate",
-					"pathName": "subPages2/pages/communityLocate/communityLocate",
+					"name": "subPages2/pages/community/community",
+					"pathName": "subPages2/pages/community/community",
 					"query": "",
 					"scene": null
 				},
