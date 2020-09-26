@@ -20,29 +20,30 @@ export default function ServiceSite() {
     const [isLoaded, setIsLoaded] = useState(false) // list是否已经请求完毕
     const [serviceSiteCate, setServiceSiteCate] = useState([
         {
-            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-            value: '社区养老',
-            cate_id: 1,
-            cate_name: '社区养老',
-        },
-        {
             image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
             value: '社区助餐',
-            cate_id: 2,
+            cate_id: 1,
             cate_name: '社区助餐',
         },
         {
-            image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-            value: '社区帮困',
-            cate_id: 3,
-            cate_name: '社区帮困',
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区养老',
+            cate_id: 2,
+            cate_name: '社区养老',
         },
+        // {
+        //     image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+        //     value: '社区帮困',
+        //     cate_id: 3,
+        //     cate_name: '社区帮困',
+        // },
     ])
     const [serviceSiteList, setServiceSiteList] = useState([])
     const [tabs, setTabs] = useState([{ text: "附近发现", id: "verb-1" }, { text: "最新收录", id: "verb-2" }, { text: "热门推荐", id: "verb-3" }])
 
     useEffect(() => {
         // 请求社区服务站分类数据
+        // 数据暂时写死
 
         // 因为ClTabs初始化时会默认执行一次handleClickTabs方法，list数据放在那里请求
     }, [])

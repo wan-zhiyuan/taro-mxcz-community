@@ -130,7 +130,7 @@ export default function PublishConfirm() {
                 if (resultData.code === 200) {
                     success++
                     // 上传成功的数据放入upLoadImg后面提交发布的时候使用
-                    upLoadImg.push(resultData.data)
+                    upLoadImg.push(resultData.data.url)
                 } else {
                     fail++
                 }
@@ -150,11 +150,15 @@ export default function PublishConfirm() {
 
                     confirmPublish()
                 } else {
-                    let newData = {}
-                    newData.i = i
-                    newData.success = success
-                    newData.fail = fail
-                    uploadLoader(newData)
+                    // let newData = {}
+                    // newData.i = i
+                    // newData.success = success
+                    // newData.fail = fail
+                    // uploadLoader(newData)
+                    data.i = i
+                    data.success = success
+                    data.fail = fail
+                    uploadLoader(data)
                 }
             }
         })
@@ -166,9 +170,9 @@ export default function PublishConfirm() {
         let images = ''
         for (let i = 0; i < upLoadImg.length; i++) {
             if (images === '') {
-                images = upLoadImg[i].url
+                images = upLoadImg[i]
             } else {
-                images = images + '|' + upLoadImg[i].url
+                images = images + '|' + upLoadImg[i]
             }
         }
         console.log('images:' + images)

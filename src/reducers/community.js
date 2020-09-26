@@ -49,7 +49,7 @@ const INITIAL_STATE = {
         notice: '',  // 商家公告
         logo: '',
         wechat_pic: '',
-        banner: '',
+        images: '', // 商家轮播图
         details: '',
     }
 }

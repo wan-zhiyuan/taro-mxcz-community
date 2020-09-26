@@ -93,7 +93,7 @@ export async function getLocationStringPopup() {
 
 
 /**
- * 选择地址（如果未开启定位，会弹窗提示开启）
+ * 选择地址（如果未开启定位，会弹窗提示开启）如何能返回选中的地址数据，等待解决？？？？可以尝试模仿上面的async/await写法
  */
 export function chooseAddress() {
     Taro.getLocation({
