@@ -1,27 +1,26 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import { AtIcon, AtTag } from 'taro-ui'
 import { getDateTypeMinutes } from '../../utils/timer'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
-import IconFont from '../../assets/iconfont'
 import { deleteMyPublish } from '../../actions/publish'
+import { Toast, ToastSuccess } from '../../utils/toast'
+import { ClText, ClTag  } from "mp-colorui"
 
 import './index.scss'
-import { Toast, ToastSuccess } from '../../utils/toast'
 
-/* 活动列表展示时每一项item */
+/* 发布信息列表展示时每一项item */
 export default function Index(props) {
 
     const { publishItem, from } = props
 
-    const tags = [{ text: `${publishItem.cate_name}`, color: 'red' }]
+    // const tags = [{ text: `${publishItem.cate_name}`, color: 'cyan' }]
 
     function onImageClick(item, index) {
         let picArr = publishItem.images.split('|') || []
         Taro.previewImage({
             urls: picArr,
             current: index,
-            // urls: [getImagePath(item)]
         })
     }
 
@@ -42,25 +41,25 @@ export default function Index(props) {
         }
     }
 
-    /* 删除 */
+    /* 删除(仅我的发布页面有删除和编辑功能) */
     async function handleDelete() {
         const res = await deleteMyPublish(publishItem.id)
         if (res.code === 200) {
             ToastSuccess('删除成功')
             // 优化点：我的发布 删除我的发布 编辑我的发布 置顶我的发布 都返回相同的数据格式，然后统一使用redux管理
             Taro.showLoading()
-            setTimeout(()=>{
+            setTimeout(() => {
                 Taro.hideLoading()
                 Taro.navigateBack() // 这里可以不用返回
-            },1500)
+            }, 1500)
         } else {
             Toast(res.msg)
         }
     }
 
     return (
-        <View className='activity_item'>
-            <View className='activity_item_box'>
+        <View className='publish_item'>
+            <View className='publish_item_box'>
                 {
                     from === 'myPublish' &&
                     <View className='extra_module'>
@@ -78,28 +77,34 @@ export default function Index(props) {
                         }
                         <View className='item_user_right'>
                             <Text className='user_name'>{publishItem.nickname || ''}</Text>
-                            <Text className='item_cate'>{publishItem.cate_name}</Text>
-                            {/* <ClTag tags={tags.slice(0, 1)} shape='radius' size='small'/> */}
+                            {/* <Text className='item_cate'>{publishItem.cate_name}</Text> */}
+                            <ClTag tags={[{ text: `${publishItem.cate_name}`, color: 'cyan' }]} shape='radius' size='small' />
                         </View>
                     </View>
                     <View className='detail_distance'>
                         <View className='item_detail' onClick={naviToPublishDetail}>{`查看详情>>`}</View>
                         {
-                            from === 'myPublish'
+                            from === 'myPublish' || from === 'myCollect'
                                 ? <Text className='item_distance'></Text>
                                 : <Text className='item_distance'>{caleDistance()}</Text>
                         }
 
                     </View>
-
                 </View>
-                <View className='item_desc'>{publishItem.content || ''}</View>
-                {/* 最多只显示四张 */}
+                <View className='item_desc'>
+                    {publishItem.content || ''}
+                </View>
+                {/* <ClText textColor='black'>
+                    {publishItem.content || ''}
+                </ClText> */}
+
+                {/* 发布详情图片 */}
                 {
                     publishItem.images !== '' &&
                     <View className='item_pic'>
                         {
-                            publishItem.images.split('|').map((item, idx) => {
+                            // 最多只显示四张
+                            publishItem.images.split('|').slice(0,4).map((item, idx) => {
                                 return (
                                     <View key={'index_' + idx}>
                                         {

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import IconFont from '../../../../assets/iconfont';
+import IconFont from '../../../../components/iconfont';
 import ServiceSiteItem from '../ServiceSiteItem'
 
 import './index.scss'

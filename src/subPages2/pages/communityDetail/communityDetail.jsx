@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { getWindowHeightNoPX } from '../../../utils/style'
 import PopupQRcode from './../../../components/Popup/PopupQRcode'
@@ -20,19 +20,16 @@ export default function CommunityDetail() {
     const detail = useSelector(state => state.community.businessDetail.basic)
     const dispatch = useDispatch()
 
-    const [community, setCommunity] = useState({
-        cid: '1', name: '上海市浦东新区人民政府潍坊新村街道办事处', address: '上海市浦东新区福山路317号', rate: 5, popul: 120, phone: 68757800, range: '15.4km',
-        pic: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3607787663,2825710095&fm=26&gp=0.jpg',
-        detail: `<p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202009/01/2020090108584587449.jpg" alt="" /></p><p style="text-align:center;">	<img src="http://static.ibarrel.top/userimages/prd/202008/24/2020082412422073796.jpg" alt="" /></p>`,
-    })
-
 
     useEffect(() => {
         // 阅读数+1
         businessExtend(0, '')
-        // 获取社区商户详情
-        dispatch(dispatchBusinessDetail(target_id))
     }, [])
+
+    useDidShow(() => {
+        // 获取社区商户详情(包含评论后返回详情页更新数据)
+        dispatch(dispatchBusinessDetail(target_id))
+    })
 
     // 分享配置
     useShareAppMessage(res => {
@@ -66,7 +63,7 @@ export default function CommunityDetail() {
         }
         communityBusinessExtend(postData)
     }
-    
+
 
     return (
         <View className='community_detail_index'>
@@ -113,7 +110,7 @@ export default function CommunityDetail() {
                         </Swiper>
                 }
                 {/* 头部模块 */}
-                <DetailHeader detail={detail}/>
+                <DetailHeader detail={detail} />
                 {/* 社区详情主内容 */}
                 <DetailTab />
             </ScrollView>

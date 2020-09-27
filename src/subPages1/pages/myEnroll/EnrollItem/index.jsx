@@ -5,7 +5,11 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const {  } = props
+    const { item } = props
+
+    function handleClick() {
+        console.log('显示活动核销码页面')
+    }
 
     return (
         <View className='enroll_item'>
@@ -14,5 +18,5 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-
+    item: {},
 }

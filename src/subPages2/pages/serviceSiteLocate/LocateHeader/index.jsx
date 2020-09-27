@@ -1,6 +1,6 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
-import IconFont from '../../../../assets/iconfont'
+import IconFont from '../../../../components/iconfont'
 import { isEmpty } from '../../../../utils/is'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { updateServiceSiteApply } from '../../../../actions/community'

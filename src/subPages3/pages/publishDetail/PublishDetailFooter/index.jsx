@@ -15,7 +15,7 @@ export default function Index(props) {
         let postData = {
             op: 'publish_extend',
             target_id,
-            type: 4,
+            type: 3,
             content: '',
         }
         publishExtend(postData).then(res => {

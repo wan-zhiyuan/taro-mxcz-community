@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import EnrollItem from '../EnrollItem'
+import CommunityItem from '../CommunityItem'
 
 import './index.scss'
 
@@ -9,11 +9,11 @@ export default function Index(props) {
     const { list } = props
 
     return (
-        <View className='enroll_list'>
+        <View className='community_list'>
             {
                 list.map((item, idx) => {
                     return (
-                        <EnrollItem key={'index_' + idx} item={item} />
+                        <CommunityItem key={'index_' + idx} item={item} />
                     )
                 })
             }
@@ -21,5 +21,5 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-    list: [],
+    list: []
 }

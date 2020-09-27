@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import PublishItem from '../PublishItem'
 import Divider from '../DividerComponent'
-import IconFont from '../../assets/iconfont'
+import IconFont from '../../components/iconfont'
 
 import './index.scss'
 

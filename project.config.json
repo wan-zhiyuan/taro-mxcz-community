@@ -87,8 +87,8 @@
 				},
 				{
 					"id": 4,
-					"name": "subPages1/pages/signIn/signIn",
-					"pathName": "subPages1/pages/signIn/signIn",
+					"name": "subPages1/pages/myEnroll/myEnroll",
+					"pathName": "subPages1/pages/myEnroll/myEnroll",
 					"query": "",
 					"scene": null
 				}

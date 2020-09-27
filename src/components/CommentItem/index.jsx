@@ -29,9 +29,9 @@ export default function Index(props) {
                         <Text>回复</Text>
                     </View>
                 </View>
-                <Text className='right_box2'>
+                <View className='right_box2'>
                     <Text className='content'>{item.content || ''}</Text>
-                </Text>
+                </View>
             </View>
         </View>
     )

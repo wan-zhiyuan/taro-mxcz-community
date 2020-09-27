@@ -26,7 +26,7 @@ export const increaseInfo = postData => createHttp({
 })
 
 /**
- * 发布信息阅读、点赞、评论
+ * 发布信息阅读、点赞、评论、收藏  0123
  * @param {*} postData 
  */
 export const publishExtend = postData => createHttp({

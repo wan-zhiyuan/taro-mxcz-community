@@ -4,7 +4,7 @@ import { getWindowHeight } from '../../../utils/style'
 import { ClTabs } from 'mp-colorui'
 import { getCollectList } from '../../../actions/user'
 import PublishList from '../../../components/PublishList'
-import InformationList from '../../../components/InformationList'
+import CommunityList from '../../../components/CommunityList'
 import ListView, { LazyBlock } from "taro-listview";
 
 import './myCollection.scss'
@@ -12,8 +12,8 @@ import './myCollection.scss'
 export default function MyCollection() {
 
     const [tabs, setTabs] = useState([{ text: "收藏信息", id: "verb-1" }, { text: "收藏商家", id: "verb-2" }])
+    const [businessList, setBusinessList] = useState([])
     const [publishList, setPublishList] = useState([])
-    const [informationList, setInformationList] = useState([])
     const [hasMore, setHasMore] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -22,8 +22,8 @@ export default function MyCollection() {
             const res = await getCollectList()
             console.log(res)
             if (res.code != 200) return
-            setPublishList(res.data.collect_bussiness) // 目前数据返回的内容有问题 和其他的发布信息列表不一致
-            setInformationList(res.data.collect_information)
+            setBusinessList(res.data.collect_bussiness) // 目前数据返回的内容有问题 和其他的发布信息列表不一致
+            setPublishList(res.data.collect_publish)
             setIsLoaded(true)
         }
         getData()
@@ -45,8 +45,7 @@ export default function MyCollection() {
                 <ClTabs
                     tabs={tabs}
                     type="verb"
-                    activeColor='orange'
-                    // bgColor="gradualPink"
+                    activeColor='cyan'
                     bgColor="white"
                     onClick={handleClickTabs}
                 >
@@ -55,11 +54,11 @@ export default function MyCollection() {
                         <View key={item.id} id={item.id}>
                             {
                                 idx === 0 &&
-                                <InformationList list={informationList} />
+                                <PublishList list={publishList} from='myCollect'/>
                             }
                             {
                                 idx === 1 &&
-                                <PublishList list={publishList} />
+                                <CommunityList list={businessList} />
                             }
                         </View>
                     ))}

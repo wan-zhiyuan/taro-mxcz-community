@@ -1,10 +1,24 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { getWindowHeight } from '../../../utils/style'
+import { getMyEnroll } from '../../../actions/activity'
 
 import './myEnroll.scss'
 
 export default function MyEnroll() {
+
+    const[ enrollList, setEnrollList] = useState([])
+
+    useEffect(()=>{
+        async function getData() {
+            const res = await getMyEnroll()
+            if (res.code === 200) {
+                
+            } else {
+                console.log(res.msg)
+            }
+        }
+        getData()
+    },[])
 
     return (
         <View className='my_enroll_index'>
