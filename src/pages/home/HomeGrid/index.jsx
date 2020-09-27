@@ -1,10 +1,13 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { isEmpty } from '../../../utils/is'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index(props) {
+
+    const userInfo = useSelector(state => state.user.userInfo)
 
     const [gridData, setGridData] = useState([
         {
@@ -31,9 +34,16 @@ export default function Index(props) {
 
     function goTo(url) {
         if (isEmpty(url)) return
-        Taro.navigateTo({
-            url: url,
-        })
+        if (!!userInfo.nickname) {
+            Taro.navigateTo({
+                url: url,
+            })
+        } else {
+            // 未登陆 跳转登陆界面
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+        }
     }
 
     return (

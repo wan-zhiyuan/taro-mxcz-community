@@ -12,7 +12,6 @@ export default function Index(props) {
     const homeIndex = useSelector(state => state.home.homeIndex)
 
     function caleBrowseNumber() {
-        console.log('caleBrowseNumber()')
         let num = Number(homeIndex.browse_number || 0)
         if (num >= 10000) {
             return `${num/10000}万`

@@ -44,11 +44,9 @@ export default async function fetch(options) {
             }
             // 更新jwt值，只要api返回header中存在orz-auth5 即更新
             if (!isEmpty(res.header['Orz-Auth5'])) {
-                // console.log('res.header.Orz-Auth5不为空')
                 Taro.setStorageSync('jwt', res.header['Orz-Auth5'])
             }
             if (!isEmpty(res.header['orz-auth5'])) {
-                // console.log('res.header.orz-auth5不为空')
                 // IOS手机使用 res.header.orz-auth5会报错
                 Taro.setStorageSync('jwt', res.header['orz-auth5'])
             }

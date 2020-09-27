@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages4/pages/activityVerification/activityVerification",
-					"pathName": "subPages4/pages/activityVerification/activityVerification",
+					"name": "subPages4/pages/volunteer/volunteer",
+					"pathName": "subPages4/pages/volunteer/volunteer",
 					"query": "",
 					"scene": null
 				},
@@ -80,15 +80,15 @@
 				},
 				{
 					"id": 3,
-					"name": "subPages3/pages/publishConfirm/publishConfirm",
-					"pathName": "subPages3/pages/publishConfirm/publishConfirm",
+					"name": "subPages3/pages/publishEdit/publishEdit",
+					"pathName": "subPages3/pages/publishEdit/publishEdit",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 4,
-					"name": "subPages1/pages/myEnroll/myEnroll",
-					"pathName": "subPages1/pages/myEnroll/myEnroll",
+					"name": "subPages1/pages/myPublish/myPublish",
+					"pathName": "subPages1/pages/myPublish/myPublish",
 					"query": "",
 					"scene": null
 				}

@@ -12,9 +12,9 @@ export default function Index(props) {
     const { list, hasMore, from } = props
 
     return (
-        <View>
+        <View className='publish_list'>
             <View
-                className='publish_list'
+                className='publish_list_box'
                 style={list.length === 0
                     ? { backgroundColor: '#fff' }
                     : { backgroundColor: '#f2f2f2' }}

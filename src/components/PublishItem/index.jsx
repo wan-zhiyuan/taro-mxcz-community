@@ -18,9 +18,10 @@ export default function Index(props) {
 
     function onImageClick(item, index) {
         let picArr = publishItem.images.split('|') || []
+        console.log('index:' + index)
         Taro.previewImage({
             urls: picArr,
-            current: index,
+            current: item,
         })
     }
 
@@ -57,14 +58,24 @@ export default function Index(props) {
         }
     }
 
+    /* 编辑 */
+    function handleEdit() {
+        Taro.navigateTo({
+            url: `/subPages3/pages/publishEdit/publishEdit?target_id=${publishItem.id}`
+        })
+    }
+
     return (
         <View className='publish_item'>
             <View className='publish_item_box'>
                 {
                     from === 'myPublish' &&
                     <View className='extra_module'>
+                        <View className='extra_item' onClick={handleEdit}>
+                            <View className='edit'>编辑</View>
+                        </View>
                         <View className='extra_item' onClick={handleDelete}>
-                            <AtIcon value='trash' size='20' color='#ccc'></AtIcon>
+                            <AtIcon value='trash' size='22' color='#ccc'></AtIcon>
                         </View>
                     </View>
                 }

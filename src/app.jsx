@@ -43,6 +43,8 @@ class App extends Component {
           'pages/myEnroll/myEnroll',
           'pages/myPublish/myPublish',
           'pages/commentPage/commentPage', // 评论页面
+          'pages/customerService/customerService', // 联系客服
+          'pages/aboutUs/aboutUs', // 关于我们
           'pages/index/index', // 测试页面
         ]
       },
@@ -66,6 +68,7 @@ class App extends Component {
         "pages": [
           'pages/publishConfirm/publishConfirm',
           'pages/publishDetail/publishDetail',
+          'pages/publishEdit/publishEdit',
           'pages/category/category',
           'pages/categorySub/categorySub',
           'pages/information/information',
@@ -131,17 +134,17 @@ class App extends Component {
   }
 
   componentWillMount() {
-    Taro.getSetting({
-      success: function (res) {
-        console.log(res.authSetting)
-        let statu = res.authSetting
-        if (statu['scope.userLocation']) {
-          // 用户设置中开启了位置信息
-        } else {
-          // 用户设置中未开启位置信息
-        }
-      }
-    })
+    // Taro.getSetting({
+    //   success: function (res) {
+    //     console.log(res.authSetting)
+    //     let statu = res.authSetting
+    //     if (statu['scope.userLocation']) {
+    //       // 用户设置中开启了位置信息
+    //     } else {
+    //       // 用户设置中未开启位置信息
+    //     }
+    //   }
+    // })
 
     // 用户第一次启动小程序，调用位置信息相关的api会弹出系统弹层
     // 如果拒绝，或者在设置中关闭，再调用api时直接走fail方法
@@ -160,9 +163,9 @@ class App extends Component {
     // 城市解析
     if (location !== '') {
       const result = await reverseGeocoderString(location)
-      console.log('#################')
-      console.log(result)
-      console.log(result.data.result.address_component.province)
+      // console.log('#################')
+      // console.log(result)
+      // console.log(result.data.result.address_component.province)
       if (result.statusCode === 200) {
         setGlobalData('city', result.data.result.address_component.province)
       }

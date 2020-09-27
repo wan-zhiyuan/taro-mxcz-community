@@ -1,14 +1,16 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
-import { getWindowHeight } from '../../../utils/style'
+import { View } from '@tarojs/components'
 import { ClCard, ClInput } from 'mp-colorui'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
 import { applyVolunteer } from '../../../actions/activity'
+import { Toast } from '../../../utils/toast'
+import { useSelector } from '@tarojs/redux'
 
 import './volunteer.scss'
-import { Toast } from '../../../utils/toast'
 
 export default function Volunteer() {
+
+    const userInfo = useSelector(state => state.user.userInfo)
 
     const [name, setName] = useState('')
     const [mobile, setMobile] = useState('')
@@ -17,6 +19,21 @@ export default function Volunteer() {
 
     useEffect(() => {
         // 判断用户是否已经是志愿者，是：返回首页  不是：继续申请
+        if (Number(userInfo.is_volunteer || 0) === 1) {
+            Taro.showModal({
+                title: '提示',
+                content: '您已经是志愿者。',
+                success: function (res) {
+                    console.log(res)
+                    if (res.confirm) {
+                        Taro.navigateBack()
+                    } else if (res.cancel) {
+                        
+                    }
+                },
+                showCancel: false,
+            })
+        }
     }, [])
 
     async function handleApply() {

@@ -3,10 +3,15 @@ import { View, Text, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 
 import './index.scss'
+import { Toast } from '../../../utils/toast'
 
 export default function Index(props) {
 
     const {  title } = props
+
+    function handleMerchant() {
+        Toast('此功能暂不开放')
+    }
 
     return (
         <View className='mine_service'>
@@ -16,7 +21,7 @@ export default function Index(props) {
                 <Text className='title_txt'>{title}</Text>
             </View>
             
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={handleMerchant}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dianhua' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>商家入口</Text>

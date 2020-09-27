@@ -8,6 +8,18 @@ export default function Index(props) {
 
     const {  title } = props
 
+    function naviToCustomerService() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/customerService/customerService`
+        })
+    }
+
+    function naviToAboutUs() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/aboutUs/aboutUs`
+        })
+    }
+
     return (
         <View className='mine_service'>
             <View className='title'>
@@ -16,7 +28,7 @@ export default function Index(props) {
                 <Text className='title_txt'>{title}</Text>
             </View>
             
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={naviToCustomerService}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dianhua' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>联系客服</Text>
@@ -36,7 +48,7 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            <View className='middle_item' onClick={() => { }}>
+            <View className='middle_item' onClick={naviToAboutUs}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='shuoming' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>关于我们</Text>
