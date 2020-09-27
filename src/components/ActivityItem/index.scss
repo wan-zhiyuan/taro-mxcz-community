@@ -1,7 +1,7 @@
 .activity_item {
-    width: 100%;
-    // height: 200px;
+    width: 710px;
     background-color: #fff;
+    border-radius: 20px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,7 @@
         height: 320px;
         border-radius: 20px;
         margin-top: 20px;
+        border-bottom: 1px solid #f2f2f2;
     }
     .activity_pic_default {
         width: 690px;
@@ -19,6 +20,7 @@
         border-radius: 20px;
         margin-top: 20px;
         background-color: grey;
+        border-bottom: 1px solid #f2f2f2;
     }
 
     .activity_title {
@@ -28,6 +30,7 @@
         line-height: 60px;
         font-weight: 600;
         color: #333;
+        margin-top: 10px;
     }
 
     .activity_bottom {
@@ -42,6 +45,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+            margin-left: 10px;
 
             .activity_cate_name {
                 // width: 150px;
@@ -87,6 +91,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
+            margin-right: 10px;
 
             .enroll_number {
                 font-size: 20px;

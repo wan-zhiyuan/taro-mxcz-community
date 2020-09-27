@@ -1,7 +1,9 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { getWindowHeight } from '../../../utils/style'
 import { ClCard, ClInput, ClText, ClMenuList } from "mp-colorui"
+import { getCommunityActivityDetail } from '../../../actions/activity'
+import { getDateTypeSeconds } from '../../../utils/timer'
 
 import './activityVerification.scss'
 
@@ -11,9 +13,16 @@ export default function ActivityVerification() {
     const { target_id } = router.params
 
     const [activityDetail, setActivityDetail] = useState({})
+    const [code, setCode] = useState('') // 核销码
+    const [enrollTime, setEnrollTime] = useState(0) // 报名时间
 
     useEffect(() => {
-        // 
+        async function getData() {
+            const res = await getCommunityActivityDetail(target_id)
+            console.log(res)
+            setActivityDetail(res.data.basic)
+        }
+        getData()
     }, [])
 
     const typeMenu = [
@@ -21,33 +30,37 @@ export default function ActivityVerification() {
             title: "报名时间：",
         },
         {
-            title: "2020-09-19 20:46:49",
+            title: getDateTypeSeconds(enrollTime),
         },
         {
             title: "活动时间：",
         },
         {
-            title: "2020-09-19 20:40至2020-09-20 20:46",
+            title: `${activityDetail.start_time || 'NaN'}至${activityDetail.end_time}`,
         },
         {
             title: "联系电话：",
-            value: '15885856363',
+            value: activityDetail.mobile || 'NaN',
         },
         {
             title: "活动地点：",
-            value: '上海市静安区豫园区333号',
+        },
+        {
+            title: activityDetail.address || 'NaN',
         },
     ];
 
     return (
         <View className='activity_verification_index'>
             <View className='verification_box1'>
-                <Text className='title'>这是标题</Text>
-                <Image className='code'></Image>
-                <View className='button'>核校</View>
+                <Text className='title'>{activityDetail.title || '活动标题'}</Text>
+                <Image className='code' src={code} mode='scaleToFill'></Image>
+                <Text className='tips'>请向工作人员出示核销码</Text>
             </View>
             <View className='verification_box2'>
-                <ClMenuList card list={typeMenu} />
+                <ClMenuList  
+                // card
+                list={typeMenu} />
             </View>
         </View>
     )

@@ -1,7 +1,7 @@
-import Taro, { useState, useRouter } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import { ClTag } from "mp-colorui"
-import { isEmpty } from '../../../../utils/is'
+import { isEmpty } from '../../utils/is'
 
 
 import './index.scss'
@@ -9,7 +9,25 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { item } = props
+    const { item, from } = props
+
+    function handleClick() {
+        switch (from) {
+            case 'myEnroll':
+                handleVerification()
+                return
+            default:
+                handleActivity()
+                return
+        }
+    }
+
+    function handleVerification() {
+        console.log('核销')
+        Taro.navigateTo({
+            url: `/subPages4/pages/activityVerification/activityVerification?target_id=${item.id}`
+        })
+    }
 
     function handleActivity() {
         Taro.navigateTo({
@@ -21,11 +39,11 @@ export default function Index(props) {
         {
             text: '免费',
             color: 'red'
-        }, 
+        },
         {
             text: '收费',
             color: 'blue'
-        }, 
+        },
         {
             text: '进行中',
             color: 'blue',
@@ -35,11 +53,11 @@ export default function Index(props) {
             text: '已关闭',
             color: 'gray',
             plain: true,
-        },   
+        },
     ]
 
     return (
-        <View className='activity_item' onClick={handleActivity}>
+        <View className='activity_item' onClick={handleClick}>
             {
                 !isEmpty(item.logo)
                     ? <Image className='activity_pic' src={item.logo} mode='scaleToFill'></Image>
@@ -52,9 +70,9 @@ export default function Index(props) {
                     {/* 价格为0时，显示免费图标 */}
                     <View className='activity_tag1'>
                         {
-                            Number(item.price) === 0 
-                            ? <ClTag tags={tags.slice(0, 1)} shape='radius' />
-                            : <ClTag tags={tags.slice(1, 2)} shape='radius' />
+                            Number(item.price) === 0
+                                ? <ClTag tags={tags.slice(0, 1)} shape='radius' />
+                                : <ClTag tags={tags.slice(1, 2)} shape='radius' />
                         }
                     </View>
                     <View className='activity_tag2'>
@@ -70,7 +88,7 @@ export default function Index(props) {
                         }
                     </View>
                 </View>
-                <View className='right'>
+                <View className='right' style={from === 'myEnroll' ? { display: 'none' } : {}}>
                     <Text className='enroll_number'>{item.enroll_number || 0}</Text>
                     <Text className='enroll_txt'>已报名</Text>
                 </View>
@@ -80,5 +98,6 @@ export default function Index(props) {
 }
 
 Index.defaultProps = {
-    item: {}
+    item: {},
+    from: '',
 }

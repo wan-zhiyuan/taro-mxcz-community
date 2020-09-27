@@ -1,8 +1,6 @@
 import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide } from '@tarojs/taro'
-import { View, Text, ScrollView, } from '@tarojs/components'
+import { View, ScrollView, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
-import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
-import { judgeTarget } from '../../utils/navTool'
 import HomeBanner from './HomeBanner'
 import HomeMsg from './HomeMsg'
 import HomeCommunityInfo from './HomeCommunityInfo'
@@ -17,6 +15,8 @@ import PopupLogin from '../../components/PopupLogin'
 import { get as getGlobalData, set as setGlobalData } from '../../global_data'
 import { getLocationString } from '../../utils/location'
 import { reverseGeocoderString } from '../../utils/geocoder'
+import { getWindowHeightNoPX, getCustomNavHeight } from '../../utils/style'
+import { judgeTarget } from '../../utils/navTool'
 
 import './home.scss'
 

@@ -1,6 +1,6 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import ActivityList from './../activity/ActivityList'
+import ActivityList from '../../../components/ActivityList'
 import { getCommunityActivity } from '../../../actions/activity'
 
 import './activitySub.scss'
@@ -32,7 +32,7 @@ export default function ActivitySub() {
 
     return (
         <View className='activity_sub_index'>
-            <ActivityList activityList={activityList}/>
+            <ActivityList list={activityList}/>
         </View>
     )
 }

@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import ActivityCateList from './ActivityCateList'
-import ActivityList from './ActivityList'
+import ActivityList from '../../../components/ActivityList'
 import { getCommunityActivity, getActivityCate } from '../../../actions/activity'
 
 import './activity.scss'
@@ -33,7 +33,8 @@ export default function Activity() {
             {/* 活动分类 */}
             <ActivityCateList activityCate={activityCate}/>
             {/* 活动列表 */}
-            <ActivityList activityList={activityList}/>
+            <ActivityList list={activityList}/>
+            <View className='place_holder'></View>
         </View>
     )
 }

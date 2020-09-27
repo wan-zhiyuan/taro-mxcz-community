@@ -1,4 +1,4 @@
-import { COMMUNITY_ACTIVITY_DETAIL, VOLUNTEER_ACTIVITY_DETAIL } from '../constants/activity'
+import { COMMUNITY_ACTIVITY_DETAIL } from '../constants/activity'
 import { API_COMMUNITY, API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
