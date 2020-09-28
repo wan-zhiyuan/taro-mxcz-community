@@ -2,7 +2,7 @@ import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtTextarea, AtImagePicker, AtInput } from 'taro-ui'
 import { getWindowHeightNoPX } from '../../../utils/style'
-import { getPublishDetail, increasePublish } from '../../../actions/publish'
+import { getPublishDetail, increasePublish, editMyPublish } from '../../../actions/publish'
 import { useSelector } from '@tarojs/redux'
 import { Toast, ToastSuccess } from '../../../utils/toast'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
@@ -219,7 +219,7 @@ export default function PublishEdit() {
         }
         console.log('#########')
         console.log(postData)
-        const res = await increasePublish(postData)
+        const res = await editMyPublish(target_id, postData)
         if (res.code === 200) {
             console.log('编辑成功')
             Taro.showLoading({

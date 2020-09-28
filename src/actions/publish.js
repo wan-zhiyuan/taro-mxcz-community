@@ -184,3 +184,27 @@ export const deleteMyPublish = (target_id) => createHttp({
     url: API_USER + '/' + target_id +'?op=publish',
     method: 'DELETE',
 })
+
+/**
+ * 编辑我的发布信息
+ * @param {*} target_id 
+ * @param {*} postData 
+ */
+export const editMyPublish = (target_id, postData) => createHttp({
+    url: API_USER + '/' + target_id,
+    method: 'PUT',
+    postData,
+})
+
+/**
+ * 搜索
+ * @param {*} keyword 
+ * @param {*} location 
+ */
+export const getPublishSearch = (keyword, location) => createHttp({
+    url: API_USER + `?op=publish_search&keyword=${keyword}&location=${location}`,
+    method: 'GET',
+    fetchOptions: {
+        showToast: true,
+    }
+})
