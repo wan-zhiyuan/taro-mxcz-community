@@ -161,6 +161,16 @@ export const updateServiceSiteApply = (serviceSiteApply) => {
  * @param {*} target_id 
  */
 export const deleteMyServiceSite = (target_id) => createHttp({
-    url : API_COMMUNITY + '/' + target_id + '?op=service_site',
+    url: API_COMMUNITY + '/' + target_id + '?op=service_site',
     method: 'DELETE',
+})
+
+/**
+ * 取消社区商家收藏
+ * @param {*} postData 
+ */
+export const delBusinessExtend = postData => createHttp({
+    url: API_COMMUNITY,
+    method: 'POST',
+    postData,
 })

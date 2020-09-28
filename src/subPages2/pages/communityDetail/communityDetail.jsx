@@ -115,7 +115,7 @@ export default function CommunityDetail() {
                 <DetailTab />
             </ScrollView>
             {/* 底部模块 */}
-            <DetailFooter detail={detail} />
+            <DetailFooter target_id={target_id}/>
         </View>
     )
 }

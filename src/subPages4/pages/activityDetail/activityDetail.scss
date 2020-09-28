@@ -39,13 +39,15 @@
         text-align: center;
         font-size: 30px;
         line-height: 100px;
-    }
-    .footer_right_disable {
-        height: 100%;
-        flex-grow: 1;
-        background-color: #e2e2e2;
-        text-align: center;
-        font-size: 30px;
-        line-height: 100px;
+
+        .able {
+            width: 100%;
+            height: 100%;
+        }
+        .disbale {
+            width: 100%;
+            height: 100%;
+            background-color: #e2e2e2;
+        }
     }
 }

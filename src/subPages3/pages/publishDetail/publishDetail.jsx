@@ -6,8 +6,9 @@ import PublishDetailComment from './PublishDetailComment'
 import PublishDetailFooter from './PublishDetailFooter'
 import { getPublishDetail, dispatchPublishDetail, publishExtend } from '../../../actions/publish'
 import { getWindowHeightNoPX } from '../../../utils/style'
-import { useDispatch } from '@tarojs/redux'
+import { useDispatch, useSelector } from '@tarojs/redux'
 import ShareComponent from '../../../components/ShareComponent'
+import PopupLogin from '../../../components/PopupLogin'
 
 import './publishDetail.scss'
 
@@ -16,26 +17,35 @@ export default function PublishDetail() {
 
     const router = useRouter()
     const { target_id = 0 } = router.params
+    const publishDetail = useSelector(state => state.publish.publishDetail)
     const dispatch = useDispatch()
 
     const [isOpenedShare, setIsOpenedShare] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
 
     useEffect(() => {
         // 阅读数+1
-        doPublishExtend(0,'')
+        doPublishExtend(0, '')
     }, [])
 
     useDidShow(() => {
-        dispatch(dispatchPublishDetail(target_id))
+        dispatch(dispatchPublishDetail(target_id)).then(res => {
+            if (res.code === 200) {
+                setIsLogin(true)
+            } else if (res.code === 491) {
+                setIsLogin(false)
+            }
+        })
     })
 
     useShareAppMessage(res => {
         if (res.from === 'button') {
             // 分享+1
-            doPublishExtend(3,'')
+            doPublishExtend(3, '')
             return {
-                title: `盟享诚珍-发布信息`,
+                title: `盟享诚珍-${publishDetail.basic.cate_name}`,
                 path: `/pages/home/home?target=publishDetail&target_id=${target_id}`,
+                // path: `/subPages3/pages/publishDetail/publishDetail?target_id=${target_id}`,
                 imageUrl: ''
             }
         }
@@ -47,7 +57,7 @@ export default function PublishDetail() {
     })
 
     /* 发布信息：0-阅读 1-点赞 2-评论 (3-分享 4-收藏) */
-    function doPublishExtend(type=0, content='') {
+    function doPublishExtend(type = 0, content = '') {
         let postData = {
             op: 'publish_extend',
             target_id,
@@ -70,6 +80,11 @@ export default function PublishDetail() {
 
     return (
         <View className='publish_detail_index'>
+            {/* 登录弹窗模块 */}
+            {
+                !isLogin &&
+                <PopupLogin />
+            }
             {/* 分享弹层组件 */}
             <ShareComponent isOpened={isOpenedShare} onClose={handleCloseShare} />
             <ScrollView

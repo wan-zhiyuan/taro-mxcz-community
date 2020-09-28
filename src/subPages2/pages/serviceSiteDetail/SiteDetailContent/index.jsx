@@ -8,6 +8,21 @@ export default function Index(props) {
 
     const { detail } = props
 
+    function handleNavi() {
+        let lat = Number(detail.lat || 0)
+        let lng = Number(detail.lng || 0)
+        Taro.openLocation({
+            latitude: lat, // 纬度，范围为-90~90，负数表示南纬
+            longitude: lng, // 经度，范围为-180~180，负数表示西经
+            scale: 8, // 缩放比例
+            name: detail.company_name || '公司名称',
+            address: detail.address || '公司地址',
+            success: function (r) {
+                console.log(r)
+            }
+        })
+    }
+
     return (
         <View className='site_detail_content'>
             <View className='phone_address'>
@@ -20,7 +35,7 @@ export default function Index(props) {
                         <IconFont name='dingwei' size={30} />
                         <Text style={{ marginLeft: Taro.pxTransform(8) }}>{detail.address || ''}</Text>
                     </View>
-                    <View className='address_right'>导航</View>
+                    <View className='address_right' onClick={handleNavi}>导航</View>
                 </View>
             </View>
             <View className='memo'>

@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro-mxcz-community",
 	"description": "盟享诚珍社区小程序",
-	"appid": "wxf5f75fccd6618e15",
+	"appid": "wx5ce52892b6d26918",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
@@ -73,16 +73,16 @@
 				},
 				{
 					"id": 2,
-					"name": "subPages2/pages/community/community",
-					"pathName": "subPages2/pages/community/community",
-					"query": "",
+					"name": "subPages2/pages/communityDetail/communityDetail",
+					"pathName": "subPages2/pages/communityDetail/communityDetail",
+					"query": "target_id=33",
 					"scene": null
 				},
 				{
 					"id": 3,
-					"name": "subPages3/pages/publishEdit/publishEdit",
-					"pathName": "subPages3/pages/publishEdit/publishEdit",
-					"query": "",
+					"name": "subPages3/pages/publishDetail/publishDetail",
+					"pathName": "subPages3/pages/publishDetail/publishDetail",
+					"query": "target_id=33",
 					"scene": null
 				},
 				{

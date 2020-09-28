@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../../utils/style'
 import { ClTabs } from 'mp-colorui'
@@ -18,6 +18,10 @@ export default function MyCollection() {
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
+
+    }, [])
+
+    useDidShow(() => {
         async function getData() {
             const res = await getCollectList()
             console.log(res)
@@ -27,7 +31,7 @@ export default function MyCollection() {
             setIsLoaded(true)
         }
         getData()
-    }, [])
+    })
 
     function handleClickTabs(index) {
         console.log('index:' + index)
@@ -54,7 +58,7 @@ export default function MyCollection() {
                         <View key={item.id} id={item.id}>
                             {
                                 idx === 0 &&
-                                <PublishList list={publishList} from='myCollect'/>
+                                <PublishList list={publishList} from='myCollect' />
                             }
                             {
                                 idx === 1 &&

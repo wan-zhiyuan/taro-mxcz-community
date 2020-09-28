@@ -1,26 +1,46 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-import { communityBusinessExtend } from '../../../../actions/community'
+import { communityBusinessExtend, dispatchBusinessDetail, delBusinessExtend } from '../../../../actions/community'
 import { ToastSuccess } from '../../../../utils/toast'
+import { useDispatch, useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index(props) {
 
-    const { detail } = props
+    const { target_id } = props
+
+    const businessDetail = useSelector(state => state.community.businessDetail)
+    const detail = useSelector(state => state.community.businessDetail.basic)
+    const dispatch = useDispatch()
 
     /* 收藏 */
     function handleCollect() {
         let postData = {
             op: 'business_extend',
-            target_id: detail.id,
+            target_id: target_id,
             type: 4,
             content: '',
         }
         communityBusinessExtend(postData).then(res => {
             if (res.code === 200) {
                 ToastSuccess('收藏成功')
+                dispatch(dispatchBusinessDetail(target_id))
+            }
+        })
+    }
+    /* 取消收藏 */
+    function handleCancelCollect() {
+        let postData = {
+            op: 'del_business_extend',
+            target_id: target_id,
+            type: 4,
+        }
+        delBusinessExtend(postData).then(res => {
+            if (res.code === 200) {
+                ToastSuccess('收藏取消')
+                dispatch(dispatchBusinessDetail(target_id))
             }
         })
     }
@@ -55,10 +75,22 @@ export default function Index(props) {
                     <AtIcon prefixClass='icon' value='shouye' size='26' color='#333'></AtIcon>
                     <Text className='item_txt'>首页</Text>
                 </View>
-                <View className='footer_item' onClick={handleCollect}>
-                    <AtIcon prefixClass='icon' value='xingji' size='26' color='#333'></AtIcon>
-                    <Text className='item_txt'>收藏</Text>
-                </View>
+                {
+                    businessDetail.is_collect === 0
+                        ? (
+                            // 未收藏
+                            <View className='footer_item' onClick={handleCollect}>
+                                <AtIcon prefixClass='icon' value='weishoucang' size='26' color='#333'></AtIcon>
+                                <Text className='item_txt'>收藏</Text>
+                            </View>
+                        ) : (
+                            // 已收藏
+                            <View className='footer_item' onClick={handleCancelCollect}>
+                                <AtIcon prefixClass='icon' value='yishoucang' size='26' color='#00D8A0'></AtIcon>
+                                <Text className='item_txt' style={{ color: '#00D8A0' }}>已收藏</Text>
+                            </View>
+                        )
+                }
                 <View className='footer_item' onClick={handleNavi}>
                     <AtIcon prefixClass='icon' value='linggan' size='26' color='#333'></AtIcon>
                     <Text className='item_txt'>导航</Text>
@@ -72,5 +104,5 @@ export default function Index(props) {
 }
 
 Index.defaultProps = {
-    detail: {}
+    target_id: 0,
 }

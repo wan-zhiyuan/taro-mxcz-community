@@ -1,14 +1,19 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-import { publishExtend } from '../../../../actions/publish'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { publishExtend, dispatchPublishDetail, delPublishExtend } from '../../../../actions/publish'
+import { ToastSuccess } from '../../../../utils/toast'
 
 import './index.scss'
-import { ToastSuccess } from '../../../../utils/toast'
+
 
 export default function Index(props) {
 
     const { target_id, repost } = props
+
+    const publishDetail = useSelector(state => state.publish.publishDetail)
+    const dispatch = useDispatch()
 
     /* 收藏 */
     function handleCollect() {
@@ -21,9 +26,25 @@ export default function Index(props) {
         publishExtend(postData).then(res => {
             if (res.code === 200) {
                 ToastSuccess('收藏成功')
+                dispatch(dispatchPublishDetail(target_id))
             }
         })
     }
+    /* 取消收藏 */
+    function handleCancelCollect() {
+        let postData = {
+            op: 'del_publish_extend',
+            target_id,
+            type: 3,
+        }
+        delPublishExtend(postData).then(res => {
+            if (res.code === 200) {
+                ToastSuccess('收藏取消')
+                dispatch(dispatchPublishDetail(target_id))
+            }
+        })
+    }
+
     /* 转发 */
     function handleRepost() {
         // 弹出一个弹层，包括转发给好友，转发海报
@@ -45,10 +66,22 @@ export default function Index(props) {
                     <AtIcon prefixClass='icon' value='shouye' size='26' color='#333'></AtIcon>
                     <Text className='item_txt'>首页</Text>
                 </View>
-                <View className='footer_item' onClick={handleCollect}>
-                    <AtIcon prefixClass='icon' value='xingji' size='26' color='#333'></AtIcon>
-                    <Text className='item_txt'>收藏</Text>
-                </View>
+                {
+                    publishDetail.is_collect === 0
+                        ? (
+                            // 未收藏
+                            <View className='footer_item' onClick={handleCollect}>
+                                <AtIcon prefixClass='icon' value='weishoucang' size='26' color='#333'></AtIcon>
+                                <Text className='item_txt'>收藏</Text>
+                            </View>
+                        ) : (
+                            // 已收藏
+                            <View className='footer_item' onClick={handleCancelCollect}>
+                                <AtIcon prefixClass='icon' value='yishoucang' size='26' color='#00D8A0'></AtIcon>
+                                <Text className='item_txt' style={{ color: '#00D8A0' }}>已收藏</Text>
+                            </View>
+                        )
+                }
                 <View className='footer_item' onClick={handleRepost}>
                     <AtIcon prefixClass='icon' value='zhuanfa' size='26' color='#333'></AtIcon>
                     <Text className='item_txt'>转发</Text>
@@ -63,5 +96,5 @@ export default function Index(props) {
 
 Index.defaultProps = {
     target_id: 0,
-    repost: ()=>{},
+    repost: () => { },
 }

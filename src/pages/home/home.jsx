@@ -40,6 +40,7 @@ export default function Home() {
 
     useEffect(() => {
         // 判断路由参数
+        console.log(router.params)
         judgeTarget(router.params)
 
         // 初始化数据

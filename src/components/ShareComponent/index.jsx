@@ -8,7 +8,7 @@ import './index.scss'
 /* 分享弹层组件 */
 export default function Index(props) {
 
-    const { isOpened, onClose } = props
+    const { isOpened, onClose, showBill } = props
 
     function handleClose() {
         console.log('分享浮窗关闭')
@@ -42,13 +42,17 @@ export default function Index(props) {
                             <IconFont name='weixin' size={120} />
                             <Text style={{ marginTop: '15px' }}>微信</Text>
                         </Button>
-                        <Button
-                            className='bill'
-                            onClick={handleBill}
-                        >
-                            <IconFont name='haibao' size={120} />
-                            <Text style={{ marginTop: '15px' }}>海报</Text>
-                        </Button>
+                        {
+                            showBill &&
+                            <Button
+                                className='bill'
+                                onClick={handleBill}
+                            >
+                                <IconFont name='haibao' size={120} />
+                                <Text style={{ marginTop: '15px' }}>海报</Text>
+                            </Button>
+                        }
+
                     </View>
                     <View className='cancel' onClick={handleCancel}>取消</View>
                 </View>
@@ -59,4 +63,5 @@ export default function Index(props) {
 Index.defaultProps = {
     isOpened: false,
     onClose: () => { },
+    showBill: true,
 }

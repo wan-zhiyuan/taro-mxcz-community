@@ -1,47 +1,37 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-import { useSelector } from '@tarojs/redux'
-import { publishExtend } from '../../../../actions/publish'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { publishExtend, dispatchPublishDetail } from '../../../../actions/publish'
 import { Toast, ToastSuccess } from '../../../../utils/toast'
 import { getDateTypeMinutes } from '../../../../utils/timer'
 
 import './index.scss'
 
-
 export default function Index(props) {
 
     const { target_id } = props
 
+    const isLike = useSelector(state => state.publish.publishDetail.is_like)
     const publishDetail = useSelector(state => state.publish.publishDetail.basic)
-
-    const [liskeNum, setLikeNum] = useState(0)
-    const [isLike, setIsLike] = useState(false)
-
-    useEffect(()=>{
-        setLikeNum(publishDetail.likes_number || 0)
-    },[publishDetail])
+    const dispatch = useDispatch()
 
     async function handleLike() {
-        // 喜欢+1
-        let postData = {
-            op: 'publish_extend',
-            target_id,
-            type: 1, // 0-阅读 1-点赞 2-评论
-            content: ''
-        }
-        const res = await publishExtend(postData)
-        if (res.code === 200) {
-            if (!isLike) {
-                let newNum = liskeNum + 1
-                setLikeNum(newNum)
-                setIsLike(true)
-                ToastSuccess('点赞成功')
-            } else {
-                Toast('不能重复点赞')
+        if (Number(isLike) === 0) {
+            // 喜欢+1
+            let postData = {
+                op: 'publish_extend',
+                target_id,
+                type: 1, // 0-阅读 1-点赞 2-评论
+                content: ''
             }
-        } else {
-            Toast('点赞失败')
+            const res = await publishExtend(postData)
+            if (res.code === 200) {
+                ToastSuccess('点赞成功')
+                dispatch(dispatchPublishDetail(target_id))
+            } else {
+                Toast('点赞失败')
+            }
         }
     }
 
@@ -71,8 +61,13 @@ export default function Index(props) {
                     <Text>人浏览</Text>
                 </View>
                 <View className='item_like' onClick={handleLike}>
-                    <AtIcon prefixClass='icon' value='dianzan' size='16px' color='#333'></AtIcon>
-                    <Text style={{ marginLeft: Taro.pxTransform(16), color: '#ff0044' }}>{liskeNum}</Text>
+                    {
+                        Number(isLike) === 0
+                            ? <AtIcon prefixClass='icon' value='dianzan' size='16px' color='#333'></AtIcon>
+                            : <AtIcon prefixClass='icon' value='dianzan' size='16px' color='#00D8A0'></AtIcon>
+                    }
+
+                    <Text style={{ marginLeft: Taro.pxTransform(16), color: '#ff0044' }}>{publishDetail.likes_number || 0}</Text>
                     <Text>人点赞</Text>
                 </View>
             </View>

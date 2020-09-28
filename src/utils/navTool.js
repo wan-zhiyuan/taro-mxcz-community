@@ -25,7 +25,7 @@ export function judgeTarget(params) {
         switch (params.target) {
             case 'communityDetail':
                 Taro.navigateTo({
-                    url: `/subPages2/pages/communityDetail/communityDetail?cid=${params.cid}`
+                    url: `/subPages2/pages/communityDetail/communityDetail?target_id=${params.target_id}`
                 })
                 break
             case 'publishDetail':
@@ -35,7 +35,12 @@ export function judgeTarget(params) {
                 break
             case 'informationDetail':
                 Taro.navigateTo({
-                    url: `/subPages2/pages/informationDetail/informationDetail?target_id=${params.target_id}`
+                    url: `/subPages3/pages/informationDetail/informationDetail?target_id=${params.target_id}`
+                })
+                break
+            case 'serviceSiteDetail':
+                Taro.navigateTo({
+                    url: `/subPages2/pages/serviceSiteDetail/serviceSiteDetail?target_id=${params.target_id}`
                 })
                 break
             default:

@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     businessDetail: {
         basic: {
             images:'',
+            details: '',
         },
         extend: [],
         read: [],

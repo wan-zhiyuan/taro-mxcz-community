@@ -6,11 +6,11 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { detail } = props
+    const { detail, repost } = props
 
+    /* 转发 */
     function handleRepost() {
-        // 转发功能待完善
-        
+        repost()
     }
 
     function handleNavi() {
@@ -59,5 +59,6 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-    detail: {}
+    detail: {},
+    repost: ()=>{},
 }

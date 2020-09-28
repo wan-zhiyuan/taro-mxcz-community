@@ -1,5 +1,5 @@
 import { PUBLISH_DETAIL, INFORMATION_DETAIL, PUBLISH_APPLY_UPDATE, INFORMATION_APPLY_UPDATE, } from '../constants/publish'
-import { API_USER } from '../constants/api'
+import { API_COMMUNITY, API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 import { SERVICE_SITE_APPLU_UPDATE } from '../constants/community'
 
@@ -26,7 +26,7 @@ export const increaseInfo = postData => createHttp({
 })
 
 /**
- * 发布信息阅读、点赞、评论、收藏  0123
+ * 发布信息阅读、点赞、评论、收藏  0 1 2 3
  * @param {*} postData 
  */
 export const publishExtend = postData => createHttp({
@@ -207,4 +207,14 @@ export const getPublishSearch = (keyword, location) => createHttp({
     fetchOptions: {
         showToast: true,
     }
+})
+
+/**
+ * 取消发布信息收藏
+ * @param {*} postData 
+ */
+export const delPublishExtend = postData => createHttp({
+    url: API_USER,
+    method: 'POST',
+    postData,
 })
