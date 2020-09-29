@@ -149,11 +149,6 @@ export default function PublishConfirm() {
 
                     confirmPublish()
                 } else {
-                    // let newData = {}
-                    // newData.i = i
-                    // newData.success = success
-                    // newData.fail = fail
-                    // uploadLoader(newData)
                     data.i = i
                     data.success = success
                     data.fail = fail

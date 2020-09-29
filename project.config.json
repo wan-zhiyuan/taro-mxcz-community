@@ -73,15 +73,15 @@
 				},
 				{
 					"id": 2,
-					"name": "subPages2/pages/communityDetail/communityDetail",
-					"pathName": "subPages2/pages/communityDetail/communityDetail",
-					"query": "target_id=33",
+					"name": "subPages2/pages/communityLocate/communityLocate",
+					"pathName": "subPages2/pages/communityLocate/communityLocate",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": 3,
-					"name": "subPages3/pages/publishDetail/publishDetail",
-					"pathName": "subPages3/pages/publishDetail/publishDetail",
+					"name": "subPages3/pages/information/information",
+					"pathName": "subPages3/pages/information/information",
 					"query": "target_id=33",
 					"scene": null
 				},

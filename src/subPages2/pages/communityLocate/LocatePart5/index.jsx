@@ -14,6 +14,7 @@ export default function Index() {
     const dispatch = useDispatch()
 
     const [intrTxt, setIntrTxt] = useState('')
+
     const [picFiles, setPicFiles] = useState([])
     const [showUploadBtn, setShowUploadBtn] = useState(true)
     const [upLoadImg, setUpLoadImg] = useState([])
@@ -70,12 +71,15 @@ export default function Index() {
     }
 
     function handleIntrChange(v) {
-        setIntrTxt(v)
+        // setIntrTxt(v)
+        let data = JSON.parse(JSON.stringify(businessApply))
+        data.memo = v
+        dispatch(updateBusinessApply(data))
     }
     function handleIntrBlur(v) {
-        let data = JSON.parse(JSON.stringify(businessApply))
-        data.memo = v.detail.value
-        dispatch(updateBusinessApply(data))
+        // let data = JSON.parse(JSON.stringify(businessApply))
+        // data.memo = v.detail.value
+        // dispatch(updateBusinessApply(data))
     }
 
     // 图片上传函数
@@ -164,7 +168,7 @@ export default function Index() {
             </View>
             <View className='introduction'>
                 <AtTextarea
-                    value={intrTxt}
+                    value={businessApply.memo || ''}
                     onChange={handleIntrChange}
                     maxLength={1000}
                     placeholder='请输入商家介绍'

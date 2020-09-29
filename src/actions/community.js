@@ -139,7 +139,7 @@ export const dispatchBusinessDetail = (target_id) => createAction({
  * 更新社区商户申请入驻信息
  * @param {*} businessApply 
  */
-export const updateBusinessApply = (businessApply) => {
+export const updateBusinessApply = (businessApply = {}) => {
     return {
         type: BUSINESS_APPLY_UPDATE,
         payload: { businessApply }
@@ -149,7 +149,7 @@ export const updateBusinessApply = (businessApply) => {
  * 更新社区服务站申请入驻信息
  * @param {*} serviceSiteApply 
  */
-export const updateServiceSiteApply = (serviceSiteApply) => {
+export const updateServiceSiteApply = (serviceSiteApply={}) => {
     return {
         type: SERVICE_SITE_APPLY_UPDATE,
         payload: { serviceSiteApply }

@@ -52,6 +52,8 @@ export default function publish(state = INITIAL_STATE, action) {
     case PUBLISH_APPLY_UPDATE:
       return { ...state, publishApply: action.payload.publishApply }
     case INFORMATION_APPLY_UPDATE:
+      console.log('######################')
+      console.log(action.payload)
       return { ...state, informationApply: action.payload.informationApply }
     default:
       return state

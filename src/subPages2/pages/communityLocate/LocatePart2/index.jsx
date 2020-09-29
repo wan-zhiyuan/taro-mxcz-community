@@ -16,33 +16,50 @@ export default function Index() {
     const [phone, setPhone] = useState('')
     const [notice, setNotice] = useState('')
 
+    /* 关键字 */
     function handleChangeKeyword(v) {
-        setKeyword(v)
-    }
-    function handleBlurKeyword(v) {
+        // setKeyword(v)
         // 更新businessApply
         let data = JSON.parse(JSON.stringify(businessApply))
         data.keyword = v
         dispatch(updateBusinessApply(data))
     }
-    function handleChangeAddress(v) {
-        setAddress(v)
+    function handleBlurKeyword(v) {
+        // 更新businessApply
+        // let data = JSON.parse(JSON.stringify(businessApply))
+        // data.keyword = v
+        // dispatch(updateBusinessApply(data))
     }
-    function handleBlurAddress(v) {
+    /* 详细地址 */
+    function handleChangeAddress(v) {
+        // setAddress(v)
         let data = JSON.parse(JSON.stringify(businessApply))
         data.address = v
         dispatch(updateBusinessApply(data))
     }
-    function handleChangePhone(v) {
-        setPhone(v)
+    function handleBlurAddress(v) {
+        // let data = JSON.parse(JSON.stringify(businessApply))
+        // data.address = v
+        // dispatch(updateBusinessApply(data))
     }
-    function handleBlurPhone(v) {
+    /* 联系电话 */
+    function handleChangePhone(v) {
+        // setPhone(v)
         let data = JSON.parse(JSON.stringify(businessApply))
         data.contact_phone = v
         dispatch(updateBusinessApply(data))
     }
+    function handleBlurPhone(v) {
+        // let data = JSON.parse(JSON.stringify(businessApply))
+        // data.contact_phone = v
+        // dispatch(updateBusinessApply(data))
+    }
+    /* 商家公告 */
     function handleChangeNotice(v) {
-        setNotice(v)
+        // setNotice(v)
+        let data = JSON.parse(JSON.stringify(businessApply))
+        data.notice = v
+        dispatch(updateBusinessApply(data))
     }
     function handleBlurNotice(v) {
         let data = JSON.parse(JSON.stringify(businessApply))
@@ -142,7 +159,7 @@ export default function Index() {
                 type='text'
                 maxLength={16}
                 placeholder='请输入行业关键字'
-                value={keyword}
+                value={businessApply.keyword || ''}
                 onChange={handleChangeKeyword}
                 onBlur={handleBlurKeyword}
             />
@@ -152,7 +169,7 @@ export default function Index() {
                 type='text'
                 maxLength={16}
                 placeholder='输入地址或点击地图选择'
-                value={address}
+                value={businessApply.address || ''}
                 onChange={handleChangeAddress}
                 onBlur={handleBlurAddress}
             >
@@ -165,7 +182,7 @@ export default function Index() {
                 title='联系电话：'
                 type='phone'
                 placeholder='请输入你的手机号'
-                value={phone}
+                value={businessApply.contact_phone || ''}
                 onChange={handleChangePhone}
                 onBlur={handleBlurPhone}
             />
@@ -175,7 +192,7 @@ export default function Index() {
                 title='商家公告：'
                 type='text'
                 placeholder='请输入商家公告'
-                value={notice}
+                value={businessApply.notice || ''}
                 onChange={handleChangeNotice}
                 onBlur={handleBlurNotice}
             />

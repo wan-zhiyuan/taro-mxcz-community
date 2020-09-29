@@ -1,13 +1,14 @@
 import Taro, { useState, useEffect, useRouter, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View, ScrollView, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { getWindowHeightNoPX } from '../../../utils/style'
-import PopupQRcode from './../../../components/Popup/PopupQRcode'
-import { useSelector, useDispatch } from '@tarojs/redux'
 import DetailTab from './DetailTab'
 import DetailHeader from './DetailHeader'
 import DetailFooter from './DetailFooter'
 import DetailRight from './DetailRight'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import { hidePopQr, getBusinessDetail, dispatchBusinessDetail, communityBusinessExtend } from '../../../actions/community'
+import PopupQRcode from '../../../components/Popup/PopupQRcode'
+import PopupLogin from '../../../components/PopupLogin'
 
 import './communityDetail.scss'
 
@@ -20,6 +21,7 @@ export default function CommunityDetail() {
     const detail = useSelector(state => state.community.businessDetail.basic)
     const dispatch = useDispatch()
 
+    const [isLogin, setIsLogin] = useState(true)
 
     useEffect(() => {
         // 阅读数+1
@@ -28,7 +30,13 @@ export default function CommunityDetail() {
 
     useDidShow(() => {
         // 获取社区商户详情(包含评论后返回详情页更新数据)
-        dispatch(dispatchBusinessDetail(target_id))
+        dispatch(dispatchBusinessDetail(target_id)).then(res => {
+            if (res.code === 200) {
+                setIsLogin(true)
+            } else if (res.code === 491) {
+                setIsLogin(false)
+            }
+        })
     })
 
     // 分享配置
@@ -43,6 +51,7 @@ export default function CommunityDetail() {
             return {
                 title: `盟享诚珍-${detail.business_name || ''}`,
                 path: `/pages/home/home?target=communityDetail&target_id=${target_id}`,
+                // path: `/subPages2/pages/communityDetail/communityDetail?target_id=${target_id}`,
                 imageUrl: ''
             }
         }
@@ -67,6 +76,11 @@ export default function CommunityDetail() {
 
     return (
         <View className='community_detail_index'>
+            {/* 登录弹窗模块 */}
+            {
+                !isLogin &&
+                <PopupLogin />
+            }
             <PopupQRcode
                 isOpened={isOpenedPopQr}
                 title={detail.business_name}

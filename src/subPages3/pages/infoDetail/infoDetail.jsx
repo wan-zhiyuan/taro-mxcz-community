@@ -9,6 +9,7 @@ import InfoDetailFooter from './InfoDetailFooter'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { getInformationDetail, dispatchInformationDetail, informationExtend } from '../../../actions/publish'
 import ShareComponent from '../../../components/ShareComponent'
+import PopupLogin from '../../../components/PopupLogin'
 
 import './infoDetail.scss'
 
@@ -20,6 +21,7 @@ export default function InfoDetail() {
     const dispatch = useDispatch()
 
     const [isOpenedShare, setIsOpenedShare] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
 
     useEffect(() => {
         // 阅读数+1
@@ -33,7 +35,13 @@ export default function InfoDetail() {
     }, [])
 
     useDidShow(() => {
-        dispatch(dispatchInformationDetail(target_id))
+        dispatch(dispatchInformationDetail(target_id)).then(res => {
+            if (res.code === 200) {
+                setIsLogin(true)
+            } else if (res.code === 491) {
+                setIsLogin(false)
+            }
+        })
     })
 
     useShareAppMessage(res => {
@@ -41,6 +49,7 @@ export default function InfoDetail() {
             return {
                 title: `盟享诚珍-${informationDetail.basic.title}`,
                 path: `/pages/home/home?target=informationDetail&target_id=${target_id}`,
+                // path: `/subPages3/pages/infoDetail/infoDetail?target_id=${target_id}`,
                 imageUrl: ''
             }
         }
@@ -61,6 +70,11 @@ export default function InfoDetail() {
 
     return (
         <View className='info_detail_index'>
+            {/* 登录弹窗模块 */}
+            {
+                !isLogin &&
+                <PopupLogin />
+            }
             {/* 分享弹层组件 */}
             <ShareComponent isOpened={isOpenedShare} onClose={handleCloseShare} showBill={false} />
             <ScrollView

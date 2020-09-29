@@ -35,7 +35,7 @@ export function judgeTarget(params) {
                 break
             case 'informationDetail':
                 Taro.navigateTo({
-                    url: `/subPages3/pages/informationDetail/informationDetail?target_id=${params.target_id}`
+                    url: `/subPages3/pages/infoDetail/infoDetail?target_id=${params.target_id}`
                 })
                 break
             case 'serviceSiteDetail':

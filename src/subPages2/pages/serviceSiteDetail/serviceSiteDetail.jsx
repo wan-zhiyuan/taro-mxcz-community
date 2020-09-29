@@ -1,11 +1,12 @@
-import Taro, { useState, useEffect, useRouter, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { getServiceSiteDetail } from '../../../actions/community'
 import SiteDetailHeader from './SiteDetailHeader'
 import SiteDetailContent from './SiteDetailContent'
 import SiteDetailFooter from './SiteDetailFooter'
-import ShareComponent from '../../../components/ShareComponent'
+import { getServiceSiteDetail, dispatchServiceSiteDetail } from '../../../actions/community'
 import { useDispatch, useSelector } from '@tarojs/redux'
+import ShareComponent from '../../../components/ShareComponent'
+import PopupLogin from '../../../components/PopupLogin'
 
 import './serviceSiteDetail.scss'
 
@@ -14,23 +15,37 @@ export default function ServiceSiteDetail() {
     const router = useRouter()
     const { target_id } = router.params
 
+    const dispatch = useDispatch()
+
     const [detail, setDetail] = useState({})
     const [isOpenedShare, setIsOpenedShare] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
 
     useEffect(() => {
-        async function getDetail() {
-            const res = await getServiceSiteDetail(target_id)
-            console.log(res)
+        
+    }, [])
+
+    useDidShow(()=>{
+        getData()
+    })
+
+    async function getData() {
+        const res = await dispatch(dispatchServiceSiteDetail(target_id))
+        if (res.code === 200) {
+            setIsLogin(true)
             setDetail(res.data.basic || {})
         }
-        getDetail()
-    }, [])
+        if (res.code === 491) {
+            setIsLogin(false)
+        }
+    }
 
     useShareAppMessage(res => {
         if (res.from === 'button') {
             return {
                 title: `盟享诚珍社区服务站-${detail.company_name}`,
                 path: `/pages/home/home?target=serviceSiteDetail&target_id=${target_id}`,
+                // path: `/subPages2/pages/serviceSiteDetail/serviceSiteDetail?target_id=${target_id}`,
                 imageUrl: ''
             }
         }
@@ -51,6 +66,11 @@ export default function ServiceSiteDetail() {
 
     return (
         <View className='service_site_detail_index'>
+            {/* 登录弹窗模块 */}
+            {
+                !isLogin &&
+                <PopupLogin />
+            }
             {/* 分享弹层组件 */}
             <ShareComponent isOpened={isOpenedShare} onClose={handleCloseShare} showBill={false} />
             <SiteDetailHeader detail={detail} />

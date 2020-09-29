@@ -6,7 +6,6 @@ import LocateInfo from './LocateInfo'
 import LocateIntroduction from './LocateIntroduction'
 import LocateFooter from './LocateFooter'
 
-
 import './serviceSiteLocate.scss'
 
 export default function ServiceSiteLocate() {

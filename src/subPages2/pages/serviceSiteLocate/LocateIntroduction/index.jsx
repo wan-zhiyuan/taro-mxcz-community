@@ -13,11 +13,8 @@ export default function Index(props) {
     const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
     const dispatch = useDispatch()
 
-    const [value, setValue] = useState('')
-
-    function onChange(v) {
-        setValue(v)
-
+    /* 简介 */
+    function handleChangeMemo(v) {
         let data = JSON.parse(JSON.stringify(serviceSiteApply))
         data.memo = v
         dispatch(updateServiceSiteApply(data))
@@ -29,8 +26,8 @@ export default function Index(props) {
             <View className='value'>
                 <ClTextarea
                     className='textarea'
-                    value={value}
-                    onChange={onChange}
+                    value={serviceSiteApply.memo || ''}
+                    onChange={handleChangeMemo}
                     placeholder="请输入……"
                     showLengthTip
                     height={220}

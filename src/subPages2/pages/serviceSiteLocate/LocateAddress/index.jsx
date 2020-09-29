@@ -12,8 +12,6 @@ export default function Index(props) {
     const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
     const dispatch = useDispatch()
 
-    // const [address, setAddress] = useState('')
-
     function chooseAddress() {
         Taro.getLocation({
             type: 'gcj02',
@@ -26,7 +24,6 @@ export default function Index(props) {
                     longitude: longitude,
                     success: function (res) {
                         console.log(res)
-                        // setAddress(res.address)
                         let data = JSON.parse(JSON.stringify(serviceSiteApply))
                         data.address = res.address
                         data.location = res.latitude + ',' + res.longitude
@@ -43,7 +40,7 @@ export default function Index(props) {
             {
                 serviceSiteApply.address === ''
                     ? <Text className='tishi'>请定位您的位置信息</Text>
-                    : <Text className='value'>{serviceSiteApply.address}</Text>
+                    : <Text className='value'>{serviceSiteApply.address || ''}</Text>
             }
             <View className='location' onClick={chooseAddress}>{!!serviceSiteApply.address ? '重新定位' : '定位'}</View>
 

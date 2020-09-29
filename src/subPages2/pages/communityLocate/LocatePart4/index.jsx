@@ -47,7 +47,7 @@ export default function Index() {
             }
             console.log('picUrlArr')
             console.log(picUrlArr)
-            uploadLoader({ path: picUrlArr, })
+            uploadLoader({ path: picUrlArr })
             /* --------------------- */
         }
 

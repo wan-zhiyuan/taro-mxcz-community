@@ -29,6 +29,21 @@ export default function Index() {
         })
     }
 
+    /* 选择商家微信 */
+    function handleSelectWeixin() {
+        Taro.chooseImage({
+            count: 1,
+            sizeType: ['compressed'],
+            sourceType: ['album', 'cemera'],
+            success: function (res) {
+                console.log(res.tempFilePaths)
+                const tempFilePaths = res.tempFilePaths
+                setWeixinPic(tempFilePaths)
+                uploadImage(tempFilePaths, 'wechat_pic')
+            }
+        })
+    }
+
     /**
      * 单图片上传
      * @param {*} tempFilePaths 图片数组
@@ -70,21 +85,6 @@ export default function Index() {
                         setWeixinPic('')
                     }
                 }
-            }
-        })
-    }
-
-    /* 选择商家微信 */
-    function handleSelectWeixin() {
-        Taro.chooseImage({
-            count: 1,
-            sizeType: ['compressed'],
-            sourceType: ['album', 'cemera'],
-            success: function (res) {
-                console.log(res.tempFilePaths)
-                const tempFilePaths = res.tempFilePaths
-                setWeixinPic(tempFilePaths)
-                uploadImage(tempFilePaths, 'wechat_pic')
             }
         })
     }

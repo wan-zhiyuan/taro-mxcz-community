@@ -8,7 +8,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { industryList } = props
+    const { } = props
 
     const businessApply = useSelector(state => state.community.businessApply)
     const dispatch = useDispatch()
@@ -22,29 +22,25 @@ export default function Index(props) {
     const [selector2Checked, setSelector2Checked] = useState('杨浦区')
 
     useEffect(() => {
-        // 提交的时候，如果industry为空，默认取数组第一支值
 
     }, [])
 
-    /* 可删除 */
-    // function handleChangeName(value) {
-    //     setName(value)
-    // }
+    function handleChangeName(value) {
+        // 更新businessApply
+        let data = JSON.parse(JSON.stringify(businessApply))
+        data.business_name = value
+        // data['busines_name'] = v // 两种方式都可以
+        dispatch(updateBusinessApply(data))
+    }
     /* 输入框失去焦点的时候触发 */
     function handleBlurName(v) {
         console.log('商家名称输入框失去焦点:' + v)
-        // 更新businessApply
-        let data = JSON.parse(JSON.stringify(businessApply))
-        data.business_name = v
-        // data['busines_name'] = v // 两种方式都可以
-        dispatch(updateBusinessApply(data))
     }
 
     function onChange(e) {
         setSelectorChecked(selector[e.detail.value])
     }
     function onChange2(e) {
-        console.log('onChange2()')
         // 更新选中状态
         setSelector2Checked(selector2[e.detail.value])
         // 更新businessApply
@@ -61,8 +57,8 @@ export default function Index(props) {
                 type='text'
                 maxLength={16}
                 placeholder='请输入商家名称'
-                // value={name}
-                // onChange={handleChangeName}
+                value={businessApply.business_name || ''}
+                onChange={handleChangeName}
                 onBlur={handleBlurName}
             />
             <View className='industry'>
@@ -90,5 +86,5 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-    industryList: []
+    
 }

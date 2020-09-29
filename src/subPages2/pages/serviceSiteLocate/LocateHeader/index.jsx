@@ -16,7 +16,6 @@ export default function Index(props) {
     const dispatch = useDispatch()
 
     const [logo, setLogo] = useState('')
-    const [mobile, setMobile] = useState('')
     const [jsCode, setJsCode] = useState('')
 
     useEffect(() => {
@@ -77,7 +76,9 @@ export default function Index(props) {
                 } else {
                     Toast(resultData.msg)
                     // 上传失败 应该清空logo的值
-                    setLogo('')
+                    let data = JSON.parse(JSON.stringify(serviceSiteApply))
+                    data.logo = ''
+                    dispatch(updateServiceSiteApply(data))
                 }
             }
         })
@@ -113,7 +114,6 @@ export default function Index(props) {
         console.log(res)
         // 获取成功设置手机号显示
         if (res.code === 200) {
-            setMobile(res.data.mobile)
             // 更新redux中的状态值
             let data = JSON.parse(JSON.stringify(serviceSiteApply))
             data.apply_mobile = res.data.mobile
@@ -127,19 +127,19 @@ export default function Index(props) {
         <View className='locate_header'>
             <View className='left'>
                 {
-                    isEmpty(serviceSiteApply.logo)
+                    isEmpty(logo)
                         ? (
                             <View className='logo_default' onClick={handleSelectLogo}>
                                 <IconFont name='xiangji' size={60} />
                                 <Text style={{ marginTop: Taro.pxTransform(12) }}>LOGO</Text>
                             </View>
                         ) : (
-                            <Image className='logo' src={serviceSiteApply.logo} mode='scaleToFill' onClick={handleSelectLogo}></Image>
+                            <Image className='logo' src={logo} mode='scaleToFill' onClick={handleSelectLogo}></Image>
                         )
                 }
             </View>
             <View className='right'>
-                <Text className='phone'>{mobile}</Text>
+                <Text className='phone'>{serviceSiteApply.apply_mobile || ''}</Text>
                 <Button
                     className='button'
                     openType={"getPhoneNumber"}

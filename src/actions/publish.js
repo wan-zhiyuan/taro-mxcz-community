@@ -1,7 +1,6 @@
 import { PUBLISH_DETAIL, INFORMATION_DETAIL, PUBLISH_APPLY_UPDATE, INFORMATION_APPLY_UPDATE, } from '../constants/publish'
 import { API_COMMUNITY, API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
-import { SERVICE_SITE_APPLU_UPDATE } from '../constants/community'
 
 // 发布信息 && 咨询信息 相关接口
 
@@ -49,7 +48,7 @@ export const informationExtend = postData => createHttp({
  * @param {*} cate_id 
  * @param {*} location 
  */
-export const getPublish = (cate_id, location, is_near=0) => createHttp({
+export const getPublish = (cate_id, location, is_near = 0) => createHttp({
     url: API_USER + '?op=publish&cate_id=' + cate_id + '&location=' + location + '&is_near=' + is_near,
     method: 'GET',
 })
@@ -57,7 +56,7 @@ export const getPublish = (cate_id, location, is_near=0) => createHttp({
  * 获取资讯信息列表
  * @param {*} cate_id 
  */
-export const getInformation = (cate_id, page=1, pagesize=10) => createHttp({
+export const getInformation = (cate_id, page = 1, pagesize = 10) => createHttp({
     url: API_USER + '?op=information&cate_id=' + cate_id + '&page=' + page + '&pagesize=' + pagesize,
     method: 'GET',
 })
@@ -88,7 +87,7 @@ export const dispatchPublishDetail = (target_id) => createAction({
                 like.push(res.extend[i])
             } else if (res.extend[i].type === 2) {
                 comment.push(res.extend[i])
-            } 
+            }
         }
         res.read = read
         res.like = like
@@ -138,17 +137,17 @@ export const dispatchInformationDetail = (target_id) => createAction({
 export const updatePublishApply = (publishApply) => {
     return {
         type: PUBLISH_APPLY_UPDATE,
-        payload: publishApply,
+        payload: { publishApply },
     }
 }
 /**
  * 更新资讯信息申请
  * @param {*} serviceSiteApply 
  */
-export const updateInformationApply = (informationApply) => {
+export const updateInformationApply = (informationApply={}) => {
     return {
-        type: SERVICE_SITE_APPLU_UPDATE,
-        payload: informationApply,
+        type: INFORMATION_APPLY_UPDATE,
+        payload: { informationApply },
     }
 }
 
@@ -172,7 +171,7 @@ export const getInformationCate = () => createHttp({
  * 优化点：分页（未完成）
  */
 export const getMyPublish = () => createHttp({
-    url : API_USER + '?op=publish_oneself&page=1&pagesize=200',
+    url: API_USER + '?op=publish_oneself&page=1&pagesize=200',
     method: 'GET'
 })
 
@@ -181,7 +180,7 @@ export const getMyPublish = () => createHttp({
  * @param {*} target_id 
  */
 export const deleteMyPublish = (target_id) => createHttp({
-    url: API_USER + '/' + target_id +'?op=publish',
+    url: API_USER + '/' + target_id + '?op=publish',
     method: 'DELETE',
 })
 

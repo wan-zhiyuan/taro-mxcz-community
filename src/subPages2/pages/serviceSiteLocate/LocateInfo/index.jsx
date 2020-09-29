@@ -6,32 +6,32 @@ import { updateServiceSiteApply } from '../../../../actions/community'
 
 import './index.scss'
 
-export default function Index(props) {
+export default function Index() {
 
     const serviceSiteApply = useSelector(state => state.community.serviceSiteApply)
     const dispatch = useDispatch()
 
     const [selector, setSelector] = useState(['社区助餐', '社区养老',])
-    const [selectorChecked, setSelectorChecked] = useState('社区助餐')
-    const [name, setName] = useState('')
-    const [mobile, setMobile] = useState('')
+    const [selectorChecked, setSelectorChecked] = useState('请选择')
 
+    /* 公司名称 */
     function handleChangeName(value) {
-        setName(value)
+        // setName(value)
+        let data = JSON.parse(JSON.stringify(serviceSiteApply))
+        data.company_name = value
+        dispatch(updateServiceSiteApply(data))
     }
     function hanldeBlurName(v) {
-        let data = JSON.parse(JSON.stringify(serviceSiteApply))
-        data.company_name = v
-        dispatch(updateServiceSiteApply(data))
     }
 
+    /* 公司电话 */
     function handleChangeMobile(value) {
-        setMobile(value)
+        // setMobile(value)
+        let data = JSON.parse(JSON.stringify(serviceSiteApply))
+        data.company_phone = value
+        dispatch(updateServiceSiteApply(data))
     }
     function handleBlurMobile(v) {
-        let data = JSON.parse(JSON.stringify(serviceSiteApply))
-        data.company_phone = v
-        dispatch(updateServiceSiteApply(data))
     }
 
     function onChange(e) {
@@ -49,7 +49,7 @@ export default function Index(props) {
                 type='text'
                 maxLength={32}
                 placeholder='请输入公司名称'
-                value={name}
+                value={serviceSiteApply.company_name || ''}
                 onChange={handleChangeName}
                 onBlur={hanldeBlurName}
             />
@@ -59,7 +59,7 @@ export default function Index(props) {
                 type='phone'
                 maxLength={16}
                 placeholder='请输入公司电话'
-                value={mobile}
+                value={serviceSiteApply.company_phone || ''}
                 onChange={handleChangeMobile}
                 onBlur={handleBlurMobile}
             />
@@ -71,7 +71,6 @@ export default function Index(props) {
                             <View className='picker'>
                                 <Text style={{ marginRight: Taro.pxTransform(16) }}>{selectorChecked}</Text>
                                 <AtIcon value='chevron-right' size={16} color='#333'></AtIcon>
-                                {/* {selectorChecked} */}
                             </View>
                         </Picker>
                     </View>

@@ -24,7 +24,7 @@ export default function PublishDetail() {
     const [isLogin, setIsLogin] = useState(true)
 
     useEffect(() => {
-        // 阅读数+1
+        // 阅读数+1 
         doPublishExtend(0, '')
     }, [])
 
