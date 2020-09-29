@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import PublishItem from '../PublishItem'
 import Divider from '../DividerComponent'
 import IconFont from '../../components/iconfont'
@@ -22,13 +22,14 @@ export default function Index(props) {
                 {
                     list.length === 0
                         ? <View className='empty'>
-                            <IconFont name='meiyoushuju' size={200} />
+                            <IconFont name='meiyoushuju' size={200} color='#666'/>
+                            <Text className='empty_txt'>没有数据</Text>
                         </View>
                         : <View>
                             {
                                 list.map((item, idx) => {
                                     return (
-                                        <PublishItem key={'index_' + idx} publishItem={item} from={from}/>
+                                        <PublishItem key={'index_' + idx} publishItem={item} from={from} />
                                     )
                                 })
                             }

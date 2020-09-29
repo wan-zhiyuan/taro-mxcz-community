@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import { useSelector } from '@tarojs/redux'
+import { Toast } from '../../../utils/toast'
 
 import './index.scss'
 
@@ -9,13 +10,29 @@ export default function Index(props) {
 
     const userInfo = useSelector(state => state.user.userInfo)
 
+    function naviToWallet() {
+        Toast('功能未开放')
+    }
+
     function naviToPointDetail() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/subPages1/pages/pointDetail/pointDetail'
         })
     }
 
     function naviToMyCollection() {
+        // if (!userInfo.nickname) {
+        //     Taro.navigateTo({
+        //         url: '/subPages1/pages/login/login'
+        //     })
+        //     return
+        // }
         Taro.navigateTo({
             url: '/subPages1/pages/myCollection/myCollection'
         })
@@ -23,7 +40,7 @@ export default function Index(props) {
 
     return (
         <View className='mine_data'>
-            <View className='data_item'>
+            <View className='data_item' onClick={naviToWallet}>
                 <Text className='item_value'>0</Text>
                 <Text className='item_key'>钱包</Text>
             </View>

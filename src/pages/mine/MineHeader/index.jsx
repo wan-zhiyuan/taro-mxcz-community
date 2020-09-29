@@ -9,10 +9,24 @@ export default function Index() {
 
     const userInfo = useSelector(state => state.user.userInfo)
 
+    /* 签到 */
     function handleSignIn() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         console.log('跳转签到页面')
         Taro.navigateTo({
             url: `/subPages1/pages/signIn/signIn`
+        })
+    }
+
+    /* 登录 */
+    function handleLogin() {
+        Taro.navigateTo({
+            url: '/subPages1/pages/login/login'
         })
     }
 
@@ -28,7 +42,7 @@ export default function Index() {
                 {
                     !!userInfo.nickname
                         ? <Text className='mine_nickname'>{userInfo.nickname || ''}</Text>
-                        : <Text className='mine_nickname'>未登陆</Text>
+                        : <Text className='mine_nickname' onClick={handleLogin}>登录/注册</Text>
                 }
                 {/* {
                     barUser.avatar ? (

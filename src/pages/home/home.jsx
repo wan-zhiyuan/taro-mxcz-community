@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
 import { View, ScrollView, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
 import HomeBanner from './HomeBanner'
@@ -8,7 +8,7 @@ import HomePublish from './HomePublish'
 import HomeGrid from './HomeGrid'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { dispatchHomeIndex } from '../../actions/home'
-import { dispatchUser, updateCity } from '../../actions/user'
+import { dispatchUser } from '../../actions/user'
 import { getPublish } from '../../actions/publish'
 import ListView, { LazyBlock } from "taro-listview";
 import PopupLogin from '../../components/PopupLogin'
@@ -26,8 +26,6 @@ export default function Home() {
     const userInfo = useSelector(state => state.user.userInfo)
     const dispatch = useDispatch()
 
-    // 用户是否登陆
-    const [isLogin, setIsLogin] = useState(true)
     const [scrollTop, setScrollTop] = useState(-1)
 
     const [publishList, setPublishList] = useState([])
@@ -115,10 +113,10 @@ export default function Home() {
     return (
         <View className='home_index lazy-view'>
             {/* 登录弹窗模块 */}
-            {
+            {/* {
                 !userInfo.nickname &&
                 <PopupLogin />
-            }
+            } */}
             <HomeNavbar />
             <ListView
                 style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}

@@ -123,7 +123,9 @@ export default function CommunityLocate() {
             >
                 {/* 名称 && 分类 */}
                 <LocatePart1 />
+                {/* 关键字 && 地址 && 电话 && 公告 */}
                 <LocatePart2 />
+                {/* logo && 微信图片 */}
                 <LocatePart3 />
                 {/* 商家轮播图 */}
                 <LocatePart4 />

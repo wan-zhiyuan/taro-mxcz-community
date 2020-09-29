@@ -31,7 +31,7 @@ export default async function fetch(options) {
     }
     return Taro.request(option)
         .then(res => {
-            const { code, data, status } = res.data
+            const { code, data, msg } = res.data
             
             if (isShowLoading) {
                 Taro.hideLoading()
@@ -51,11 +51,13 @@ export default async function fetch(options) {
                 Taro.setStorageSync('jwt', res.header['orz-auth5'])
             }
             if (code !== 200) {
-                if (showToast) {
-                    Toast(status)
+                if (code !== 491) {
+                    if (showToast) {
+                        Toast(msg)
+                    }
                 }
             }
-            return res.data // 数据格式： code,data,status
+            return res.data // 数据格式： code,data,msg
         }).catch((err) => {
             console.log('Taro.request err:' + JSON.stringify(err))
         })

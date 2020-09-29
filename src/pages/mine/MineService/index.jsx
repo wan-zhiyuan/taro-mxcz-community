@@ -44,6 +44,13 @@ export default function Index(props) {
           })
     }
 
+    /* 活动核销 */
+    function handleVerify() {
+        Taro.navigateTo({
+            url: `/subPages1/pages/verification/verification`
+        })
+    }
+
     return (
         <View className='mine_service'>
             <View className='title'>
@@ -106,6 +113,16 @@ export default function Index(props) {
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的地址</Text>
                     <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY ADDRESS</Text>
+                </View>
+                <View style={{ marginRight: '10px' }}>
+                    <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
+                </View>
+            </View>
+            <View className='middle_item' onClick={() => { handleVerify() }}>
+                <View className='item_left'>
+                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
+                    <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>活动核销</Text>
+                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}></Text>
                 </View>
                 <View style={{ marginRight: '10px' }}>
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>

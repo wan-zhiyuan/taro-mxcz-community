@@ -1,5 +1,6 @@
 .publish_list {
     width: 100%;
+    height: 100%;
 
     .publish_list_box {
         width: 100%;
@@ -14,6 +15,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        .empty_txt {
+            font-size: 30px;
+            line-height: 30px;
+            color: #666;
+            margin-top: 10px;
+        }
     }
 }
 

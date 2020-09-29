@@ -1,5 +1,6 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
@@ -7,13 +8,30 @@ export default function Index(props) {
 
     const { } = props
 
+    const userInfo = useSelector(state => state.user.userInfo)
+    const middle_navigation = useSelector(state => state.home.homeIndex.middle_navigation)
+
+    /* 跳转发布信息列表 及 分类 */
     function naviToPublishCate() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/subPages3/pages/category/category'
         })
     }
 
+    /* 跳转资讯信息列表 */
     function naviToCommunityInfo() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/subPages3/pages/information/information'
         })
@@ -27,12 +45,12 @@ export default function Index(props) {
             <View className='content'>
                 <Image
                     className='content_item'
-                    src={'http://source.bingu.cn/community_information_1.png'}
+                    src={middle_navigation[0].image}
                     mode='scaleToFill'
                     onClick={naviToPublishCate}></Image>
                 <Image
                     className='content_item'
-                    src={'http://source.bingu.cn/community_information_2.png'}
+                    src={middle_navigation[1].image}
                     mode='scaleToFill'
                     onClick={naviToCommunityInfo}></Image>
             </View>

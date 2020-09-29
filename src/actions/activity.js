@@ -67,3 +67,13 @@ export const activityEnroll = postData => createHttp({
     method: 'POST',
     postData,
 })
+
+/**
+ * 活动核销
+ * @param {*} postData 
+ */
+export const activityVerify = postData => createHttp({
+    url: API_COMMUNITY,
+    method: 'POST',
+    postData
+})

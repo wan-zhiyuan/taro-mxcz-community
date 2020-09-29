@@ -46,6 +46,7 @@ class App extends Component {
           'pages/customerService/customerService', // 联系客服
           'pages/aboutUs/aboutUs', // 关于我们
           'pages/index/index', // 测试页面
+          'pages/verification/verification', // 测试页面
         ]
       },
       // 社区相关： 社区商户 && 社区服务站

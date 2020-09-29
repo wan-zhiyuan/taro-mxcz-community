@@ -25,9 +25,10 @@ export default function MyCollection() {
         async function getData() {
             const res = await getCollectList()
             console.log(res)
-            if (res.code != 200) return
-            setBusinessList(res.data.collect_bussiness) // 目前数据返回的内容有问题 和其他的发布信息列表不一致
-            setPublishList(res.data.collect_publish)
+            if (res.code === 200) {
+                setBusinessList(res.data.collect_bussiness) // 目前数据返回的内容有问题 和其他的发布信息列表不一致
+                setPublishList(res.data.collect_publish)
+            }
             setIsLoaded(true)
         }
         getData()
