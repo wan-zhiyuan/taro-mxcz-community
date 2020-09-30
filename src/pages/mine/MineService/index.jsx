@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
@@ -8,10 +9,12 @@ export default function Index(props) {
 
     const { title } = props
 
+    const userInfo = useSelector(state => state.user.userInfo)
+
     function handleGoToOrder() {
         console.log('handleGoToOrder()')
         Taro.navigateTo({
-            url:'/subPages5/pages/order/order'
+            url: '/subPages5/pages/order/order'
         })
     }
 
@@ -32,16 +35,16 @@ export default function Index(props) {
         console.log('handleGoToAddress()')
         Taro.chooseAddress({
             success: function (res) {
-              console.log(res.userName)
-              console.log(res.postalCode)
-              console.log(res.provinceName)
-              console.log(res.cityName)
-              console.log(res.countyName)
-              console.log(res.detailInfo)
-              console.log(res.nationalCode)
-              console.log(res.telNumber)
+                console.log(res.userName)
+                console.log(res.postalCode)
+                console.log(res.provinceName)
+                console.log(res.cityName)
+                console.log(res.countyName)
+                console.log(res.detailInfo)
+                console.log(res.nationalCode)
+                console.log(res.telNumber)
             }
-          })
+        })
     }
 
     /* 活动核销 */
@@ -118,16 +121,19 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            <View className='middle_item' onClick={() => { handleVerify() }}>
-                <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
-                    <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>活动核销</Text>
-                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}></Text>
+            {
+                Number(userInfo.is_verify || 0) === 1 &&
+                <View className='middle_item' onClick={() => { handleVerify() }}>
+                    <View className='item_left'>
+                        <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
+                        <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>活动核销</Text>
+                        <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}></Text>
+                    </View>
+                    <View style={{ marginRight: '10px' }}>
+                        <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
+                    </View>
                 </View>
-                <View style={{ marginRight: '10px' }}>
-                    <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
-                </View>
-            </View>
+            }
         </View>
     )
 }
