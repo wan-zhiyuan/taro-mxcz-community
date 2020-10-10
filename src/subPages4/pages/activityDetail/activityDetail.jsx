@@ -66,9 +66,20 @@ export default function ActivityDetail() {
                         ? <View className='footer_right'>已报名</View>
                         : <View className='footer_right'>
                             {
-                                Number(activity.basic.status) === 0
-                                    ? <View className='able' onClick={handleEnroll}>活动报名</View>
-                                    : <View className='disable'>活动已结束</View>
+                                Number(activity.basic.status) === 1
+                                    ? 
+                                    // 活动进行中
+                                    <View className='able' onClick={handleEnroll}>活动报名</View>
+                                    : 
+                                    <View>
+                                        {
+                                            Number(activity.basic.status) === 2
+                                            ? <View className='disable'>活动已结束</View>
+                                            : <View className='disable'>活动未开始</View>
+                                        }
+                                    </View>
+                                    
+                                    
                             }
                         </View>
                 }

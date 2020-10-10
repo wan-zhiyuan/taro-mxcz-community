@@ -19,7 +19,11 @@ export default function Index(props) {
         <View className='service_site_item' onClick={handleItem}>
             <View className='item_box'>
                 <View className='item_box1'>
-                    <Image className='site_logo'></Image>
+                    {
+                        item.logo
+                            ? <Image className='site_logo' src={item.logo} mode='scaleToFill'></Image>
+                            : <Image className='site_logo_default'></Image>
+                    }
                     <View className='name_phone'>
                         <Text className='name'>{item.company_name || ''}</Text>
                         <View className='phone'>

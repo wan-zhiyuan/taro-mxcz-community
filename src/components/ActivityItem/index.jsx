@@ -50,8 +50,13 @@ export default function Index(props) {
             plain: true
         },
         {
-            text: '已关闭',
+            text: '已结束',
             color: 'gray',
+            plain: true,
+        },
+        {
+            text: '未开始',
+            color: 'green',
             plain: true,
         },
     ]
@@ -78,13 +83,22 @@ export default function Index(props) {
                     <View className='activity_tag2'>
                         {
                             // 同时判断 status 和 isenroll 后续实际数据添加判断
-                            (Number(item.status || '') === 0 && Number(item.is_enroll) === 1)
+                            (Number(item.status || '') === 1 && Number(item.is_enroll) === 1)
                                 ?
                                 // 进行中
                                 <ClTag tags={tags.slice(2, 3)} shape='radius' />
                                 :
-                                // 已关闭
-                                <ClTag tags={tags.slice(3, 4)} shape='radius' />
+                                <View>
+                                    {
+                                        Number(item.status || '') === 2
+                                            ?
+                                            // 已结束
+                                            <ClTag tags={tags.slice(3, 4)} shape='radius' />
+                                            :
+                                            // 未开始
+                                            <ClTag tags={tags.slice(4, 5)} shape='radius' /> 
+                                    }
+                                </View>
                         }
                     </View>
                 </View>
