@@ -32,6 +32,9 @@ export default function ActivityDetail() {
 
     /* 报名 */
     function handleEnroll() {
+        if (Number(activity.is_enroll) !== 0) {
+            return
+        }
         console.log('社区活动报名')
         // 方案1:详情接口告知是否已报名
         // 方案2:报名接口返回告知结果给用户展示
@@ -60,8 +63,26 @@ export default function ActivityDetail() {
                     <AtIcon prefixClass='icon' value='home' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ marginLeft: Taro.pxTransform(10) }}>首页</Text>
                 </View>
-                {/* 判断活动状态：0-正常；1-禁用 */}
+                {/* status: 0-活动未开始； 1-活动正常； 2-活动已结束； */}
+                {/* 先判断status，当为1的时候再判断is_enroll */}
                 {
+                    Number(activity.basic.status) === 1
+                    ? <View className='footer_right_able' onClick={handleEnroll}>
+                        {
+                            Number(activity.is_enroll) !== 0
+                            ? '已报名'
+                            : '活动报名'
+                        }
+                    </View>
+                    : <View className='footer_right_disable'>
+                        {
+                            Number(activity.basic.status) === 2
+                            ? '活动已结束'
+                            : '活动未开始'
+                        }
+                    </View>
+                }
+                {/* {
                     Number(activity.is_enroll) !== 0
                         ? <View className='footer_right'>已报名</View>
                         : <View className='footer_right'>
@@ -82,7 +103,7 @@ export default function ActivityDetail() {
                                     
                             }
                         </View>
-                }
+                } */}
             </View>
         </View>
     )

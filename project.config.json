@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages4/pages/volunteer/volunteer",
-					"pathName": "subPages4/pages/volunteer/volunteer",
+					"name": "subPages4/pages/activity/activity",
+					"pathName": "subPages4/pages/activity/activity",
 					"query": "",
 					"scene": null
 				},

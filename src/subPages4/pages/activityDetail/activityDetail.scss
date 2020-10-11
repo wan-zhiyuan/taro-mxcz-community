@@ -50,4 +50,20 @@
             background-color: #e2e2e2;
         }
     }
+    .footer_right_able {
+        height: 100%;
+        flex-grow: 1;
+        background-color: #00D8A0;
+        text-align: center;
+        font-size: 30px;
+        line-height: 100px;
+    }
+    .footer_right_disable {
+        height: 100%;
+        flex-grow: 1;
+        background-color: #e2e2e2;
+        text-align: center;
+        font-size: 30px;
+        line-height: 100px;
+    }
 }

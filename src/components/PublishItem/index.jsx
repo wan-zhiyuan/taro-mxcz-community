@@ -88,8 +88,8 @@ export default function Index(props) {
                         }
                         <View className='item_user_right'>
                             <Text className='user_name'>{publishItem.nickname || ''}</Text>
-                            {/* <Text className='item_cate'>{publishItem.cate_name}</Text> */}
-                            <ClTag tags={[{ text: `${publishItem.cate_name}`, color: 'cyan' }]} shape='radius' size='small' />
+                            <Text className='item_cate'>{publishItem.cate_name}</Text>
+                            {/* <ClTag tags={[{ text: `${publishItem.cate_name}`, color: 'cyan' }]} shape='radius' size='small' /> */}
                         </View>
                     </View>
                     <View className='detail_distance'>
