@@ -29,11 +29,12 @@ export default function Category() {
             if (res.code === 200) {
                 const d = res.data
                 let gridData = []
-                let cateList = []
+                let cateList = [{ title: '全部', cate_id: 0 },{ title: '附近', cate_id: 0 }]
                 for (let i = 0; i < d.length; i++) {
                     gridData.push({ image: d[i].image, value: d[i].title, cate_id: d[i].id, cate_name: d[i].title })
                     cateList.push({ title: d[i].title, cate_id: d[i].id })
                 }
+                console.log(cateList)
                 setGridData(gridData)
                 setCateTitleList(cateList)
             }
@@ -131,9 +132,9 @@ export default function Category() {
         setHasMore(true)
         // 此处使用的cate_id还不正确 !!!!!!!!!!
         if (v == 1) { // 附近
-            getPublishData(v, location, 1, 0)
+            getPublishData(cateTitleLsit[v].cate_id, location, 1, 0)
         } else { // 非附近
-            getPublishData(v, location, 0, 0)
+            getPublishData(cateTitleLsit[v].cate_id, location, 0, 0)
         }
     }
 

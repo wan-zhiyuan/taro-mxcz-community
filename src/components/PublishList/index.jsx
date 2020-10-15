@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { useState, useEffect, useScope } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import PublishItem from '../PublishItem'
 import Divider from '../DividerComponent'
@@ -12,7 +12,7 @@ export default function Index(props) {
     const { list, hasMore, from } = props
 
     return (
-        <View className='publish_list'>
+        <View className='publish_list' id='publish_list'>
             <View
                 className='publish_list_box'
                 style={list.length === 0
@@ -22,7 +22,7 @@ export default function Index(props) {
                 {
                     list.length === 0
                         ? <View className='empty'>
-                            <IconFont name='meiyoushuju' size={200} color='#666'/>
+                            <IconFont name='meiyoushuju' size={200} color='#666' />
                             <Text className='empty_txt'>没有数据</Text>
                         </View>
                         : <View>

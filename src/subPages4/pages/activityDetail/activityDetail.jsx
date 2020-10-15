@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide } from '@tarojs/taro'
 import { View, ScrollView, Swiper, SwiperItem, } from '@tarojs/components'
 import { getWindowHeightNoPX } from '../../../utils/style'
 import { AtIcon } from 'taro-ui'
@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from '@tarojs/redux'
 import { getCommunityActivityDetail, dispatchCommunityActivityDetail } from '../../../actions/activity'
 
 import './activityDetail.scss'
+import { Toast } from '../../../utils/toast'
 
 export default function ActivityDetail() {
 
@@ -19,9 +20,13 @@ export default function ActivityDetail() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+
+    }, [])
+
+    useDidShow(() => {
         // 获取活动详情信息
         dispatch(dispatchCommunityActivityDetail(target_id))
-    }, [])
+    })
 
     /* 首页 */
     function goToHome() {
@@ -33,6 +38,11 @@ export default function ActivityDetail() {
     /* 报名 */
     function handleEnroll() {
         if (Number(activity.is_enroll) !== 0) {
+            Toast('已报名')
+            return
+        }
+        if (Number(activity.basic.enroll_number) === Number(activity.basic.limit_number)) {
+            Toast('报名已满')
             return
         }
         console.log('社区活动报名')
@@ -64,8 +74,27 @@ export default function ActivityDetail() {
                     <Text style={{ marginLeft: Taro.pxTransform(10) }}>首页</Text>
                 </View>
                 {/* status: 0-活动未开始； 1-活动正常； 2-活动已结束； */}
-                {/* 先判断status，当为1的时候再判断is_enroll */}
+                {/* 先判断是否结束，未开始和活动正常都允许报名，如果报名已经满了也不允许报名 */}
                 {
+                    Number(activity.basic.status) === 2
+                        ?
+                        <View className='footer_right_disable'>{'活动已结束'}</View>
+                        :
+                        <View className='footer_right_able' onClick={handleEnroll}>
+                            {
+                                Number(activity.is_enroll) !== 0
+                                    ? '已报名'
+                                    : <View>
+                                        {
+                                            Number(activity.basic.enroll_number) === Number(activity.basic.limit_number)
+                                                ? '报名已满'
+                                                : '活动报名'
+                                        }
+                                    </View>
+                            }
+                        </View>
+                }
+                {/* {
                     Number(activity.basic.status) === 1
                     ? <View className='footer_right_able' onClick={handleEnroll}>
                         {
@@ -81,28 +110,6 @@ export default function ActivityDetail() {
                             : '活动未开始'
                         }
                     </View>
-                }
-                {/* {
-                    Number(activity.is_enroll) !== 0
-                        ? <View className='footer_right'>已报名</View>
-                        : <View className='footer_right'>
-                            {
-                                Number(activity.basic.status) === 1
-                                    ? 
-                                    // 活动进行中
-                                    <View className='able' onClick={handleEnroll}>活动报名</View>
-                                    : 
-                                    <View>
-                                        {
-                                            Number(activity.basic.status) === 2
-                                            ? <View className='disable'>活动已结束</View>
-                                            : <View className='disable'>活动未开始</View>
-                                        }
-                                    </View>
-                                    
-                                    
-                            }
-                        </View>
                 } */}
             </View>
         </View>
