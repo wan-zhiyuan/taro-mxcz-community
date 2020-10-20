@@ -23,12 +23,13 @@ export default function CommentPage() {
     /* 提交 */
     function handleSubmit() {
         if (isEmpty(value)) return
+        let v = value.replace(/\ud83c[\udc00-\udfff]|\ud83d[\udc00-\udfff]|[\u2000-\u2fff]/g, "") // 正则过滤emoji表情
         if (type === 'publish') {
             let postData = {
                 op: 'publish_extend',
                 target_id,
                 type: 2,
-                content: value
+                content: v
             }
             publishExtend(postData).then(res => {
                 if (res.code === 200) {
@@ -43,7 +44,7 @@ export default function CommentPage() {
                 op: 'information_extend',
                 target_id,
                 type: 2,
-                content: value
+                content: v
             }
             informationExtend(postData).then(res => {
                 if (res.code === 200) {
@@ -58,7 +59,7 @@ export default function CommentPage() {
                 op: 'business_extend',
                 target_id,
                 type: 2,
-                content: value,
+                content: v,
             }
             communityBusinessExtend(postData).then(res => {
                 if (res.code === 200) {

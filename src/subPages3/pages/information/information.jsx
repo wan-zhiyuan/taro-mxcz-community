@@ -136,11 +136,12 @@ export default function Information() {
                     }
                 </AtTabs>
             </ListView>
-            <View className='publish_button'>
+            {/* 发布按钮（暂时屏蔽） */}
+            {/* <View className='publish_button'>
                 <AtFab size='small' onClick={handlePublish}>
                     <Text className='at-fab__icon at-icon at-icon-add'></Text>
                 </AtFab>
-            </View>
+            </View> */}
         </View>
     )
 
