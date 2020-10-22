@@ -93,6 +93,8 @@ class App extends Component {
       {
         "root": "subPages5",
         "pages": [
+          'pages/mall/mall',
+          'pages/goodsDetail/goodsDetail',
           'pages/order/order',
         ]
       },

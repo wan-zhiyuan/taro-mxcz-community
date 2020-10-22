@@ -8,6 +8,7 @@ import { Toast, ToastSuccess } from '../../utils/toast'
 import { ClText, ClTag  } from "mp-colorui"
 
 import './index.scss'
+import { isEmpty } from '../../utils/is'
 
 /* 发布信息列表展示时每一项item */
 export default function Index(props) {
@@ -65,6 +66,17 @@ export default function Index(props) {
         })
     }
 
+    /* 处理发布信息文本内容 */
+    function getContent() {
+        if (isEmpty(publishItem.content)) {
+            return
+        }
+        if (publishItem.content.length >= 80) {
+            return publishItem.content.substring(0,80) + '...'
+        }
+        return publishItem.content
+    }
+
     return (
         <View className='publish_item'>
             <View className='publish_item_box'>
@@ -103,7 +115,8 @@ export default function Index(props) {
                     </View>
                 </View>
                 <View className='item_desc'>
-                    {publishItem.content || ''}
+                    {/* {publishItem.content || ''} */}
+                    {getContent()}
                 </View>
                 {/* <ClText textColor='black'>
                     {publishItem.content || ''}

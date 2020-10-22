@@ -1,0 +1,69 @@
+.goods_item {
+    width: 350px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+
+    .goods_img {
+        width: 100%;
+        // max-height: 400px; // 显示商品图片的最大高度
+    }
+
+    .goods_info {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .info_box1 {
+            margin-left: 10px;
+            width: 330px;
+
+            .goods_name {
+                width: 330px;
+                font-size: 28px;
+                line-height: 36px;
+                color: #333;
+                font-weight: 600;
+                // 单行文本省略号
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;  
+            }
+        }
+
+        .info_box2 {
+            margin-left: 10px;
+            margin-top: 12px;
+
+            .goods_price {
+                font-size: 28px;
+                line-height: 28px;
+                color: #ff0044;
+            }
+        }
+
+        .info_box3 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: 10px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+
+            .user_avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+            }
+
+            .user_name {
+                margin-left: 12px;
+                font-size: 22px;
+                line-height: 36px;
+                color: #666;
+            }
+        }
+    }
+}
