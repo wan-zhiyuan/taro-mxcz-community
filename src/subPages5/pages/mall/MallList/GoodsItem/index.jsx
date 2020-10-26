@@ -12,6 +12,9 @@ function Index(props) {
 
     function handleClick() {
         console.log('点击了商品，跳转商品详情')
+        Taro.navigateTo({
+            url: `/subPages5/pages/goodsDetail/goodsDetail`
+        })
     }
 
     return (
