@@ -1,0 +1,21 @@
+.detail_header {
+    width: 710px;
+    height: 200px;
+    background-color: hotpink;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .header_left {
+        width: 70px;
+        height: 70px;
+        background-color: blue;
+    }
+
+    .header_right {
+        height: 70px;
+        flex-grow: 1;
+        background-color: yellow;
+    }
+}
