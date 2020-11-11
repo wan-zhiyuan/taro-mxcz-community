@@ -2,9 +2,9 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "taro-mxcz-community",
 	"description": "盟享诚珍社区小程序",
-	"appid": "wx5ce52892b6d26918",
+	"appid": "wxa774ff01abe41e49",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": false,
 		"enhance": false,
 		"postcss": false,
@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
