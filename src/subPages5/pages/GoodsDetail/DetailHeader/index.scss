@@ -1,21 +1,51 @@
 .detail_header {
     width: 710px;
-    height: 200px;
-    background-color: hotpink;
+    height: 130px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-bottom: 1px solid #ccc;
 
     .header_left {
         width: 70px;
         height: 70px;
-        background-color: blue;
+
+        .user_avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+        }
+
+        .user_avatar_default {
+            width: 70px;
+            height: 70px;
+            border-radius: 5px;
+            background-color: #ccc;
+        }
     }
 
     .header_right {
         height: 70px;
         flex-grow: 1;
-        background-color: yellow;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 18px;
+
+        .user_name {
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 3px;
+        }
+
+        .user_msg {
+            font-size: 24px;
+            line-height: 24px;
+            color: #ccc;
+            margin-bottom: 3px;
+        }
     }
 }
