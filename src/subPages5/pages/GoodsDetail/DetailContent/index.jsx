@@ -35,7 +35,13 @@ export default function Index(props) {
                         }
                     </View>
                 }
+                <View className='detail_extend'>
+                    <Text>369人想要.</Text>
+                    <Text>超赞40.</Text>
+                    <Text>浏览6682</Text>
+                </View>
             </View>
+            
         </View>
     )
 }

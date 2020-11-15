@@ -19,7 +19,7 @@ function Index(props) {
 
     return (
         <View className='goods_item' onClick={handleClick}>
-            <Image className='goods_img' src={Goods1} mode='aspectFill'></Image>
+            <Image className='goods_img' src={goods.pic} mode='aspectFill'></Image>
             <View className='goods_info'>
                 <View className='info_box1'>
                     <View className='goods_name'>{'tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸tempo的包抽纸餐巾抽纸'}</View>
@@ -28,7 +28,12 @@ function Index(props) {
                     <Text className='goods_price'>￥49.90</Text>
                 </View>
                 <View className='info_box3'>
-                    <Image className='user_avatar' src={Goods3} mode='scaleToFill'></Image>
+                    {
+                        goods.avatar
+                        ? <Image className='user_avatar' src={goods.avatar} mode='scaleToFill'></Image>
+                        : <Image className='user_avatar_default' ></Image>
+                    }
+                    
                     <Text className='user_name'>麻利麻利哄</Text>
                 </View>
             </View>

@@ -4,6 +4,7 @@ import { ClGrid } from "mp-colorui";
 import Goods1 from '../../../images/goods_1.jpg'
 import Goods2 from '../../../images/goods_2.jpg'
 import Goods3 from '../../../images/goods_3.jpg'
+import Goods4 from '../../../images/goods_4.jpg'
 import GoodsItem from './GoodsItem'
 
 import './index.scss'
@@ -12,7 +13,12 @@ export default function Index(props) {
 
     const { } = props
 
-    const [goods, setGoods] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    const [goods, setGoods] = useState([
+        {pic:Goods1}, 
+        {pic:Goods2}, 
+        {pic:Goods3}, 
+        {pic:Goods4}, 
+    ])
 
     return (
         <View className='mall_list'>

@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import CommentItem from '../CommentItem'
 import Divider from '../DividerComponent'
+import IconFont from '../iconfont'
 
 import './index.scss'
 
@@ -22,10 +23,22 @@ export default function Index(props) {
             }
             <View className='comment_list'>
                 {
-                    commentList.map((item, idx) => {
-                        return (<CommentItem key={'index_' + idx} item={item} />)
-                    })
+                    commentList.length > 0
+                        ?
+                        <View>
+                            {
+                                commentList.map((item, idx) => {
+                                    return (<CommentItem key={'index_' + idx} item={item} />)
+                                })
+                            }
+                        </View>
+                        :
+                        <View className='empty'>
+                            <IconFont name='meiyoushuju' size={100} color='#ccc' />
+                            <Text className='empty_txt'>暂无评论</Text>
+                        </View>
                 }
+
             </View>
             <Divider />
         </View>
