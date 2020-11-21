@@ -66,9 +66,9 @@
 				},
 				{
 					"id": 1,
-					"name": "subPages4/pages/activity/activity",
-					"pathName": "subPages4/pages/activity/activity",
-					"query": "",
+					"name": "subPages4/pages/activityDetail/activityDetail",
+					"pathName": "subPages4/pages/activityDetail/activityDetail",
+					"query": "target_id=4",
 					"scene": null
 				},
 				{

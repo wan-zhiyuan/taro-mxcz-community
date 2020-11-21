@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useDidShow, useDidHide, useShareAppMessage } from '@tarojs/taro'
 import { View, ScrollView, Swiper, SwiperItem, } from '@tarojs/components'
 import { getWindowHeightNoPX } from '../../../utils/style'
 import { AtIcon } from 'taro-ui'
@@ -24,8 +24,26 @@ export default function ActivityDetail() {
     }, [])
 
     useDidShow(() => {
-        // 获取活动详情信息
-        dispatch(dispatchCommunityActivityDetail(target_id))
+        async function getInit() {
+            // 获取活动详情信息
+            const res = await dispatch(dispatchCommunityActivityDetail(target_id))
+            if (res.code === 491) {
+                // 需要跳转登录页面
+                Taro.navigateTo({
+                    url: '/subPages1/pages/login/login'
+                })
+                return
+            }
+        }
+        getInit()
+    })
+
+    useShareAppMessage(res => {
+        return {
+            title: `盟享诚珍-${activity.basic.title || ''}`,
+            path: `/pages/home/home?target=activityDetail&target_id=${target_id}`,
+            imageUrl: ''
+        }
     })
 
     /* 首页 */
