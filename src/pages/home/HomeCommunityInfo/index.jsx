@@ -11,6 +11,18 @@ export default function Index(props) {
     const userInfo = useSelector(state => state.user.userInfo)
     const middle_navigation = useSelector(state => state.home.homeIndex.middle_navigation)
 
+    function naviToMall() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
+        Taro.navigateTo({
+            url: '/subPages5/pages/mall/mall'
+        })
+    }
+
     /* 跳转发布信息列表 及 分类 */
     function naviToPublishCate() {
         if (!userInfo.nickname) {
@@ -44,12 +56,12 @@ export default function Index(props) {
             </View>
             <View className='content'>
                 <Image
-                    className='content_item'
+                    className='content_item_left'
                     src={middle_navigation[0].image}
                     mode='scaleToFill'
-                    onClick={naviToPublishCate}></Image>
+                    onClick={naviToMall}></Image>
                 <Image
-                    className='content_item'
+                    className='content_item_right'
                     src={middle_navigation[1].image}
                     mode='scaleToFill'
                     onClick={naviToCommunityInfo}></Image>

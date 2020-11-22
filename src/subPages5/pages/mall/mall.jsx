@@ -1,18 +1,30 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import MallNav from './MallNav'
 import MallSearch from './MallSearch'
 import MallList from './MallList'
 import ListView, { LazyBlock } from "taro-listview";
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../../utils/style'
+import { useDispatch } from '@tarojs/redux'
+import { dispatchGoodsList, getGoodsDetail, getOrderList, getOrderDetail, postOrder, postPay } from '../../../actions/mall'
 
 import './mall.scss'
+import { isEmpty } from '../../../utils/is'
 
 export default function Mall() {
+
+    const dispatch = useDispatch()
 
     const [pIndex, setPIndex] = useState(0)
     const [hasMore, setHasMore] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
+
+    useEffect(()=>{
+        async function getInit() {
+            await dispatch(dispatchGoodsList())
+        }
+        getInit()
+    },[])
 
     /* 上拉加载 */
     async function onScrollToLower() {
@@ -28,29 +40,12 @@ export default function Mall() {
         <View className='mall_index'>
             <MallNav />
             <MallSearch />
-
-            {/* <ListView
-                className='list_view'
-                style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
-                lazy
-                hasMore={hasMore}
-                isLoaded={isLoaded}
-            // onPullDownRefresh={pullDownRefresh}
-            // onScrollToLower={onScrollToLower}
-            >
-                <View className='bg_1'></View>
-                <View className='bg_2'></View>
-                <MallList />
-
-            </ListView> */}
             <ScrollView
                 className='scrollview_mall'
                 style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
                 scrollY
                 scrollWithAnimation
             >
-                {/* <View className='bg_1'></View>
-                <View className='bg_2'></View> */}
                 <MallList />
             </ScrollView>
         </View>

@@ -1,12 +1,15 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import GoodsDetailImg1 from '../../../images/goods_detail_img.jpg'
+import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
 
 export default function Index(props) {
 
     const { } = props
+
+    const goodsDetail = useSelector(state => state.mall.goodsDetail)
 
     const [detailPic, setDetailPic] = useState([
         GoodsDetailImg1,
@@ -27,7 +30,7 @@ export default function Index(props) {
                     (detailPic && detailPic.length > 0) &&
                     <View className='detail_img'>
                         {
-                            detailPic.map((item, idx) => {
+                            goodsDetail.images.split('|').map((item, idx) => {
                                 return (
                                     <Image className='detail_img_item' src={item} mode='widthFix' key={'index_' + idx} />
                                 )

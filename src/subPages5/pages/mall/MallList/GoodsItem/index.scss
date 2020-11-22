@@ -15,6 +15,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        overflow: hidden;
 
         .info_box1 {
             margin-left: 10px;
@@ -45,32 +46,46 @@
         }
 
         .info_box3 {
+            width: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
-            margin-left: 10px;
             margin-top: 12px;
             margin-bottom: 12px;
+            justify-content: space-between;
+            
+            .box3_left {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-left: 10px;
 
-            .user_avatar {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
+                .user_avatar {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                }
+    
+                .user_avatar_default {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                    background-color: #ccc;
+                }
+    
+                .user_name {
+                    margin-left: 12px;
+                    font-size: 22px;
+                    line-height: 36px;
+                    color: #666;
+                }
             }
 
-            .user_avatar_default {
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                background-color: #ccc;
+            .box3_right {
+                margin-right: 12px;
+                color: rgb(42, 176, 253);
             }
-
-            .user_name {
-                margin-left: 12px;
-                font-size: 22px;
-                line-height: 36px;
-                color: #666;
-            }
+            
         }
     }
 }

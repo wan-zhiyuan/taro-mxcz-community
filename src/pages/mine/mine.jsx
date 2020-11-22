@@ -1,4 +1,4 @@
-import Taro, { useState, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useDidShow, useShareAppMessage } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { getWindowHeight } from '../../utils/style'
 import MineHeader from './MineHeader'
@@ -18,6 +18,14 @@ export default function Mine() {
     useDidShow(()=>{
         // 更新用户信息
         dispatch(dispatchUser())
+    })
+
+    useShareAppMessage( res => {
+        return {
+            title: '盟享诚珍',
+            path: '/pages/home/home',
+            imageUrl: '',
+        }
     })
 
     return (

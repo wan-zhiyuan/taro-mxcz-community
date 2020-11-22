@@ -59,16 +59,16 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/mine/mine",
-					"pathName": "pages/mine/mine",
+					"name": "pages/home/home",
+					"pathName": "pages/home/home",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "subPages4/pages/activityDetail/activityDetail",
-					"pathName": "subPages4/pages/activityDetail/activityDetail",
-					"query": "target_id=4",
+					"name": "subPages4/pages/activity/activity",
+					"pathName": "subPages4/pages/activity/activity",
+					"query": "",
 					"scene": null
 				},
 				{

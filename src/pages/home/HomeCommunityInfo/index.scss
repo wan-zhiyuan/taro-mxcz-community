@@ -25,7 +25,19 @@
         .content_item{
             width: 330px;
             height: 180px;
-            border-radius: 20p;
+            border-radius: 20px;
+        }
+        .content_item_left{
+            width: 360px;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .content_item_right{
+            width: 300px;
+            height: 180px;
+            border-radius: 20px;
+            overflow: hidden;
         }
     }
 }

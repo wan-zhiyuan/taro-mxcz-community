@@ -6,12 +6,16 @@ import Goods2 from '../../../images/goods_2.jpg'
 import Goods3 from '../../../images/goods_3.jpg'
 import Goods4 from '../../../images/goods_4.jpg'
 import GoodsItem from './GoodsItem'
+import { useSelector} from '@tarojs/redux'  
 
 import './index.scss'
 
 export default function Index(props) {
 
     const { } = props
+
+    const goodsList = useSelector(state => state.mall.goodsList)
+
 
     const [goods, setGoods] = useState([
         {pic:Goods1}, 
@@ -26,7 +30,7 @@ export default function Index(props) {
             <View className='bg_2'></View>
             <View className='goods_list'>
                 {
-                    goods.map((item, idx) => {
+                    goodsList.map((item, idx) => {
                         return (
                             <GoodsItem goods={item} key={'index_' + idx} />
                         )

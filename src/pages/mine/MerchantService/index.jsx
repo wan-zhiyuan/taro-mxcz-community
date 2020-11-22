@@ -10,7 +10,10 @@ export default function Index(props) {
     const {  title } = props
 
     function handleMerchant() {
-        Toast('此功能暂不开放')
+        // Toast('此功能暂不开放')
+        Taro.navigateTo({
+            url: '/subPages5/pages/mall/mall'
+        })
     }
 
     return (

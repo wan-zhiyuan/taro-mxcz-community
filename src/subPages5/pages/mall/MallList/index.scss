@@ -21,10 +21,10 @@
     }
 
     .goods_list {
-        margin-top: 20px;
+        margin: 20px 15px 0 15px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 }

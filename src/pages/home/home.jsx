@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, useDidShow, useShareAppMessage } from '@tarojs/taro'
 import { View, ScrollView, } from '@tarojs/components'
 import HomeNavbar from './HomeNavbar'
 import HomeBanner from './HomeBanner'
@@ -48,6 +48,14 @@ export default function Home() {
     useDidShow(() => {
         // 获取发布信息数据
         getData()
+    })
+
+    useShareAppMessage(res => {
+        return {
+            title: '盟享诚珍', // 分享卡片展示的标题
+            path: '/pages/home/home', // 分享卡片的路径
+            imageUrl: '',
+        }
     })
 
     async function getInit() {
@@ -129,12 +137,14 @@ export default function Home() {
                 onScrollToLower={onScrollToLower}
                 scrollTop={scrollTop}
             >
-                {/* 导航模块 */}
-                <HomeGrid />
+                {/* 首页顶部半圆模块 */}
+                <View className='top_bg'></View>
                 {/* banner模块 */}
                 <HomeBanner />
                 {/* 信息模块（天气、浏览、入驻、分享等） analytics */}
                 <HomeMsg />
+                {/* 导航模块 */}
+                <HomeGrid />
                 {/* 社区资讯模块 */}
                 <HomeCommunityInfo />
                 {/* 社区发布模块 */}

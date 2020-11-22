@@ -55,7 +55,7 @@ export default function Index(props) {
             plain: true,
         },
         {
-            text: '未开始',
+            text: '预报名',
             color: 'green',
             plain: true,
         },

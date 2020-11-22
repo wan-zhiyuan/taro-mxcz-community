@@ -4,6 +4,7 @@ import home from './home'
 import community from './community'
 import publish from './publish'
 import activity from './activity'
+import mall from './mall'
 
 export default combineReducers({
   user,
@@ -11,4 +12,5 @@ export default combineReducers({
   community,
   publish,
   activity,
+  mall,
 })

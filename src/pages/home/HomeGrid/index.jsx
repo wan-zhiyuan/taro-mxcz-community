@@ -48,7 +48,7 @@ export default function Index(props) {
 
     return (
         <View className='home_grid'>
-            <View className='home_grid_bg'></View>
+            {/* <View className='home_grid_bg'></View> */}
             <View className='grid'>
                 {
                     gridData.map((item, idx) => {
