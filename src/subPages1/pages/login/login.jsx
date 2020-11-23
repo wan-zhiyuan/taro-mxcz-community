@@ -7,11 +7,14 @@ import { useDispatch } from '@tarojs/redux'
 
 import './login.scss'
 import { Toast } from '../../../utils/toast'
+import { isEmpty } from '../../../utils/is'
 
 export default function Login() {
 
     const dispatch = useDispatch()
 
+    const [isShowUserInfoBtn, setIsShowUserInfoBtn] = useState(true)
+    const [isShowPhoneBtn, setIsShowPhoneBtn] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
     const [jsCode, setJsCode] = useState('')
 
@@ -74,8 +77,20 @@ export default function Login() {
             const res = await getLogin(postData)
             console.log(res)
             // 成功
-            if (res.code === 200) {
-                Taro.setStorageSync('jwt', res.data.jwt)
+            if (res.code !== 200) {
+                return
+            }
+            await Taro.setStorageSync('jwt', res.data.jwt)
+            const resUser = await dispatch(dispatchUser())
+            if (resUser.code !== 200) {
+                return
+            }
+            if (isEmpty(resUser.data.mobile)) {
+                console.log('未获取用户手机号，需要用户手机号登录')
+                setIsShowUserInfoBtn(false)
+                setIsShowPhoneBtn(true)
+            } else {
+                console.log('已存在用户手机号，登录成功')
                 userLogined()
             }
         }
@@ -86,7 +101,7 @@ export default function Login() {
         Taro.showLoading({
             title: '请稍等'
         })
-        
+
         const res = await dispatch(dispatchUser())
         if (!res.data.nickname) {
             console.log('未找到用户信息，请重新登陆')
@@ -138,13 +153,16 @@ export default function Login() {
 
     async function getPhoneNumber(encryptedData, iv) {
         let postData = { js_code: jsCode, encrypted: encryptedData, iv, op: 'user_mobile' }
-            // 以下是登录的请求
-            const res = await getUserPhone(postData)
-            console.log(res)
-            // 成功
-            if (res.code === 200) {
-                
-            }
+        // 以下是登录的请求
+        const res = await getUserPhone(postData)
+        console.log(res)
+        // 成功
+        if (res.code === 200) {
+            userLogined()
+        } else {
+            Toast('用户注册失败')
+            console.log('用户注册失败')
+        }
     }
 
     return (
@@ -152,18 +170,22 @@ export default function Login() {
             <View className='avatar'>
                 <OpenData type='userAvatarUrl' />
             </View>
-            <Button
-                className="userbutton-login"
-                openType={"getUserInfo"}
-                onGetUserInfo={onGetUserInfo}
-                loading={isLogin}
-            >用户登录</Button>
-            {/* <Button
-                className="userbutton-login"
-                openType={"getPhoneNumber"}
-                onGetPhoneNumber={onGetPhoneNumber}
-                loading={isLogin}
-            >手机号一键登录</Button> */}
+            <View style={isShowUserInfoBtn ? {} : { display: 'none' }}>
+                <Button
+                    className="userbutton-login"
+                    openType={"getUserInfo"}
+                    onGetUserInfo={onGetUserInfo}
+                    loading={isLogin}
+                >用户登录</Button>
+            </View>
+            <View style={(isShowPhoneBtn && !isShowUserInfoBtn) ? {} : { display: 'none' }}>
+                <Button
+                    className="userbutton-login"
+                    openType={"getPhoneNumber"}
+                    onGetPhoneNumber={onGetPhoneNumber}
+                    loading={isLogin}
+                >手机号一键登录</Button>
+            </View>
             <View className='login_cancel' onClick={handleCancel}>取消</View>
         </View>
     )

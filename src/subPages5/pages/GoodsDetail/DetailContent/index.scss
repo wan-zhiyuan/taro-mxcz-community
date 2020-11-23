@@ -11,6 +11,7 @@
         // flex-direction: row;
         // align-items: flex-end;
         flex-direction: column;
+        margin-top: 16px;
 
         .price_1 {
             font-size: 40px;
@@ -22,8 +23,7 @@
             font-size: 24px;
             line-height: 24px;
             color: #333;
-            margin-left: 10px;
-            margin-bottom: 2px;
+            margin-top: 16px;
         }
     }
 
@@ -47,19 +47,6 @@
                 width: 100%;
                 border-radius: 20px;
             }
-        }
-
-        .detail_extend {
-            width: 100%;
-            height: 100px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-end;
-            font-size: 26px;
-            line-height: 26px;
-            color: #999;
-            background-color: #fff;
         }
     }
 

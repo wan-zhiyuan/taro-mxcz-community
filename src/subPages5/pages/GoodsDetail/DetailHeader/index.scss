@@ -29,23 +29,39 @@
         height: 70px;
         flex-grow: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: flex-end;
         margin-left: 18px;
 
-        .sale_name {
-            font-size: 30px;
-            line-height: 30px;
-            font-weight: 600;
-            color: #333;
-            margin-top: 3px;
+        .right_box1 {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 18px;
+
+            .sale_name {
+                font-size: 30px;
+                line-height: 30px;
+                font-weight: 600;
+                color: #333;
+                margin-top: 3px;
+            }
+    
+            .sale_mobile {
+                font-size: 24px;
+                line-height: 24px;
+                color: #999;
+                margin-bottom: 3px;
+            }
         }
 
-        .sale_msg {
+        .update_time {
             font-size: 24px;
             line-height: 24px;
-            color: #ccc;
-            margin-bottom: 3px;
+            color: #333;
         }
+
     }
 }

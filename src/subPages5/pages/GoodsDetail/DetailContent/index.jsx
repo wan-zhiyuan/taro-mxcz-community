@@ -36,7 +36,6 @@ export default function Index(props) {
                 <Text className='price_2'>市场价：￥{goodsDetail.market_price || 0}</Text>
             </View>
             <View className='goods_detail'>
-                {/* <Text className='detail_txt'>陆地冲浪板转向支架C7桥 弹簧桥 特价处理几套国产顶级的陆地冲浪板支架。特点转向幅度大，很轻松。目前国产转向支架里面最好的。现在特价230包邮。支架全新。淘宝里面最低价是400。用过不满意直接推给我。</Text> */}
                 <Text className='detail_txt'>{goodsDetail.describe || ''}</Text>
                 {
                     goodsDetail &&
@@ -50,11 +49,6 @@ export default function Index(props) {
                         }
                     </View>
                 }
-                <View className='detail_extend'>
-                    <Text>369人想要.</Text>
-                    <Text>超赞40.</Text>
-                    <Text>浏览6682</Text>
-                </View>
             </View>
 
         </View>

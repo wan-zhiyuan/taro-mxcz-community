@@ -3,6 +3,7 @@ import { View } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 
 import './index.scss'
+import { getDateTypeMinutes } from '../../../../utils/timer'
 
 export default function Index(props) {
 
@@ -19,11 +20,13 @@ export default function Index(props) {
                         ? <Image className='sale_avatar' src={goodsDetail.avatar || ''} mode='scaleToFill'></Image>
                         : <View className='sale_avatar_default'></View>
                 }
-
             </View>
             <View className='header_right'>
-                <Text className='sale_name'>{goodsDetail.sale_name || ''}</Text>
-                <Text className='sale_msg'>2小时前来过 发布于韶关</Text>
+                <View className='right_box1'>
+                    <Text className='sale_name'>{goodsDetail.sale_name || ''}</Text>
+                    <Text className='sale_mobile'>{goodsDetail.sale_mobile || ''}</Text>
+                </View>
+                <Text className='update_time'>最后更新于 {getDateTypeMinutes(goodsDetail.update_time || 0)}</Text>
             </View>
         </View>
     )

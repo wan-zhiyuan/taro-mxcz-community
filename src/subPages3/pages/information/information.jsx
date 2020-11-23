@@ -11,14 +11,7 @@ import './Information.scss'
 export default function Information() {
 
     const [current, setCurrent] = useState(0)
-    const [tabsList, setTabsList] = useState([
-        // { title: '标签页1', cate_id: 0, cate_name: '', },
-        // { title: '标签页2', cate_id: 1, cate_name: '', },
-        // { title: '标签页3', cate_id: 2, cate_name: '', },
-        // { title: '标签页4', cate_id: 3, cate_name: '', },
-        // { title: '标签页5', cate_id: 4, cate_name: '', },
-        // { title: '标签页6', cate_id: 5, cate_name: '', }
-    ])
+    const [tabsList, setTabsList] = useState([])
     const [cateId, setCateId] = useState(0)
 
     const [list, setList] = useState([])

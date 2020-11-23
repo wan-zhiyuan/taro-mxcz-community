@@ -96,6 +96,7 @@ class App extends Component {
           'pages/mall/mall',
           'pages/goodsDetail/goodsDetail',
           'pages/order/order',
+          'pages/orderDetail/orderDetail',
         ]
       },
     ],

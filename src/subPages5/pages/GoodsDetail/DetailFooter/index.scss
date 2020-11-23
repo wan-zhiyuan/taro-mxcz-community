@@ -10,13 +10,13 @@
     border-top: 1px solid #ccc;
 
     .footer_left {
-        width: 60%;
+        width: 20%;
         height: 100%;
         display: flex;
         flex-direction: row;
 
         .footer_item {
-            width: 33%;
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -39,6 +39,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    justify-content: center;
+        justify-content: center;
     }
 }

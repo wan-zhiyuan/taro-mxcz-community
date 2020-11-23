@@ -25,8 +25,7 @@ export default function GoodsDetail() {
         <View className='goods_detail_index'>
             <DetailHeader />
             <DetailContent />
-            <View style={{width:'100%',height:'15px',backgroundColor:'#f2f2f2'}}></View>
-            <DetailComment />
+            {/* <DetailComment /> */}
             <View style={{width:'100%',height:'70px'}}></View>
             <DetailFooter />
         </View>

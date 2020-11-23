@@ -49,6 +49,20 @@ export default function Index(props) {
                         console.log('########################支付成功')
                         console.log(res)
                         Toast('支付成功')
+                        Taro.showModal({
+                            title: '提示',
+                            content: '购买成功',
+                            success: function (res) {
+                              if (res.confirm) {
+                                console.log('用户点击确定')
+                                Taro.redirectTo({
+                                    url: '/subPages5/pages/order/order'
+                                })
+                              } else if (res.cancel) {
+                                console.log('用户点击取消')
+                              }
+                            }
+                          })
                     },
                     fail: function (res) {
                         console.log('########################支付失败')
@@ -64,17 +78,17 @@ export default function Index(props) {
         <View className='detail_footer'>
             <View className='footer_left'>
                 <View className='footer_item' onClick={() => { Taro.switchTab({ url: '/pages/home/home' }) }}>
-                    <IconFont name='dianzan' size={52} color='#333' />
-                    <Text className='item_txt'>点赞</Text>
+                    <IconFont name='home' size={52} color='#333' />
+                    <Text className='item_txt'>首页</Text>
                 </View>
-                <View className='footer_item' onClick={() => { Taro.switchTab({ url: '/pages/home/home' }) }}>
+                {/* <View className='footer_item' onClick={() => { Taro.switchTab({ url: '/pages/home/home' }) }}>
                     <IconFont name='liuyan' size={52} color='#333' />
                     <Text className='item_txt'>留言</Text>
                 </View>
                 <View className='footer_item' onClick={() => { Taro.switchTab({ url: '/pages/home/home' }) }}>
                     <IconFont name='weishoucang' size={50} color='#333' />
                     <Text className='item_txt'>收藏</Text>
-                </View>
+                </View> */}
             </View>
             <View className='footer_right' onClick={handlePay}>
                 <Text>我要买</Text>
