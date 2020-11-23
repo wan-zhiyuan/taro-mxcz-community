@@ -13,8 +13,8 @@ export default function Order() {
     const [current, setCurrent] = useState([0])
     const [tabList, setTabList] = useState([
         { title: '全部订单' },
-        { title: '待发货' },
-        { title: '待收货' },
+        { title: '待付款' },
+        { title: '待提货' },
         { title: '已完成' },
     ])
     const [list, setList] = useState([]) // 订单列表数据
@@ -42,10 +42,10 @@ export default function Order() {
             let status = 0
             switch (value) {
                 case 1:
-                    status = 2
+                    status = 1
                     break;
                 case 2:
-                    status = 3
+                    status = 2
                     break;
                 case 3:
                     status = 4
