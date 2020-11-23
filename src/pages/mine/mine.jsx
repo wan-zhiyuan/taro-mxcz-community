@@ -5,7 +5,7 @@ import MineHeader from './MineHeader'
 import MineData from './MineData'
 import MineService from './MineService'
 import PlatformService from './PlatformService'
-import MerchantService from './MerchantService'
+import MallService from './MallService'
 import { useDispatch } from '@tarojs/redux'
 import { dispatchUser } from '../../actions/user'
 
@@ -40,9 +40,8 @@ export default function Mine() {
                 <MineHeader />
                 <MineData />
                 <MineService title={'我的服务'} />
+                <MallService title={'商家服务'} />
                 <PlatformService title={'平台服务'} />
-                <MerchantService title={'商家服务'} />
-
             </ScrollView>
 
         </View>

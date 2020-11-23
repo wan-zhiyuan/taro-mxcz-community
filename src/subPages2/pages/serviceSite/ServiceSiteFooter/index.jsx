@@ -24,7 +24,7 @@ export default function Index(props) {
         <View className='service_site_footer' >
             <View className='left' onClick={()=>{Taro.switchTab({url:'/pages/home/home'})}}>
                 <AtIcon prefixClass='icon' value='shouye' size='20' color='#fff'></AtIcon>
-                <Text style={{ marginLeft: Taro.pxTransform(24) }}>首页</Text>
+                <Text style={{ marginLeft: Taro.pxTransform(24) }}>我要合作</Text>
             </View>
             <View className='right' onClick={handleRuzhu}>
                 <AtIcon prefixClass='icon' value='huiyuan' size='20' color='#fff'></AtIcon>

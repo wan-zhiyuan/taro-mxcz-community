@@ -58,7 +58,6 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            {/* <View style={{width:'100%',height:'20px'}}></View> */}
         </View>
     )
 }

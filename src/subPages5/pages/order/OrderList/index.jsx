@@ -13,7 +13,7 @@ export default function Index(props) {
             {
                 list.map((item,idx)=>{
                     return (
-                        <OrderListItem key={'index_'+idx}/>
+                        <OrderListItem key={'index_'+idx} orderItem={item}/>
                     )
                 })
             }
