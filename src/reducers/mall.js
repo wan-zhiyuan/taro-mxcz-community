@@ -2,7 +2,9 @@ import { GOODS_LIST, GOODS_DETAIL } from '../constants/mall'
 
 const INITIAL_STATE = {
     goodsList: [],
-    goodsDetail: {}
+    goodsDetail: {
+        images:''
+    }
 }
 
 export default function home(state = INITIAL_STATE, action) {

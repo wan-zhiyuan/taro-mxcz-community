@@ -77,7 +77,7 @@ export default function Index(props) {
                 </View>
             </View>
             <View className='footer_right' onClick={handlePay}>
-                <Text>我想要</Text>
+                <Text>我要买</Text>
             </View>
         </View>
     )
