@@ -2,6 +2,7 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import MallNav from './MallNav'
 import MallSearch from './MallSearch'
+import MallBanner from './MallBanner'
 import MallList from './MallList'
 import ListView, { LazyBlock } from "taro-listview";
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../../utils/style'
@@ -9,7 +10,6 @@ import { useDispatch } from '@tarojs/redux'
 import { dispatchGoodsList, getGoodsDetail, getOrderList, getOrderDetail, postOrder, postPay } from '../../../actions/mall'
 
 import './mall.scss'
-import { isEmpty } from '../../../utils/is'
 
 export default function Mall() {
 
@@ -19,12 +19,12 @@ export default function Mall() {
     const [hasMore, setHasMore] = useState(true)
     const [isLoaded, setIsLoaded] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         async function getInit() {
-            await dispatch(dispatchGoodsList(1,1000))
+            await dispatch(dispatchGoodsList(1, 1000))
         }
         getInit()
-    },[])
+    }, [])
 
     /* 上拉加载 */
     async function onScrollToLower() {
@@ -39,13 +39,15 @@ export default function Mall() {
     return (
         <View className='mall_index'>
             <MallNav />
-            <MallSearch />
+            {/* <MallSearch /> */}
             <ScrollView
                 className='scrollview_mall'
                 style={{ height: `${getWindowHeightNoPX() - getCustomNavHeight()}px` }}
                 scrollY
                 scrollWithAnimation
             >
+                <View className='bg_2'></View>
+                <MallBanner />
                 <MallList />
             </ScrollView>
         </View>

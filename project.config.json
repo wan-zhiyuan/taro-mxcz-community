@@ -87,8 +87,8 @@
 				},
 				{
 					"id": 4,
-					"name": "subPages5/pages/order/order",
-					"pathName": "subPages5/pages/order/order",
+					"name": "subPages5/pages/mall/mall",
+					"pathName": "subPages5/pages/mall/mall",
 					"query": "",
 					"scene": null
 				}

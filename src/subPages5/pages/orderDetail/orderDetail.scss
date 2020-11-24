@@ -1,3 +1,24 @@
 .order_detail_index {
     width: 100%;
+    background-color: #f2f2f2;
+
+    .detail_main {
+        width: 710px;
+        margin: 20px auto 0;
+        background-color: #fff;
+
+        .detail_item {
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .label_title {
+                font-weight: 600;
+                color: #333;
+            }
+        }
+    }
 }

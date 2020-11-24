@@ -41,9 +41,7 @@ export default function Index(props) {
                     <Text style={{ color: '#ff0044' }}>{caleCommunityNumber()}</Text>
                 </View>
             </View>
-            <View className='msg_weather'>
-                天气：晴
-                    </View>
+            {/* <View className='msg_weather'>天气：晴</View> */}
         </View>
     )
 }

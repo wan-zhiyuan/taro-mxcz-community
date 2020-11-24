@@ -1,5 +1,5 @@
 import Taro, { useState } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, RichText } from '@tarojs/components'
 import GoodsDetailImg1 from '../../../images/goods_detail_img.jpg'
 import { useSelector } from '@tarojs/redux'
 
@@ -36,7 +36,8 @@ export default function Index(props) {
                 <Text className='price_2'>市场价：￥{goodsDetail.market_price || 0}</Text>
             </View>
             <View className='goods_detail'>
-                <Text className='detail_txt'>{goodsDetail.describe || ''}</Text>
+                {/* <Text className='detail_txt'>{goodsDetail.describe || ''}</Text> */}
+                <RichText className='detail_txt' nodes={goodsDetail.describe || ''} />
                 {
                     goodsDetail &&
                     <View className='detail_img'>

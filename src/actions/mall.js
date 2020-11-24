@@ -13,9 +13,6 @@ export const dispatchGoodsList = (page = 1, pagesize = 10) => createAction({
     url: API_GOODS + `?page=${page}&pagesize=${pagesize}`,
     type: GOODS_LIST,
     method: 'GET',
-    cb: res=>{
-        return res.list
-    }
 })
 
 /**

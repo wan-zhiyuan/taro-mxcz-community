@@ -1,9 +1,9 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { Toast } from '../../../../utils/toast'
 
 import './index.scss'
-import { Toast } from '../../../../utils/toast'
 
 export default function Index(props) {
 
@@ -20,9 +20,16 @@ export default function Index(props) {
         }
     }
 
+    /* 跳转合作申请页面 */
+    function handleCooperate() {
+        Taro.navigateTo({
+            url: `/subPages2/pages/cooperate/cooperate?status=0`
+        })
+    }
+
     return (
         <View className='service_site_footer' >
-            <View className='left' onClick={()=>{Taro.switchTab({url:'/pages/home/home'})}}>
+            <View className='left' onClick={handleCooperate}>
                 <AtIcon prefixClass='icon' value='shouye' size='20' color='#fff'></AtIcon>
                 <Text style={{ marginLeft: Taro.pxTransform(24) }}>我要合作</Text>
             </View>

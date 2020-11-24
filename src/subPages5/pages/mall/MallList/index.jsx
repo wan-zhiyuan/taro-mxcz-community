@@ -14,7 +14,7 @@ export default function Index(props) {
 
     const { } = props
 
-    const goodsList = useSelector(state => state.mall.goodsList)
+    const goodsList = useSelector(state => state.mall.goodsList.list)
 
 
     const [goods, setGoods] = useState([
@@ -26,8 +26,8 @@ export default function Index(props) {
 
     return (
         <View className='mall_list'>
-            <View className='bg_1'></View>
-            <View className='bg_2'></View>
+            {/* <View className='bg_1'></View>
+            <View className='bg_2'></View> */}
             <View className='goods_list'>
                 {
                     goodsList.map((item, idx) => {

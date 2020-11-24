@@ -1,7 +1,10 @@
 import { GOODS_LIST, GOODS_DETAIL } from '../constants/mall'
 
 const INITIAL_STATE = {
-    goodsList: [],
+    goodsList: {
+        list:[],
+        banner:[],
+    },
     goodsDetail: {
         images:''
     }

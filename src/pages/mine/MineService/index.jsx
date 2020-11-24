@@ -11,21 +11,26 @@ export default function Index(props) {
 
     const userInfo = useSelector(state => state.user.userInfo)
 
-    function handleGoToOrder() {
-        console.log('handleGoToOrder()')
-        Taro.navigateTo({
-            url: '/subPages5/pages/order/order'
-        })
-    }
-
     /* 我的社区 */
     function handleMyCommunity() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: `/subPages1/pages/myPublish/myPublish`
         })
     }
     /* 我的报名 */
     function handleMyEnroll() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: `/subPages1/pages/myEnroll/myEnroll`
         })
@@ -54,6 +59,13 @@ export default function Index(props) {
         })
     }
 
+    /* 合作申请 */
+    function handleCooperation() {
+        Taro.navigateTo({
+            url: `/subPages2/pages/cooperate/cooperate?status=1`
+        })
+    }
+
     return (
         <View className='mine_service'>
             <View className='title'>
@@ -71,36 +83,6 @@ export default function Index(props) {
                     <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
                 </View>
             </View>
-            {/* <View className='middle_item' onClick={() => { handleGoToOrder() }}>
-                <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
-                    <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的订单</Text>
-                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY ORDERS</Text>
-                </View>
-                <View style={{ marginRight: '10px' }}>
-                    <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
-                </View>
-            </View>
-            <View className='middle_item' onClick={() => { }}>
-                <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
-                    <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的拼团</Text>
-                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY BARGAINING</Text>
-                </View>
-                <View style={{ marginRight: '10px' }}>
-                    <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
-                </View>
-            </View>
-            <View className='middle_item' onClick={() => { }}>
-                <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
-                    <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>积分商城</Text>
-                    <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>SHOPPING</Text>
-                </View>
-                <View style={{ marginRight: '10px' }}>
-                    <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
-                </View>
-            </View> */}
             <View className='middle_item' onClick={handleMyEnroll}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
@@ -128,6 +110,19 @@ export default function Index(props) {
                         <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                         <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>活动核销</Text>
                         <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}></Text>
+                    </View>
+                    <View style={{ marginRight: '10px' }}>
+                        <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>
+                    </View>
+                </View>
+            }
+            {
+                Number(userInfo.is_cooperation || 0) === 1 &&
+                <View className='middle_item' onClick={() => { handleCooperation() }}>
+                    <View className='item_left'>
+                        <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
+                        <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>合作申请</Text>
+                        <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY COOPERATE</Text>
                     </View>
                     <View style={{ marginRight: '10px' }}>
                         <AtIcon value='chevron-right' size='17' color='#d4d4d4'></AtIcon>

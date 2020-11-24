@@ -49,3 +49,32 @@ export const updateCity = (city) => {
         payload: city,
     }
 }
+
+/**
+ * 获取合作申请内容
+ */
+export const getCooperate = () => createHttp({
+    url: API_USER + `?op=cooperate`,
+    method: 'GET',
+})
+
+/**
+ * 提交合作申请
+ * @param {*} postData 
+ */
+export const postCooperate = (postData) => createHttp({
+    url: API_USER,
+    method: 'POST',
+    postData
+})
+
+/**
+ * 修改合作申请
+ * @param {*} id 
+ * @param {*} postData 
+ */
+export const updateCooperate = (id, postData) => createHttp({
+    url: API_USER + `/${id}`,
+    method: 'PUT',
+    postData,
+})

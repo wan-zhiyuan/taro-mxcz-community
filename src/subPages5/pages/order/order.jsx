@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import { getWindowHeight } from '../../../utils/style'
@@ -10,7 +10,10 @@ import './order.scss'
 
 export default function Order() {
 
-    const [current, setCurrent] = useState([0])
+    const router = useRouter()
+    const { currentIndex = 0 } = router.params
+
+    const [current, setCurrent] = useState(0)
     const [tabList, setTabList] = useState([
         { title: '全部订单' },
         { title: '待付款' },
@@ -21,18 +24,50 @@ export default function Order() {
     const [orderData, setOrderData] = useState([]) // 
 
     useEffect(() => {
-        setCurrent(0)
-        async function getData() {
-            const res = await getOrderList(1,1000)
-            if (res.code === 200) {
-                setList(res.data.list)
-                setOrderData(res.data.list)
-            }
-        }
-        getData()
     }, [])
 
-    function handleClick(value) {
+    useDidShow(() => {
+        async function getData() {
+            const res = await getOrderList(1, 1000)
+            if (res.code !== 200) {
+                return
+            }
+            // setList(res.data.list)
+            setOrderData(res.data.list)
+            handleOrderData(current, res.data.list)
+        }
+        getData()
+    })
+
+    function handleOrderData(index, orderData) {
+        if (index === 0) {
+            setList(orderData)
+        } else {
+            let newList = []
+            let status = 0
+            switch (index) {
+                case 1:
+                    status = 1
+                    break;
+                case 2:
+                    status = 2
+                    break;
+                case 3:
+                    status = 4
+                    break;
+                default:
+                    break;
+            }
+            for (let i = 0; i < orderData.length; i++) {
+                if (orderData[i].status === status) {
+                    newList.push(orderData[i])
+                }
+            }
+            setList(newList)
+        }
+    }
+
+    function handleClickTabs(value) {
         console.log('handleClick:' + value)
         setCurrent(value)
         if (value === 0) {
@@ -66,7 +101,7 @@ export default function Order() {
         <View className='order_index'>
             <AtTabs
                 // height={getWindowHeight()}
-                current={current} tabList={tabList} onClick={handleClick} animated={true}>
+                current={current} tabList={tabList} onClick={handleClickTabs} animated={true}>
                 {
                     tabList.map((item, idx) => {
                         return (

@@ -56,7 +56,7 @@ export default function Index(props) {
                               if (res.confirm) {
                                 console.log('用户点击确定')
                                 Taro.redirectTo({
-                                    url: '/subPages5/pages/order/order'
+                                    url: `/subPages5/pages/orderDetail/orderDetail?oid=${oid}`
                                 })
                               } else if (res.cancel) {
                                 console.log('用户点击取消')
@@ -68,6 +68,9 @@ export default function Index(props) {
                         console.log('########################支付失败')
                         console.log(res)
                         Toast('支付失败')
+                        Taro.redirectTo({
+                            url: `/subPages5/pages/order/order`
+                        })
                     }
                 })
             }

@@ -1,25 +1,40 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
+import { useSelector } from '@tarojs/redux'
+import { Toast } from '../../../utils/toast'
 
 import './index.scss'
-import { Toast } from '../../../utils/toast'
 
 export default function Index(props) {
 
     const {  title } = props
+
+    const userInfo = useSelector(state => state.user.userInfo)
 
     function handleMerchant() {
         Toast('此功能暂不开放')
     }
 
     function handleMall() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/subPages5/pages/mall/mall'
         })
     }
 
     function handleOrder() {
+        if (!userInfo.nickname) {
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
         Taro.navigateTo({
             url: '/subPages5/pages/order/order'
         })

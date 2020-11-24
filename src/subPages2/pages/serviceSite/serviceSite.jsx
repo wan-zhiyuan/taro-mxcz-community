@@ -103,7 +103,7 @@ export default function ServiceSite() {
         <View className='service_site_index lazy-view'>
             <ListView
                 className='service_site__listview'
-                style={{ height: `${getWindowHeightNoPX() - 50}px` }}
+                style={{ height: `${getWindowHeightNoPX() - 60}px` }}
                 lazy
                 hasMore={hasMore}
             >
@@ -143,4 +143,5 @@ export default function ServiceSite() {
 }
 ServiceSite.config = {
     navigationBarTitleText: '社区服务站',
+    disableScroll: true,
 }

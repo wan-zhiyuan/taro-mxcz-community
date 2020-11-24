@@ -47,6 +47,7 @@ class App extends Component {
           'pages/aboutUs/aboutUs', // 关于我们
           'pages/index/index', // 测试页面
           'pages/verification/verification', // 测试页面
+          'pages/webview/webview', // 测试页面
         ]
       },
       // 社区相关： 社区商户 && 社区服务站
@@ -61,6 +62,7 @@ class App extends Component {
           'pages/serviceSiteSub/serviceSiteSub',
           'pages/serviceSiteDetail/serviceSiteDetail',
           'pages/serviceSiteLocate/serviceSiteLocate',
+          'pages/cooperate/cooperate',
         ]
       },
       // 发布相关： publish && information

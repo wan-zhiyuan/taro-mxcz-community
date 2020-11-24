@@ -18,7 +18,7 @@ export default function Index(props) {
                     <ScrollView
                         style={{ height: `100vh` }}
                         scrollY
-                        scrollWithAnimation
+                        // scrollWithAnimation
                     >
                         {
                             list.map((item, idx) => {
