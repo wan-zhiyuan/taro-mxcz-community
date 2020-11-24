@@ -5,12 +5,12 @@ import { createAction, createHttp } from '../service/servers'
 /**
  * 获取商品列表
  */
-export const getGoodsList = () => createHttp({
-    url: API_GOODS + `?page=1&pagesize=8`,
+export const getGoodsList = (page = 1, pagesize = 10) => createHttp({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}`,
     method: 'GET',
 })
-export const dispatchGoodsList = () => createAction({
-    url: API_GOODS + `?page=1&pagesize=8`,
+export const dispatchGoodsList = (page = 1, pagesize = 10) => createAction({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}`,
     type: GOODS_LIST,
     method: 'GET',
     cb: res=>{
@@ -35,8 +35,8 @@ export const dispatchGoodsDetail = (id) => createAction({
 /**
  * 获取订单列表
  */
-export const getOrderList = () => createHttp({
-    url: API_ORDER + `?page=1&pagesize=8`,
+export const getOrderList = (page = 1, pagesize = 10) => createHttp({
+    url: API_ORDER + `?page=${page}&pagesize=${pagesize}`,
     method: 'GET'
 })
 

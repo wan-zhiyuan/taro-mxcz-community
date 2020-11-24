@@ -21,7 +21,7 @@ export default function Mall() {
 
     useEffect(()=>{
         async function getInit() {
-            await dispatch(dispatchGoodsList())
+            await dispatch(dispatchGoodsList(1,1000))
         }
         getInit()
     },[])

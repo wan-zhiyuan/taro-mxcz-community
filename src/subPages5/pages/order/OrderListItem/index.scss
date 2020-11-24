@@ -47,6 +47,25 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
+
+        .btn_pay {
+            padding: 10px 20px;
+            background-color: #ff0044;
+            border-radius: 10px;
+            margin-right: 20px;
+            font-size: 28px;
+            line-height: 28px;
+            color: #fff;
+        }
+
+        .btn_status {
+            padding: 10px 20px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            font-size: 28px;
+            line-height: 28px;
+            color: #333;
+        }
     }
 
 }

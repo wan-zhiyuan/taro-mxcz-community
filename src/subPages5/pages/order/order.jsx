@@ -23,7 +23,7 @@ export default function Order() {
     useEffect(() => {
         setCurrent(0)
         async function getData() {
-            const res = await getOrderList()
+            const res = await getOrderList(1,1000)
             if (res.code === 200) {
                 setList(res.data.list)
                 setOrderData(res.data.list)
@@ -56,7 +56,7 @@ export default function Order() {
             for (let i = 0; i < orderData.length; i++) {
                 if (orderData[i].status === status) {
                     newList.push(orderData[i])
-                } 
+                }
             }
             setList(newList)
         }
@@ -64,12 +64,13 @@ export default function Order() {
 
     return (
         <View className='order_index'>
-            <AtTabs height={getWindowHeight()}
+            <AtTabs
+                // height={getWindowHeight()}
                 current={current} tabList={tabList} onClick={handleClick} animated={true}>
                 {
                     tabList.map((item, idx) => {
                         return (
-                            <AtTabsPane current={current} index={idx} key={'index_'+idx}>
+                            <AtTabsPane current={current} index={idx} key={'index_' + idx}>
                                 <OrderList list={list} />
                             </AtTabsPane>
                         )

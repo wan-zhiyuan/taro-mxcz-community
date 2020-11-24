@@ -34,6 +34,10 @@ export default function Index(props) {
         }
     }
 
+    function handlePay() {
+        
+    }
+
     return (
         <View className='order_list_item'>
             <View className='header'>
@@ -48,11 +52,16 @@ export default function Index(props) {
                 <Text className='goods_price'>{calGoodsPrice()}</Text>
             </View>
             <View className='footer'>
-                <Text>{judgeOrderStatus()}</Text>
+                <View
+                    className='btn_pay'
+                    style={Number(orderItem.status) === 1 ? {} : { display: 'none' }}
+                    onClick={handlePay}
+                >付款</View>
+                <View className='btn_status'>{judgeOrderStatus()}</View>
             </View>
         </View>
     )
 }
 Index.defaultProps = {
-
+    orderItem: {}
 }

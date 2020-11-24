@@ -11,15 +11,29 @@ export default function Index(props) {
     return (
         <View className='order_list'>
             {
-                list.map((item,idx)=>{
-                    return (
-                        <OrderListItem key={'index_'+idx} orderItem={item}/>
-                    )
-                })
+                list.length === 0
+                    ?
+                    null
+                    :
+                    <ScrollView
+                        style={{ height: `100vh` }}
+                        scrollY
+                        scrollWithAnimation
+                    >
+                        {
+                            list.map((item, idx) => {
+                                return (
+                                    <OrderListItem key={'index_' + idx} orderItem={item} />
+                                )
+                            })
+                        }
+                        <View style={{width:'100%',height:'66px'}}></View>
+                    </ScrollView>
             }
+
         </View>
     )
 }
 Index.defaultProps = {
-    list:[]
+    list: []
 }
