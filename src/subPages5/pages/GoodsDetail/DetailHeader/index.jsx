@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
+import IconFont from '../../../../components/iconfont'
 
 import './index.scss'
 import { getDateTypeMinutes } from '../../../../utils/timer'
@@ -18,7 +19,9 @@ export default function Index(props) {
                 {
                     !!goodsDetail.avatar
                         ? <Image className='sale_avatar' src={goodsDetail.avatar || ''} mode='scaleToFill'></Image>
-                        : <View className='sale_avatar_default'></View>
+                        : 
+                        // <View className='sale_avatar_default'></View>
+                        <IconFont name='touxiang' size={70} />
                 }
             </View>
             <View className='header_right'>

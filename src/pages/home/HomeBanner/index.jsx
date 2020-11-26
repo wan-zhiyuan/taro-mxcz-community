@@ -1,12 +1,23 @@
 import Taro, { useState } from '@tarojs/taro'
 import { View, Image, Swiper, SwiperItem, } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
+import { isEmpty } from '../../../utils/is'
 
 import './index.scss'
 
 export default function Index(props) {
 
     const homeBanner = useSelector(state => state.home.homeIndex.banner)
+
+    function handleBanner(href) {
+        console.log('href:' + href)
+        if ((href == '#') || isEmpty(href)) {
+            return
+        }
+        Taro.navigateTo({
+            url: `/subPages1/pages/ad/ad?url=${href}`
+        })
+    }
 
     return (
         <View className='home_banner'>
@@ -34,6 +45,7 @@ export default function Index(props) {
                                             className='slide_image'
                                             mode='scaleToFill'      // 缩放，不保持比例，填满Image大小
                                             lazyLoad={true}
+                                            onClick={()=>{handleBanner(item.href)}}
                                         />
                                     </SwiperItem>
                                 ))

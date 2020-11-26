@@ -11,12 +11,22 @@ export default function Index(props) {
 
     const mallBanner = useSelector(state => state.mall.goodsList.banner)
 
-    function handleClickBanner(item) {
-        if (isEmpty(item.href)) {
+    // function handleClickBanner(item) {
+    //     if (isEmpty(item.href)) {
+    //         return
+    //     }
+    //     Taro.navigateTo({
+    //         url: `/subPages1/pages/webview/webview?url=${item.href}&title=${item.title}`
+    //     })
+    // }
+
+    function handleBanner(href) {
+        console.log('href:' + href)
+        if ((href == '#') || isEmpty(href)) {
             return
         }
         Taro.navigateTo({
-            url: `/subPages1/pages/webview/webview?url=${item.href}&title=${item.title}`
+            url: `/subPages1/pages/ad/ad?url=${href}`
         })
     }
 
@@ -46,7 +56,7 @@ export default function Index(props) {
                                             className='slide_image'
                                             mode='scaleToFill'      // 缩放，不保持比例，填满Image大小
                                             lazyLoad={true}
-                                            onClick={()=>{handleClickBanner(item)}}
+                                            onClick={()=>{handleBanner(item.href)}}
                                         />
                                     </SwiperItem>
                                 ))

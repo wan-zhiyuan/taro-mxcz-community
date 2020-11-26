@@ -1,8 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import Goods1 from '../../../../images/goods_1.jpg'
-import Goods2 from '../../../../images/goods_2.jpg'
-import Goods3 from '../../../../images/goods_3.jpg'
+import IconFont from '../../../../../components/iconfont'
 
 import './index.scss'
 
@@ -46,7 +44,9 @@ function Index(props) {
                             // 有用户头像就显示用户头像，没有即显示灰色或者社区统一头像
                             goods.avatar
                                 ? <Image className='user_avatar' src={goods.avatar} mode='scaleToFill'></Image>
-                                : <Image className='user_avatar_default' ></Image>
+                                : 
+                                // <Image className='user_avatar_default' ></Image>
+                                <IconFont name='touxiang' size={36} />
                         }
                         <Text className='user_name'>{goods.sale_name || ''}</Text>
                     </View>

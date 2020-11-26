@@ -50,7 +50,7 @@ export default function Index(props) {
             
             <View className='middle_item' onClick={handleMall}>
                 <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dianhua' size='16' color='#1CCEAB'></AtIcon>
+                    <AtIcon prefixClass='icon' value='goumai' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>积分商城</Text>
                     <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MALL</Text>
                 </View>
@@ -60,7 +60,7 @@ export default function Index(props) {
             </View>
             <View className='middle_item' onClick={handleOrder}>
                 <View className='item_left'>
-                    <AtIcon prefixClass='icon' value='dianhua' size='16' color='#1CCEAB'></AtIcon>
+                    <AtIcon prefixClass='icon' value='dingdan' size='16' color='#1CCEAB'></AtIcon>
                     <Text style={{ fontSize: '15px', lineHeight: '15px', marginLeft: '11px', color: '#333' }}>我的订单</Text>
                     <Text style={{ fontSize: '12px', lineHeight: '12px', marginLeft: '8px', color: '#333' }}>MY ORDER</Text>
                 </View>
