@@ -1,19 +1,36 @@
 import { GOODS_LIST, GOODS_DETAIL } from '../constants/mall'
-import { API_GOODS, API_ORDER, API_PAY } from '../constants/api'
+import { API_GOODS, API_ORDER, API_PAY, API_GOODS_CATE } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
 /**
  * 获取商品列表
  */
-export const getGoodsList = (page = 1, pagesize = 10) => createHttp({
-    url: API_GOODS + `?page=${page}&pagesize=${pagesize}`,
+export const getGoodsList = (page = 1, pagesize = 10, cate_id = 0) => createHttp({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}`,
     method: 'GET',
+    fetchOptions: {
+        isShowLoading: true,
+    },
 })
-export const dispatchGoodsList = (page = 1, pagesize = 10) => createAction({
-    url: API_GOODS + `?page=${page}&pagesize=${pagesize}`,
+export const dispatchGoodsList = (page = 1, pagesize = 10, cate_id = 0) => createAction({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}`,
     type: GOODS_LIST,
     method: 'GET',
+    fetchOptions: {
+        isShowLoading: true,
+    },
 })
+
+// 清空goodsList数据
+export const emptyGoodsList = () => {
+    return {
+        type: GOODS_LIST,
+        payload: {
+            list:[],
+            banner:[],
+        }
+    }
+}
 
 /**
  * 获取商品详情
@@ -64,4 +81,12 @@ export const postPay = postData => createHttp({
     url: API_PAY,
     method: 'POST',
     postData
+})
+
+/**
+ * 获取分类列表
+ */
+export const getGoodsCate = () => createHttp({
+    url: API_GOODS_CATE,
+    method: 'GET',
 })

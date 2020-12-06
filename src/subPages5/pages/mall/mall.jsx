@@ -7,7 +7,7 @@ import MallList from './MallList'
 import ListView, { LazyBlock } from "taro-listview";
 import { getWindowHeightNoPX, getCustomNavHeight } from '../../../utils/style'
 import { useDispatch } from '@tarojs/redux'
-import { dispatchGoodsList, getGoodsDetail, getOrderList, getOrderDetail, postOrder, postPay } from '../../../actions/mall'
+import { dispatchGoodsList, getGoodsDetail, getOrderList, getOrderDetail, postOrder, postPay, emptyGoodsList } from '../../../actions/mall'
 
 import './mall.scss'
 
@@ -24,6 +24,10 @@ export default function Mall() {
             await dispatch(dispatchGoodsList(1, 1000))
         }
         getInit()
+        return () => {
+            console.log('mall页面销毁')
+            dispatch(emptyGoodsList())
+        }
     }, [])
 
     /* 上拉加载 */

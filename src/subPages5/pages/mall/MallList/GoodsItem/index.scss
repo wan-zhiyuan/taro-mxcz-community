@@ -6,7 +6,8 @@
     overflow: hidden;
 
     .goods_img {
-        width: 100%;
+        width: 350px;
+        height: 350px;
         // max-height: 400px; // 显示商品图片的最大高度
     }
 
@@ -78,12 +79,18 @@
                     font-size: 22px;
                     line-height: 36px;
                     color: #666;
+
+                    width: 180px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;  
                 }
             }
 
             .box3_right {
                 margin-right: 12px;
                 color: rgb(42, 176, 253);
+                font-size: 24px;
             }
             
         }
