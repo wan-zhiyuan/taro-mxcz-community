@@ -30,7 +30,7 @@ export default function Index(props) {
         if (pIndex === 1) {
             setIsLoaded(false)
         }
-        const res = await signRankingTime(pIndex, 20)
+        const res = await signRankingTime(pIndex, 200)
         // 根据返回的数据判断，是否没有数据。如果还有hasMore:true 没有了hasMore:false 并且底部显示没有了Divider
         let hasMore = true
         let listNum = rankList.length + res.data.list.length

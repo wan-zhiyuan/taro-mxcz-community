@@ -80,8 +80,8 @@
 				},
 				{
 					"id": 3,
-					"name": "subPages3/pages/information/information",
-					"pathName": "subPages3/pages/information/information",
+					"name": "subPages3/pages/publishConfirm/publishConfirm",
+					"pathName": "subPages3/pages/publishConfirm/publishConfirm",
 					"query": "target_id=33",
 					"scene": null
 				},

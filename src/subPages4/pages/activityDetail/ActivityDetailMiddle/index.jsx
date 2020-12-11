@@ -70,6 +70,14 @@ export default function Index(props) {
         <View className='activity_detail_middle'>
             <View className='middle_item'>
                 <View className='item_left'>
+                    <AtIcon prefixClass='icon' value='tongzhi' size='16' color='blue'></AtIcon>
+                    <Text className='item_label'>通知：</Text>
+                    <Text className='item_value' style={{ width: '260px' }}>
+                        {`参加此活动并到场签到可获积分：${0}积分`}</Text>
+                </View>
+            </View>
+            <View className='middle_item'>
+                <View className='item_left'>
                     <AtIcon prefixClass='icon' value='lishi' size='16' color='#e16531'></AtIcon>
                     <Text className='item_label'>活动时间：</Text>
                     <Text className='item_value' style={{ width: '260px' }}>

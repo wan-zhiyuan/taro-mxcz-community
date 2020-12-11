@@ -4,14 +4,19 @@
     margin: 0 auto;
     overflow: hidden;
 
-    .goods_price {
-        width: 100%;
+    .content_top {
+        width: 710px;
         height: 80px;
         display: flex;
-        // flex-direction: row;
-        // align-items: flex-end;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         margin-top: 16px;
+    }
+
+    .goods_price {
+        height: 80px;
+        display: flex;
+        flex-direction: column;
 
         .price_1 {
             font-size: 40px;

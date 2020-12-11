@@ -82,10 +82,10 @@ export default function PublishConfirm() {
             Toast('请输入您的姓名')
             return
         }
-        if (!ClUtils.rule.phone(mobile)) {
-            Toast('请输入您的联系方式')
-            return
-        }
+        // if (!ClUtils.rule.phone(mobile)) {
+        //     Toast('请输入您的联系方式')
+        //     return
+        // }
         if (picFiles.length === 0) {
             console.log('用户未选择图片，直接发布')
             confirmPublish()
@@ -181,7 +181,7 @@ export default function PublishConfirm() {
             contact_name: name || '',
             contact_mobile: mobile || '',
         }
-        
+
         const res = await increasePublish(postData)
         if (res.code === 200) {
             console.log('发布成功')
@@ -253,6 +253,7 @@ export default function PublishConfirm() {
                         onChange={handleChangeMobile}
                     />
                 </View>
+                <Text className='info_tips'>tips:联系方式选填</Text>
             </ScrollView>
 
 

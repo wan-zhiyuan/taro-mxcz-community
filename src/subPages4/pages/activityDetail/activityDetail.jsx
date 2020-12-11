@@ -57,6 +57,9 @@ export default function ActivityDetail() {
     function handleEnroll() {
         if (Number(activity.is_enroll) !== 0) {
             Toast('已报名')
+            // 弹出弹窗，让确认是否取消报名，取消报名后，返回活动列表；
+
+            
             return
         }
         if (Number(activity.basic.enroll_number) === Number(activity.basic.limit_number)) {
@@ -101,7 +104,7 @@ export default function ActivityDetail() {
                         <View className='footer_right_able' onClick={handleEnroll}>
                             {
                                 Number(activity.is_enroll) !== 0
-                                    ? '已报名'
+                                    ? <View>已报名</View>
                                     : <View>
                                         {
                                             Number(activity.basic.enroll_number) === Number(activity.basic.limit_number)

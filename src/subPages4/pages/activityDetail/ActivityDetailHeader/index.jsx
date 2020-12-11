@@ -16,8 +16,12 @@ export default function Index(props) {
             <Text className='title'>{activityDetail.title || ''}</Text>
             <View className='header_box_1'>
                 <Text className='enroll_number'>
-                    {'进度：' + (activityDetail.enroll_number || 0) + '/' + (activityDetail.limit_number || 0)}</Text>
-                <Text className='price'>{'¥' + getShowPriceFixed(activityDetail.price || 0)}</Text>
+                    {'报名人数：' + (activityDetail.enroll_number || 0) + '/' + (activityDetail.limit_number || 0)}</Text>
+                {
+                    Number(activityDetail.price || 0) === 0
+                    ? <Text className='free'>免费</Text>
+                    : <Text className='price'>{'¥' + getShowPriceFixed(activityDetail.price || 0)}</Text>
+                }
             </View>
         </View>
     )

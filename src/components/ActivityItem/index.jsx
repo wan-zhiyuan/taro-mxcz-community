@@ -13,7 +13,7 @@ export default function Index(props) {
 
     function handleClick() {
         switch (from) {
-            case 'myEnroll':
+            case 'myEnroll': // 来源：我的报名页面进来
                 handleVerification()
                 return
             default:

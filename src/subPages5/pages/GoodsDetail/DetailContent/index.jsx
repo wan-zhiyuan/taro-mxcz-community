@@ -31,9 +31,12 @@ export default function Index(props) {
 
     return (
         <View className='detail_content'>
-            <View className='goods_price'>
-                <Text className='price_1'>{calGoodsPrice()}</Text>
-                <Text className='price_2'>市场价：￥{goodsDetail.market_price || 0}</Text>
+            <View className='content_top'>
+                <View className='goods_price'>
+                    <Text className='price_1'>{calGoodsPrice()}</Text>
+                    <Text className='price_2'>市场价：￥{goodsDetail.market_price || 0}</Text>
+                </View>
+                <Text>库存:{goodsDetail.total_stock || NaN}</Text>
             </View>
             <View className='goods_detail'>
                 {/* <Text className='detail_txt'>{goodsDetail.describe || ''}</Text> */}
