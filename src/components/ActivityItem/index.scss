@@ -63,6 +63,10 @@
                 margin-left: 20px;
             }
 
+            .activity_tag3 {
+                margin-left: 20px;
+            }
+
 
             .activity_state_0 {
                 font-size: 24px;
@@ -88,6 +92,10 @@
         }
 
         .right {
+            
+        }
+
+        .right_activity {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -104,7 +112,22 @@
                 line-height: 20px;
                 color: #333;
             }
+        }
+
+        .right_myenroll {
+            width: 100px;
+            height: 50px;
             
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            .delete_txt {
+                font-size: 24px;
+                color: #333;
+                margin-left: 6px;
+            }
         }
     }
 }

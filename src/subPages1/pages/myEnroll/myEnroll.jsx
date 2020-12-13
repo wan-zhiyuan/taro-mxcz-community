@@ -1,29 +1,29 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { getMyEnroll } from '../../../actions/activity'
+import { dispatchMyEnroll } from '../../../actions/activity'
 import ActivityList from '../../../components/ActivityList'
+import { useDispatch, useSelector } from '@tarojs/redux'
 
 import './myEnroll.scss'
 
 export default function MyEnroll() {
 
-    const [enrollList, setEnrollList] = useState([])
+    const myEnrollList = useSelector(state => state.activity.myEnrollList)
+    const dispatch = useDispatch()
 
     useEffect(() => {
+
+    }, [])
+    useDidShow(()=>{
         async function getData() {
-            const res = await getMyEnroll()
-            if (res.code === 200) {
-                setEnrollList(res.data.list)
-            } else {
-                console.log(res.msg)
-            }
+            await dispatch(dispatchMyEnroll())
         }
         getData()
-    }, [])
+    })
 
     return (
         <View className='my_enroll_index'>
-            <ActivityList list={enrollList} from='myEnroll'/>
+            <ActivityList list={myEnrollList} from='myEnroll'/>
         </View>
     )
 

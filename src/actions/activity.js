@@ -1,4 +1,4 @@
-import { COMMUNITY_ACTIVITY_DETAIL } from '../constants/activity'
+import { COMMUNITY_ACTIVITY_DETAIL, ACTIVITY_MY_ENROLL } from '../constants/activity'
 import { API_COMMUNITY, API_USER } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
@@ -53,9 +53,13 @@ export const applyVolunteer = postData => createHttp({
  * 获取我的报名
  * 优化点：分页（未完成）
  */
-export const getMyEnroll = () => createHttp({
+export const dispatchMyEnroll = () => createAction({
     url: API_COMMUNITY + '?op=enroll&page=1&pagesize=200',
+    type: ACTIVITY_MY_ENROLL,
     method: 'GET',
+    cb: res => {
+        return res.list
+    }
 })
 
 /**
@@ -66,6 +70,15 @@ export const activityEnroll = postData => createHttp({
     url: API_COMMUNITY,
     method: 'POST',
     postData,
+})
+
+/**
+ * 取消活动报名
+ * @param {*} id 活动id
+ */
+export const activityDeleteEnroll = (id) => createHttp({
+    url: API_COMMUNITY+ `/${id}?op=enroll`,
+    method: 'DELETE'
 })
 
 /**

@@ -73,7 +73,7 @@ export default function Index(props) {
                     <AtIcon prefixClass='icon' value='tongzhi' size='16' color='blue'></AtIcon>
                     <Text className='item_label'>通知：</Text>
                     <Text className='item_value' style={{ width: '260px' }}>
-                        {`参加此活动并到场签到可获积分：${0}积分`}</Text>
+                        {`参加此活动并到场签到可获积分：${activityDetail.point || 0}积分`}</Text>
                 </View>
             </View>
             <View className='middle_item'>
