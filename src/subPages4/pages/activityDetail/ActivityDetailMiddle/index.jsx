@@ -71,7 +71,7 @@ export default function Index(props) {
             <View className='middle_item'>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='tongzhi' size='16' color='blue'></AtIcon>
-                    <Text className='item_label'>通知：</Text>
+                    <Text className='item_label'>温馨提示：</Text>
                     <Text className='item_value' style={{ width: '260px' }}>
                         {`参加此活动并到场签到可获积分：${activityDetail.point || 0}积分`}</Text>
                 </View>
@@ -97,7 +97,7 @@ export default function Index(props) {
             <View className='middle_item' onClick={handleAddress}>
                 <View className='item_left'>
                     <AtIcon prefixClass='icon' value='dingwei' size='16' color='#17abe3'></AtIcon>
-                    <Text className='item_label'>地址：</Text>
+                    <Text className='item_label'>活动地址：</Text>
                     <Text className='item_value'>{activityDetail.address || ''}</Text>
                 </View>
                 <View className='item_right'>

@@ -36,7 +36,7 @@ export default function Index(props) {
                     <Text className='price_1'>{calGoodsPrice()}</Text>
                     <Text className='price_2'>市场价：￥{goodsDetail.market_price || 0}</Text>
                 </View>
-                <Text>库存:{goodsDetail.total_stock || NaN}</Text>
+                <Text>库存:{goodsDetail.stock || NaN}</Text>
             </View>
             <View className='goods_detail'>
                 {/* <Text className='detail_txt'>{goodsDetail.describe || ''}</Text> */}

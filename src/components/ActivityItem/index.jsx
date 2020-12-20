@@ -83,6 +83,11 @@ export default function Index(props) {
             color: 'black',
             plain: true,
         },
+        {
+            text: `第${Number(item.sequence || 0)}位报名`,
+            color: 'black',
+            plain: true,
+        },
     ]
 
     return (
@@ -95,7 +100,10 @@ export default function Index(props) {
             <View className='activity_title'>{item.title || ''}</View>
             <View className='activity_bottom'>
                 <View className='left'>
-                    <Text className='activity_cate_name'>{item.cate_name || '活动分类名称'}</Text>
+                    {
+                        from !== 'myEnroll' &&
+                        <Text className='activity_cate_name'>{item.cate_name || '活动分类名称'}</Text>
+                    }
                     {/* 价格为0时，显示免费图标 */}
                     <View className='activity_tag1'>
                         {
@@ -130,6 +138,12 @@ export default function Index(props) {
                         from === 'myEnroll' && (Number(item.is_sign || 0) === 1) &&
                         <View className='activity_tag3'>
                             <ClTag tags={tags.slice(5, 6)} shape='radius' />
+                        </View>
+                    }
+                    {
+                        from === 'myEnroll' &&
+                        <View className='activity_tag4'>
+                            <ClTag tags={tags.slice(6, 7)} shape='radius' />
                         </View>
                     }
                 </View>
