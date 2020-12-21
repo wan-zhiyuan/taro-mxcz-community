@@ -4,15 +4,14 @@ import { AtInput } from 'taro-ui'
 import { ClTextarea } from "mp-colorui";
 import { getCooperate, postCooperate, updateCooperate } from '../../../actions/user'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
+import { Toast } from '../../../utils/toast';
 
 import './cooperate.scss'
-import { Toast } from '../../../utils/toast';
 
 export default function Cooperate() {
 
     const router = useRouter()
     const { status = 0 } = router.params // status=0\1\2 0-新增 1-修改
-
 
     const [name, setName] = useState('')
     const [mobile, setMobile] = useState('')

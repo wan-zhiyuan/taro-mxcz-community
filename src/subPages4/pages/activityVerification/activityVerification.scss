@@ -15,6 +15,7 @@
         align-items: center;
 
         .title {
+            width: 630px;
             font-size: 32px;
             line-height: 32px;
             color: #ff0044;
@@ -29,11 +30,17 @@
             margin-top: 50px;
             margin-bottom: 30px;
         }
+        .sequence {
+            font-size: 28px;
+            line-height: 70px;
+            color: #333;
+            margin-top: 10px;
+        }
         .tips {
             font-size: 28px;
             line-height: 70px;
             color: #ccc;
-            margin-top: 30px;
+            margin-top: 10px;
             margin-bottom: 30px;
         }
     }

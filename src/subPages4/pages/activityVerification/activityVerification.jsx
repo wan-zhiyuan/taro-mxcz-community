@@ -19,6 +19,7 @@ export default function ActivityVerification() {
     const [activityDetail, setActivityDetail] = useState({})
     const [code, setCode] = useState('') // 核销码
     const [enrollTime, setEnrollTime] = useState(0) // 报名时间
+    const [sequence, setSequence] = useState(0)
 
     useEffect(() => {
         async function getData() {
@@ -26,6 +27,7 @@ export default function ActivityVerification() {
             console.log(res)
             setActivityDetail(res.data.basic)
             setEnrollTime(res.data.enroll_time)
+            setSequence(res.data.sequence)
         }
         getData()
     }, [])
@@ -69,6 +71,7 @@ export default function ActivityVerification() {
                         typeNumber={2}
                     />
                 </View>
+                <Text className='sequence'>{`您是第${sequence}位报名`}</Text>
                 <Text className='tips'>请向工作人员出示核销码</Text>
             </View>
             <View className='verification_box2'>
