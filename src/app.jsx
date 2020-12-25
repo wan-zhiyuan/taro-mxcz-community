@@ -100,6 +100,7 @@ class App extends Component {
           'pages/goodsDetail/goodsDetail',
           'pages/order/order',
           'pages/orderDetail/orderDetail',
+          'pages/goodsServiceStation/goodsServiceStation',
         ]
       },
     ],

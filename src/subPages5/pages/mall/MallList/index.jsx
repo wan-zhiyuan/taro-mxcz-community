@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { ClGrid } from "mp-colorui";
 import GoodsItem from './GoodsItem'
@@ -9,6 +9,9 @@ import { getWindowHeightNoPX, getCustomNavHeight } from '../../../../utils/style
 import './index.scss'
 
 export default function Index(props) {
+
+    const router = useRouter()
+    const { id = 0 } = router.params
 
     const { } = props
 
@@ -49,7 +52,7 @@ export default function Index(props) {
             // 滚动到指定元素位置
             setScrollInto(`item-${index}`)
             // 更新列表数据
-            await dispatch(dispatchGoodsList(0, 1000, subtags[index].id))
+            await dispatch(dispatchGoodsList(0, 1000, subtags[index].id), id)
         }
     }
 
@@ -96,5 +99,5 @@ export default function Index(props) {
     )
 }
 Index.defaultProps = {
-
+    
 }

@@ -15,3 +15,4 @@ export const API_GOODS = `api/goods`
 export const API_GOODS_CATE = `api/goodsCate`
 export const API_ORDER = `api/order`
 export const API_PAY = `api/pay`
+export const API_GOODS_SERVICE_STATION = `api/goodsServiceStation`

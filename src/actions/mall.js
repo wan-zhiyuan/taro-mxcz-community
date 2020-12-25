@@ -1,19 +1,19 @@
 import { GOODS_LIST, GOODS_DETAIL } from '../constants/mall'
-import { API_GOODS, API_ORDER, API_PAY, API_GOODS_CATE } from '../constants/api'
+import { API_GOODS, API_ORDER, API_PAY, API_GOODS_CATE, API_GOODS_SERVICE_STATION } from '../constants/api'
 import { createAction, createHttp } from '../service/servers'
 
 /**
  * 获取商品列表
  */
-export const getGoodsList = (page = 1, pagesize = 10, cate_id = 0) => createHttp({
-    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}`,
+export const getGoodsList = (page = 1, pagesize = 10, cate_id = 0, ssid = 0) => createHttp({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}&ssid=${ssid}`,
     method: 'GET',
     fetchOptions: {
         isShowLoading: true,
     },
 })
-export const dispatchGoodsList = (page = 1, pagesize = 10, cate_id = 0) => createAction({
-    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}`,
+export const dispatchGoodsList = (page = 1, pagesize = 10, cate_id = 0, ssid = 0) => createAction({
+    url: API_GOODS + `?page=${page}&pagesize=${pagesize}&cate_id=${cate_id}&ssid=${ssid}`,
     type: GOODS_LIST,
     method: 'GET',
     fetchOptions: {
@@ -88,5 +88,13 @@ export const postPay = postData => createHttp({
  */
 export const getGoodsCate = () => createHttp({
     url: API_GOODS_CATE,
+    method: 'GET',
+})
+
+/**
+ * 获取商品社区服务站列表
+ */
+export const getGoodsServiceStation = () => createHttp({
+    url: API_GOODS_SERVICE_STATION,
     method: 'GET',
 })

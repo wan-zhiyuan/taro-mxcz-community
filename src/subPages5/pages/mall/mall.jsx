@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import MallNav from './MallNav'
 import MallSearch from './MallSearch'
@@ -13,6 +13,9 @@ import './mall.scss'
 
 export default function Mall() {
 
+    const router = useRouter()
+    const { id = 0 } = router.params
+
     const dispatch = useDispatch()
 
     const [pIndex, setPIndex] = useState(0)
@@ -21,7 +24,7 @@ export default function Mall() {
 
     useEffect(() => {
         async function getInit() {
-            await dispatch(dispatchGoodsList(1, 1000))
+            await dispatch(dispatchGoodsList(1, 1000, 0, id))
         }
         getInit()
         return () => {
@@ -52,7 +55,7 @@ export default function Mall() {
             >
                 <View className='bg_2'></View>
                 <MallBanner />
-                <MallList />
+                <MallList id={id}/>
             </ScrollView>
         </View>
     )

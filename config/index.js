@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   projectName: 'taro-mxcz-community',
   date: '2020-9-3',
@@ -33,8 +35,23 @@ const config = {
     '@tarojs/plugin-sass',
     '@tarojs/plugin-terser'
   ],
+  // 全局变量设置
   defineConstants: {
     LOCATION_APIKEY: JSON.stringify('OPXBZ-F3OK6-U7DSX-E2NW3-ZAUF3-I6FK2')
+  },
+  // 文件 copy 配置
+  copy: {
+    patterns: [
+    ],
+    options: {
+    }
+  },
+  alias: {
+    '@/actions': path.resolve(__dirname, '..', 'src/actions'),
+    '@/assets': path.resolve(__dirname, '..', 'src/assets'),
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/constants': path.resolve(__dirname, '..', 'src/constants'),
+    '@/reducers': path.resolve(__dirname, '..', 'src/reducers'),
   },
   mini: {
     postcss: {

@@ -58,8 +58,11 @@ export default function Index(props) {
         }
         switch (href) {
             case 'mall':
+                // Taro.navigateTo({
+                //     url: '/subPages5/pages/mall/mall'
+                // })
                 Taro.navigateTo({
-                    url: '/subPages5/pages/mall/mall'
+                    url: '/subPages5/pages/goodsServiceStation/goodsServiceStation'
                 })
                 return;
             case 'category':
