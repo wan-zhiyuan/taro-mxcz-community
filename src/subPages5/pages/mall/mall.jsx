@@ -55,7 +55,7 @@ export default function Mall() {
             >
                 <View className='bg_2'></View>
                 <MallBanner />
-                <MallList id={id}/>
+                <MallList ssid={Number(id)}/>
             </ScrollView>
         </View>
     )

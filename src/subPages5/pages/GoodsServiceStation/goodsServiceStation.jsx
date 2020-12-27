@@ -6,52 +6,7 @@ import './goodsServiceStation.scss'
 
 export default function GoodsServiceStation() {
 
-    const [stationArr, setStationArr] = useState([
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴一分站嘉兴一分站嘉兴一分站嘉兴一分站嘉兴一分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴二分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴三分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴四分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴五分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴六分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴七分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴八分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴九分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴九分站"
-        // },
-        // {
-        //     id: 5, image: "http://source.mxcz.love/upload/20200929/95bf34cd41d50ac13f7cec5c98bdcb3f.jpg"
-        //     , title: "嘉兴九分站"
-        // },
-    ])
+    const [stationArr, setStationArr] = useState([])
 
     useEffect(() => {
         async function getInit() {
