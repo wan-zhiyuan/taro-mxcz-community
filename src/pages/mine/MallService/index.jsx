@@ -23,8 +23,11 @@ export default function Index(props) {
             })
             return
         }
+        // Taro.navigateTo({
+        //     url: '/subPages5/pages/mall/mall'
+        // })
         Taro.navigateTo({
-            url: '/subPages5/pages/mall/mall'
+            url: '/subPages5/pages/goodsServiceStation/goodsServiceStation'
         })
     }
 
