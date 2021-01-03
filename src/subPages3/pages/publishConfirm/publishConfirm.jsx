@@ -32,6 +32,15 @@ export default function PublishConfirm() {
     useEffect(() => {
         console.log('cate_id=' + cate_id)
         console.log('cate_name=' + cate_name)
+        // 判断是否存在publishInfo的值，如果有，直接设置name和mobile值
+        Taro.getStorage({
+            key: 'publishInfo',
+            success: function (res) {
+                setName(res.data.name || '')
+                setMobile(res.data.mobile || '')
+            }
+        })
+        
     }, [])
 
     // 描述文本变化
@@ -145,8 +154,8 @@ export default function PublishConfirm() {
                 if (i === picFiles.length) {
                     ToastSuccess('上传成功')
                     console.log('成功：' + success + " 失败：" + fail)
-                    // 提交发布的函数代码
 
+                    // 提交发布的函数代码
                     confirmPublish()
                 } else {
                     data.i = i
@@ -188,6 +197,21 @@ export default function PublishConfirm() {
             Taro.showLoading({
                 title: ''
             })
+
+            // 更新storage中的publishInfo
+            try {
+                await Taro.setStorage({
+                    key: 'publishInfo',
+                    data: {
+                        name,
+                        mobile,
+                    },
+                })
+            } catch (err) {
+                console.log('setStorage ERR: ', err)
+            }
+
+
             setTimeout(() => {
                 Taro.hideLoading()
                 Taro.switchTab({
