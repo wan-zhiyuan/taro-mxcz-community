@@ -48,6 +48,11 @@ export function judgeTarget(params) {
                     url: `/subPages4/pages/activityDetail/activityDetail?target_id=${params.target_id}`
                 })
                 break;
+            case 'goodsDetail':
+                Taro.navigateTo({
+                    url: `/subPages5/pages/goodsDetail/goodsDetail?mid=${params.mid}`
+                })
+                break
             default:
                 break
         }

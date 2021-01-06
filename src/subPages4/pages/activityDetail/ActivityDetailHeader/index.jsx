@@ -20,7 +20,7 @@ export default function Index(props) {
                 {
                     Number(activityDetail.price || 0) === 0
                     ? <Text className='free'>免费</Text>
-                    : <Text className='price'>{'¥' + getShowPriceFixed(activityDetail.price || 0)}</Text>
+                    : <Text className='price'>{`¥${activityDetail.price || 0}`}</Text>
                 }
             </View>
         </View>

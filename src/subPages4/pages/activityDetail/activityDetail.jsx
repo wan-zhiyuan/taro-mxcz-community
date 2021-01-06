@@ -59,7 +59,7 @@ export default function ActivityDetail() {
             Toast('已报名')
             // 弹出弹窗，让确认是否取消报名，取消报名后，返回活动列表；
 
-            
+
             return
         }
         if (Number(activity.basic.enroll_number) === Number(activity.basic.limit_number)) {
@@ -70,7 +70,7 @@ export default function ActivityDetail() {
         // 方案1:详情接口告知是否已报名
         // 方案2:报名接口返回告知结果给用户展示
         Taro.navigateTo({
-            url: `/subPages4/pages/activityEnroll/activityEnroll?target_id=${target_id}`
+            url: `/subPages4/pages/activityEnroll/activityEnroll?target_id=${target_id}&price=${Number(activity.price || 0)}`
         })
     }
 

@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
 import IconFont from '../../../../components/iconfont'
 import { useSelector } from '@tarojs/redux'
 import { postOrder, postPay } from '../../../../actions/mall'
@@ -18,6 +17,14 @@ export default function Index(props) {
     async function handlePay() {
         let postDataOrder = { mid: goodsDetail.id, num: 1 }
         const resOrder = await postOrder(postDataOrder)
+        if (resOrder.code == 491) {
+            // 需要跳转登录页面
+            Taro.navigateTo({
+                url: '/subPages1/pages/login/login'
+            })
+            return
+        }
+
         if (resOrder.code !== 200) {
             return
         }

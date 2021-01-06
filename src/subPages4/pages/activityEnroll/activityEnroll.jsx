@@ -10,7 +10,7 @@ import './activityEnroll.scss'
 export default function ActivityEnroll() {
 
     const router = useRouter()
-    const { target_id } = router.params
+    const { target_id, price } = router.params
 
     const [name, setName] = useState('')
     const [mobile, setMobile] = useState('')
@@ -26,6 +26,9 @@ export default function ActivityEnroll() {
             Toast('手机号不正确')
             return
         }
+        // 判断price的值 执行不同报名流程
+
+
         let postData = {
             op: 'activity_enroll',
             activity_id: target_id,

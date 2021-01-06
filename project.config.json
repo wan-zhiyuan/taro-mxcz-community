@@ -87,9 +87,9 @@
 				},
 				{
 					"id": 4,
-					"name": "subPages5/pages/goodsServiceStation/goodsServiceStation",
-					"pathName": "subPages5/pages/goodsServiceStation/goodsServiceStation",
-					"query": "",
+					"name": "subPages5/pages/goodsDetail/goodsDetail",
+					"pathName": "subPages5/pages/goodsDetail/goodsDetail",
+					"query": "mid=58",
 					"scene": null
 				}
 			]

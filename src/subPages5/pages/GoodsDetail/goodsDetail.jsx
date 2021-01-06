@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow, useRouter, useShareAppMessage, useDidHide } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import DetailHeader from './DetailHeader'
 import DetailContent from './DetailContent'
@@ -18,8 +18,24 @@ export default function GoodsDetail() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(dispatchGoodsDetail(mid))
+        
     },[])
+
+    useDidShow(()=>{
+        async function getInit() {
+            // 获取商品详情
+            const res = await dispatch(dispatchGoodsDetail(mid))
+        }
+        getInit()
+    })
+
+    useShareAppMessage(res => {
+        return {
+            title: `盟享诚珍`,
+            path: `/pages/home/home?target=goodsDetail&mid=${mid}`,
+            imageUrl: ''
+        }
+    })
 
     return (
         <View className='goods_detail_index'>
