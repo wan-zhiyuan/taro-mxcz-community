@@ -38,11 +38,6 @@ export function judgeTarget(params) {
                     url: `/subPages3/pages/infoDetail/infoDetail?target_id=${params.target_id}`
                 })
                 break
-            case 'serviceSiteDetail':
-                Taro.navigateTo({
-                    url: `/subPages2/pages/serviceSiteDetail/serviceSiteDetail?target_id=${params.target_id}`
-                })
-                break
             case 'activityDetail':
                 Taro.navigateTo({
                     url: `/subPages4/pages/activityDetail/activityDetail?target_id=${params.target_id}`
@@ -51,6 +46,16 @@ export function judgeTarget(params) {
             case 'goodsDetail':
                 Taro.navigateTo({
                     url: `/subPages5/pages/goodsDetail/goodsDetail?mid=${params.mid}`
+                })
+                break
+            case 'serviceSiteDetail':
+                Taro.navigateTo({
+                    url: `/subPages2/pages/serviceSiteDetail/serviceSiteDetail?target_id=${params.target_id}`
+                })
+                break
+            case 'serviceSiteLocate':
+                Taro.navigateTo({
+                    url: `/subPages2/pages/serviceSiteLocate/serviceSiteLocate`
                 })
                 break
             default:
