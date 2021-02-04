@@ -31,12 +31,37 @@ export default function ServiceSite() {
             cate_id: 2,
             cate_name: '社区养老',
         },
-        // {
-        //     image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-        //     value: '社区帮困',
-        //     cate_id: 3,
-        //     cate_name: '社区帮困',
-        // },
+        {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区教育',
+            cate_id: 3,
+            cate_name: '社区教育',
+        },
+        {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区服务',
+            cate_id: 4,
+            cate_name: '社区服务',
+        },
+        {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区科技',
+            cate_id: 5,
+            cate_name: '社区科技',
+        },
+        {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区文化',
+            cate_id: 6,
+            cate_name: '社区文化',
+        },
+        {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '社区生活',
+            cate_id: 7,
+            cate_name: '社区生活',
+        },
+        
     ])
     const [serviceSiteList, setServiceSiteList] = useState([])
     const [tabs, setTabs] = useState([{ text: "附近发现", id: "verb-1" }, { text: "最新收录", id: "verb-2" }, { text: "热门推荐", id: "verb-3" }])
