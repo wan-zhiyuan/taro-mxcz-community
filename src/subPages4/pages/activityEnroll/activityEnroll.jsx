@@ -83,6 +83,10 @@ export default function ActivityEnroll() {
             }
             child_name = child_name + ';' + child5
         }
+        let gender_data = ''
+        if (activity.basic.need_enroll_gender == 1) {
+            gender_data = gender
+        }
 
         let postData = {
             op: 'activity_enroll',
@@ -90,7 +94,7 @@ export default function ActivityEnroll() {
             contact_name: name,
             contact_mobile: mobile,
             enroll_age: age,
-            enroll_gender: gender,
+            enroll_gender: gender_data,
             enroll_child_name: child_name,
             enroll_often_service_station: oftenStation,
             enroll_remarks: remark,
