@@ -4,16 +4,22 @@
     background-color: #f2f2f2;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
 
-    .enroll {
-        width: 400px;
-        height: 70px;
-        background-color: #00D8A0;
-        border-radius: 10px;
-        text-align: center;
-        font-size: 36px;
-        line-height: 70px;
-        color: #fff;
-    }
+.enroll_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enroll {
+    width: 400px;
+    height: 70px;
+    background-color: #00D8A0;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 36px;
+    line-height: 70px;
+    color: #fff;
 }
