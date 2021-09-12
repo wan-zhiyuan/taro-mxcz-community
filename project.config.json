@@ -73,8 +73,8 @@
 				},
 				{
 					"id": 2,
-					"name": "subPages2/pages/serviceSiteLocate/serviceSiteLocate",
-					"pathName": "subPages2/pages/serviceSiteLocate/serviceSiteLocate",
+					"name": "subPages1/pages/myEnroll/myEnroll",
+					"pathName": "subPages1/pages/myEnroll/myEnroll",
 					"query": "",
 					"scene": null
 				},

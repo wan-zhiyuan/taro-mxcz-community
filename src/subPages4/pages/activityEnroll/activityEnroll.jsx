@@ -158,6 +158,7 @@ export default function ActivityEnroll() {
 
     return (
         <View className='activity_enroll_index'>
+            
             <ClLayout>
                 <ClCard>
                     <ClInput title='姓名' placeholder="请输入姓名" type='text' value={name} onChange={handleChangeName} />
@@ -211,6 +212,13 @@ export default function ActivityEnroll() {
                     }
                 </ClCard>
             </ClLayout>
+            {
+                (Number(activity.basic.need_honor_certificate || 0) === 1) &&
+                <View className='activity_enroll_ps'>
+                    PS:建议填写真实姓名 会关联到证书
+                </View>
+            }
+
             <View className='enroll_box'>
                 <View className='enroll' onClick={handleEnroll}>报名</View>
             </View>

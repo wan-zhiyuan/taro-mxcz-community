@@ -6,6 +6,15 @@
     flex-direction: column;
 }
 
+.activity_enroll_ps {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: red;
+}
+
 .enroll_box {
     width: 100%;
     display: flex;

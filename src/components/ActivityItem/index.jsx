@@ -11,7 +11,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { item, from } = props
+    const { item, from, showCertificate, } = props
 
     const dispatch = useDispatch()
 
@@ -54,6 +54,12 @@ export default function Index(props) {
         }
     }
 
+    // 显示证书
+    function handleShowC(e) {
+        e.stopPropagation()
+        showCertificate(item)
+    }
+
     const tags = [
         {
             text: '免费',
@@ -87,6 +93,11 @@ export default function Index(props) {
             text: `第${Number(item.sequence || 0)}位报名`,
             color: 'black',
             plain: true,
+        },
+        {
+            text: `查看证书`,
+            color: 'orange',
+            // plain: true,
         },
     ]
 
@@ -146,6 +157,12 @@ export default function Index(props) {
                             <ClTag tags={tags.slice(6, 7)} shape='radius' />
                         </View>
                     }
+                    {
+                        from === 'myEnroll' && (Number(item.is_sign || 0) === 1) && (Number(item.need_honor_certificate || 0) === 1) && 
+                        <View className='activity_tag5' onClick={handleShowC}>
+                            <ClTag tags={tags.slice(7, 8)} shape='radius'/>
+                        </View>
+                    }
                 </View>
                 {
                     from != 'myEnroll' &&
@@ -169,4 +186,5 @@ export default function Index(props) {
 Index.defaultProps = {
     item: {},
     from: '',
+    showCertificate: {},
 }

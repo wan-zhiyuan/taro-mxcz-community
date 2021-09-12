@@ -8,7 +8,7 @@ import './index.scss'
 
 export default function Index(props) {
 
-    const { list, from, } = props
+    const { list, from, showCertificate } = props
 
     return (
         <View className='activity_list'>
@@ -24,7 +24,7 @@ export default function Index(props) {
                         {
                             list.map((item, idx) => {
                                 return (
-                                    <ActivityItem key={'index_' + idx} item={item} from={from} />
+                                    <ActivityItem key={'index_' + idx} item={item} from={from} showCertificate={showCertificate} />
                                 )
                             })
                         }
@@ -40,5 +40,6 @@ export default function Index(props) {
 }
 Index.defaultProps = {
     list: [],
-    from: ''
+    from: '',
+    showCertificate: {},
 }
