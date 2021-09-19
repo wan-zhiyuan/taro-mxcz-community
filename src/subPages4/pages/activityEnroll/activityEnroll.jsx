@@ -1,6 +1,6 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { ClCard, ClInput, ClRadio, ClLayout } from "mp-colorui"
+import { ClCard, ClInput, ClRadio, ClLayout, ClSelect } from "mp-colorui"
 import { activityEnroll } from '../../../actions/activity'
 import { Toast, ToastSuccess } from '../../../utils/toast'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
@@ -24,12 +24,13 @@ export default function ActivityEnroll() {
     const [child4, setChild4] = useState('')
     const [child5, setChild5] = useState('')
     const [oftenStation, setOftenStation] = useState('')
+    const [sc, setSc] = useState('') // 学校或公司
     const [remark, setRemark] = useState('')
+    const [politicalId, setPoliticalId] = useState(0)
+    const [isVaccinationId, setIsVaccinationId] = useState(0)
 
     /* 报名 */
     async function handleEnroll() {
-        console.log('报名:name=' + name + ',mobile=' + mobile)
-        console.log(gender);
         if (!ClUtils.rule.required(name)) {
             Toast('请输入姓名')
             return
@@ -87,6 +88,21 @@ export default function ActivityEnroll() {
         if (activity.basic.need_enroll_gender == 1) {
             gender_data = gender
         }
+        // 判断学校或者公司
+        if (activity.basic.need_enroll_school_or_company == 1) {
+            if (!ClUtils.rule.required(sc)) {
+                Toast('请输入学校或者公司')
+                return
+            }
+        }
+        let political_data = ''
+        if (activity.basic.need_enroll_political_outlook == 1) {
+            political_data = range_political[politicalId]
+        }
+        let isVaccination_data = ''
+        if (activity.basic.need_enroll_new_crown_vaccination == 1) {
+            isVaccination_data = range_new_crown_vaccination[isVaccinationId]
+        }
 
         let postData = {
             op: 'activity_enroll',
@@ -98,6 +114,9 @@ export default function ActivityEnroll() {
             enroll_child_name: child_name,
             enroll_often_service_station: oftenStation,
             enroll_remarks: remark,
+            school_or_company: sc,
+            political_outlook: political_data,
+            is_new_crown_vaccination: isVaccination_data,
         }
         const res = await activityEnroll(postData)
         if (res.code === 200) {
@@ -140,8 +159,21 @@ export default function ActivityEnroll() {
     function handleChangeOftenStation(v) {
         setOftenStation(v)
     }
+    function handleChangeSchoolOrCompany(v) {
+        setSc(v)
+    }
     function handleChangeRemark(v) {
         setRemark(v)
+    }
+    function handleChangePolitical(v) {
+        console.log(v);
+        console.log(range_political[v]);
+        setPoliticalId(v)
+    }
+    function handleChangeNewCrown(v) {
+        console.log(v);
+        console.log(range_new_crown_vaccination[v]);
+        setIsVaccinationId(v)
     }
 
 
@@ -156,9 +188,12 @@ export default function ActivityEnroll() {
         }
     ]
 
+    const range_political = ["党员", "民主党", "无党派", "群众", "学生"];
+    const range_new_crown_vaccination = ['已接种', '未接种']
+
     return (
         <View className='activity_enroll_index'>
-            
+
             <ClLayout>
                 <ClCard>
                     <ClInput title='姓名' placeholder="请输入姓名" type='text' value={name} onChange={handleChangeName} />
@@ -206,11 +241,51 @@ export default function ActivityEnroll() {
                         <ClInput title='常去驿站' placeholder="请输入常去驿站" type="text" value={oftenStation} onChange={handleChangeOftenStation} />
                     }
                     {
+                        activity.basic.need_enroll_school_or_company == 1
+                        &&
+                        <ClInput title='学校或单位' placeholder="请输入学校或单位" type="text" value={sc} onChange={handleChangeSchoolOrCompany} />
+                    }
+                    {
                         activity.basic.need_enroll_remarks == 1
                         &&
                         <ClInput title='备注' placeholder="请输入备注" type="text" value={remark} onChange={handleChangeRemark} />
                     }
                 </ClCard>
+                {
+                    (activity.basic.need_enroll_political_outlook == 1) || (activity.basic.need_enroll_new_crown_vaccination == 1)
+                        ?
+                        <ClCard>
+                            {
+                                activity.basic.need_enroll_political_outlook == 1
+                                &&
+                                <ClSelect
+                                    selector={{ 
+                                        range: range_political,
+                                        value: politicalId,
+                                     }}
+                                    mode="selector"
+                                    title="政治面貌"
+                                    onChange={handleChangePolitical}
+                                />
+                            }
+                            {
+                                activity.basic.need_enroll_new_crown_vaccination == 1
+                                &&
+                                <ClSelect
+                                // selector使用value来记录值的变化
+                                    selector={{ 
+                                        range: range_new_crown_vaccination,
+                                        value: isVaccinationId,
+                                    }}
+                                    mode="selector"
+                                    title="新冠疫苗"
+                                    onChange={handleChangeNewCrown}
+                                />
+                            }
+                        </ClCard>
+                        : null
+                }
+
             </ClLayout>
             {
                 (Number(activity.basic.need_honor_certificate || 0) === 1) &&

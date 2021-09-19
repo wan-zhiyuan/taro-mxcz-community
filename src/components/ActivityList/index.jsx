@@ -30,9 +30,6 @@ export default function Index(props) {
                         }
                     </View>
             }
-            {/* <View className='divider'>
-                <Divider />
-            </View> */}
         </View>
 
 
