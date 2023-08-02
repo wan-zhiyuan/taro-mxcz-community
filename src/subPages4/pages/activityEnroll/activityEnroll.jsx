@@ -1,6 +1,6 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { ClCard, ClInput, ClRadio, ClLayout, ClSelect } from "mp-colorui"
+import { ClCard, ClInput, ClRadio, ClLayout, ClSelect, ClTextarea } from "mp-colorui"
 import { activityEnroll } from '../../../actions/activity'
 import { Toast, ToastSuccess } from '../../../utils/toast'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
@@ -92,6 +92,13 @@ export default function ActivityEnroll() {
         if (activity.basic.need_enroll_school_or_company == 1) {
             if (!ClUtils.rule.required(sc)) {
                 Toast('请输入学校或者公司')
+                return
+            }
+        }
+        // 判断备注
+        if (activity.basic.need_enroll_remarks == 1) {
+            if (!ClUtils.rule.required(remark)) {
+                Toast('请输入身份证号/家庭地址')
                 return
             }
         }
@@ -248,7 +255,16 @@ export default function ActivityEnroll() {
                     {
                         activity.basic.need_enroll_remarks == 1
                         &&
-                        <ClInput title='备注' placeholder="请输入备注" type="text" value={remark} onChange={handleChangeRemark} />
+                        // <ClInput title='备注' 
+                        // placeholder="请输入身份证号/家庭地址等" 
+                        // type="text" 
+                        // value={remark} 
+                        // onChange={handleChangeRemark} />
+                        <ClTextarea 
+                        placeholder="请输入身份证号/家庭地址"
+                        value={remark} 
+                        onChange={handleChangeRemark}
+                         />
                     }
                 </ClCard>
                 {

@@ -1,91 +1,80 @@
 {
-  "miniprogramRoot": "dist/",
-  "projectname": "taro-mxcz-community",
-  "description": "盟享诚珍社区小程序",
-  "appid": "wxa774ff01abe41e49",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "enhance": false,
-    "postcss": false,
-    "preloadBackgroundData": false,
-    "minified": false,
-    "newFeature": false,
-    "coverView": true,
-    "nodeModules": false,
-    "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": false,
-    "uglifyFileName": false,
-    "checkInvalidKey": true,
-    "checkSiteMap": false,
-    "uploadWithSourceMap": true,
-    "babelSetting": {
+   "miniprogramRoot": "dist/",
+   "description": "盟享诚珍社区小程序",
+   "setting": {
+      "urlCheck": true,
+      "es6": false,
+      "enhance": false,
+      "postcss": false,
+      "preloadBackgroundData": false,
+      "minified": false,
+      "newFeature": false,
+      "coverView": true,
+      "nodeModules": false,
+      "autoAudits": false,
+      "showShadowRootInWxmlPanel": true,
+      "scopeDataCheck": false,
+      "uglifyFileName": false,
+      "checkInvalidKey": true,
+      "checkSiteMap": false,
+      "uploadWithSourceMap": true,
+      "babelSetting": {
+         "ignore": [],
+         "disablePlugins": [],
+         "outputPath": ""
+      },
+      "useMultiFrameRuntime": true,
+      "packNpmRelationList": [],
+      "ignoreUploadUnusedFiles": true
+   },
+   "compileType": "miniprogram",
+   "simulatorType": "wechat",
+   "simulatorPluginLibVersion": {},
+   "condition": {
+      "miniprogram": {
+         "list": [
+            {
+               "name": "pages/home/home",
+               "pathName": "pages/home/home",
+               "query": "",
+               "scene": null
+            },
+            {
+               "name": "subPages4/pages/activity/activity",
+               "pathName": "subPages4/pages/activity/activity",
+               "query": "",
+               "scene": null
+            },
+            {
+               "name": "subPages1/pages/myEnroll/myEnroll",
+               "pathName": "subPages1/pages/myEnroll/myEnroll",
+               "query": "",
+               "scene": null
+            },
+            {
+               "name": "subPages3/pages/publishConfirm/publishConfirm",
+               "pathName": "subPages3/pages/publishConfirm/publishConfirm",
+               "query": "target_id=33",
+               "scene": null
+            },
+            {
+               "name": "subPages5/pages/goodsDetail/goodsDetail",
+               "pathName": "subPages5/pages/goodsDetail/goodsDetail",
+               "query": "mid=58",
+               "scene": null
+            }
+         ]
+      }
+   },
+   "srcMiniprogramRoot": "dist/",
+   "editorSetting": {
+      "tabIndent": "insertSpaces",
+      "tabSize": 3
+   },
+   "libVersion": "3.0.0",
+   "packOptions": {
       "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    },
-    "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true
-  },
-  "compileType": "miniprogram",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": 0,
-          "name": "pages/home/home",
-          "pathName": "pages/home/home",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": 1,
-          "name": "subPages4/pages/activity/activity",
-          "pathName": "subPages4/pages/activity/activity",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": 2,
-          "name": "subPages1/pages/myEnroll/myEnroll",
-          "pathName": "subPages1/pages/myEnroll/myEnroll",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": 3,
-          "name": "subPages3/pages/publishConfirm/publishConfirm",
-          "pathName": "subPages3/pages/publishConfirm/publishConfirm",
-          "query": "target_id=33",
-          "scene": null
-        },
-        {
-          "id": 4,
-          "name": "subPages5/pages/goodsDetail/goodsDetail",
-          "pathName": "subPages5/pages/goodsDetail/goodsDetail",
-          "query": "mid=58",
-          "scene": null
-        }
-      ]
-    }
-  }
+      "include": []
+   },
+   "appid": "wxa774ff01abe41e49"
 }
