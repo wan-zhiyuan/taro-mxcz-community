@@ -6,7 +6,7 @@ import { getPublishDetail, increasePublish, editMyPublish } from '../../../actio
 import { useSelector } from '@tarojs/redux'
 import { Toast, ToastSuccess } from '../../../utils/toast'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
-import { get as getGlobalData } from '../../../global_data'
+import { getLocationString } from '../../../utils/location'
 
 import './publishEdit.scss'
 
@@ -206,7 +206,9 @@ export default function PublishEdit() {
                 images = images + '|' + upLoadImg[i]
             }
         }
-        const location = getGlobalData('location')
+
+
+        const location = await getLocationString()
         let postData = {
             op: 'publish',
             cate_id: cateId,

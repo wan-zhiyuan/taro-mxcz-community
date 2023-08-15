@@ -6,7 +6,6 @@ import { Toast, ToastSuccess } from '../../../utils/toast'
 import { isEmpty } from '../../../utils/is'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { updatePublishApply, increasePublish } from '../../../actions/publish'
-import { get as getGlobalData } from '../../../global_data'
 import { getLocationString } from '../../../utils/location'
 import { ClUtils } from "mp-colorui/dist/weapp/lib"
 

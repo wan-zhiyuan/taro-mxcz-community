@@ -137,7 +137,12 @@ class App extends Component {
       'scope.userLocation': {
         desc: '你的位置信息将用于小程序位置接口的效果展示'
       }
-    }
+    },
+    requiredPrivateInfos: [
+      "getLocation",
+      "chooseLocation",
+      "chooseAddress",
+    ],
 
   }
 
@@ -157,8 +162,9 @@ class App extends Component {
     // 用户第一次启动小程序，调用位置信息相关的api会弹出系统弹层
     // 如果拒绝，或者在设置中关闭，再调用api时直接走fail方法
 
+    // 20230815修改 微信不允许在页面启动前获取定位
     // 优化点：还是在app.js中获取定位，只有获取结束后才执行home页面的publishList获取，并且设置全局location 获取城市名称设置全局城市名称
-    this.getLocation()
+    // this.getLocation()
 
     this.props.dispatchUser()
   }

@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { get as getGlobalData, set as setGlobalData } from '../global_data'
 
 /* 定位信息工具类 */
 
@@ -29,6 +30,7 @@ export async function getLocationString() {
         })
         console.log(res)
         location = res.latitude + ',' + res.longitude
+        setGlobalData('location', location) // getLocationString 更新location
         console.log(location)
     } catch (err) {
         location = ''
@@ -42,12 +44,15 @@ export async function getLocationString() {
  */
 export async function getLocationStringPopup() {
     console.log('调用了getLocationStringPopup()')
+    let location = ''
     const res = await getLocation()
     // console.log('###################')
     // console.log(res)
     if (res.errMsg === 'getLocation:ok') {
         // return '定位权限开启，获取定位成功'
-        return res.latitude + ',' + res.longitude
+        location = res.latitude + ',' + res.longitude
+        setGlobalData('location', location) // getLocationStringPopup 更新location 1
+        return location
 
     } else if (res.errMsg === 'getLocation:fail auth deny') {
         const settingRes = await Taro.getSetting()
@@ -72,7 +77,9 @@ export async function getLocationStringPopup() {
                         const speed = secondRes.speed
                         const accuracy = secondRes.accuracy
                         // return '用户打开定位设置，获取定位成功'
-                        return secondRes.latitude + ',' + secondRes.longitude
+                        location = secondRes.latitude + ',' + secondRes.longitude
+                        setGlobalData('location', location) // getLocationStringPopup 更新location 2
+                        return location
                     } else {
                         // return '用户打开定位设置，还是获取定位失败'
                         return ''

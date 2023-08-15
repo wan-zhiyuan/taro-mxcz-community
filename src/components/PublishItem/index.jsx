@@ -34,6 +34,7 @@ export default function Index(props) {
 
     /* 计算距离字符串 */
     function caleDistance() {
+        return '';
         if (publishItem.distance <= 100) {
             return `<100m`
         } else if (publishItem.distance <= 1000) {

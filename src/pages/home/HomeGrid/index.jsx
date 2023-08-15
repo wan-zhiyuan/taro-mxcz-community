@@ -11,23 +11,23 @@ export default function Index(props) {
 
     const [gridData, setGridData] = useState([
         {
-            id: '1', name: '梦想伙伴', pic: 'http://source.bingu.cn/icon_01.png',
+            id: '1', name: '梦想伙伴', pic: 'http://qn.fule.top/icon_01.png',
             url: '/subPages2/pages/serviceSite/serviceSite'
         },
         {
-            id: '2', name: '社区通', pic: 'http://source.bingu.cn/icon_02.png',
+            id: '2', name: '社区通', pic: 'http://qn.fule.top/icon_02.png',
             url: '/subPages2/pages/community/community'
         },
         {
-            id: '3', name: '每日签到', pic: 'http://source.bingu.cn/icon_03.png',
+            id: '3', name: '每日签到', pic: 'http://qn.fule.top/icon_03.png',
             url: '/subPages1/pages/signIn/signIn'
         },
         {
-            id: '4', name: '活动报名', pic: 'http://source.bingu.cn/icon_04.png',
+            id: '4', name: '活动报名', pic: 'http://qn.fule.top/icon_04.png',
             url: '/subPages4/pages/activity/activity'
         },
         {
-            id: '5', name: '志愿者报名', pic: 'http://source.bingu.cn/icon_05.png',
+            id: '5', name: '志愿者报名', pic: 'http://qn.fule.top/icon_05.png',
             url: '/subPages4/pages/volunteer/volunteer'
         },
     ])

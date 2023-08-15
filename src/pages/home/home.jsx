@@ -46,8 +46,14 @@ export default function Home() {
     }, [])
 
     useDidShow(() => {
+        async function getData() {
+            // 获取首页展示的发布信息
+            getPublishData(0)
+        }
         // 获取发布信息数据
         getData()
+
+
     })
 
     useShareAppMessage(res => {
@@ -65,10 +71,7 @@ export default function Home() {
         await dispatch(dispatchHomeIndex())
     }
 
-    async function getData() {
-        // 获取首页展示的发布信息
-        getPublishData(0)
-    }
+    
 
     async function getPublishData(index = pIndex) {
         if (index = 0) setIsLoaded(false) // 初次加载 数据请求前 不显示页面
